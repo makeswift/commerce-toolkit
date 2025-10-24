@@ -1,0 +1,87 @@
+'use client';
+
+import { clsx } from 'clsx';
+import { X } from 'lucide-react';
+import { ReactNode, Ref, useCallback, useEffect, useState } from 'react';
+
+export interface BannerProps {
+  id: string;
+  children: ReactNode;
+  hideDismiss?: boolean;
+  className?: string;
+  onDismiss?: () => void;
+  ref?: Ref<HTMLDivElement>;
+}
+
+/**
+ * This component supports various CSS variables for theming. Here's a comprehensive list, along
+ * with their default values:
+ *
+ * ```css
+ * :root {
+ *   --banner-focus: hsl(var(--foreground));
+ *   --banner-background: hsl(var(--primary));
+ *   --banner-text: hsl(var(--foreground));
+ *   --banner-close-icon: color-mix(in oklab, hsl(var(--foreground)) 50%, transparent);
+ *   --banner-close-icon-hover: hsl(var(--foreground));
+ *   --banner-close-background: transparent;
+ *   --banner-close-background-hover: color-mix(in oklab, hsl(var(--background)) 40%, transparent);
+ *   --banner-font-family: var(--font-family-body);
+ * }
+ * ```
+ */
+export const Banner = ({
+  id,
+  children,
+  hideDismiss = false,
+  className,
+  onDismiss,
+  ref,
+}: BannerProps) => {
+  const [banner, setBanner] = useState({ dismissed: false, initialized: false });
+
+  useEffect(() => {
+    const hidden = localStorage.getItem(`${id}-hidden-banner`) === 'true';
+
+    setBanner({ dismissed: hidden, initialized: true });
+  }, [id]);
+
+  const hideBanner = useCallback(() => {
+    setBanner((prev) => ({ ...prev, dismissed: true }));
+    localStorage.setItem(`${id}-hidden-banner`, 'true');
+    onDismiss?.();
+  }, [id, onDismiss]);
+
+  if (!banner.initialized) return null;
+
+  return (
+    <div
+      className={clsx(
+        'overflow-hidden bg-[var(--banner-background,hsl(var(--primary)))] transition-all duration-300 ease-in @container',
+        banner.dismissed ? 'pointer-events-none max-h-0' : 'max-h-32',
+        className,
+      )}
+      id="announcement-bar"
+      ref={ref}
+    >
+      <div className="flex items-center justify-between gap-4 px-8 py-3">
+        <div className="flex-1 text-sm font-[var(--banner-font-family,var(--font-family-body))] text-[var(--banner-text,hsl(var(--foreground)))] @xl:text-center @xl:text-base">
+          {children}
+        </div>
+
+        {!hideDismiss && (
+          <button
+            aria-label="Dismiss banner"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--banner-close-background,transparent)] text-[var(--banner-close-icon,color-mix(in_oklab,hsl(var(--foreground))_50%,transparent))] transition-colors duration-300 hover:bg-[var(--banner-close-background-hover,color-mix(in_oklab,hsl(var(--background))_40%,transparent))] hover:text-[var(--banner-close-icon-hover,hsl(var(--foreground)))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--banner-focus,hsl(var(--foreground)))]"
+            onClick={(e) => {
+              e.preventDefault();
+              hideBanner();
+            }}
+          >
+            <X absoluteStrokeWidth size={20} strokeWidth={1.5} />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
+import { X } from 'lucide-react';
 
-import { Button } from './Button';
+import { Button } from '@/components/button';
 
 const meta = {
   title: 'Components/Button',
@@ -36,7 +36,6 @@ const meta = {
     },
   },
   args: {
-    onClick: fn(),
     children: 'Button',
   },
 } satisfies Meta<typeof Button>;
@@ -134,7 +133,7 @@ export const Square: Story = {
 export const Circle: Story = {
   args: {
     shape: 'circle',
-    children: '🔘',
+    children: <X absoluteStrokeWidth size={20} strokeWidth={1.5} />,
   },
 };
 
