@@ -1,8 +1,8 @@
 'use client';
 
-import * as TabsPrimitive from '@radix-ui/react-tabs';
-import { clsx } from 'clsx';
-import { ComponentPropsWithoutRef, ComponentPropsWithRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+import * as TabsPrimitives from '@/components/tabs';
 
 interface Tab {
   value: string;
@@ -10,11 +10,11 @@ interface Tab {
   content: ReactNode;
 }
 
-export type TabsProps = ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
+export interface TabsProps extends TabsPrimitives.RootProps {
   className?: string;
   defaultValue: string;
   tabs: Tab[];
-};
+}
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -36,51 +36,19 @@ export type TabsProps = ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
  */
 export function Tabs({ className, defaultValue, tabs, ...props }: TabsProps) {
   return (
-    <TabsPrimitive.Root className={clsx(className)} defaultValue={defaultValue} {...props}>
-      <TabsList>
+    <TabsPrimitives.Root className={className} defaultValue={defaultValue} {...props}>
+      <TabsPrimitives.List>
         {tabs.map(({ value, label }) => (
-          <TabsTrigger key={value} value={value}>
+          <TabsPrimitives.Trigger key={value} value={value}>
             {label}
-          </TabsTrigger>
+          </TabsPrimitives.Trigger>
         ))}
-      </TabsList>
+      </TabsPrimitives.List>
       {tabs.map(({ value, content }) => (
-        <TabsContent key={value} value={value}>
+        <TabsPrimitives.Content key={value} value={value}>
           {content}
-        </TabsContent>
+        </TabsPrimitives.Content>
       ))}
-    </TabsPrimitive.Root>
-  );
-}
-
-export type TabsListProps = ComponentPropsWithRef<typeof TabsPrimitive.List>;
-
-function TabsList({ ref, ...props }: TabsListProps) {
-  return (
-    <TabsPrimitive.List
-      className="flex flex-wrap border-b border-[var(--tabs-border,hsl(var(--contrast-100)))]"
-      ref={ref}
-      {...props}
-    />
-  );
-}
-
-function TabsTrigger({ ref, ...props }: ComponentPropsWithRef<typeof TabsPrimitive.Trigger>) {
-  return (
-    <TabsPrimitive.Trigger
-      className='relative p-4 text-sm font-[var(--tabs-font-family,var(--font-family-body))] font-semibold text-[var(--tabs-text,hsl(var(--contrast-500)))] transition-colors duration-200 ease-linear after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-bottom after:scale-y-0 after:bg-[var(--tabs-underline-default,hsl(var(--contrast-200)))] after:transition-all after:duration-200 after:ease-linear after:content-[""] hover:text-[var(--tabs-text-hover,hsl(var(--foreground)))] hover:after:scale-y-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tabs-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:text-[var(--tabs-text,hsl(var(--contrast-500)))] data-[state=active]:text-[var(--tabs-text-active,hsl(var(--foreground)))] data-[state=active]:after:scale-y-100 data-[state=active]:after:bg-[var(--tabs-underline-active,hsl(var(--primary)))] data-[state=inactive]:hover:after:bg-[var(--tabs-underline-hover,hsl(var(--contrast-200)))]'
-      ref={ref}
-      {...props}
-    />
-  );
-}
-
-function TabsContent({ ref, ...props }: ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
-  return (
-    <TabsPrimitive.Content
-      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tabs-focus,hsl(var(--primary)))] focus-visible:ring-offset-2"
-      ref={ref}
-      {...props}
-    />
+    </TabsPrimitives.Root>
   );
 }

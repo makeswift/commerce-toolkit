@@ -42,7 +42,7 @@ export function Card<T extends ElementType = 'div'>({
 
     const linkClassName = clsx(
       'absolute inset-0 rounded-2xl',
-      'focus-visible:outline-[var(--card-focus,hsl(var(--primary)))] focus-visible:outline-solid focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4',
+      'focus-visible:outline-[var(--card-focus,hsl(var(--primary)))] focus-visible:outline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4',
     );
     if (render) {
       return render({ href, ariaLabel, className: linkClassName });

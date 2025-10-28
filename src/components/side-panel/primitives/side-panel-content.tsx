@@ -12,33 +12,20 @@ export interface SidePanelContentProps {
   children: ReactNode;
 }
 
-/**
- * This component supports various CSS variables for theming. Here's a comprehensive list, along
- * with their default values:
- *
- * ```css
- * :root {
- *   --side-panel-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
- *   --side-panel-background: var(--background);
- *   --side-panel-title-text: var(--foreground);
- *   --side-panel-title-font-family: var(--font-family-heading);
- *   --side-panel-content-font-family: var(--font-family-body);
- * }
- * ```
- */
 export function SidePanelContent({ title, children }: SidePanelContentProps) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="fixed inset-0 z-30 bg-[--side-panel-overlay-background,color-mix(in_oklab,var(--foreground)_50%,transparent)] @container">
+      <Dialog.Overlay className="fixed inset-0 z-30 bg-[var(--side-panel-overlay-background,color-mix(in_oklab,var(--foreground)_50%,transparent))] @container">
         <Dialog.Content
           className={clsx(
-            'fixed inset-y-0 right-0 flex w-96 max-w-full flex-col bg-[--side-panel-background,var(--background)] font-[family-name:--side-panel-content-font-family,var(--font-family-body)] transition duration-500 [animation-timing-function:cubic-bezier(0.25,1,0,1)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
+            'fixed inset-y-0 right-0 flex w-96 max-w-full flex-col bg-[var(--side-panel-background,hsl(var(--background)))] font-[var(--side-panel-content-font-family,var(--font-family-body))] transition duration-500 [animation-timing-function:cubic-bezier(0.25,1,0,1)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
           )}
+          data-slot="side-panel-content"
           forceMount
         >
           <div className="flex items-center justify-between gap-2 px-6 pb-4 pt-4 @md:px-8 @md:pt-7">
             <Dialog.Title asChild>
-              <h2 className="font-[family-name:--side-panel-title-font-family,var(--font-family-heading)] text-2xl font-medium text-[--side-panel-title-text,var(--foreground)] @lg:text-3xl">
+              <h2 className="text-2xl font-[var(--side-panel-title-font-family,var(--font-family-heading))] font-medium text-[var(--side-panel-title-text,hsl(var(--foreground)))] @lg:text-3xl">
                 {title}
               </h2>
             </Dialog.Title>

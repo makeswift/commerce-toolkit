@@ -1,1 +1,1 @@
-export { Logo, type LogoProps } from '@/components/logo/logo';
+export { Logo, LogoSkeleton, type LogoProps } from '@/components/logo/logo';

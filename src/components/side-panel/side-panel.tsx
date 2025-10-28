@@ -1,11 +1,10 @@
 'use client';
 
-import type { ReactNode } from 'react';
 import { Sliders } from 'lucide-react';
-
-import * as SidePanelPrimitives from '@/components/side-panel';
+import type { ReactNode } from 'react';
 
 import { Button } from '@/components/button';
+import * as SidePanelPrimitives from '@/components/side-panel';
 
 export interface SidePanelProps {
   title: string;
@@ -19,6 +18,11 @@ export interface SidePanelProps {
  *
  * ```css
  * :root {
+ *   --side-panel-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
+ *   --side-panel-background: var(--background);
+ *   --side-panel-title-text: var(--foreground);
+ *   --side-panel-title-font-family: var(--font-family-heading);
+ *   --side-panel-content-font-family: var(--font-family-body);
  *   --side-panel-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
  *   --side-panel-background: var(--background);
  *   --side-panel-title-text: var(--foreground);

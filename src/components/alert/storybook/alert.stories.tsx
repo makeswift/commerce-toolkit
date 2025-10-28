@@ -31,6 +31,7 @@ const meta: Meta<typeof Alert> = {
 };
 
 export default meta;
+
 type Story = StoryObj<AlertProps>;
 
 export const Success: Story = {

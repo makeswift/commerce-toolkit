@@ -11,6 +11,7 @@ export function SkeletonBox({ className }: SkeletonBoxProps) {
         'bg-[var(--skeleton,color-mix(in_oklab,hsl(var(--contrast-300))_15%,transparent))]',
         className,
       )}
+      data-slot="skeleton-box"
     />
   );
 }

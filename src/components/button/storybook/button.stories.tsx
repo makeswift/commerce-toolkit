@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { X } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 
 import { Button } from '@/components/button';
 
@@ -168,5 +168,53 @@ export const SecondaryMediumRounded: Story = {
     size: 'medium',
     shape: 'rounded',
     children: 'Cancel',
+  },
+};
+
+// With icon examples
+export const WithIcon: Story = {
+  args: {
+    variant: 'primary',
+    children: (
+      <>
+        Shop Now
+        <ArrowRight size={20} />
+      </>
+    ),
+  },
+};
+
+export const IconOnly: Story = {
+  args: {
+    variant: 'primary',
+    shape: 'circle',
+    size: 'medium',
+    children: <ArrowRight size={20} />,
+  },
+};
+
+// Use case examples
+export const CallToAction: Story = {
+  args: {
+    variant: 'primary',
+    size: 'large',
+    children: (
+      <>
+        Get Started <ArrowRight size={20} />
+      </>
+    ),
+  },
+};
+
+export const DangerWithIcon: Story = {
+  args: {
+    variant: 'danger',
+    size: 'medium',
+    children: (
+      <>
+        <X size={20} />
+        Delete Item
+      </>
+    ),
   },
 };

@@ -94,7 +94,7 @@ export function CategoryCard({
 
   const renderLink = () => {
     const linkClassName = clsx(
-      'rounded-[--category-card-border-radius,1rem] focus:outline-none focus-visible:ring-[var(--category-card-focus,hsl(var(--primary)))] absolute inset-0 focus-visible:ring-2 focus-visible:ring-offset-4',
+      'rounded-[var(--category-card-border-radius,1rem)] focus:outline-none focus-visible:ring-[var(--category-card-focus,hsl(var(--primary)))] absolute inset-0 focus-visible:ring-2 focus-visible:ring-offset-4',
       {
         light: 'ring-offset-[var(--category-card-light-offset,hsl(var(--background)))]',
         dark: 'ring-offset-[var(--category-card-dark-offset,hsl(var(--foreground)))]',
@@ -115,7 +115,7 @@ export function CategoryCard({
   return (
     <article
       className={clsx(
-        'group relative flex w-full max-w-md cursor-pointer flex-col gap-2 rounded-[--category-card-border-radius,1rem] font-[var(--category-card-font-family,var(--font-family-body))] @container',
+        'group relative flex w-full max-w-md cursor-pointer flex-col gap-2 rounded-[var(--category-card-border-radius,1rem)] font-[var(--category-card-font-family,var(--font-family-body))] @container',
         {
           small: 'gap-2',
           medium: 'gap-3',
@@ -210,7 +210,7 @@ export function CategoryCardSkeleton({
     <div className={clsx('@container', className)}>
       <SkeletonPrimitives.Box
         className={clsx(
-          'rounded-[--category-card-border-radius,1rem]',
+          'rounded-[var(--category-card-border-radius,1rem)]',
           {
             '5:6': 'aspect-[5/6]',
             '3:4': 'aspect-[3/4]',

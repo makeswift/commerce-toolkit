@@ -18,6 +18,7 @@ export function SkeletonRoot({
     <div
       className={clsx('@container', hideOverflow && 'overflow-hidden', className)}
       data-pending={pending ? '' : undefined}
+      data-slot="skeleton-root"
       role={pending ? 'status' : undefined}
     >
       {children}

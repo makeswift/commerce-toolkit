@@ -45,6 +45,7 @@ const meta: Meta<typeof Accordion> = {
 };
 
 export default meta;
+
 type Story = StoryObj<AccordionProps>;
 
 export const Light: Story = {

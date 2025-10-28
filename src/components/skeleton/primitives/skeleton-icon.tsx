@@ -1,5 +1,4 @@
 import { clsx } from 'clsx';
-
 import type { ReactNode } from 'react';
 
 export interface SkeletonIconProps {
@@ -9,7 +8,10 @@ export interface SkeletonIconProps {
 
 export function SkeletonIcon({ className, icon }: SkeletonIconProps) {
   return (
-    <div className={clsx('text-[var(--skeleton,hsl(var(--contrast-300)))] opacity-25', className)}>
+    <div
+      className={clsx('text-[var(--skeleton,hsl(var(--contrast-300)))] opacity-25', className)}
+      data-slot="skeleton-icon"
+    >
       {icon}
     </div>
   );

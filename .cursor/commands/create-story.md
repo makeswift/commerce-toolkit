@@ -9,3 +9,7 @@ Keep in mind that the examples in the directory are from an older implementation
 ## Using Tailwind CSS
 
 If you need to apply styles use Tailwind CSS and the defined colors and values that we defined in our config file. Avoid using inline styles.
+
+## Story structure
+
+Each story should start with a Docs page that gives the examples and a breakdown of the API and how they work. This would also include the CSS variables for each component listed at the top.
