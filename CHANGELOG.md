@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.4
+
+### Patch Changes
+
+- b18f0ae: Added Tailwind Merge to cn function util to ensure no class conflicts
+
 ## 0.0.3
 
 ### Patch Changes
