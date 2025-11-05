@@ -39,17 +39,15 @@ export type AccordionProps = AccordionPrimitive.RootProps & {
  */
 export function Accordion({ colorScheme = 'light', items, ...props }: AccordionProps) {
   return (
-    <AccordionPrimitive.Root {...props}>
-      {items.map((item, index) => (
-        <AccordionPrimitive.Item
-          colorScheme={colorScheme}
-          key={index}
-          title={item.title}
-          value={item.title}
-        >
-          {item.content}
-        </AccordionPrimitive.Item>
-      ))}
-    </AccordionPrimitive.Root>
+    <AccordionPrimitive.Provider colorScheme={colorScheme}>
+      <AccordionPrimitive.Root {...props}>
+        {items.map((item, index) => (
+          <AccordionPrimitive.Item key={index} value={item.title}>
+            <AccordionPrimitive.Trigger>{item.title}</AccordionPrimitive.Trigger>
+            <AccordionPrimitive.Content>{item.content}</AccordionPrimitive.Content>
+          </AccordionPrimitive.Item>
+        ))}
+      </AccordionPrimitive.Root>
+    </AccordionPrimitive.Provider>
   );
 }
