@@ -1,23 +1,26 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { clsx } from 'clsx';
 import type { ComponentProps } from 'react';
 
 import { useAccordionContext } from '@/components/accordion';
+import { cn } from '@/lib';
 
 export type AccordionTriggerProps = ComponentProps<typeof AccordionPrimitive.Trigger>;
 
-export function AccordionTrigger({ children, ...props }: AccordionTriggerProps) {
+export function AccordionTrigger({ children, className, ...props }: AccordionTriggerProps) {
   const { colorScheme } = useAccordionContext();
 
   return (
     <AccordionPrimitive.Header>
       <AccordionPrimitive.Trigger
-        className="group flex w-full cursor-pointer items-start gap-8 border-none py-3 text-start focus:outline-none @md:py-4"
+        className={cn(
+          'group flex w-full cursor-pointer items-start gap-8 border-none py-3 text-start focus:outline-none @md:py-4',
+          className,
+        )}
         data-slot="accordion-trigger"
         {...props}
       >
         <div
-          className={clsx(
+          className={cn(
             'flex-1 select-none text-sm font-[var(--accordion-title-font-family,var(--font-family-mono))] font-normal uppercase transition-colors duration-300 ease-out',
             {
               light:
@@ -29,7 +32,7 @@ export function AccordionTrigger({ children, ...props }: AccordionTriggerProps) 
           {children}
         </div>
         <svg
-          className={clsx(
+          className={cn(
             'mt-1 shrink-0 [&>line]:origin-center [&>line]:transition [&>line]:duration-300 [&>line]:ease-out',
             {
               light:
