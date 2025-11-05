@@ -1,3 +1,2 @@
-// Components
-export { Button } from './components/button/button';
-export type { ButtonProps } from './components/button/button';
+export { Accordion } from './components/accordion';
+export type { AccordionProps } from './components/accordion';
