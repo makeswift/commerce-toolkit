@@ -36,7 +36,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/makeswift/commerce-elements.git"
+    "url": "git+https://github.com/makeswift/commerce-toolkit.git"
   },
   "scripts": {
     "dev": "vite",
