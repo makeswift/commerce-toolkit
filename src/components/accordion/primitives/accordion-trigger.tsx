@@ -21,7 +21,7 @@ export function AccordionTrigger({ children, className, ...props }: AccordionTri
       >
         <div
           className={cn(
-            'flex-1 select-none text-sm font-[var(--accordion-title-font-family,var(--font-family-mono))] font-normal uppercase transition-colors duration-300 ease-out',
+            'flex-1 select-none text-sm font-normal uppercase transition-colors duration-300 ease-out [font-family:var(--accordion-title-font-family,var(--font-family-mono))]',
             {
               light:
                 'text-[var(--accordion-light-title-text,hsl(var(--contrast-400)))] group-hover:text-[var(--accordion-light-title-text-hover,hsl(var(--foreground)))]',

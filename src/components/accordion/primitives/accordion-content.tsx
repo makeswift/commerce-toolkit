@@ -23,18 +23,18 @@ export function AccordionContent({ children, className, ...props }: AccordionCon
         // We need to delay the animation until the component is mounted to avoid the animation from being triggered when the component is first rendered.
         isMounted && 'data-[state=closed]:animate-collapse data-[state=open]:animate-expand',
       )}
-      data-slot="accordion-content"
       {...props}
     >
       <div
         className={cn(
-          'py-3 text-base font-[var(--accordion-content-font-family,var(--font-family-body))] font-light leading-normal',
+          'py-3 text-base font-light leading-normal [font-family:var(--accordion-content-font-family,var(--font-family-body))]',
           {
             light: 'text-[var(--accordion-light-content-text,hsl(var(--foreground)))]',
             dark: 'text-[var(--accordion-dark-content-text,hsl(var(--background)))]',
           }[colorScheme],
           className,
         )}
+        data-slot="accordion-content"
       >
         {children}
       </div>
