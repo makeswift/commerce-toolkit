@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.5
+
+### Patch Changes
+
+- 035fbaf: Added Alert component
+
 ## 0.0.4
 
 ### Patch Changes
