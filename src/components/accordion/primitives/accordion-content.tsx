@@ -1,13 +1,13 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { clsx } from 'clsx';
 import { useEffect, useState } from 'react';
 import type { ComponentProps } from 'react';
 
 import { useAccordionContext } from '@/components/accordion';
+import { cn } from '@/lib';
 
 export type AccordionContentProps = ComponentProps<typeof AccordionPrimitive.Content>;
 
-export function AccordionContent({ children, ...props }: AccordionContentProps) {
+export function AccordionContent({ children, className, ...props }: AccordionContentProps) {
   const { colorScheme } = useAccordionContext();
 
   const [isMounted, setIsMounted] = useState(false);
@@ -18,20 +18,22 @@ export function AccordionContent({ children, ...props }: AccordionContentProps) 
 
   return (
     <AccordionPrimitive.Content
-      className={clsx(
+      className={cn(
         'overflow-hidden',
         // We need to delay the animation until the component is mounted to avoid the animation from being triggered when the component is first rendered.
         isMounted && 'data-[state=closed]:animate-collapse data-[state=open]:animate-expand',
       )}
+      data-slot="accordion-content"
       {...props}
     >
       <div
-        className={clsx(
+        className={cn(
           'py-3 text-base font-[var(--accordion-content-font-family,var(--font-family-body))] font-light leading-normal',
           {
             light: 'text-[var(--accordion-light-content-text,hsl(var(--foreground)))]',
             dark: 'text-[var(--accordion-dark-content-text,hsl(var(--background)))]',
           }[colorScheme],
+          className,
         )}
       >
         {children}
