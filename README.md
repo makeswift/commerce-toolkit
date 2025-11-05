@@ -1,4 +1,4 @@
-# Commerce Elements
+# Commerce Toolkit
 
 A collection of modern, accessible commerce UI components built with React, TypeScript, and Tailwind CSS.
 
@@ -10,11 +10,11 @@ A collection of modern, accessible commerce UI components built with React, Type
 ## Installation
 
 ```bash
-npm install commerce-elements
+npm install commerce-toolkit
 # or
-yarn add commerce-elements
+yarn add commerce-toolkit
 # or
-pnpm add commerce-elements
+pnpm add commerce-toolkit
 ```
 
 Install the optional Tailwind plugins (recommended):
@@ -27,16 +27,16 @@ npm install -D @tailwindcss/container-queries @tailwindcss/typography tailwindcs
 
 ### 1. Configure Tailwind
 
-Add the Commerce Elements preset and content path to your `tailwind.config.js`:
+Add the Commerce Toolkit preset and content path to your `tailwind.config.js`:
 
 ```js
-import commerceElements from 'commerce-elements/tailwind';
+import commerceToolkit from 'commerce-toolkit/tailwind';
 
 export default {
-  presets: [commerceElements],
+  presets: [commerceToolkit],
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/commerce-elements/dist/**/*.{js,mjs}', // Add this line
+    './node_modules/commerce-toolkit/dist/**/*.{js,mjs}', // Add this line
   ],
   // ... your other config
 };
@@ -48,14 +48,14 @@ Import the CSS variables in your JavaScript/TypeScript (recommended):
 
 ```tsx
 // app/layout.tsx (Next.js) or main.tsx (Vite/React)
-import 'commerce-elements/styles';
+import 'commerce-toolkit/styles';
 ```
 
 Or if importing in CSS, it must come **before** the Tailwind directives:
 
 ```css
 /* app.css or globals.css */
-@import 'commerce-elements/styles';
+@import 'commerce-toolkit/styles';
 
 @tailwind base;
 @tailwind components;
@@ -65,7 +65,7 @@ Or if importing in CSS, it must come **before** the Tailwind directives:
 ### 3. Use Components
 
 ```tsx
-import { Button } from 'commerce-elements';
+import { Button } from 'commerce-toolkit';
 
 function App() {
   return (
@@ -81,7 +81,7 @@ function App() {
 
 ## Using Tailwind Utilities
 
-Once configured, you can use all the custom Tailwind utilities from Commerce Elements:
+Once configured, you can use all the custom Tailwind utilities from Commerce Toolkit:
 
 ```tsx
 <div className="bg-primary text-background">
@@ -106,7 +106,7 @@ Override CSS variables to customize the design system:
 
 ```css
 /* app/globals.css */
-@import 'commerce-elements/styles';
+@import 'commerce-toolkit/styles';
 
 @tailwind base;
 @tailwind components;
@@ -124,7 +124,7 @@ Override CSS variables to customize the design system:
 
 ```tsx
 // app/layout.tsx
-import 'commerce-elements/styles';
+import 'commerce-toolkit/styles';
 ```
 
 ```css
