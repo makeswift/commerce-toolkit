@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.6
+
+### Patch Changes
+
+- 918b1a3: Adds 'use client' to existing components and updates Storybook link in README
+
 ## 0.0.5
 
 ### Patch Changes
