@@ -1,22 +1,22 @@
-export { Accordion, type AccordionProps } from './accordion';
+export { Accordion, type AccordionProps } from '@/components/accordion/accordion';
 export {
   AccordionItem as Item,
   type AccordionItemProps as ItemProps,
-} from './primitives/accordion-item';
+} from '@/components/accordion/primitives/accordion-item';
 export {
   AccordionRoot as Root,
   type AccordionRootProps as RootProps,
-} from './primitives/accordion-root';
+} from '@/components/accordion/primitives/accordion-root';
 export {
   AccordionContent as Content,
   type AccordionContentProps as ContentProps,
-} from './primitives/accordion-content';
+} from '@/components/accordion/primitives/accordion-content';
 export {
   AccordionTrigger as Trigger,
   type AccordionTriggerProps as TriggerProps,
-} from './primitives/accordion-trigger';
+} from '@/components/accordion/primitives/accordion-trigger';
 export {
   AccordionProvider as Provider,
   useAccordionContext,
   type AccordionProviderProps as ProviderProps,
-} from './primitives/accordion-provider';
+} from '@/components/accordion/primitives/accordion-provider';

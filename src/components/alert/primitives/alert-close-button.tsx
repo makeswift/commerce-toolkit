@@ -3,7 +3,7 @@
 import { X } from 'lucide-react';
 import type { ComponentProps } from 'react';
 
-import { Button } from '../../button';
+import { Button } from '@/components/button';
 
 export type AlertCloseButtonProps = ComponentProps<typeof Button>;
 

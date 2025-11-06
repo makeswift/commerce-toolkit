@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import * as AlertPrimitive from '.';
-import type { AlertRootProps } from './primitives/alert-root';
+import * as AlertPrimitive from '@/components/alert';
+import type { AlertRootProps } from '@/components/alert/primitives/alert-root';
 
 export type AlertProps = AlertRootProps & {
   message: ReactNode;
