@@ -13,7 +13,7 @@ export {
   Provider as AccordionProvider,
   type ProviderProps as AccordionProviderProps,
   useAccordionContext,
-} from './components/accordion';
+} from '@/components/accordion';
 
 // Alert - Main component and primitives
 export {
@@ -33,13 +33,13 @@ export {
   type ButtonProps as AlertButtonProps,
   CloseButton as AlertCloseButton,
   type CloseButtonProps as AlertCloseButtonProps,
-} from './components/alert';
+} from '@/components/alert';
 
 // AnimatedUnderline
-export { AnimatedUnderline, type AnimatedUnderlineProps } from './components/animated-underline';
+export { AnimatedUnderline, type AnimatedUnderlineProps } from '@/components/animated-underline';
 
 // Badge
-export { Badge, type BadgeProps } from './components/badge';
+export { Badge, type BadgeProps } from '@/components/badge';
 
 // Button
-export { Button, type ButtonProps } from './components/button';
+export { Button, type ButtonProps } from '@/components/button';

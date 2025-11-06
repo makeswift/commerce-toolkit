@@ -41,7 +41,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:lib": "vite build --config vite.config.lib.js && tsc --project tsconfig.lib.json && cp src/styles.css dist/styles.css",
+    "build:lib": "vite build --config vite.config.lib.js && tsc --project tsconfig.lib.json && tsc-alias -p tsconfig.lib.json && cp src/styles.css dist/styles.css",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -131,6 +131,7 @@
     "storybook": "^9.1.10",
     "tailwindcss": "3",
     "tailwindcss-animate": "^1.0.7",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8",
     "vite": "^7.1.7",

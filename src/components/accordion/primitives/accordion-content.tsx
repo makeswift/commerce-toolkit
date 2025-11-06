@@ -4,7 +4,7 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { useEffect, useState } from 'react';
 import type { ComponentProps } from 'react';
 
-import { useAccordionContext } from '..';
+import { useAccordionContext } from '@/components/accordion';
 import { cn } from '@/lib';
 
 export type AccordionContentProps = ComponentProps<typeof AccordionPrimitive.Content>;
