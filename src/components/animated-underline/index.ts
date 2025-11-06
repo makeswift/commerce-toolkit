@@ -1,4 +1,1 @@
-export {
-  AnimatedUnderline,
-  type AnimatedUnderlineProps,
-} from '@/components/animated-underline/animated-underline';
+export { AnimatedUnderline, type AnimatedUnderlineProps } from './animated-underline';

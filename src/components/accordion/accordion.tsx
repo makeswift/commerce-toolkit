@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import * as AccordionPrimitive from '@/components/accordion';
+import * as AccordionPrimitive from '.';
 
 interface AccordionItemData {
   title: string;
