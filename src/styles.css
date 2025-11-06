@@ -13,8 +13,20 @@
   --contrast-300: 0 0% 70%;
   --contrast-400: 0 0% 54%;
   --contrast-500: 0 0% 34%;
+  --font-family-heading:
+    'DM Serif Text', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-family-body:
+    'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-mono:
+    'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  --font-feature-settings-heading: normal;
+  --font-feature-settings-body: normal;
+  --font-feature-settings-mono: normal;
   --font-variation-settings-body: 'slnt' 0;
   --font-variation-settings-heading: 'slnt' 0;
+  --font-variation-settings-mono: normal;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
