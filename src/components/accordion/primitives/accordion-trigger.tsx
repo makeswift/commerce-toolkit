@@ -3,7 +3,7 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import type { ComponentProps } from 'react';
 
-import { useAccordionContext } from '@/components/accordion';
+import { useAccordionContext } from '..';
 import { cn } from '@/lib';
 
 export type AccordionTriggerProps = ComponentProps<typeof AccordionPrimitive.Trigger>;
