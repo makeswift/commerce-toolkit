@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.10
+
+### Patch Changes
+
+- 8dd4779: Added alias support for imports
+
 ## 0.0.9
 
 ### Patch Changes
