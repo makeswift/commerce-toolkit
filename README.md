@@ -141,7 +141,7 @@ import 'commerce-toolkit/styles';
 
 ## Documentation
 
-For detailed component documentation, examples, and interactive demos, visit our [Storybook](#) (coming soon).
+For detailed component documentation, examples, and interactive demos, visit our [Storybook](https://makeswift.github.io/commerce-toolkit).
 
 ## TypeScript
 
