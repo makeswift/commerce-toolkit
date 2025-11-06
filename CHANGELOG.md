@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.7
+
+### Patch Changes
+
+- c5ded51: Added AnimatedUnderline and font variables
+
 ## 0.0.6
 
 ### Patch Changes
