@@ -85,7 +85,7 @@ Once configured, you can use all the custom Tailwind utilities from Commerce Too
 
 ```tsx
 <div className="bg-primary text-background">
-  <h1 className="text-foreground font-heading">Hello World</h1>
+  <h1 className="font-heading text-foreground">Hello World</h1>
   <p className="text-contrast-400">This uses the design system colors!</p>
 </div>
 ```
