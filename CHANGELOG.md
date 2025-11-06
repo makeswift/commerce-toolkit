@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.9
+
+### Patch Changes
+
+- 671b81e: Added Badge component
+
 ## 0.0.8
 
 ### Patch Changes
