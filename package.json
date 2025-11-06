@@ -1,6 +1,6 @@
 {
   "name": "commerce-toolkit",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A collection of modern, accessible commerce UI components",
   "type": "module",
   "main": "./dist/index.cjs",
