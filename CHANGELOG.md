@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.11
+
+### Patch Changes
+
+- 1b430fb: Added Banner component
+
 ## 0.0.10
 
 ### Patch Changes
