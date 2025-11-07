@@ -15,7 +15,7 @@ export interface AccordionProviderProps {
 }
 
 export function AccordionProvider({ children, colorScheme = 'light' }: AccordionProviderProps) {
-  return <AccordionContext value={{ colorScheme }}>{children}</AccordionContext>;
+  return <AccordionContext.Provider value={{ colorScheme }}>{children}</AccordionContext.Provider>;
 }
 
 export function useAccordionContext() {
