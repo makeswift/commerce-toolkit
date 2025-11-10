@@ -8,7 +8,7 @@ export function BannerText({ children, className, ...props }: BannerTextProps) {
   return (
     <div
       className={cn(
-        'flex-1 text-sm font-[var(--banner-font-family,var(--font-family-body))] text-[var(--banner-text,hsl(var(--foreground)))] @xl:text-center @xl:text-base',
+        'flex-1 text-sm text-[var(--banner-text,hsl(var(--foreground)))] [font-family:var(--banner-font-family,var(--font-family-body))] @xl:text-center @xl:text-base',
         className,
       )}
       data-slot="banner-text"
