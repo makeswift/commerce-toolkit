@@ -34,7 +34,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        'px-2 py-0.5 text-xs font-[var(--badge-font-family,var(--font-family-mono))] uppercase tracking-tighter text-[var(--badge-text,hsl(var(--foreground)))]',
+        'px-2 py-0.5 text-xs uppercase tracking-tighter text-[var(--badge-text,hsl(var(--foreground)))] [font-family:var(--badge-font-family,var(--font-family-mono))]',
         {
           pill: 'rounded-full',
           rounded: 'rounded',

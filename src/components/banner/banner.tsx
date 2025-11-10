@@ -4,12 +4,7 @@ import type { ComponentProps } from 'react';
 
 import * as BannerPrimitive from '@/components/banner';
 
-export type BannerProps = ComponentProps<'div'> & {
-  id: string;
-  hideDismiss?: boolean;
-  onDismiss?: () => void;
-};
-
+export type BannerProps = ComponentProps<'div'> & BannerPrimitive.ProviderProps;
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
  * with their default values:
