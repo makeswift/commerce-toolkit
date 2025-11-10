@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.12
+
+### Patch Changes
+
+- 59a40f6: Added BlogPostCard component
+
 ## 0.0.11
 
 ### Patch Changes
