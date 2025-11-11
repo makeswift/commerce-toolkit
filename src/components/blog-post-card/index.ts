@@ -2,12 +2,17 @@ export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-car
 export {
   BlogPostCardProvider as Provider,
   useBlogPostCard,
+  type BlogPostCardContext as Context,
   type BlogPostCardProviderProps as ProviderProps,
 } from '@/components/blog-post-card/primitives/blog-post-card-provider';
 export {
   BlogPostCardRoot as Root,
   type BlogPostCardRootProps as RootProps,
 } from '@/components/blog-post-card/primitives/blog-post-card-root';
+export {
+  BlogPostCardFallback as Fallback,
+  type BlogPostCardFallbackProps as FallbackProps,
+} from '@/components/blog-post-card/primitives/blog-post-card-fallback';
 export {
   BlogPostCardImage as Image,
   type BlogPostCardImageProps as ImageProps,

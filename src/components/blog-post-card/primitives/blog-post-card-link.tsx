@@ -2,8 +2,9 @@
 
 import type { ComponentProps } from 'react';
 
-import { useBlogPostCard } from '@/components/blog-post-card';
 import { cn } from '@/lib/utils';
+
+import { useBlogPostCard } from './blog-post-card-provider';
 
 export type BlogPostCardLinkProps = ComponentProps<'a'>;
 

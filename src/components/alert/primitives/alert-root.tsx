@@ -1,12 +1,15 @@
+'use client';
+
 import type { ComponentProps } from 'react';
 
+import { useAlert } from '@/components/alert';
 import { cn } from '@/lib';
 
-export interface AlertRootProps extends ComponentProps<'div'> {
-  variant: 'success' | 'warning' | 'error' | 'info';
-}
+export type AlertRootProps = ComponentProps<'div'>;
 
-export function AlertRoot({ variant, className, children, ...props }: AlertRootProps) {
+export function AlertRoot({ className, children, ...props }: AlertRootProps) {
+  const { variant } = useAlert();
+
   return (
     <div
       className={cn(

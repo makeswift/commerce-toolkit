@@ -1,10 +1,13 @@
 import type { ComponentProps } from 'react';
 
+import { useAlert } from '@/components/alert';
 import { cn } from '@/lib';
 
 export type AlertDescriptionProps = ComponentProps<'p'>;
 
-export function AlertDescription({ children, className, ...props }: AlertDescriptionProps) {
+export function AlertDescription({ className, ...props }: AlertDescriptionProps) {
+  const { description } = useAlert();
+
   return (
     <p
       className={cn(
@@ -14,7 +17,7 @@ export function AlertDescription({ children, className, ...props }: AlertDescrip
       data-slot="alert-description"
       {...props}
     >
-      {children}
+      {description}
     </p>
   );
 }

@@ -1,31 +1,24 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, use, useCallback, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 
-interface BannerContext {
+export interface BannerProviderProps {
   id: string;
+  hideDismiss: boolean;
+  children: ReactNode;
+  onDismiss?: () => void;
+}
+
+export interface BannerContext extends Pick<BannerProviderProps, 'id' | 'hideDismiss'> {
   isInitialized: boolean;
   isDismissed: boolean;
-  hideDismiss: boolean;
-  dismissBanner: () => void;
+  handleDismiss: () => void;
 }
 
 export const BannerContext = createContext<BannerContext | undefined>(undefined);
 
-export interface BannerProviderProps {
-  id: string;
-  hideDismiss?: boolean;
-  onDismiss?: () => void;
-  children: ReactNode;
-}
-
-export function BannerProvider({
-  id,
-  hideDismiss = false,
-  onDismiss,
-  children,
-}: BannerProviderProps) {
+export function BannerProvider({ id, hideDismiss, onDismiss, children }: BannerProviderProps) {
   const [isDismissed, setIsDismissed] = useState<boolean>(false);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
@@ -35,29 +28,32 @@ export function BannerProvider({
     setIsInitialized(true);
   }, [id]);
 
-  const dismissBanner = () => {
+  const handleDismiss = useCallback(() => {
     setIsDismissed(true);
     localStorage.setItem(`${id}-hidden-banner`, 'true');
     onDismiss?.();
-  };
+  }, [id, onDismiss]);
+
+  const contextValues = useMemo(
+    () => ({
+      id,
+      isInitialized,
+      isDismissed,
+      hideDismiss,
+      handleDismiss,
+    }),
+    [id, isInitialized, isDismissed, hideDismiss, handleDismiss],
+  );
 
   return (
-    <BannerContext.Provider
-      value={{
-        id,
-        isInitialized,
-        isDismissed,
-        hideDismiss,
-        dismissBanner,
-      }}
-    >
+    <BannerContext.Provider value={contextValues}>
       {isInitialized ? children : null}
     </BannerContext.Provider>
   );
 }
 
 export function useBanner() {
-  const context = useContext(BannerContext);
+  const context = use(BannerContext);
 
   if (context === undefined) {
     throw new Error('useBanner must be used within a BannerProvider');

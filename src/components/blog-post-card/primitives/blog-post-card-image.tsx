@@ -10,7 +10,10 @@ export type BlogPostCardImageProps = ComponentProps<'div'>;
 export function BlogPostCardImage({ className, ...props }: BlogPostCardImageProps) {
   const { image, title } = useBlogPostCard();
 
-  function renderImage() {
+  const imageClassName =
+    'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110';
+
+  const renderImage = () => {
     if (!image) {
       return (
         <div
@@ -27,15 +30,12 @@ export function BlogPostCardImage({ className, ...props }: BlogPostCardImageProp
 
     const { src, alt, render } = image;
 
-    const imageClassName =
-      'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110';
-
     if (render) {
       return render({ src, alt, className: imageClassName });
     }
 
     return <img alt={alt} className={imageClassName} src={src} />;
-  }
+  };
 
   return (
     <div

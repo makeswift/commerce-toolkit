@@ -1,20 +1,21 @@
-import type { ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 
 import * as AlertPrimitive from '@/components/alert';
-import type { AlertRootProps } from '@/components/alert/primitives/alert-root';
 
-export type AlertProps = AlertRootProps & {
+export interface AlertProps {
+  className?: string;
   message: ReactNode;
   description?: string;
   action?: {
     label: string;
-    onClick: AlertPrimitive.ButtonProps['onClick'];
+    onClick: MouseEventHandler<HTMLButtonElement> | undefined;
   };
   dismiss: {
     label: string;
-    onClick: AlertPrimitive.ButtonProps['onClick'];
+    onClick: MouseEventHandler<HTMLButtonElement> | undefined;
   };
-};
+  variant: 'success' | 'warning' | 'error' | 'info';
+}
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -33,21 +34,25 @@ export type AlertProps = AlertRootProps & {
  * }
  * ```
  */
-export function Alert({ variant, message, description, action, dismiss }: AlertProps) {
+export function Alert({ className, variant, message, description, action, dismiss }: AlertProps) {
   return (
-    <AlertPrimitive.Root variant={variant}>
-      <AlertPrimitive.Header>
-        <AlertPrimitive.Title>{message}</AlertPrimitive.Title>
-        {description != null && (
-          <AlertPrimitive.Description>{description}</AlertPrimitive.Description>
-        )}
-      </AlertPrimitive.Header>
-      <AlertPrimitive.Actions>
-        {action && (
-          <AlertPrimitive.Button onClick={action.onClick}>{action.label}</AlertPrimitive.Button>
-        )}
-        <AlertPrimitive.CloseButton aria-label={dismiss.label} onClick={dismiss.onClick} />
-      </AlertPrimitive.Actions>
-    </AlertPrimitive.Root>
+    <AlertPrimitive.Provider
+      action={action}
+      description={description}
+      dismiss={dismiss}
+      message={message}
+      variant={variant}
+    >
+      <AlertPrimitive.Root className={className}>
+        <AlertPrimitive.Header>
+          <AlertPrimitive.Title />
+          <AlertPrimitive.Description />
+        </AlertPrimitive.Header>
+        <AlertPrimitive.Actions>
+          <AlertPrimitive.Button />
+          <AlertPrimitive.CloseButton />
+        </AlertPrimitive.Actions>
+      </AlertPrimitive.Root>
+    </AlertPrimitive.Provider>
   );
 }

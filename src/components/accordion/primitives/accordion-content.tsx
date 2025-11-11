@@ -4,13 +4,14 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { useEffect, useState } from 'react';
 import type { ComponentProps } from 'react';
 
-import { useAccordionContext } from '@/components/accordion';
+import { useAccordion, useAccordionItem } from '@/components/accordion';
 import { cn } from '@/lib';
 
 export type AccordionContentProps = ComponentProps<typeof AccordionPrimitive.Content>;
 
-export function AccordionContent({ children, className, ...props }: AccordionContentProps) {
-  const { colorScheme } = useAccordionContext();
+export function AccordionContent({ className, ...props }: AccordionContentProps) {
+  const { colorScheme } = useAccordion();
+  const { content } = useAccordionItem();
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -38,7 +39,7 @@ export function AccordionContent({ children, className, ...props }: AccordionCon
         )}
         data-slot="accordion-content"
       >
-        {children}
+        {content}
       </div>
     </AccordionPrimitive.Content>
   );
