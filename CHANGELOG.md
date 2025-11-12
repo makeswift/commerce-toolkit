@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.13
+
+### Patch Changes
+
+- 5b71930: Refactored component providers
+
 ## 0.0.12
 
 ### Patch Changes
