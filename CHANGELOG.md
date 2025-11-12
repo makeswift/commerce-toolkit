@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.17
+
+### Patch Changes
+
+- 2b4580a: Added Card component
+
 ## 0.0.16
 
 ### Patch Changes
