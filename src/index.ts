@@ -1,4 +1,4 @@
-// Accordion - Main component and primitives
+// Accordion
 export {
   Accordion,
   type AccordionProps,
@@ -18,7 +18,7 @@ export {
   useAccordionItem,
 } from '@/components/accordion';
 
-// Alert - Main component and primitives
+// Alert
 export {
   Alert,
   type AlertProps,
@@ -44,7 +44,7 @@ export { AnimatedUnderline, type AnimatedUnderlineProps } from '@/components/ani
 // Badge
 export { Badge, type BadgeProps } from '@/components/badge';
 
-// Banner - Main component and primitives
+// Banner
 export {
   Banner,
   type BannerProps,
@@ -62,7 +62,7 @@ export {
   type Context as BannerContext,
 } from '@/components/banner';
 
-// BlogPostCard - Main component and primitives
+// BlogPostCard
 export {
   BlogPostCard,
   type BlogPostCardProps,
@@ -97,3 +97,15 @@ export { Button, type ButtonProps } from '@/components/button';
 
 // ButtonLink
 export { ButtonLink, type ButtonLinkProps } from '@/components/button-link';
+
+// Card
+export {
+  Card,
+  type CardProps,
+  Root as CardRoot,
+  type RootProps as CardRootProps,
+  Link as CardLink,
+  type LinkProps as CardLinkProps,
+  Skeleton as CardSkeleton,
+  type SkeletonProps as CardSkeletonProps,
+} from '@/components/card';
