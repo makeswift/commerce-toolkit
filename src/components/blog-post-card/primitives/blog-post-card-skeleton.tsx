@@ -13,7 +13,7 @@ export function BlogPostCardSkeleton({
   ...props
 }: BlogPostCardSkeletonProps) {
   return (
-    <div className={cn('w-full max-w-md', className)} {...props}>
+    <div className={cn('w-full max-w-md @container', className)} {...props}>
       <SkeletonPrimitive.Box
         className={cn(
           'mb-4 w-full rounded-2xl',
