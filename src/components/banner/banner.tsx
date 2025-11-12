@@ -5,7 +5,7 @@ import * as BannerPrimitive from '@/components/banner';
 export interface BannerProps {
   className?: string;
   id: string;
-  hideDismiss: boolean;
+  hideDismiss?: boolean;
   children: ReactNode;
   onDismiss?: () => void;
 }
