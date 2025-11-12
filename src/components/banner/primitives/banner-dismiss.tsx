@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export type BannerDismissProps = ComponentProps<'button'>;
 
 export function BannerDismiss({ className, ...props }: BannerDismissProps) {
-  const { hideDismiss, dismissBanner } = useBanner();
+  const { hideDismiss, handleDismiss } = useBanner();
 
   if (hideDismiss) return null;
 
@@ -23,7 +23,7 @@ export function BannerDismiss({ className, ...props }: BannerDismissProps) {
       data-slot="banner-dismiss"
       onClick={(e) => {
         e.preventDefault();
-        dismissBanner();
+        handleDismiss();
       }}
       {...props}
     >

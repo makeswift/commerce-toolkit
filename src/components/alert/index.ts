@@ -4,6 +4,12 @@ export {
   type AlertRootProps as RootProps,
 } from '@/components/alert/primitives/alert-root';
 export {
+  AlertProvider as Provider,
+  type AlertContext as ProviderContext,
+  type AlertProviderProps as ProviderProps,
+  useAlert,
+} from './primitives/alert-provider';
+export {
   AlertHeader as Header,
   type AlertHeaderProps as HeaderProps,
 } from '@/components/alert/primitives/alert-header';

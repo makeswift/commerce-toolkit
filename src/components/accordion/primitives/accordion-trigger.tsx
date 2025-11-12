@@ -3,13 +3,20 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import type { ComponentProps } from 'react';
 
-import { useAccordionContext } from '@/components/accordion';
+import {
+  useAccordion,
+  useAccordionItem,
+} from '@/components/accordion/primitives/accordion-provider';
 import { cn } from '@/lib';
 
-export type AccordionTriggerProps = ComponentProps<typeof AccordionPrimitive.Trigger>;
+export type AccordionTriggerProps = Omit<
+  ComponentProps<typeof AccordionPrimitive.Trigger>,
+  'children'
+>;
 
-export function AccordionTrigger({ children, className, ...props }: AccordionTriggerProps) {
-  const { colorScheme } = useAccordionContext();
+export function AccordionTrigger({ className, ...props }: AccordionTriggerProps) {
+  const { colorScheme } = useAccordion();
+  const { title } = useAccordionItem();
 
   return (
     <AccordionPrimitive.Header>
@@ -31,7 +38,7 @@ export function AccordionTrigger({ children, className, ...props }: AccordionTri
             }[colorScheme],
           )}
         >
-          {children}
+          {title}
         </div>
         <svg
           className={cn(

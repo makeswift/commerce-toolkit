@@ -1,10 +1,14 @@
-'use client';
-
-import type { ComponentProps } from 'react';
+import type { ReactNode } from 'react';
 
 import * as BannerPrimitive from '@/components/banner';
 
-export type BannerProps = ComponentProps<'div'> & BannerPrimitive.ProviderProps;
+export interface BannerProps {
+  className?: string;
+  id: string;
+  hideDismiss: boolean;
+  children: ReactNode;
+  onDismiss?: () => void;
+}
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
  * with their default values:

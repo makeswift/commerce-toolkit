@@ -12,7 +12,10 @@ export {
   type TriggerProps as AccordionTriggerProps,
   Provider as AccordionProvider,
   type ProviderProps as AccordionProviderProps,
-  useAccordionContext,
+  ItemProvider as AccordionItemProvider,
+  type ItemProviderProps as AccordionItemProviderProps,
+  useAccordion,
+  useAccordionItem,
 } from '@/components/accordion';
 
 // Alert - Main component and primitives

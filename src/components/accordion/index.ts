@@ -17,6 +17,9 @@ export {
 } from '@/components/accordion/primitives/accordion-trigger';
 export {
   AccordionProvider as Provider,
-  useAccordionContext,
+  AccordionItemProvider as ItemProvider,
+  useAccordion,
+  useAccordionItem,
   type AccordionProviderProps as ProviderProps,
+  type AccordionItemProviderProps as ItemProviderProps,
 } from '@/components/accordion/primitives/accordion-provider';

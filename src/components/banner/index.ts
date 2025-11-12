@@ -2,6 +2,7 @@ export { Banner, type BannerProps } from '@/components/banner/banner';
 export {
   BannerProvider as Provider,
   useBanner,
+  type BannerContext as Context,
   type BannerProviderProps as ProviderProps,
 } from '@/components/banner/primitives/banner-provider';
 export {

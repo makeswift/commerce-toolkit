@@ -1,7 +1,24 @@
+import type { ReactNode } from 'react';
+
 import * as BlogPostCardPrimitive from '@/components/blog-post-card';
 
-export type BlogPostCardProps = Omit<BlogPostCardPrimitive.ProviderProps, 'children'> &
-  Omit<BlogPostCardPrimitive.RootProps, 'children'>;
+export interface BlogPostCardProps {
+  className?: string;
+  title: string;
+  author?: string;
+  content: string;
+  date: string;
+  image?: {
+    src: string;
+    alt: string;
+    render?: (props: { src: string; alt: string; className: string }) => ReactNode;
+  };
+  link: {
+    href: string;
+    ariaLabel: string;
+    render?: (props: { href: string; ariaLabel: string; className: string }) => ReactNode;
+  };
+}
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -45,7 +62,7 @@ export function BlogPostCard({
         <BlogPostCardPrimitive.Content />
         <BlogPostCardPrimitive.Details>
           <BlogPostCardPrimitive.Date />
-          {author != null && <BlogPostCardPrimitive.Author />}
+          <BlogPostCardPrimitive.Author />
         </BlogPostCardPrimitive.Details>
         <BlogPostCardPrimitive.Link />
       </BlogPostCardPrimitive.Root>

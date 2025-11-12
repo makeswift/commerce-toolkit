@@ -2,16 +2,28 @@ import type { ReactNode } from 'react';
 
 import * as AccordionPrimitive from '@/components/accordion';
 
-interface AccordionItemData {
-  title: string;
-  content: ReactNode;
-  value?: string;
+interface BaseAccordionProps {
+  className?: string;
+  colorScheme: 'light' | 'dark';
+  items: Array<{
+    title: string;
+    content: ReactNode;
+    value: string;
+  }>;
 }
 
-export type AccordionProps = AccordionPrimitive.RootProps & {
-  colorScheme?: 'light' | 'dark';
-  items: AccordionItemData[];
-};
+interface AccordionSingleProps extends BaseAccordionProps {
+  type: 'single';
+  collapsible?: boolean;
+  defaultValue?: string;
+}
+
+interface AccordionMultipleProps extends BaseAccordionProps {
+  type: 'multiple';
+  defaultValue?: string[];
+}
+
+export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -37,16 +49,25 @@ export type AccordionProps = AccordionPrimitive.RootProps & {
  * }
  * ```
  */
-export function Accordion({ colorScheme = 'light', items, ...props }: AccordionProps) {
+export function Accordion({ className, colorScheme = 'light', items, ...props }: AccordionProps) {
   return (
-    <AccordionPrimitive.Provider colorScheme={colorScheme}>
-      <AccordionPrimitive.Root {...props}>
-        {items.map((item, index) => (
-          <AccordionPrimitive.Item key={index} value={item.title}>
-            <AccordionPrimitive.Trigger>{item.title}</AccordionPrimitive.Trigger>
-            <AccordionPrimitive.Content>{item.content}</AccordionPrimitive.Content>
-          </AccordionPrimitive.Item>
-        ))}
+    <AccordionPrimitive.Provider colorScheme={colorScheme} items={items}>
+      <AccordionPrimitive.Root className={className} {...props}>
+        {items.map((item) => {
+          return (
+            <AccordionPrimitive.ItemProvider
+              content={item.content}
+              key={item.value}
+              title={item.title}
+              value={item.value}
+            >
+              <AccordionPrimitive.Item>
+                <AccordionPrimitive.Trigger />
+                <AccordionPrimitive.Content />
+              </AccordionPrimitive.Item>
+            </AccordionPrimitive.ItemProvider>
+          );
+        })}
       </AccordionPrimitive.Root>
     </AccordionPrimitive.Provider>
   );

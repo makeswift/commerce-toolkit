@@ -1,10 +1,15 @@
+'use client';
+
 import type { ComponentProps } from 'react';
 
+import { useAlert } from '@/components/alert';
 import { cn } from '@/lib';
 
 export type AlertTitleProps = ComponentProps<'h5'>;
 
 export function AlertTitle({ children, className, ...props }: AlertTitleProps) {
+  const { message } = useAlert();
+
   return (
     <h5
       className={cn(
@@ -14,7 +19,7 @@ export function AlertTitle({ children, className, ...props }: AlertTitleProps) {
       data-slot="alert-title"
       {...props}
     >
-      {children}
+      {message}
     </h5>
   );
 }

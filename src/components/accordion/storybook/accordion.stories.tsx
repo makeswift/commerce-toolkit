@@ -5,16 +5,19 @@ import { Accordion, type AccordionProps } from '@/components/accordion';
 
 const defaultItems = [
   {
+    value: 'return-policy',
     title: 'What is your return policy?',
     content:
       'Our return policy allows you to return items within 30 days of purchase for a full refund. Items must be in their original condition and packaging.',
   },
   {
+    value: 'shipping-time',
     title: 'How long does shipping take?',
     content:
       'Shipping typically takes 3-5 business days for domestic orders. International shipping may take longer depending on the destination.',
   },
   {
+    value: 'international-shipping',
     title: 'Do you offer international shipping?',
     content:
       'Yes, we offer international shipping to select countries. Please check our shipping policy for more details on available locations.',
@@ -99,7 +102,7 @@ export const WithDefaultValue: Story = {
     colorScheme: 'light',
     type: 'single',
     collapsible: true,
-    defaultValue: 'What is your return policy?',
+    defaultValue: 'return-policy',
   },
 };
 
@@ -110,26 +113,31 @@ export const FAQ: Story = {
     collapsible: true,
     items: [
       {
+        value: 'return-policy',
         title: 'What is your return policy?',
         content:
           'Our return policy allows you to return items within 30 days of purchase for a full refund. Items must be in their original condition and packaging.',
       },
       {
+        value: 'shipping-time',
         title: 'How long does shipping take?',
         content:
           'Shipping typically takes 3-5 business days for domestic orders. International shipping may take longer depending on the destination.',
       },
       {
+        value: 'international-shipping',
         title: 'Do you offer international shipping?',
         content:
           'Yes, we offer international shipping to select countries. Please check our shipping policy for more details on available locations.',
       },
       {
+        value: 'track-order',
         title: 'How can I track my order?',
         content:
           'Once your order has shipped, you will receive an email with a tracking number. You can use this number to track your order on our website.',
       },
       {
+        value: 'payment-methods',
         title: 'What payment methods do you accept?',
         content:
           'We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and Apple Pay for your convenience.',
@@ -144,16 +152,19 @@ export const ProductDetails: Story = {
     type: 'multiple',
     items: [
       {
+        value: 'specifications',
         title: 'Product Specifications',
         content:
           'Dimensions: 15" x 10" x 5"\nWeight: 2.5 lbs\nMaterial: Premium leather and cotton\nColor options: Black, Brown, Navy',
       },
       {
+        value: 'care-instructions',
         title: 'Care Instructions',
         content:
           'Clean with a damp cloth. Avoid harsh chemicals. Store in a cool, dry place away from direct sunlight.',
       },
       {
+        value: 'warranty',
         title: 'Warranty Information',
         content:
           'This product comes with a 2-year manufacturer warranty covering defects in materials and workmanship.',

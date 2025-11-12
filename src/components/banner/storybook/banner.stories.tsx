@@ -33,7 +33,7 @@ const BannerWithReset = ({
 
   return (
     <div className="pb-4">
-      <Banner hideDismiss={hideDismiss} id={id} key={key} onDismiss={onDismiss}>
+      <Banner hideDismiss={hideDismiss ?? false} id={id} key={key} onDismiss={onDismiss}>
         {children}
       </Banner>
       <div className="mt-8 flex justify-center">
@@ -152,7 +152,7 @@ export const InteractiveBanner = () => {
 
   return (
     <div className="pb-4">
-      <Banner id={bannerId} key={key}>
+      <Banner hideDismiss={false} id={bannerId} key={key}>
         Get <strong>15% off</strong> and free shipping with discount code{' '}
         <strong>&quot;WELCOME&quot;</strong>
       </Banner>
@@ -185,13 +185,13 @@ export const MultipleBanners = () => {
   return (
     <div className="pb-4">
       <div className="space-y-4">
-        <Banner id="banner-1" key={keys.banner1}>
+        <Banner hideDismiss={false} id="banner-1" key={keys.banner1}>
           🎁 <strong>Holiday Sale:</strong> 30% off sitewide!
         </Banner>
-        <Banner id="banner-2" key={keys.banner2}>
+        <Banner hideDismiss={false} id="banner-2" key={keys.banner2}>
           🚚 Free shipping on orders over $75
         </Banner>
-        <Banner hideDismiss id="banner-3" key={keys.banner3}>
+        <Banner hideDismiss={true} id="banner-3" key={keys.banner3}>
           📢 Store hours: Mon-Fri 9AM-6PM, Sat-Sun 10AM-4PM
         </Banner>
       </div>
