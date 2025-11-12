@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.15
+
+### Patch Changes
+
+- 9f19832: Made hideDismiss optional for Banner component
+
 ## 0.0.14
 
 ### Patch Changes
