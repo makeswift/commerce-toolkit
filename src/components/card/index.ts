@@ -1,0 +1,9 @@
+export { Card, type CardProps } from '@/components/card/card';
+export {
+  CardLink as Link,
+  type CardLinkProps as LinkProps,
+} from '@/components/card/primitives/card-link';
+export {
+  CardRoot as Root,
+  type CardRootProps as RootProps,
+} from '@/components/card/primitives/card-root';
