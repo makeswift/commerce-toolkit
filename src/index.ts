@@ -94,3 +94,6 @@ export {
 
 // Button
 export { Button, type ButtonProps } from '@/components/button';
+
+// ButtonLink
+export { ButtonLink, type ButtonLinkProps } from '@/components/button-link';

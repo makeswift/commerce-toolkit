@@ -19,6 +19,7 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
  * ```css
  * :root {
  *   --button-focus: hsl(var(--primary));
+ *   --button-font-family: var(--font-family-body);
  *   --button-primary-background: hsl(var(--primary));
  *   --button-primary-background-hover: color-mix(in oklab, hsl(var(--primary)), white 75%);
  *   --button-primary-text: hsl(var(--foreground));
@@ -58,7 +59,7 @@ export function Button({
     <button
       aria-busy={loading}
       className={cn(
-        'after:ease-[cubic-bezier(0,0.25,0,1)] relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden border text-center font-body font-semibold leading-normal after:absolute after:inset-0 after:-z-10 after:-translate-x-[105%] after:transition-[opacity,transform] after:duration-300 focus-visible:outline-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
+        'after:ease-[cubic-bezier(0,0.25,0,1)] relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden border text-center font-semibold leading-normal [font-family:var(--button-font-family,var(--font-family-body))] after:absolute after:inset-0 after:-z-10 after:-translate-x-[105%] after:transition-[opacity,transform] after:duration-300 focus-visible:outline-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
         {
           primary:
             'border-[var(--button-primary-border,hsl(var(--primary)))] bg-[var(--button-primary-background,hsl(var(--primary)))] text-[var(--button-primary-text,hsl(var(--foreground)))] after:bg-[var(--button-primary-background-hover,color-mix(in_oklab,hsl(var(--primary)),white_75%))] focus-visible:outline-offset-2',
