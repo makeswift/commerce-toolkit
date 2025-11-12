@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.16
+
+### Patch Changes
+
+- 578e5f4: Added ButtonLink component
+
 ## 0.0.15
 
 ### Patch Changes
