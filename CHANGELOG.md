@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.20
+
+### Patch Changes
+
+- 014f156: Added Favorite component
+
 ## 0.0.19
 
 ### Patch Changes
