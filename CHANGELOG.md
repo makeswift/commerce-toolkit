@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.21
+
+### Patch Changes
+
+- fb31807: Added FieldError component
+
 ## 0.0.20
 
 ### Patch Changes
