@@ -119,3 +119,13 @@ export {
   Button as ChipButton,
   type ButtonProps as ChipButtonProps,
 } from '@/components/chip';
+
+// Favorite
+export {
+  Favorite,
+  type FavoriteProps,
+  Root as FavoriteRoot,
+  type RootProps as FavoriteRootProps,
+  Heart as FavoriteHeart,
+  type HeartProps as FavoriteHeartProps,
+} from '@/components/favorite';
