@@ -129,3 +129,6 @@ export {
   Heart as FavoriteHeart,
   type HeartProps as FavoriteHeartProps,
 } from '@/components/favorite';
+
+// FieldError
+export { FieldError, type FieldErrorProps } from '@/components/field-error';
