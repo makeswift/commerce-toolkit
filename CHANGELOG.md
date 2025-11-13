@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.19
+
+### Patch Changes
+
+- 67c6ffd: Added Chip component
+
 ## 0.0.18
 
 ### Patch Changes
