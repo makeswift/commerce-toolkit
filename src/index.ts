@@ -109,3 +109,13 @@ export {
   Skeleton as CardSkeleton,
   type SkeletonProps as CardSkeletonProps,
 } from '@/components/card';
+
+// Chip
+export {
+  Chip,
+  type ChipProps,
+  Root as ChipRoot,
+  type RootProps as ChipRootProps,
+  Button as ChipButton,
+  type ButtonProps as ChipButtonProps,
+} from '@/components/chip';
