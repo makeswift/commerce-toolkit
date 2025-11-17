@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.22
+
+### Patch Changes
+
+- 7797e56: Added Rating component
+
 ## 0.0.21
 
 ### Patch Changes
