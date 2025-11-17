@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import type { ComponentProps } from 'react';
 
 import { useBanner } from '@/components/banner';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib';
 
 export type BannerDismissProps = ComponentProps<'button'>;
 

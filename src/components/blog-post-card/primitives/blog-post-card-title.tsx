@@ -1,8 +1,7 @@
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib/utils';
-
-import { useBlogPostCard } from './blog-post-card-provider';
+import { useBlogPostCard } from '@/components/blog-post-card';
+import { cn } from '@/lib';
 
 export type BlogPostCardTitleProps = ComponentProps<'h5'>;
 

@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react';
 
 import * as SkeletonPrimitive from '@/components/skeleton';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib';
 
 export type BlogPostCardSkeletonProps = ComponentProps<'div'> & {
   aspectRatio?: '5:6' | '3:4' | '4:3' | '1:1';

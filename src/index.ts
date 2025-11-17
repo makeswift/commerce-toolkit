@@ -132,3 +132,16 @@ export {
 
 // FieldError
 export { FieldError, type FieldErrorProps } from '@/components/field-error';
+
+// Rating
+export {
+  Rating,
+  type RatingProps,
+  Provider as RatingProvider,
+  type ProviderProps as RatingProviderProps,
+  Root as RatingRoot,
+  type RootProps as RatingRootProps,
+  Stars as RatingStars,
+  Value as RatingValue,
+  type ValueProps as RatingValueProps,
+} from '@/components/rating';
