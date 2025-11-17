@@ -145,3 +145,19 @@ export {
   Value as RatingValue,
   type ValueProps as RatingValueProps,
 } from '@/components/rating';
+
+// Reveal
+export {
+  Reveal,
+  type RevealProps,
+  Provider as RevealProvider,
+  type ProviderProps as RevealProviderProps,
+  Root as RevealRoot,
+  type RootProps as RevealRootProps,
+  Trigger as RevealTrigger,
+  type TriggerProps as RevealTriggerProps,
+  Viewport as RevealViewport,
+  type ViewportProps as RevealViewportProps,
+  Controls as RevealControls,
+  type ControlsProps as RevealControlsProps,
+} from '@/components/reveal';
