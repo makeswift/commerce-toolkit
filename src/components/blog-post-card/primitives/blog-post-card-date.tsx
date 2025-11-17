@@ -2,7 +2,7 @@
 
 import type { ComponentProps } from 'react';
 
-import { useBlogPostCard } from './blog-post-card-provider';
+import { useBlogPostCard } from '@/components/blog-post-card';
 
 export type BlogPostCardDateProps = ComponentProps<'time'>;
 

@@ -3,7 +3,7 @@
 import type { ComponentProps } from 'react';
 
 import { useBlogPostCard } from '@/components/blog-post-card';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib';
 
 export type BlogPostCardImageProps = ComponentProps<'div'>;
 

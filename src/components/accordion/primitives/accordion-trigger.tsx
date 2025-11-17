@@ -3,10 +3,7 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import type { ComponentProps } from 'react';
 
-import {
-  useAccordion,
-  useAccordionItem,
-} from '@/components/accordion/primitives/accordion-provider';
+import { useAccordion, useAccordionItem } from '@/components/accordion';
 import { cn } from '@/lib';
 
 export type AccordionTriggerProps = Omit<

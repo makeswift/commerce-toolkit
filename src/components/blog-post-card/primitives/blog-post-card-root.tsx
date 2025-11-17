@@ -1,6 +1,6 @@
 import type { ComponentProps, ElementType } from 'react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib';
 
 export type BlogPostCardRootProps<E extends ElementType = 'article'> = Omit<
   ComponentProps<E>,
