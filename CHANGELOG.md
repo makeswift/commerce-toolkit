@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.23
+
+### Patch Changes
+
+- 6b0ccda: Added Reveal component
+
 ## 0.0.22
 
 ### Patch Changes
