@@ -10,7 +10,7 @@ export interface BannerProviderProps {
   onDismiss?: () => void;
 }
 
-export interface BannerContext extends Pick<BannerProviderProps, 'id' | 'hideDismiss'> {
+interface BannerContext extends Pick<BannerProviderProps, 'id' | 'hideDismiss'> {
   isInitialized: boolean;
   isDismissed: boolean;
   handleDismiss: () => void;

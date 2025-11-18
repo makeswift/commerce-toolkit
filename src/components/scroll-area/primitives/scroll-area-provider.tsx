@@ -3,7 +3,7 @@
 import { createContext, use, useMemo } from 'react';
 import type { ReactNode } from 'react';
 
-export interface ScrollAreaContext {
+interface ScrollAreaContext {
   orientation: 'vertical' | 'horizontal' | 'both';
   scrollHideDelay: number;
   type: 'auto' | 'always' | 'scroll' | 'hover';

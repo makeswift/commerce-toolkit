@@ -39,7 +39,6 @@ export {
   CloseButton as AlertCloseButton,
   type CloseButtonProps as AlertCloseButtonProps,
   useAlert,
-  type Context as AlertContext,
 } from '@/components/alert';
 
 // AnimatedUnderline
@@ -63,7 +62,6 @@ export {
   Dismiss as BannerDismiss,
   type DismissProps as BannerDismissProps,
   useBanner,
-  type Context as BannerContext,
 } from '@/components/banner';
 
 // BlogPostCard
@@ -93,7 +91,6 @@ export {
   Skeleton as BlogPostCardSkeleton,
   type SkeletonProps as BlogPostCardSkeletonProps,
   useBlogPostCard,
-  type Context as BlogPostCardContext,
 } from '@/components/blog-post-card';
 
 // Button
@@ -149,7 +146,6 @@ export {
   Value as RatingValue,
   type ValueProps as RatingValueProps,
   useRating,
-  type Context as RatingContext,
   type StarType as RatingStarType,
 } from '@/components/rating';
 
@@ -168,7 +164,6 @@ export {
   Controls as RevealControls,
   type ControlsProps as RevealControlsProps,
   useReveal,
-  type Context as RevealContext,
 } from '@/components/reveal';
 
 // ScrollArea
@@ -188,5 +183,4 @@ export {
   Corner as ScrollAreaCorner,
   type CornerProps as ScrollAreaCornerProps,
   useScrollArea,
-  type Context as ScrollAreaContext,
 } from '@/components/scroll-area';

@@ -3,7 +3,7 @@
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode, RefObject } from 'react';
 
-export interface RevealContext {
+interface RevealContext {
   isOpen: boolean;
   hasOverflow: boolean;
   variant: 'underline' | 'button';

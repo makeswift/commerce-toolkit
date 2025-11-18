@@ -6,7 +6,6 @@ export {
 export {
   RevealProvider as Provider,
   type RevealProviderProps as ProviderProps,
-  type RevealContext as Context,
   useReveal,
 } from '@/components/reveal/primitives/reveal-provider';
 export {

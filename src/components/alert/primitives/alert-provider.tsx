@@ -3,7 +3,7 @@
 import { createContext, use, useMemo } from 'react';
 import type { MouseEventHandler, ReactNode } from 'react';
 
-export interface AlertContext {
+interface AlertContext {
   message: ReactNode;
   description?: string;
   action?: {

@@ -6,10 +6,7 @@ import type { ComponentProps } from 'react';
 import { useAccordion, useAccordionItem } from '@/components/accordion';
 import { cn } from '@/lib';
 
-export type AccordionTriggerProps = Omit<
-  ComponentProps<typeof AccordionPrimitive.Trigger>,
-  'children'
->;
+export type AccordionTriggerProps = ComponentProps<typeof AccordionPrimitive.Trigger>;
 
 export function AccordionTrigger({ className, ...props }: AccordionTriggerProps) {
   const { colorScheme } = useAccordion();

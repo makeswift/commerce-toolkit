@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 
 export type StarType = 'empty' | 'half' | 'full';
 
-export interface RatingContext {
+interface RatingContext {
   rating: number;
   adjustedRating: number;
   stars: StarType[];
