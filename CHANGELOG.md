@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.24
+
+### Patch Changes
+
+- 2673fb4: Added ScrollArea component
+
 ## 0.0.23
 
 ### Patch Changes
