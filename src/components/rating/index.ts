@@ -2,6 +2,7 @@ export { Rating, type RatingProps } from '@/components/rating/rating';
 export {
   RatingProvider as Provider,
   type RatingProviderProps as ProviderProps,
+  type RatingContext as Context,
   type StarType,
   useRating,
 } from '@/components/rating/primitives/rating-provider';

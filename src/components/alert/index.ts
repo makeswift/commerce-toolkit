@@ -5,8 +5,8 @@ export {
 } from '@/components/alert/primitives/alert-root';
 export {
   AlertProvider as Provider,
-  type AlertContext as ProviderContext,
   type AlertProviderProps as ProviderProps,
+  type AlertContext as Context,
   useAlert,
 } from './primitives/alert-provider';
 export {

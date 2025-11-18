@@ -22,6 +22,8 @@ export {
 export {
   Alert,
   type AlertProps,
+  Provider as AlertProvider,
+  type ProviderProps as AlertProviderProps,
   Root as AlertRoot,
   type RootProps as AlertRootProps,
   Header as AlertHeader,
@@ -36,6 +38,8 @@ export {
   type ButtonProps as AlertButtonProps,
   CloseButton as AlertCloseButton,
   type CloseButtonProps as AlertCloseButtonProps,
+  useAlert,
+  type Context as AlertContext,
 } from '@/components/alert';
 
 // AnimatedUnderline
@@ -144,6 +148,9 @@ export {
   Stars as RatingStars,
   Value as RatingValue,
   type ValueProps as RatingValueProps,
+  useRating,
+  type Context as RatingContext,
+  type StarType as RatingStarType,
 } from '@/components/rating';
 
 // Reveal
@@ -160,4 +167,26 @@ export {
   type ViewportProps as RevealViewportProps,
   Controls as RevealControls,
   type ControlsProps as RevealControlsProps,
+  useReveal,
+  type Context as RevealContext,
 } from '@/components/reveal';
+
+// ScrollArea
+export {
+  ScrollArea,
+  type ScrollAreaProps,
+  Root as ScrollAreaRoot,
+  Provider as ScrollAreaProvider,
+  type ProviderProps as ScrollAreaProviderProps,
+  type RootProps as ScrollAreaRootProps,
+  Viewport as ScrollAreaViewport,
+  type ViewportProps as ScrollAreaViewportProps,
+  Bar as ScrollAreaBar,
+  type BarProps as ScrollAreaBarProps,
+  Thumb as ScrollAreaThumb,
+  type ThumbProps as ScrollAreaThumbProps,
+  Corner as ScrollAreaCorner,
+  type CornerProps as ScrollAreaCornerProps,
+  useScrollArea,
+  type Context as ScrollAreaContext,
+} from '@/components/scroll-area';
