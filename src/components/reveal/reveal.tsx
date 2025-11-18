@@ -1,8 +1,8 @@
 'use client';
 
-import * as RevealPrimitive from '@/components/reveal';
-
 import type { ReactNode } from 'react';
+
+import * as RevealPrimitive from '@/components/reveal';
 
 export interface RevealProps {
   className?: string;
@@ -25,11 +25,11 @@ export function Reveal({
 }: RevealProps) {
   return (
     <RevealPrimitive.Provider
-      variant={variant}
-      showLabel={showLabel}
-      hideLabel={hideLabel}
       defaultOpen={defaultOpen}
+      hideLabel={hideLabel}
       maxHeight={maxHeight}
+      showLabel={showLabel}
+      variant={variant}
     >
       <RevealPrimitive.Root className={className}>
         <RevealPrimitive.Viewport>{children}</RevealPrimitive.Viewport>
