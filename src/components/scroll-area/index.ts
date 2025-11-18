@@ -7,7 +7,6 @@ export {
   ScrollAreaProvider as Provider,
   type ScrollAreaProviderProps as ProviderProps,
   useScrollArea,
-  type ScrollAreaContext as Context,
 } from '@/components/scroll-area/primitives/scroll-area-provider';
 export {
   ScrollAreaViewport as Viewport,

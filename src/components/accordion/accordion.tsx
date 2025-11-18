@@ -53,13 +53,13 @@ export function Accordion({ className, colorScheme = 'light', items, ...props }:
   return (
     <AccordionPrimitive.Provider colorScheme={colorScheme} items={items}>
       <AccordionPrimitive.Root className={className} {...props}>
-        {items.map((item) => {
+        {items.map(({ content, title, value }) => {
           return (
             <AccordionPrimitive.ItemProvider
-              content={item.content}
-              key={item.value}
-              title={item.title}
-              value={item.value}
+              content={content}
+              key={value}
+              title={title}
+              value={value}
             >
               <AccordionPrimitive.Item>
                 <AccordionPrimitive.Trigger />

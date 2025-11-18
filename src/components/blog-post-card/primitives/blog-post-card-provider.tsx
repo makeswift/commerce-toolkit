@@ -3,7 +3,7 @@
 import { createContext, use, useMemo } from 'react';
 import type { ReactNode } from 'react';
 
-export interface BlogPostCardContext {
+interface BlogPostCardContext {
   title: string;
   author?: string;
   content: string;

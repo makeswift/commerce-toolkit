@@ -6,7 +6,6 @@ export {
 export {
   AlertProvider as Provider,
   type AlertProviderProps as ProviderProps,
-  type AlertContext as Context,
   useAlert,
 } from './primitives/alert-provider';
 export {

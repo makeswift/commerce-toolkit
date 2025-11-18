@@ -2,7 +2,6 @@ export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-car
 export {
   BlogPostCardProvider as Provider,
   useBlogPostCard,
-  type BlogPostCardContext as Context,
   type BlogPostCardProviderProps as ProviderProps,
 } from '@/components/blog-post-card/primitives/blog-post-card-provider';
 export {
