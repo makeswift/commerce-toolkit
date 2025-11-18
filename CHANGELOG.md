@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.25
+
+### Patch Changes
+
+- 213839c: Added Tabs component
+
 ## 0.0.24
 
 ### Patch Changes
