@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.27
+
+### Patch Changes
+
+- 562ddf4: Added Toaster component
+
 ## 0.0.26
 
 ### Patch Changes
