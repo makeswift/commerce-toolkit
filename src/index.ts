@@ -97,6 +97,9 @@ export { Button, type ButtonProps } from '@/components/button';
 // ButtonLink
 export { ButtonLink, type ButtonLinkProps } from '@/components/button-link';
 
+// Calendar
+export { Calendar, type CalendarProps } from '@/components/calendar';
+
 // Card
 export {
   Card,
