@@ -216,5 +216,8 @@ export {
   useScrollArea,
 } from '@/components/scroll-area';
 
+// Spinner
+export { Spinner, type SpinnerProps } from '@/components/spinner';
+
 // Toaster
 export { Toaster, type ToasterProps, toast } from '@/components/toaster';
