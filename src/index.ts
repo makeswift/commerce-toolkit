@@ -215,3 +215,6 @@ export {
   type CornerProps as ScrollAreaCornerProps,
   useScrollArea,
 } from '@/components/scroll-area';
+
+// Toaster
+export { Toaster, type ToasterProps, toast } from '@/components/toaster';
