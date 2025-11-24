@@ -1,13 +1,10 @@
 import type { ComponentProps } from 'react';
 
-import { useBlogPostCard } from '@/components/blog-post-card';
 import { cn } from '@/lib';
 
 export type BlogPostCardTitleProps = ComponentProps<'h5'>;
 
-export function BlogPostCardTitle({ className, ...props }: BlogPostCardTitleProps) {
-  const { title } = useBlogPostCard();
-
+export function BlogPostCardTitle({ className, children, ...props }: BlogPostCardTitleProps) {
   return (
     <h5
       className={cn(
@@ -17,7 +14,7 @@ export function BlogPostCardTitle({ className, ...props }: BlogPostCardTitleProp
       data-slot="blog-post-card-title"
       {...props}
     >
-      {title}
+      {children}
     </h5>
   );
 }

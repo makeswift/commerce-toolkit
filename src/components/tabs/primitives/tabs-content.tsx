@@ -3,14 +3,11 @@
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import type { ComponentProps } from 'react';
 
-import { useTabsItem } from '@/components/tabs';
 import { cn } from '@/lib';
 
-export type TabsContentProps = Omit<ComponentProps<typeof TabsPrimitive.Content>, 'value'>;
+export type TabsContentProps = ComponentProps<typeof TabsPrimitive.Content>;
 
-export function TabsContent({ className, ...props }: TabsContentProps) {
-  const { content, value } = useTabsItem();
-
+export function TabsContent({ className, children, ...props }: TabsContentProps) {
   return (
     <TabsPrimitive.Content
       className={cn(
@@ -18,10 +15,9 @@ export function TabsContent({ className, ...props }: TabsContentProps) {
         className,
       )}
       data-slot="tabs-content"
-      value={value}
       {...props}
     >
-      {content}
+      {children}
     </TabsPrimitive.Content>
   );
 }

@@ -34,21 +34,19 @@ export interface TabsProps extends TabsPrimitives.RootProps {
  */
 export function Tabs({ className, defaultValue, tabs, ...props }: TabsProps) {
   return (
-    <TabsPrimitives.Provider defaultValue={defaultValue} tabs={tabs}>
-      <TabsPrimitives.Root className={className} {...props}>
-        <TabsPrimitives.List>
-          {tabs.map(({ content, label, value }) => (
-            <TabsPrimitives.ItemProvider content={content} key={value} label={label} value={value}>
-              <TabsPrimitives.Trigger />
-            </TabsPrimitives.ItemProvider>
-          ))}
-        </TabsPrimitives.List>
-        {tabs.map(({ content, label, value }) => (
-          <TabsPrimitives.ItemProvider content={content} key={value} label={label} value={value}>
-            <TabsPrimitives.Content />
-          </TabsPrimitives.ItemProvider>
+    <TabsPrimitives.Root className={className} defaultValue={defaultValue} {...props}>
+      <TabsPrimitives.List>
+        {tabs.map(({ label, value }) => (
+          <TabsPrimitives.Trigger key={value} value={value}>
+            {label}
+          </TabsPrimitives.Trigger>
         ))}
-      </TabsPrimitives.Root>
-    </TabsPrimitives.Provider>
+      </TabsPrimitives.List>
+      {tabs.map(({ content, value }) => (
+        <TabsPrimitives.Content key={value} value={value}>
+          {content}
+        </TabsPrimitives.Content>
+      ))}
+    </TabsPrimitives.Root>
   );
 }

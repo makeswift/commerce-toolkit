@@ -14,14 +14,5 @@ export {
 export {
   TabsRoot as Root,
   type TabsRootProps as RootProps,
-} from '@/components/tabs/primitives/tabs-root';
-export {
-  TabsProvider as Provider,
-  type TabsProviderProps as ProviderProps,
   useTabs,
-} from '@/components/tabs/primitives/tabs-provider';
-export {
-  TabsItemProvider as ItemProvider,
-  type TabsItemProviderProps as ItemProviderProps,
-  useTabsItem,
-} from '@/components/tabs/primitives/tabs-item-provider';
+} from '@/components/tabs/primitives/tabs-root';

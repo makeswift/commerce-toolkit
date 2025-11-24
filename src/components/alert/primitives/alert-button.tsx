@@ -2,9 +2,9 @@
 
 import type { ComponentProps } from 'react';
 
+import { useAlert } from '@/components/alert';
 import { Button } from '@/components/button';
 
-import { useAlert } from './alert-provider';
 export type AlertButtonProps = ComponentProps<typeof Button>;
 
 export function AlertButton({ children, ...props }: AlertButtonProps) {

@@ -40,10 +40,10 @@ const meta = {
       },
     },
     maxHeight: {
-      control: 'text',
-      description: 'Maximum height when collapsed (in rem or px)',
+      control: 'number',
+      description: 'Maximum height when collapsed (in pixels)',
       table: {
-        defaultValue: { summary: '10rem' },
+        defaultValue: { summary: '160' },
       },
     },
     children: {
@@ -55,7 +55,7 @@ const meta = {
     showLabel: 'Show more',
     hideLabel: 'Show less',
     defaultOpen: false,
-    maxHeight: '10rem',
+    maxHeight: 160,
   },
 } satisfies Meta<typeof Reveal>;
 
@@ -123,7 +123,7 @@ export const CustomLabels: Story = {
 export const ShortMaxHeight: Story = {
   args: {
     variant: 'underline',
-    maxHeight: '5rem',
+    maxHeight: 80,
     children: longContent,
   },
 };
@@ -131,7 +131,7 @@ export const ShortMaxHeight: Story = {
 export const TallMaxHeight: Story = {
   args: {
     variant: 'underline',
-    maxHeight: '15rem',
+    maxHeight: 240,
     children: longContent,
   },
 };

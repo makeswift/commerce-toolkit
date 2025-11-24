@@ -1,16 +1,11 @@
-'use client';
-
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import type { ComponentPropsWithRef } from 'react';
+import type { ComponentProps } from 'react';
 
-import { useTabsItem } from '@/components/tabs';
 import { cn } from '@/lib';
 
-export type TabsTriggerProps = Omit<ComponentPropsWithRef<typeof TabsPrimitive.Trigger>, 'value'>;
+export type TabsTriggerProps = ComponentProps<typeof TabsPrimitive.Trigger>;
 
-export function TabsTrigger({ className, ...props }: TabsTriggerProps) {
-  const { label, value } = useTabsItem();
-
+export function TabsTrigger({ className, children, ...props }: TabsTriggerProps) {
   return (
     <TabsPrimitive.Trigger
       className={cn(
@@ -18,10 +13,9 @@ export function TabsTrigger({ className, ...props }: TabsTriggerProps) {
         className,
       )}
       data-slot="tabs-trigger"
-      value={value}
       {...props}
     >
-      {label}
+      {children}
     </TabsPrimitive.Trigger>
   );
 }

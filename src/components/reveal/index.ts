@@ -1,13 +1,9 @@
 export { Reveal, type RevealProps } from '@/components/reveal/reveal';
 export {
   RevealRoot as Root,
+  useReveal,
   type RevealRootProps as RootProps,
 } from '@/components/reveal/primitives/reveal-root';
-export {
-  RevealProvider as Provider,
-  type RevealProviderProps as ProviderProps,
-  useReveal,
-} from '@/components/reveal/primitives/reveal-provider';
 export {
   RevealViewport as Viewport,
   type RevealViewportProps as ViewportProps,

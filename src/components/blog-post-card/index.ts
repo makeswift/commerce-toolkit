@@ -1,10 +1,5 @@
 export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card/blog-post-card';
 export {
-  BlogPostCardProvider as Provider,
-  useBlogPostCard,
-  type BlogPostCardProviderProps as ProviderProps,
-} from '@/components/blog-post-card/primitives/blog-post-card-provider';
-export {
   BlogPostCardRoot as Root,
   type BlogPostCardRootProps as RootProps,
 } from '@/components/blog-post-card/primitives/blog-post-card-root';

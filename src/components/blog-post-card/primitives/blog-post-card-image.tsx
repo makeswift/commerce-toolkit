@@ -1,40 +1,28 @@
-'use client';
+import { Slot } from '@radix-ui/react-slot';
+import type { ComponentProps, ReactNode } from 'react';
 
-import type { ComponentProps } from 'react';
-
-import { useBlogPostCard } from '@/components/blog-post-card';
 import { cn } from '@/lib';
 
-export type BlogPostCardImageProps = ComponentProps<'div'>;
+export interface BlogPostCardImageProps extends ComponentProps<'div'> {
+  asChild?: boolean;
+  children?: ReactNode;
+}
 
-export function BlogPostCardImage({ className, ...props }: BlogPostCardImageProps) {
-  const { image, title } = useBlogPostCard();
-
+export function BlogPostCardImage({
+  asChild = false,
+  className,
+  children,
+  ...props
+}: BlogPostCardImageProps) {
   const imageClassName =
     'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110';
 
   const renderImage = () => {
-    if (!image) {
-      return (
-        <div
-          className={cn(
-            'p-4 text-5xl font-bold leading-none tracking-tighter [color:var(--blog-post-card-empty-text,color-mix(in_oklab,hsl(var(--foreground))_15%,transparent))]',
-            className,
-          )}
-          {...props}
-        >
-          {title}
-        </div>
-      );
+    if (asChild && Boolean(children)) {
+      return <Slot className={imageClassName}>{children}</Slot>;
     }
 
-    const { src, alt, render } = image;
-
-    if (render) {
-      return render({ src, alt, className: imageClassName });
-    }
-
-    return <img alt={alt} className={imageClassName} src={src} />;
+    return children;
   };
 
   return (

@@ -8,22 +8,23 @@ export {
   type RootProps as AccordionRootProps,
   Content as AccordionContent,
   type ContentProps as AccordionContentProps,
+  ContentArea as AccordionContentArea,
+  type ContentAreaProps as AccordionContentAreaProps,
+  Header as AccordionHeader,
+  type HeaderProps as AccordionHeaderProps,
+  Title as AccordionTitle,
+  type TitleProps as AccordionTitleProps,
+  Chevron as AccordionChevron,
+  type ChevronProps as AccordionChevronProps,
   Trigger as AccordionTrigger,
   type TriggerProps as AccordionTriggerProps,
-  Provider as AccordionProvider,
-  type ProviderProps as AccordionProviderProps,
-  ItemProvider as AccordionItemProvider,
-  type ItemProviderProps as AccordionItemProviderProps,
   useAccordion,
-  useAccordionItem,
 } from '@/components/accordion';
 
 // Alert
 export {
   Alert,
   type AlertProps,
-  Provider as AlertProvider,
-  type ProviderProps as AlertProviderProps,
   Root as AlertRoot,
   type RootProps as AlertRootProps,
   Header as AlertHeader,
@@ -68,8 +69,6 @@ export {
 export {
   BlogPostCard,
   type BlogPostCardProps,
-  Provider as BlogPostCardProvider,
-  type ProviderProps as BlogPostCardProviderProps,
   Root as BlogPostCardRoot,
   type RootProps as BlogPostCardRootProps,
   Fallback as BlogPostCardFallback,
@@ -90,7 +89,6 @@ export {
   type AuthorProps as BlogPostCardAuthorProps,
   Skeleton as BlogPostCardSkeleton,
   type SkeletonProps as BlogPostCardSkeletonProps,
-  useBlogPostCard,
 } from '@/components/blog-post-card';
 
 // Button
@@ -121,6 +119,41 @@ export {
   type ButtonProps as ChipButtonProps,
 } from '@/components/chip';
 
+// DropdownMenu
+export {
+  DropdownMenu,
+  type DropdownMenuProps,
+  Root as DropdownMenuRoot,
+  type RootProps as DropdownMenuRootProps,
+  Trigger as DropdownMenuTrigger,
+  type TriggerProps as DropdownMenuTriggerProps,
+  Content as DropdownMenuContent,
+  type ContentProps as DropdownMenuContentProps,
+  Item as DropdownMenuItem,
+  type ItemProps as DropdownMenuItemProps,
+  CheckboxItem as DropdownMenuCheckboxItem,
+  type CheckboxItemProps as DropdownMenuCheckboxItemProps,
+  Label as DropdownMenuLabel,
+  type LabelProps as DropdownMenuLabelProps,
+  Group as DropdownMenuGroup,
+  type GroupProps as DropdownMenuGroupProps,
+  Separator as DropdownMenuSeparator,
+  type SeparatorProps as DropdownMenuSeparatorProps,
+  Portal as DropdownMenuPortal,
+  type PortalProps as DropdownMenuPortalProps,
+  ScrollArea as DropdownMenuScrollArea,
+  type ScrollAreaProps as DropdownMenuScrollAreaProps,
+  Sub as DropdownMenuSub,
+  type SubProps as DropdownMenuSubProps,
+  SubTrigger as DropdownMenuSubTrigger,
+  type SubTriggerProps as DropdownMenuSubTriggerProps,
+  SubContent as DropdownMenuSubContent,
+  type SubContentProps as DropdownMenuSubContentProps,
+  Node as DropdownMenuNode,
+  type NodeProps as DropdownMenuNodeProps,
+  useDropdownMenu,
+} from '@/components/dropdown-menu';
+
 // Favorite
 export {
   Favorite,
@@ -138,10 +171,10 @@ export { FieldError, type FieldErrorProps } from '@/components/field-error';
 export {
   Rating,
   type RatingProps,
-  Provider as RatingProvider,
-  type ProviderProps as RatingProviderProps,
   Root as RatingRoot,
   type RootProps as RatingRootProps,
+  Star as RatingStar,
+  type StarProps as RatingStarProps,
   Stars as RatingStars,
   Value as RatingValue,
   type ValueProps as RatingValueProps,
@@ -153,8 +186,6 @@ export {
 export {
   Reveal,
   type RevealProps,
-  Provider as RevealProvider,
-  type ProviderProps as RevealProviderProps,
   Root as RevealRoot,
   type RootProps as RevealRootProps,
   Trigger as RevealTrigger,

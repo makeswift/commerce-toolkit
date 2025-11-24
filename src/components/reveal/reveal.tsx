@@ -1,5 +1,3 @@
-'use client';
-
 import type { ReactNode } from 'react';
 
 import * as RevealPrimitive from '@/components/reveal';
@@ -11,7 +9,7 @@ export interface RevealProps {
   hideLabel?: string;
   defaultOpen?: boolean;
   children: ReactNode;
-  maxHeight?: string;
+  maxHeight?: number;
 }
 
 export function Reveal({
@@ -20,23 +18,22 @@ export function Reveal({
   showLabel = 'Show more',
   hideLabel = 'Show less',
   defaultOpen = false,
-  maxHeight = '10rem',
+  maxHeight = 160,
   children,
 }: RevealProps) {
   return (
-    <RevealPrimitive.Provider
+    <RevealPrimitive.Root
+      className={className}
       defaultOpen={defaultOpen}
       hideLabel={hideLabel}
       maxHeight={maxHeight}
       showLabel={showLabel}
       variant={variant}
     >
-      <RevealPrimitive.Root className={className}>
-        <RevealPrimitive.Viewport>{children}</RevealPrimitive.Viewport>
-        <RevealPrimitive.Controls>
-          <RevealPrimitive.Trigger />
-        </RevealPrimitive.Controls>
-      </RevealPrimitive.Root>
-    </RevealPrimitive.Provider>
+      <RevealPrimitive.Viewport>{children}</RevealPrimitive.Viewport>
+      <RevealPrimitive.Controls>
+        <RevealPrimitive.Trigger />
+      </RevealPrimitive.Controls>
+    </RevealPrimitive.Root>
   );
 }

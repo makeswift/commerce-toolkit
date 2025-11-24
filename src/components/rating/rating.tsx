@@ -20,11 +20,9 @@ export interface RatingProps {
  */
 export function Rating({ showRating = true, rating, className }: Readonly<RatingProps>) {
   return (
-    <RatingPrimitive.Provider rating={rating} showRating={showRating}>
-      <RatingPrimitive.Root className={className}>
-        <RatingPrimitive.Stars />
-        <RatingPrimitive.Value />
-      </RatingPrimitive.Root>
-    </RatingPrimitive.Provider>
+    <RatingPrimitive.Root className={className} rating={rating} showRating={showRating}>
+      <RatingPrimitive.Stars />
+      <RatingPrimitive.Value />
+    </RatingPrimitive.Root>
   );
 }
