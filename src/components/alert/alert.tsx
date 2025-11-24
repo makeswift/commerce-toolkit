@@ -36,23 +36,15 @@ export interface AlertProps {
  */
 export function Alert({ className, variant, message, description, action, dismiss }: AlertProps) {
   return (
-    <AlertPrimitive.Provider
-      action={action}
-      description={description}
-      dismiss={dismiss}
-      message={message}
-      variant={variant}
-    >
-      <AlertPrimitive.Root className={className}>
-        <AlertPrimitive.Header>
-          <AlertPrimitive.Title />
-          <AlertPrimitive.Description />
-        </AlertPrimitive.Header>
-        <AlertPrimitive.Actions>
-          <AlertPrimitive.Button />
-          <AlertPrimitive.CloseButton />
-        </AlertPrimitive.Actions>
-      </AlertPrimitive.Root>
-    </AlertPrimitive.Provider>
+    <AlertPrimitive.Root action={action} className={className} dismiss={dismiss} variant={variant}>
+      <AlertPrimitive.Header>
+        <AlertPrimitive.Title>{message}</AlertPrimitive.Title>
+        <AlertPrimitive.Description>{description}</AlertPrimitive.Description>
+      </AlertPrimitive.Header>
+      <AlertPrimitive.Actions>
+        <AlertPrimitive.Button />
+        <AlertPrimitive.CloseButton />
+      </AlertPrimitive.Actions>
+    </AlertPrimitive.Root>
   );
 }

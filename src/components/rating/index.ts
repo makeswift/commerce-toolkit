@@ -1,13 +1,9 @@
 export { Rating, type RatingProps } from '@/components/rating/rating';
 export {
-  RatingProvider as Provider,
-  type RatingProviderProps as ProviderProps,
-  type StarType,
-  useRating,
-} from '@/components/rating/primitives/rating-provider';
-export {
   RatingRoot as Root,
+  useRating,
   type RatingRootProps as RootProps,
+  type StarType,
 } from '@/components/rating/primitives/rating-root';
 export {
   RatingStar as Star,

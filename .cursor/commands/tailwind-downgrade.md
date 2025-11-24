@@ -27,11 +27,13 @@ Below is an example:
 
 - `<div class="bg-(--brand-color)"></div>` → `<div class="bg-[--brand-color]"></div>`
 
-Sometimes you may come across examples that use a fallback value for CSS variables. When that's the case, you'll need to change "()" with "[]" and also wrap the fallback with the hsl color function.
+Sometimes you may come across examples that use a fallback value for CSS variables. When that's the case, you'll need to change "()" with "[]" and also wrap ANY CSS variable fallback with the hsl color function (this applies to all color variables like `--background`, `--foreground`, `--contrast-*`, etc.).
 
-Below is an example:
+Below are examples:
 
 - `bg-(--dropdown-menu-background,var(--background))` → `bg-[var(--dropdown-menu-background,hsl(var(--background)))]`
+- `border-(--dropdown-menu-border,var(--contrast-100))` → `border-[var(--dropdown-menu-border,hsl(var(--contrast-100)))]`
+- `text-(--custom-text,var(--foreground))` → `text-[var(--custom-text,hsl(var(--foreground)))]`
 
 ## Highlight and Shadow variants
 

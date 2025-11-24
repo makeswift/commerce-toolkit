@@ -1,10 +1,10 @@
 'use client';
 
-import { Button } from '@/components/button';
-import { AnimatedUnderline } from '@/components/animated-underline';
-import { useReveal } from '@/components/reveal';
 import type { ComponentProps } from 'react';
 
+import { AnimatedUnderline } from '@/components/animated-underline';
+import { Button } from '@/components/button';
+import { useReveal } from '@/components/reveal';
 import { cn } from '@/lib';
 
 export type RevealTriggerProps = ComponentProps<'button'>;

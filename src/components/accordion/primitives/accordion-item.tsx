@@ -3,14 +3,13 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import type { ComponentProps } from 'react';
 
-import { useAccordion, useAccordionItem } from '@/components/accordion';
+import { useAccordion } from '@/components/accordion';
 import { cn } from '@/lib';
 
-export type AccordionItemProps = Omit<ComponentProps<typeof AccordionPrimitive.Item>, 'value'>;
+export type AccordionItemProps = ComponentProps<typeof AccordionPrimitive.Item>;
 
 export function AccordionItem({ children, className, ...props }: AccordionItemProps) {
   const { colorScheme } = useAccordion();
-  const { value } = useAccordionItem();
 
   return (
     <AccordionPrimitive.Item
@@ -23,7 +22,6 @@ export function AccordionItem({ children, className, ...props }: AccordionItemPr
         className,
       )}
       data-slot="accordion-item"
-      value={value}
       {...props}
     >
       {children}

@@ -1,13 +1,11 @@
-import type { ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 
 import * as ScrollAreaPrimitives from '@/components/scroll-area';
 
-export interface ScrollAreaProps {
-  className?: string;
+export interface ScrollAreaProps extends ComponentProps<typeof ScrollAreaPrimitives.Root> {
   orientation?: 'vertical' | 'horizontal' | 'both';
   scrollHideDelay?: number;
   type?: 'auto' | 'always' | 'scroll' | 'hover';
-  children: ReactNode;
 }
 
 /**
@@ -27,6 +25,7 @@ export function ScrollArea({
   orientation = 'vertical',
   scrollHideDelay = 500,
   type = 'hover',
+  ...props
 }: ScrollAreaProps) {
   return (
     <ScrollAreaPrimitives.Provider
@@ -34,7 +33,7 @@ export function ScrollArea({
       scrollHideDelay={scrollHideDelay}
       type={type}
     >
-      <ScrollAreaPrimitives.Root className={className}>
+      <ScrollAreaPrimitives.Root className={className} {...props}>
         <ScrollAreaPrimitives.Viewport>{children}</ScrollAreaPrimitives.Viewport>
         <ScrollAreaPrimitives.Bar>
           <ScrollAreaPrimitives.Thumb />

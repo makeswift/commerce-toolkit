@@ -1,15 +1,10 @@
-'use client';
-
 import type { ComponentProps } from 'react';
 
-import { useBlogPostCard } from '@/components/blog-post-card';
 import { cn } from '@/lib';
 
 export type BlogPostCardContentProps = ComponentProps<'p'>;
 
-export function BlogPostCardContent({ className, ...props }: BlogPostCardContentProps) {
-  const { content } = useBlogPostCard();
-
+export function BlogPostCardContent({ className, children, ...props }: BlogPostCardContentProps) {
   return (
     <p
       className={cn(
@@ -19,7 +14,7 @@ export function BlogPostCardContent({ className, ...props }: BlogPostCardContent
       data-slot="blog-post-card-content"
       {...props}
     >
-      {content}
+      {children}
     </p>
   );
 }

@@ -6,22 +6,29 @@ export {
 export {
   AccordionRoot as Root,
   type AccordionRootProps as RootProps,
+  useAccordion,
 } from '@/components/accordion/primitives/accordion-root';
 export {
   AccordionContent as Content,
   type AccordionContentProps as ContentProps,
 } from '@/components/accordion/primitives/accordion-content';
 export {
+  AccordionContentArea as ContentArea,
+  type AccordionContentAreaProps as ContentAreaProps,
+} from '@/components/accordion/primitives/accordion-content-area';
+export {
+  AccordionHeader as Header,
+  type AccordionHeaderProps as HeaderProps,
+} from '@/components/accordion/primitives/accordion-header';
+export {
+  AccordionTitle as Title,
+  type AccordionTitleProps as TitleProps,
+} from '@/components/accordion/primitives/accordion-title';
+export {
+  AccordionChevron as Chevron,
+  type AccordionChevronProps as ChevronProps,
+} from '@/components/accordion/primitives/accordion-chevron';
+export {
   AccordionTrigger as Trigger,
   type AccordionTriggerProps as TriggerProps,
 } from '@/components/accordion/primitives/accordion-trigger';
-export {
-  AccordionProvider as Provider,
-  useAccordion,
-  type AccordionProviderProps as ProviderProps,
-} from '@/components/accordion/primitives/accordion-provider';
-export {
-  AccordionItemProvider as ItemProvider,
-  useAccordionItem,
-  type AccordionItemProviderProps as ItemProviderProps,
-} from '@/components/accordion/primitives/accordion-item-provider';

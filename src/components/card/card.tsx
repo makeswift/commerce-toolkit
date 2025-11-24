@@ -1,4 +1,4 @@
-import type { ComponentProps, ElementType, ReactNode } from 'react';
+import type { ComponentProps, ElementType } from 'react';
 
 import * as CardPrimitive from '@/components/card';
 
@@ -7,7 +7,6 @@ export type CardProps<E extends ElementType = 'article'> = Omit<ComponentProps<E
   link?: {
     href: string;
     ariaLabel: string;
-    render?: (props: { href: string; ariaLabel: string; className: string }) => ReactNode;
   };
 };
 
@@ -28,7 +27,11 @@ export function Card({ as, className, children, link, ...props }: CardProps) {
   return (
     <CardPrimitive.Root as={as} className={className} {...props}>
       {children}
-      <CardPrimitive.Link link={link} />
+      {link && (
+        <CardPrimitive.Link href={link.href}>
+          <span className="sr-only">{link.ariaLabel}</span>
+        </CardPrimitive.Link>
+      )}
     </CardPrimitive.Root>
   );
 }

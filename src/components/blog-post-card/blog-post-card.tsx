@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react';
-
 import * as BlogPostCardPrimitive from '@/components/blog-post-card';
 
 export interface BlogPostCardProps {
@@ -11,12 +9,10 @@ export interface BlogPostCardProps {
   image?: {
     src: string;
     alt: string;
-    render?: (props: { src: string; alt: string; className: string }) => ReactNode;
   };
   link: {
     href: string;
     ariaLabel: string;
-    render?: (props: { href: string; ariaLabel: string; className: string }) => ReactNode;
   };
 }
 
@@ -48,24 +44,25 @@ export function BlogPostCard({
   className,
 }: BlogPostCardProps) {
   return (
-    <BlogPostCardPrimitive.Provider
-      author={author}
-      content={content}
-      date={date}
-      image={image}
-      link={link}
-      title={title}
-    >
-      <BlogPostCardPrimitive.Root className={className}>
-        <BlogPostCardPrimitive.Image />
-        <BlogPostCardPrimitive.Title />
-        <BlogPostCardPrimitive.Content />
-        <BlogPostCardPrimitive.Details>
-          <BlogPostCardPrimitive.Date />
-          <BlogPostCardPrimitive.Author />
-        </BlogPostCardPrimitive.Details>
-        <BlogPostCardPrimitive.Link />
-      </BlogPostCardPrimitive.Root>
-    </BlogPostCardPrimitive.Provider>
+    <BlogPostCardPrimitive.Root className={className}>
+      <BlogPostCardPrimitive.Image>
+        {image ? (
+          <img alt={image.alt} src={image.src} />
+        ) : (
+          <BlogPostCardPrimitive.Fallback>{title}</BlogPostCardPrimitive.Fallback>
+        )}
+      </BlogPostCardPrimitive.Image>
+      <BlogPostCardPrimitive.Title>{title}</BlogPostCardPrimitive.Title>
+      <BlogPostCardPrimitive.Content>{content}</BlogPostCardPrimitive.Content>
+      <BlogPostCardPrimitive.Details>
+        <BlogPostCardPrimitive.Date>{date}</BlogPostCardPrimitive.Date>
+        {author !== undefined && (
+          <BlogPostCardPrimitive.Author>{author}</BlogPostCardPrimitive.Author>
+        )}
+      </BlogPostCardPrimitive.Details>
+      <BlogPostCardPrimitive.Link href={link.href}>
+        <span className="sr-only">{link.ariaLabel}</span>
+      </BlogPostCardPrimitive.Link>
+    </BlogPostCardPrimitive.Root>
   );
 }
