@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.31
+
+### Patch Changes
+
+- 67fdd10: Added Logo component
+
 ## 0.0.30
 
 ### Patch Changes
