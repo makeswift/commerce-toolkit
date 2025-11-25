@@ -170,6 +170,9 @@ export {
 // FieldError
 export { FieldError, type FieldErrorProps } from '@/components/field-error';
 
+// Icon
+export { Icon, type IconProps, IconSkeleton, type IconSkeletonProps } from '@/components/icon';
+
 // Rating
 export {
   Rating,
