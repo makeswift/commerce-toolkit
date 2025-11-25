@@ -173,6 +173,18 @@ export { FieldError, type FieldErrorProps } from '@/components/field-error';
 // Icon
 export { Icon, type IconProps, IconSkeleton, type IconSkeletonProps } from '@/components/icon';
 
+// Price
+export {
+  Price,
+  type PriceProps,
+  Root as PriceRoot,
+  type RootProps as PriceRootProps,
+  Default as PriceDefault,
+  type DefaultProps as PriceDefaultProps,
+  Strike as PriceStrike,
+  type StrikeProps as PriceStrikeProps,
+} from '@/components/price';
+
 // Logo
 export {
   Logo,
