@@ -1,0 +1,19 @@
+import type { ComponentProps } from 'react';
+
+import { cn } from '@/lib';
+
+export type LogoTextProps = ComponentProps<'span'>;
+
+export function LogoText({ children, className, ...props }: LogoTextProps) {
+  return (
+    <span
+      className={cn(
+        'text-lg font-semibold leading-none text-[var(--logo-text,hsl(var(--foreground)))] [font-family:var(--logo-font-family,var(--font-family-heading))] @xl:text-2xl',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </span>
+  );
+}

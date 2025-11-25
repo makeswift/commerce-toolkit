@@ -1,11 +1,10 @@
 import { Slot } from '@radix-ui/react-slot';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
 export interface BlogPostCardImageProps extends ComponentProps<'div'> {
   asChild?: boolean;
-  children?: ReactNode;
 }
 
 export function BlogPostCardImage({

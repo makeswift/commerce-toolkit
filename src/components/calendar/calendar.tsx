@@ -1,7 +1,8 @@
-import { clsx } from 'clsx';
 import { ChevronLeftIcon } from 'lucide-react';
 import type { ComponentProps } from 'react';
 import { DayPicker } from 'react-day-picker';
+
+import { cn } from '@/lib';
 
 const components = {
   Chevron: () => <ChevronLeftIcon className="h-5 w-5" strokeWidth={1} />,
@@ -49,7 +50,7 @@ export function Calendar({
 }: CalendarProps) {
   return (
     <DayPicker
-      className={clsx(
+      className={cn(
         'box-content w-[280px] rounded-lg border p-3 font-[var(--calendar-font-family,var(--font-family-body))]',
         {
           light:
@@ -62,14 +63,14 @@ export function Calendar({
         months: 'relative',
         month_caption: 'flex justify-center w-full font-medium pb-0.5',
         nav: 'absolute flex justify-between w-full',
-        button_next: clsx(
+        button_next: cn(
           'rotate-180 rounded-full focus-visible:outline-none focus-visible:ring-1',
           {
             light: 'focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
             dark: 'focus-visible:ring-[var(--calendar-dark-focus,hsl(var(--background)))]',
           }[colorScheme],
         ),
-        button_previous: clsx(
+        button_previous: cn(
           'rounded-full focus-visible:outline-none focus-visible:ring-1',
           {
             light: 'focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
@@ -82,27 +83,27 @@ export function Calendar({
         weekday: 'flex h-10 w-10 items-center justify-center text-xs font-medium',
         week: 'flex',
         day: 'h-10 w-10 flex text-xs font-medium group p-0',
-        day_button: clsx(
-          'h-full w-full flex items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-1 disabled:hover:border-none',
+        day_button: cn(
+          'flex h-full w-full items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-1 disabled:hover:border-none',
           {
             light:
-              'group-data-[selected=true]:text-[var(--calendar-light-selected-button-text,hsl(var(--foreground)))] group-data-[selected=true]:bg-[var(--calendar-light-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]/middle:bg-[var(--calendar-light-selected-middle-button-background,transparent)] hover:border hover:border-[var(--calendar-light-button-border-hover,hsl(var(--contrast-200)))] focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
-            dark: 'group-data-[selected=true]:text-[var(--calendar-dark-selected-button-text,hsl(var(--foreground)))] group-data-[selected=true]:bg-[var(--calendar-dark-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]/middle:bg-[var(--calendar-dark-selected-middle-button-background,transparent)] hover:border hover:border-[var(--calendar-dark-button-border-hover,hsl(var(--contrast-400)))] focus-visible:ring-[var(--calendar-dark-focus,hsl(var(--background)))]',
+              'hover:border hover:border-[var(--calendar-light-button-border-hover,hsl(var(--contrast-200)))] focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))] group-data-[selected=true]/middle:bg-[var(--calendar-light-selected-middle-button-background,transparent)] group-data-[selected=true]:bg-[var(--calendar-light-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]:text-[var(--calendar-light-selected-button-text,hsl(var(--foreground)))]',
+            dark: 'hover:border hover:border-[var(--calendar-dark-button-border-hover,hsl(var(--contrast-400)))] focus-visible:ring-[var(--calendar-dark-focus,hsl(var(--background)))] group-data-[selected=true]/middle:bg-[var(--calendar-dark-selected-middle-button-background,transparent)] group-data-[selected=true]:bg-[var(--calendar-dark-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]:text-[var(--calendar-dark-selected-button-text,hsl(var(--foreground)))]',
           }[colorScheme],
         ),
-        disabled: clsx(
+        disabled: cn(
           {
             light: 'text-[var(--calendar-light-text-disabled,hsl(var(--contrast-300)))]',
             dark: 'text-[var(--calendar-dark-text-disabled,hsl(var(--contrast-300)))]',
           }[colorScheme],
         ),
-        outside: clsx(
+        outside: cn(
           {
             light: 'text-[var(--calendar-light-text-disabled,hsl(var(--contrast-300)))]',
             dark: 'text-[var(--calendar-dark-text-disabled,hsl(var(--contrast-300)))]',
           }[colorScheme],
         ),
-        range_start: clsx(
+        range_start: cn(
           'bg-gradient-to-l',
           {
             light:
@@ -110,7 +111,7 @@ export function Calendar({
             dark: 'from-[var(--calendar-dark-range-background,color-mix(in_oklab,hsl(var(--primary)),white_60%))]',
           }[colorScheme],
         ),
-        range_middle: clsx(
+        range_middle: cn(
           'group/middle',
           {
             light:
@@ -118,7 +119,7 @@ export function Calendar({
             dark: 'bg-[var(--calendar-dark-range-background,color-mix(in_oklab,hsl(var(--primary)),white_60%))]',
           }[colorScheme],
         ),
-        range_end: clsx(
+        range_end: cn(
           'bg-gradient-to-r',
           {
             light:
