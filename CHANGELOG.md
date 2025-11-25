@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.30
+
+### Patch Changes
+
+- 327bb85: Added Icon component
+
 ## 0.0.29
 
 ### Patch Changes
