@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.32
+
+### Patch Changes
+
+- 983a8dd: Added Price component
+
 ## 0.0.31
 
 ### Patch Changes
