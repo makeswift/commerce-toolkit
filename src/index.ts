@@ -112,6 +112,30 @@ export {
   type SkeletonProps as CardSkeletonProps,
 } from '@/components/card';
 
+// Carousel
+export {
+  Carousel,
+  type CarouselProps,
+  Root as CarouselRoot,
+  type RootProps as CarouselRootProps,
+  Viewport as CarouselViewport,
+  type ViewportProps as CarouselViewportProps,
+  Content as CarouselContent,
+  type ContentProps as CarouselContentProps,
+  Item as CarouselItem,
+  type ItemProps as CarouselItemProps,
+  Scrollbar as CarouselScrollbar,
+  type ScrollbarProps as CarouselScrollbarProps,
+  Controls as CarouselControls,
+  type ControlsProps as CarouselControlsProps,
+  Nav as CarouselNav,
+  type NavProps as CarouselNavProps,
+  Prev as CarouselPrev,
+  type PrevProps as CarouselPrevProps,
+  Next as CarouselNext,
+  type NextProps as CarouselNextProps,
+} from '@/components/carousel';
+
 // Chip
 export {
   Chip,
