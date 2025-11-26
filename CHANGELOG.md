@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.33
+
+### Patch Changes
+
+- 196670b: Added Carousel component
+
 ## 0.0.32
 
 ### Patch Changes
