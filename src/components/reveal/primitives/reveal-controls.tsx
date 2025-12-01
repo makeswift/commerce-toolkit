@@ -2,8 +2,8 @@
 
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib';
 import { useReveal } from '@/components/reveal';
+import { cn } from '@/lib';
 
 export type RevealControlsProps = ComponentProps<'div'>;
 

@@ -61,7 +61,6 @@ export const Default: Story = {
 export const Loop: Story = {
   render: () => (
     <Carousel
-      opts={{ loop: true }}
       items={images.slice(0, 4).map((image, index) => (
         <div
           className="relative aspect-square w-48 overflow-hidden rounded-lg bg-contrast-100"
@@ -70,6 +69,7 @@ export const Loop: Story = {
           <img alt={image.alt} className="h-full w-full object-cover" src={image.src} />
         </div>
       ))}
+      opts={{ loop: true }}
     />
   ),
 };
@@ -77,7 +77,6 @@ export const Loop: Story = {
 export const AlignStart: Story = {
   render: () => (
     <Carousel
-      opts={{ align: 'start' }}
       items={images.map((image, index) => (
         <div
           className="relative aspect-square w-48 overflow-hidden rounded-lg bg-contrast-100"
@@ -86,6 +85,7 @@ export const AlignStart: Story = {
           <img alt={image.alt} className="h-full w-full object-cover" src={image.src} />
         </div>
       ))}
+      opts={{ align: 'start' }}
     />
   ),
 };
@@ -93,7 +93,6 @@ export const AlignStart: Story = {
 export const AlignCenter: Story = {
   render: () => (
     <Carousel
-      opts={{ align: 'center' }}
       items={images.map((image, index) => (
         <div
           className="relative aspect-square w-48 overflow-hidden rounded-lg bg-contrast-100"
@@ -102,6 +101,7 @@ export const AlignCenter: Story = {
           <img alt={image.alt} className="h-full w-full object-cover" src={image.src} />
         </div>
       ))}
+      opts={{ align: 'center' }}
     />
   ),
 };
@@ -109,7 +109,6 @@ export const AlignCenter: Story = {
 export const HideScrollbar: Story = {
   render: () => (
     <Carousel
-      showScrollbar={false}
       items={images.map((image, index) => (
         <div
           className="relative aspect-square w-48 overflow-hidden rounded-lg bg-contrast-100"
@@ -118,6 +117,7 @@ export const HideScrollbar: Story = {
           <img alt={image.alt} className="h-full w-full object-cover" src={image.src} />
         </div>
       ))}
+      showScrollbar={false}
     />
   ),
 };
@@ -125,7 +125,6 @@ export const HideScrollbar: Story = {
 export const HideNav: Story = {
   render: () => (
     <Carousel
-      showNav={false}
       items={images.map((image, index) => (
         <div
           className="relative aspect-square w-48 overflow-hidden rounded-lg bg-contrast-100"
@@ -134,6 +133,7 @@ export const HideNav: Story = {
           <img alt={image.alt} className="h-full w-full object-cover" src={image.src} />
         </div>
       ))}
+      showNav={false}
     />
   ),
 };
@@ -141,8 +141,6 @@ export const HideNav: Story = {
 export const HideAllControls: Story = {
   render: () => (
     <Carousel
-      showScrollbar={false}
-      showNav={false}
       items={images.map((image, index) => (
         <div
           className="relative aspect-square w-48 overflow-hidden rounded-lg bg-contrast-100"
@@ -151,6 +149,8 @@ export const HideAllControls: Story = {
           <img alt={image.alt} className="h-full w-full object-cover" src={image.src} />
         </div>
       ))}
+      showNav={false}
+      showScrollbar={false}
     />
   ),
 };
@@ -181,7 +181,6 @@ export const DarkColorScheme: Story = {
 export const TestimonialCarousel: Story = {
   render: () => (
     <Carousel
-      opts={{ loop: true }}
       items={[
         {
           text: 'Amazing product! Exceeded all my expectations.',
@@ -208,6 +207,7 @@ export const TestimonialCarousel: Story = {
           <p className="text-xs text-contrast-400">{testimonial.role}</p>
         </div>
       ))}
+      opts={{ loop: true }}
     />
   ),
 };

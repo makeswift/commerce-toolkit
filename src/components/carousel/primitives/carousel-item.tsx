@@ -10,8 +10,8 @@ export function CarouselItem({ className, ...props }: CarouselItemProps) {
       {...props}
       aria-roledescription="slide"
       className={cn('min-w-0 shrink-0 grow-0 pl-4 @2xl:pl-5', className)}
-      role="group"
       data-slot="carousel-item"
+      role="group"
     />
   );
 }

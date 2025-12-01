@@ -1,11 +1,11 @@
 'use client';
 
-import { cn } from '@/lib';
-
 import useEmblaCarousel from 'embla-carousel-react';
 import type { UseEmblaCarouselType } from 'embla-carousel-react';
 import type { ComponentProps, KeyboardEvent } from 'react';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+
+import { cn } from '@/lib';
 
 export type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -110,9 +110,9 @@ export function CarouselRoot({
       <div
         aria-roledescription="carousel"
         className={cn('relative p-1.5 @container', hideOverflow && 'overflow-hidden', className)}
+        data-slot="carousel-root"
         onKeyDownCapture={handleKeyDown}
         role="region"
-        data-slot="carousel-root"
         {...props}
       >
         {children}
