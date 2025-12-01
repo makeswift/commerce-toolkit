@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.35
+
+### Patch Changes
+
+- d0ecde8: Added Modal component
+
 ## 0.0.34
 
 ### Patch Changes
