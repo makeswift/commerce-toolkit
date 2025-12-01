@@ -2,9 +2,8 @@
 
 import type { ComponentProps } from 'react';
 
-import { cn } from '@/lib';
-
 import { useCarousel } from '@/components/carousel';
+import { cn } from '@/lib';
 
 export type CarouselViewportProps = ComponentProps<'div'>;
 
@@ -13,8 +12,8 @@ export function CarouselViewport({ className, children, ...props }: CarouselView
 
   return (
     <div
-      data-slot="carousel-viewport"
       className={cn('w-full', className)}
+      data-slot="carousel-viewport"
       ref={carouselRef}
       {...props}
     >

@@ -1,9 +1,8 @@
 import type { ComponentProps } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
-import { cn } from '@/lib';
-
 import { useCarousel } from '@/components/carousel';
+import { cn } from '@/lib';
 
 export type CarouselScrollbarProps = ComponentProps<'div'>;
 
@@ -107,11 +106,11 @@ export function CarouselScrollbar({ className }: CarouselScrollbarProps) {
             dark: 'bg-[var(--carousel-dark-scrollbar,hsl(var(--background)))]',
           }[colorScheme],
         )}
+        data-slot="carousel-bar"
         style={{
           width: `${scrollbarPosition.width}%`,
           left: `${scrollbarPosition.left}%`,
         }}
-        data-slot="carousel-bar"
       />
     </div>
   );
