@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.34
+
+### Patch Changes
+
+- d35c305: Fixed format and lint warnings
+
 ## 0.0.33
 
 ### Patch Changes
