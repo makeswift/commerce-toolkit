@@ -197,18 +197,6 @@ export { FieldError, type FieldErrorProps } from '@/components/field-error';
 // Icon
 export { Icon, type IconProps, IconSkeleton, type IconSkeletonProps } from '@/components/icon';
 
-// Price
-export {
-  Price,
-  type PriceProps,
-  Root as PriceRoot,
-  type RootProps as PriceRootProps,
-  Default as PriceDefault,
-  type DefaultProps as PriceDefaultProps,
-  Strike as PriceStrike,
-  type StrikeProps as PriceStrikeProps,
-} from '@/components/price';
-
 // Logo
 export {
   Logo,
@@ -222,6 +210,36 @@ export {
   LogoSkeleton,
   type SkeletonProps as LogoSkeletonProps,
 } from '@/components/logo';
+
+// Modal
+export {
+  Modal,
+  type ModalProps,
+  Root as ModalRoot,
+  type RootProps as ModalRootProps,
+  Trigger as ModalTrigger,
+  type TriggerProps as ModalTriggerProps,
+  Overlay as ModalOverlay,
+  type OverlayProps as ModalOverlayProps,
+  Content as ModalContent,
+  type ContentProps as ModalContentProps,
+  Title as ModalTitle,
+  type TitleProps as ModalTitleProps,
+  Portal as ModalPortal,
+  type PortalProps as ModalPortalProps,
+} from '@/components/modal';
+
+// Price
+export {
+  Price,
+  type PriceProps,
+  Root as PriceRoot,
+  type RootProps as PriceRootProps,
+  Default as PriceDefault,
+  type DefaultProps as PriceDefaultProps,
+  Strike as PriceStrike,
+  type StrikeProps as PriceStrikeProps,
+} from '@/components/price';
 
 // Rating
 export {
