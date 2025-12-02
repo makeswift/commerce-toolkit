@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.36
+
+### Patch Changes
+
+- c41b49d: Added CompareDrawer component
+
 ## 0.0.35
 
 ### Patch Changes
