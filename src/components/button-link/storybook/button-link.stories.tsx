@@ -254,28 +254,23 @@ export const AllShapes: Story = {
   ),
 };
 
-// Custom render prop example - useful for routing libraries
-export const WithCustomRender: Story = {
-  args: {
-    variant: 'primary',
-    size: 'medium',
-    href: '/products',
-    children: 'Custom Router Link',
-    render: (props) => {
-      // This simulates using a custom Link component (e.g., Next.js Link or React Router)
-      return (
-        <a
-          {...props}
-          onClick={(e) => {
-            e.preventDefault();
-            alert(
-              `Custom render prop clicked! Would navigate to: ${props.href}\n\nIn a real app, this could be a Next.js Link or React Router Link component.`,
-            );
-          }}
-        />
-      );
-    },
-  },
+// Custom component example - useful for routing libraries
+export const WithAsChild: Story = {
+  render: () => (
+    <ButtonLink asChild size="medium" variant="primary">
+      <a
+        href="/products"
+        onClick={(e) => {
+          e.preventDefault();
+          alert(
+            `Custom link clicked! Would navigate to: /products\n\nIn a real app, this could be a Next.js Link or React Router Link component.`,
+          );
+        }}
+      >
+        Custom Router Link
+      </a>
+    </ButtonLink>
+  ),
 };
 
 // Example with Next.js style Link (simulated)
@@ -283,26 +278,19 @@ export const NextJsStyleLink: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
       <p className="text-sm text-gray-600">
-        Example showing how to integrate with routing libraries:
+        Example showing how to integrate with routing libraries using asChild:
       </p>
-      <ButtonLink
-        href="/products"
-        render={(props) => {
-          // In a real Next.js app, you'd do:
-          // <Link {...props} />
-          return (
-            <a
-              {...props}
-              onClick={(e) => {
-                e.preventDefault();
-                alert(`Would navigate to: ${props.href}`);
-              }}
-            />
-          );
-        }}
-        variant="primary"
-      >
-        View Products <ArrowRight size={20} />
+      <ButtonLink asChild variant="primary">
+        {/* In a real Next.js app, you'd use: <Link href="/products">...</Link> */}
+        <a
+          href="/products"
+          onClick={(e) => {
+            e.preventDefault();
+            alert(`Would navigate to: /products`);
+          }}
+        >
+          View Products <ArrowRight size={20} />
+        </a>
       </ButtonLink>
     </div>
   ),

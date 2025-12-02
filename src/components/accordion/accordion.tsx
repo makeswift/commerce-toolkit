@@ -52,21 +52,19 @@ export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
 export function Accordion({ className, colorScheme = 'light', items, ...props }: AccordionProps) {
   return (
     <AccordionPrimitive.Root className={className} colorScheme={colorScheme} {...props}>
-      {items.map(({ content, title, value }) => {
-        return (
-          <AccordionPrimitive.Item key={value} value={value}>
-            <AccordionPrimitive.Header>
-              <AccordionPrimitive.Trigger>
-                <AccordionPrimitive.Title>{title}</AccordionPrimitive.Title>
-                <AccordionPrimitive.Chevron />
-              </AccordionPrimitive.Trigger>
-            </AccordionPrimitive.Header>
-            <AccordionPrimitive.Content>
-              <AccordionPrimitive.ContentArea>{content}</AccordionPrimitive.ContentArea>
-            </AccordionPrimitive.Content>
-          </AccordionPrimitive.Item>
-        );
-      })}
+      {items.map(({ content, title, value }) => (
+        <AccordionPrimitive.Item key={value} value={value}>
+          <AccordionPrimitive.Header>
+            <AccordionPrimitive.Trigger>
+              <AccordionPrimitive.Title>{title}</AccordionPrimitive.Title>
+              <AccordionPrimitive.Chevron />
+            </AccordionPrimitive.Trigger>
+          </AccordionPrimitive.Header>
+          <AccordionPrimitive.Content>
+            <AccordionPrimitive.ContentArea>{content}</AccordionPrimitive.ContentArea>
+          </AccordionPrimitive.Content>
+        </AccordionPrimitive.Item>
+      ))}
     </AccordionPrimitive.Root>
   );
 }

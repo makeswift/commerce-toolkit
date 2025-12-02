@@ -35,10 +35,10 @@ export {
   type DescriptionProps as AlertDescriptionProps,
   Actions as AlertActions,
   type ActionsProps as AlertActionsProps,
-  Button as AlertButton,
-  type ButtonProps as AlertButtonProps,
-  CloseButton as AlertCloseButton,
-  type CloseButtonProps as AlertCloseButtonProps,
+  Action as AlertAction,
+  type ActionProps as AlertActionProps,
+  Dismiss as AlertDismiss,
+  type DismissProps as AlertDismissProps,
   useAlert,
 } from '@/components/alert';
 
@@ -145,6 +145,32 @@ export {
   Button as ChipButton,
   type ButtonProps as ChipButtonProps,
 } from '@/components/chip';
+
+// Compare Drawer
+export {
+  CompareDrawer,
+  type CompareDrawerProps,
+  Root as CompareDrawerRoot,
+  type RootProps as CompareDrawerRootProps,
+  Viewport as CompareDrawerViewport,
+  type ViewportProps as CompareDrawerViewportProps,
+  Content as CompareDrawerContent,
+  type ContentProps as CompareDrawerContentProps,
+  ItemList as CompareDrawerItemList,
+  type ItemListProps as CompareDrawerItemListProps,
+  Item as CompareDrawerItem,
+  type ItemProps as CompareDrawerItemProps,
+  Link as CompareDrawerLink,
+  type LinkProps as CompareDrawerLinkProps,
+  Image as CompareDrawerImage,
+  type ImageProps as CompareDrawerImageProps,
+  Fallback as CompareDrawerFallback,
+  type FallbackProps as CompareDrawerFallbackProps,
+  Title as CompareDrawerTitle,
+  type TitleProps as CompareDrawerTitleProps,
+  Remove as CompareDrawerRemove,
+  type RemoveProps as CompareDrawerRemoveProps,
+} from '@/components/compare-drawer';
 
 // DropdownMenu
 export {

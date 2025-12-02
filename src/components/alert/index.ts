@@ -18,10 +18,10 @@ export {
   type AlertActionsProps as ActionsProps,
 } from '@/components/alert/primitives/alert-actions';
 export {
-  AlertButton as Button,
-  type AlertButtonProps as ButtonProps,
-} from '@/components/alert/primitives/alert-button';
+  AlertAction as Action,
+  type AlertActionProps as ActionProps,
+} from '@/components/alert/primitives/alert-action';
 export {
-  AlertCloseButton as CloseButton,
-  type AlertCloseButtonProps as CloseButtonProps,
-} from '@/components/alert/primitives/alert-close-button';
+  AlertDismiss as Dismiss,
+  type AlertDismissProps as DismissProps,
+} from '@/components/alert/primitives/alert-dismiss';
