@@ -42,8 +42,8 @@ export function Alert({ className, variant, message, description, action, dismis
         <AlertPrimitive.Description>{description}</AlertPrimitive.Description>
       </AlertPrimitive.Header>
       <AlertPrimitive.Actions>
-        <AlertPrimitive.Button />
-        <AlertPrimitive.CloseButton />
+        <AlertPrimitive.Action />
+        <AlertPrimitive.Dismiss />
       </AlertPrimitive.Actions>
     </AlertPrimitive.Root>
   );

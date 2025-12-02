@@ -6,9 +6,9 @@ import type { ComponentProps } from 'react';
 import { useAlert } from '@/components/alert';
 import { Button } from '@/components/button';
 
-export type AlertCloseButtonProps = ComponentProps<typeof Button>;
+export type AlertDismissProps = ComponentProps<typeof Button>;
 
-export function AlertCloseButton({ ...props }: AlertCloseButtonProps) {
+export function AlertDismiss({ ...props }: AlertDismissProps) {
   const { dismiss } = useAlert();
 
   const { label, onClick } = dismiss;
@@ -23,7 +23,7 @@ export function AlertCloseButton({ ...props }: AlertCloseButtonProps) {
       variant="ghost"
       {...props}
     >
-      <X size={20} strokeWidth={1} />
+      <X absoluteStrokeWidth size={20} strokeWidth={1} />
     </Button>
   );
 }
