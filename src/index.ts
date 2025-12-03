@@ -172,6 +172,22 @@ export {
   type RemoveProps as CompareDrawerRemoveProps,
 } from '@/components/compare-drawer';
 
+// CursorPagination
+export {
+  CursorPagination,
+  type CursorPaginationProps,
+  Root as CursorPaginationRoot,
+  type RootProps as CursorPaginationRootProps,
+  List as CursorPaginationList,
+  type ListProps as CursorPaginationListProps,
+  Item as CursorPaginationItem,
+  type ItemProps as CursorPaginationItemProps,
+  Link as CursorPaginationLink,
+  type LinkProps as CursorPaginationLinkProps,
+  Skeleton as CursorPaginationSkeleton,
+  type SkeletonProps as CursorPaginationSkeletonProps,
+} from '@/components/cursor-pagination';
+
 // DropdownMenu
 export {
   DropdownMenu,
