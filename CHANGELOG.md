@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.38
+
+### Patch Changes
+
+- 75f273a: Updated import paths for monolith and composable components
+
 ## 0.0.37
 
 ### Patch Changes
