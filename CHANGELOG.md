@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.39
+
+### Patch Changes
+
+- b20d55c: Fix path aliases resolving to incorrect paths
+
 ## 0.0.38
 
 ### Patch Changes
