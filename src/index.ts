@@ -1,46 +1,8 @@
 // Accordion
-export {
-  Accordion,
-  type AccordionProps,
-  Item as AccordionItem,
-  type ItemProps as AccordionItemProps,
-  Root as AccordionRoot,
-  type RootProps as AccordionRootProps,
-  Content as AccordionContent,
-  type ContentProps as AccordionContentProps,
-  ContentArea as AccordionContentArea,
-  type ContentAreaProps as AccordionContentAreaProps,
-  Header as AccordionHeader,
-  type HeaderProps as AccordionHeaderProps,
-  Title as AccordionTitle,
-  type TitleProps as AccordionTitleProps,
-  Chevron as AccordionChevron,
-  type ChevronProps as AccordionChevronProps,
-  Trigger as AccordionTrigger,
-  type TriggerProps as AccordionTriggerProps,
-  useAccordion,
-} from '@/components/accordion';
+export { Accordion, type AccordionProps } from '@/components/accordion/accordion';
 
 // Alert
-export {
-  Alert,
-  type AlertProps,
-  Root as AlertRoot,
-  type RootProps as AlertRootProps,
-  Header as AlertHeader,
-  type HeaderProps as AlertHeaderProps,
-  Title as AlertTitle,
-  type TitleProps as AlertTitleProps,
-  Description as AlertDescription,
-  type DescriptionProps as AlertDescriptionProps,
-  Actions as AlertActions,
-  type ActionsProps as AlertActionsProps,
-  Action as AlertAction,
-  type ActionProps as AlertActionProps,
-  Dismiss as AlertDismiss,
-  type DismissProps as AlertDismissProps,
-  useAlert,
-} from '@/components/alert';
+export { Alert, type AlertProps } from '@/components/alert/alert';
 
 // AnimatedUnderline
 export { AnimatedUnderline, type AnimatedUnderlineProps } from '@/components/animated-underline';
@@ -49,47 +11,10 @@ export { AnimatedUnderline, type AnimatedUnderlineProps } from '@/components/ani
 export { Badge, type BadgeProps } from '@/components/badge';
 
 // Banner
-export {
-  Banner,
-  type BannerProps,
-  Provider as BannerProvider,
-  type ProviderProps as BannerProviderProps,
-  Root as BannerRoot,
-  type RootProps as BannerRootProps,
-  Content as BannerContent,
-  type ContentProps as BannerContentProps,
-  Text as BannerText,
-  type TextProps as BannerTextProps,
-  Dismiss as BannerDismiss,
-  type DismissProps as BannerDismissProps,
-  useBanner,
-} from '@/components/banner';
+export { Banner, type BannerProps } from '@/components/banner/banner';
 
 // BlogPostCard
-export {
-  BlogPostCard,
-  type BlogPostCardProps,
-  Root as BlogPostCardRoot,
-  type RootProps as BlogPostCardRootProps,
-  Fallback as BlogPostCardFallback,
-  type FallbackProps as BlogPostCardFallbackProps,
-  Image as BlogPostCardImage,
-  type ImageProps as BlogPostCardImageProps,
-  Link as BlogPostCardLink,
-  type LinkProps as BlogPostCardLinkProps,
-  Title as BlogPostCardTitle,
-  type TitleProps as BlogPostCardTitleProps,
-  Content as BlogPostCardContent,
-  type ContentProps as BlogPostCardContentProps,
-  Details as BlogPostCardDetails,
-  type DetailsProps as BlogPostCardDetailsProps,
-  Date as BlogPostCardDate,
-  type DateProps as BlogPostCardDateProps,
-  Author as BlogPostCardAuthor,
-  type AuthorProps as BlogPostCardAuthorProps,
-  Skeleton as BlogPostCardSkeleton,
-  type SkeletonProps as BlogPostCardSkeletonProps,
-} from '@/components/blog-post-card';
+export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card/blog-post-card';
 
 // Button
 export { Button, type ButtonProps } from '@/components/button';
@@ -101,239 +26,61 @@ export { ButtonLink, type ButtonLinkProps } from '@/components/button-link';
 export { Calendar, type CalendarProps } from '@/components/calendar';
 
 // Card
-export {
-  Card,
-  type CardProps,
-  Root as CardRoot,
-  type RootProps as CardRootProps,
-  Link as CardLink,
-  type LinkProps as CardLinkProps,
-  Skeleton as CardSkeleton,
-  type SkeletonProps as CardSkeletonProps,
-} from '@/components/card';
+export { Card, type CardProps } from '@/components/card/card';
 
 // Carousel
-export {
-  Carousel,
-  type CarouselProps,
-  Root as CarouselRoot,
-  type RootProps as CarouselRootProps,
-  Viewport as CarouselViewport,
-  type ViewportProps as CarouselViewportProps,
-  Content as CarouselContent,
-  type ContentProps as CarouselContentProps,
-  Item as CarouselItem,
-  type ItemProps as CarouselItemProps,
-  Scrollbar as CarouselScrollbar,
-  type ScrollbarProps as CarouselScrollbarProps,
-  Controls as CarouselControls,
-  type ControlsProps as CarouselControlsProps,
-  Nav as CarouselNav,
-  type NavProps as CarouselNavProps,
-  Prev as CarouselPrev,
-  type PrevProps as CarouselPrevProps,
-  Next as CarouselNext,
-  type NextProps as CarouselNextProps,
-} from '@/components/carousel';
+export { Carousel, type CarouselProps } from '@/components/carousel/carousel';
 
 // Chip
-export {
-  Chip,
-  type ChipProps,
-  Root as ChipRoot,
-  type RootProps as ChipRootProps,
-  Button as ChipButton,
-  type ButtonProps as ChipButtonProps,
-} from '@/components/chip';
+export { Chip, type ChipProps } from '@/components/chip/chip';
 
 // Compare Drawer
-export {
-  CompareDrawer,
-  type CompareDrawerProps,
-  Root as CompareDrawerRoot,
-  type RootProps as CompareDrawerRootProps,
-  Viewport as CompareDrawerViewport,
-  type ViewportProps as CompareDrawerViewportProps,
-  Content as CompareDrawerContent,
-  type ContentProps as CompareDrawerContentProps,
-  ItemList as CompareDrawerItemList,
-  type ItemListProps as CompareDrawerItemListProps,
-  Item as CompareDrawerItem,
-  type ItemProps as CompareDrawerItemProps,
-  Link as CompareDrawerLink,
-  type LinkProps as CompareDrawerLinkProps,
-  Image as CompareDrawerImage,
-  type ImageProps as CompareDrawerImageProps,
-  Fallback as CompareDrawerFallback,
-  type FallbackProps as CompareDrawerFallbackProps,
-  Title as CompareDrawerTitle,
-  type TitleProps as CompareDrawerTitleProps,
-  Remove as CompareDrawerRemove,
-  type RemoveProps as CompareDrawerRemoveProps,
-} from '@/components/compare-drawer';
+export { CompareDrawer, type CompareDrawerProps } from '@/components/compare-drawer/compare-drawer';
 
 // CursorPagination
 export {
   CursorPagination,
   type CursorPaginationProps,
-  Root as CursorPaginationRoot,
-  type RootProps as CursorPaginationRootProps,
-  List as CursorPaginationList,
-  type ListProps as CursorPaginationListProps,
-  Item as CursorPaginationItem,
-  type ItemProps as CursorPaginationItemProps,
-  Link as CursorPaginationLink,
-  type LinkProps as CursorPaginationLinkProps,
-  Skeleton as CursorPaginationSkeleton,
-  type SkeletonProps as CursorPaginationSkeletonProps,
-} from '@/components/cursor-pagination';
+} from '@/components/cursor-pagination/cursor-pagination';
 
 // DropdownMenu
-export {
-  DropdownMenu,
-  type DropdownMenuProps,
-  Root as DropdownMenuRoot,
-  type RootProps as DropdownMenuRootProps,
-  Trigger as DropdownMenuTrigger,
-  type TriggerProps as DropdownMenuTriggerProps,
-  Content as DropdownMenuContent,
-  type ContentProps as DropdownMenuContentProps,
-  Item as DropdownMenuItem,
-  type ItemProps as DropdownMenuItemProps,
-  CheckboxItem as DropdownMenuCheckboxItem,
-  type CheckboxItemProps as DropdownMenuCheckboxItemProps,
-  Label as DropdownMenuLabel,
-  type LabelProps as DropdownMenuLabelProps,
-  Group as DropdownMenuGroup,
-  type GroupProps as DropdownMenuGroupProps,
-  Separator as DropdownMenuSeparator,
-  type SeparatorProps as DropdownMenuSeparatorProps,
-  Portal as DropdownMenuPortal,
-  type PortalProps as DropdownMenuPortalProps,
-  ScrollArea as DropdownMenuScrollArea,
-  type ScrollAreaProps as DropdownMenuScrollAreaProps,
-  Sub as DropdownMenuSub,
-  type SubProps as DropdownMenuSubProps,
-  SubTrigger as DropdownMenuSubTrigger,
-  type SubTriggerProps as DropdownMenuSubTriggerProps,
-  SubContent as DropdownMenuSubContent,
-  type SubContentProps as DropdownMenuSubContentProps,
-  Node as DropdownMenuNode,
-  type NodeProps as DropdownMenuNodeProps,
-  useDropdownMenu,
-} from '@/components/dropdown-menu';
+export { DropdownMenu, type DropdownMenuProps } from '@/components/dropdown-menu/dropdown-menu';
 
 // Favorite
-export {
-  Favorite,
-  type FavoriteProps,
-  Root as FavoriteRoot,
-  type RootProps as FavoriteRootProps,
-  Heart as FavoriteHeart,
-  type HeartProps as FavoriteHeartProps,
-} from '@/components/favorite';
+export { Favorite, type FavoriteProps } from '@/components/favorite/favorite';
 
 // FieldError
 export { FieldError, type FieldErrorProps } from '@/components/field-error';
 
 // Icon
-export { Icon, type IconProps, IconSkeleton, type IconSkeletonProps } from '@/components/icon';
+export { Icon, type IconProps } from '@/components/icon/icon';
 
 // Logo
-export {
-  Logo,
-  type LogoProps,
-  Image as LogoImage,
-  type ImageProps as LogoImageProps,
-  Link as LogoLink,
-  type LinkProps as LogoLinkProps,
-  Text as LogoText,
-  type TextProps as LogoTextProps,
-  LogoSkeleton,
-  type SkeletonProps as LogoSkeletonProps,
-} from '@/components/logo';
+export { Logo, type LogoProps } from '@/components/logo/logo';
 
 // Modal
-export {
-  Modal,
-  type ModalProps,
-  Root as ModalRoot,
-  type RootProps as ModalRootProps,
-  Trigger as ModalTrigger,
-  type TriggerProps as ModalTriggerProps,
-  Overlay as ModalOverlay,
-  type OverlayProps as ModalOverlayProps,
-  Content as ModalContent,
-  type ContentProps as ModalContentProps,
-  Title as ModalTitle,
-  type TitleProps as ModalTitleProps,
-  Portal as ModalPortal,
-  type PortalProps as ModalPortalProps,
-} from '@/components/modal';
+export { Modal, type ModalProps } from '@/components/modal/modal';
 
 // Price
-export {
-  Price,
-  type PriceProps,
-  Root as PriceRoot,
-  type RootProps as PriceRootProps,
-  Default as PriceDefault,
-  type DefaultProps as PriceDefaultProps,
-  Strike as PriceStrike,
-  type StrikeProps as PriceStrikeProps,
-} from '@/components/price';
+export { Price, type PriceProps } from '@/components/price/price';
 
 // Rating
-export {
-  Rating,
-  type RatingProps,
-  Root as RatingRoot,
-  type RootProps as RatingRootProps,
-  Star as RatingStar,
-  type StarProps as RatingStarProps,
-  Stars as RatingStars,
-  Value as RatingValue,
-  type ValueProps as RatingValueProps,
-  useRating,
-  type StarType as RatingStarType,
-} from '@/components/rating';
+export { Rating, type RatingProps } from '@/components/rating/rating';
 
 // Reveal
-export {
-  Reveal,
-  type RevealProps,
-  Root as RevealRoot,
-  type RootProps as RevealRootProps,
-  Trigger as RevealTrigger,
-  type TriggerProps as RevealTriggerProps,
-  Viewport as RevealViewport,
-  type ViewportProps as RevealViewportProps,
-  Controls as RevealControls,
-  type ControlsProps as RevealControlsProps,
-  useReveal,
-} from '@/components/reveal';
+export { Reveal, type RevealProps } from '@/components/reveal/reveal';
 
 // ScrollArea
-export {
-  ScrollArea,
-  type ScrollAreaProps,
-  Root as ScrollAreaRoot,
-  Provider as ScrollAreaProvider,
-  type ProviderProps as ScrollAreaProviderProps,
-  type RootProps as ScrollAreaRootProps,
-  Viewport as ScrollAreaViewport,
-  type ViewportProps as ScrollAreaViewportProps,
-  Bar as ScrollAreaBar,
-  type BarProps as ScrollAreaBarProps,
-  Thumb as ScrollAreaThumb,
-  type ThumbProps as ScrollAreaThumbProps,
-  Corner as ScrollAreaCorner,
-  type CornerProps as ScrollAreaCornerProps,
-  useScrollArea,
-} from '@/components/scroll-area';
+export { ScrollArea, type ScrollAreaProps } from '@/components/scroll-area/scroll-area';
+
+// Skeleton
+export * as Skeleton from '@/components/skeleton/primitives';
 
 // Spinner
 export { Spinner, type SpinnerProps } from '@/components/spinner';
+
+// Tabs
+export { Tabs, type TabsProps } from '@/components/tabs/tabs';
 
 // Toaster
 export { Toaster, type ToasterProps, toast } from '@/components/toaster';
