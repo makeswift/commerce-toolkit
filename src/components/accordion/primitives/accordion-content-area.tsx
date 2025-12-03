@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 
-import { useAccordion } from '@/index';
+import { useAccordion } from '@/components/accordion';
 import { cn } from '@/lib';
 
 export type AccordionContentAreaProps = ComponentProps<'div'>;

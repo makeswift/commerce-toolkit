@@ -6,6 +6,40 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Components with primitives that need separate entry points
+const primitiveComponents = [
+  'accordion',
+  'alert',
+  'banner',
+  'blog-post-card',
+  'card',
+  'carousel',
+  'chip',
+  'compare-drawer',
+  'cursor-pagination',
+  'dropdown-menu',
+  'favorite',
+  'icon',
+  'logo',
+  'modal',
+  'price',
+  'rating',
+  'reveal',
+  'scroll-area',
+  'skeleton',
+  'tabs',
+];
+
+// Build entry points object
+const entry = {
+  index: path.resolve(dirname, 'src/index.ts'),
+};
+
+// Add primitive component entries
+primitiveComponents.forEach((component) => {
+  entry[component] = path.resolve(dirname, `src/components/${component}/primitives.ts`);
+});
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
@@ -14,12 +48,11 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(dirname, 'src/index.ts'),
+      entry,
       formats: ['es', 'cjs'],
-      fileName: (format) => {
-        if (format === 'es') return 'index.js';
-        if (format === 'cjs') return 'index.cjs';
-        return `index.${format}.js`;
+      fileName: (format, entryName) => {
+        const ext = format === 'es' ? 'js' : 'cjs';
+        return `${entryName}.${ext}`;
       },
     },
     cssCodeSplit: false,

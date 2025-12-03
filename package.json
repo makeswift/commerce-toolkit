@@ -17,6 +17,206 @@
         "default": "./dist/index.cjs"
       }
     },
+    "./accordion": {
+      "import": {
+        "types": "./dist/components/accordion/primitives.d.ts",
+        "default": "./dist/accordion.js"
+      },
+      "require": {
+        "types": "./dist/components/accordion/primitives.d.ts",
+        "default": "./dist/accordion.cjs"
+      }
+    },
+    "./alert": {
+      "import": {
+        "types": "./dist/components/alert/primitives.d.ts",
+        "default": "./dist/alert.js"
+      },
+      "require": {
+        "types": "./dist/components/alert/primitives.d.ts",
+        "default": "./dist/alert.cjs"
+      }
+    },
+    "./banner": {
+      "import": {
+        "types": "./dist/components/banner/primitives.d.ts",
+        "default": "./dist/banner.js"
+      },
+      "require": {
+        "types": "./dist/components/banner/primitives.d.ts",
+        "default": "./dist/banner.cjs"
+      }
+    },
+    "./blog-post-card": {
+      "import": {
+        "types": "./dist/components/blog-post-card/primitives.d.ts",
+        "default": "./dist/blog-post-card.js"
+      },
+      "require": {
+        "types": "./dist/components/blog-post-card/primitives.d.ts",
+        "default": "./dist/blog-post-card.cjs"
+      }
+    },
+    "./card": {
+      "import": {
+        "types": "./dist/components/card/primitives.d.ts",
+        "default": "./dist/card.js"
+      },
+      "require": {
+        "types": "./dist/components/card/primitives.d.ts",
+        "default": "./dist/card.cjs"
+      }
+    },
+    "./carousel": {
+      "import": {
+        "types": "./dist/components/carousel/primitives.d.ts",
+        "default": "./dist/carousel.js"
+      },
+      "require": {
+        "types": "./dist/components/carousel/primitives.d.ts",
+        "default": "./dist/carousel.cjs"
+      }
+    },
+    "./chip": {
+      "import": {
+        "types": "./dist/components/chip/primitives.d.ts",
+        "default": "./dist/chip.js"
+      },
+      "require": {
+        "types": "./dist/components/chip/primitives.d.ts",
+        "default": "./dist/chip.cjs"
+      }
+    },
+    "./compare-drawer": {
+      "import": {
+        "types": "./dist/components/compare-drawer/primitives.d.ts",
+        "default": "./dist/compare-drawer.js"
+      },
+      "require": {
+        "types": "./dist/components/compare-drawer/primitives.d.ts",
+        "default": "./dist/compare-drawer.cjs"
+      }
+    },
+    "./cursor-pagination": {
+      "import": {
+        "types": "./dist/components/cursor-pagination/primitives.d.ts",
+        "default": "./dist/cursor-pagination.js"
+      },
+      "require": {
+        "types": "./dist/components/cursor-pagination/primitives.d.ts",
+        "default": "./dist/cursor-pagination.cjs"
+      }
+    },
+    "./dropdown-menu": {
+      "import": {
+        "types": "./dist/components/dropdown-menu/primitives.d.ts",
+        "default": "./dist/dropdown-menu.js"
+      },
+      "require": {
+        "types": "./dist/components/dropdown-menu/primitives.d.ts",
+        "default": "./dist/dropdown-menu.cjs"
+      }
+    },
+    "./favorite": {
+      "import": {
+        "types": "./dist/components/favorite/primitives.d.ts",
+        "default": "./dist/favorite.js"
+      },
+      "require": {
+        "types": "./dist/components/favorite/primitives.d.ts",
+        "default": "./dist/favorite.cjs"
+      }
+    },
+    "./icon": {
+      "import": {
+        "types": "./dist/components/icon/primitives.d.ts",
+        "default": "./dist/icon.js"
+      },
+      "require": {
+        "types": "./dist/components/icon/primitives.d.ts",
+        "default": "./dist/icon.cjs"
+      }
+    },
+    "./logo": {
+      "import": {
+        "types": "./dist/components/logo/primitives.d.ts",
+        "default": "./dist/logo.js"
+      },
+      "require": {
+        "types": "./dist/components/logo/primitives.d.ts",
+        "default": "./dist/logo.cjs"
+      }
+    },
+    "./modal": {
+      "import": {
+        "types": "./dist/components/modal/primitives.d.ts",
+        "default": "./dist/modal.js"
+      },
+      "require": {
+        "types": "./dist/components/modal/primitives.d.ts",
+        "default": "./dist/modal.cjs"
+      }
+    },
+    "./price": {
+      "import": {
+        "types": "./dist/components/price/primitives.d.ts",
+        "default": "./dist/price.js"
+      },
+      "require": {
+        "types": "./dist/components/price/primitives.d.ts",
+        "default": "./dist/price.cjs"
+      }
+    },
+    "./rating": {
+      "import": {
+        "types": "./dist/components/rating/primitives.d.ts",
+        "default": "./dist/rating.js"
+      },
+      "require": {
+        "types": "./dist/components/rating/primitives.d.ts",
+        "default": "./dist/rating.cjs"
+      }
+    },
+    "./reveal": {
+      "import": {
+        "types": "./dist/components/reveal/primitives.d.ts",
+        "default": "./dist/reveal.js"
+      },
+      "require": {
+        "types": "./dist/components/reveal/primitives.d.ts",
+        "default": "./dist/reveal.cjs"
+      }
+    },
+    "./scroll-area": {
+      "import": {
+        "types": "./dist/components/scroll-area/primitives.d.ts",
+        "default": "./dist/scroll-area.js"
+      },
+      "require": {
+        "types": "./dist/components/scroll-area/primitives.d.ts",
+        "default": "./dist/scroll-area.cjs"
+      }
+    },
+    "./skeleton": {
+      "import": {
+        "types": "./dist/components/skeleton/primitives.d.ts",
+        "default": "./dist/skeleton.js"
+      },
+      "require": {
+        "types": "./dist/components/skeleton/primitives.d.ts",
+        "default": "./dist/skeleton.cjs"
+      }
+    },
+    "./tabs": {
+      "import": {
+        "types": "./dist/components/tabs/primitives.d.ts",
+        "default": "./dist/tabs.js"
+      },
+      "require": {
+        "types": "./dist/components/tabs/primitives.d.ts",
+        "default": "./dist/tabs.cjs"
+      }
+    },
     "./styles": "./dist/styles.css",
     "./tailwind": "./tailwind.preset.js"
   },
