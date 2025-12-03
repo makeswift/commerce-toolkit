@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.37
+
+### Patch Changes
+
+- 6797df4: Add CursorPagination component
+
 ## 0.0.36
 
 ### Patch Changes
