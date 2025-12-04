@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.40
+
+### Patch Changes
+
+- b58865f: Added ProductCard component
+
 ## 0.0.39
 
 ### Patch Changes
