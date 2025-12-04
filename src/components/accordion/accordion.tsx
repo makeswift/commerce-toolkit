@@ -4,7 +4,7 @@ import * as AccordionPrimitive from '@/components/accordion';
 
 interface BaseAccordionProps {
   className?: string;
-  colorScheme: 'light' | 'dark';
+  colorScheme?: 'light' | 'dark';
   items: Array<{
     title: string;
     content: ReactNode;

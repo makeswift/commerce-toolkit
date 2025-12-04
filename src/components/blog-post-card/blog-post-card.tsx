@@ -45,13 +45,13 @@ export function BlogPostCard({
 }: BlogPostCardProps) {
   return (
     <BlogPostCardPrimitive.Root className={className}>
-      <BlogPostCardPrimitive.Image>
+      <BlogPostCardPrimitive.Thumbnail>
         {image ? (
-          <img alt={image.alt} src={image.src} />
+          <BlogPostCardPrimitive.Image alt={image.alt} src={image.src} />
         ) : (
           <BlogPostCardPrimitive.Fallback>{title}</BlogPostCardPrimitive.Fallback>
         )}
-      </BlogPostCardPrimitive.Image>
+      </BlogPostCardPrimitive.Thumbnail>
       <BlogPostCardPrimitive.Title>{title}</BlogPostCardPrimitive.Title>
       <BlogPostCardPrimitive.Content>{content}</BlogPostCardPrimitive.Content>
       <BlogPostCardPrimitive.Details>
@@ -60,9 +60,7 @@ export function BlogPostCard({
           <BlogPostCardPrimitive.Author>{author}</BlogPostCardPrimitive.Author>
         )}
       </BlogPostCardPrimitive.Details>
-      <BlogPostCardPrimitive.Link href={link.href}>
-        <span className="sr-only">{link.ariaLabel}</span>
-      </BlogPostCardPrimitive.Link>
+      <BlogPostCardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />
     </BlogPostCardPrimitive.Root>
   );
 }

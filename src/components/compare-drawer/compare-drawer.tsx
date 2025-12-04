@@ -67,15 +67,15 @@ export function CompareDrawer({
             {items.map((item) => (
               <CompareDrawerPrimitive.Item key={item.id}>
                 <CompareDrawerPrimitive.Link aria-label={item.link.ariaLabel} href={item.link.href}>
-                  <CompareDrawerPrimitive.Image>
+                  <CompareDrawerPrimitive.Thumbnail>
                     {item.image ? (
-                      <img alt={item.image.alt} src={item.image.src} />
+                      <CompareDrawerPrimitive.Image alt={item.image.alt} src={item.image.src} />
                     ) : (
                       <CompareDrawerPrimitive.Fallback>
                         {item.title}
                       </CompareDrawerPrimitive.Fallback>
                     )}
-                  </CompareDrawerPrimitive.Image>
+                  </CompareDrawerPrimitive.Thumbnail>
                   <CompareDrawerPrimitive.Title>{item.title}</CompareDrawerPrimitive.Title>
                 </CompareDrawerPrimitive.Link>
                 <CompareDrawerPrimitive.Remove

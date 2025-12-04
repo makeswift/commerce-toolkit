@@ -37,32 +37,22 @@ export interface PriceProps extends PricePrimitive.RootProps {
  * ```
  */
 export function Price({ className, colorScheme = 'light', price, ...props }: PriceProps) {
-  function renderPrice(priceType: PriceType) {
-    if (priceType.type === 'range') {
-      return (
-        <>
-          <PricePrimitive.Default>{priceType.minValue}</PricePrimitive.Default>
-          {' – '}
-          <PricePrimitive.Default>{priceType.maxValue}</PricePrimitive.Default>
-        </>
-      );
-    }
-
-    if (priceType.type === 'sale') {
-      return (
-        <>
-          <PricePrimitive.Strike>{priceType.currentValue}</PricePrimitive.Strike>{' '}
-          <PricePrimitive.Default>{priceType.previousValue}</PricePrimitive.Default>
-        </>
-      );
-    }
-
-    return <PricePrimitive.Default>{priceType.value}</PricePrimitive.Default>;
-  }
-
   return (
     <PricePrimitive.Root className={className} colorScheme={colorScheme} {...props}>
-      {renderPrice(price)}
+      {price.type === 'range' && (
+        <>
+          <PricePrimitive.Default>{price.minValue}</PricePrimitive.Default>
+          {' – '}
+          <PricePrimitive.Default>{price.maxValue}</PricePrimitive.Default>
+        </>
+      )}
+      {price.type === 'sale' && (
+        <>
+          <PricePrimitive.Strike>{price.currentValue}</PricePrimitive.Strike>{' '}
+          <PricePrimitive.Default>{price.previousValue}</PricePrimitive.Default>
+        </>
+      )}
+      {price.type === 'default' && <PricePrimitive.Default>{price.value}</PricePrimitive.Default>}
     </PricePrimitive.Root>
   );
 }

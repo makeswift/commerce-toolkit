@@ -8,7 +8,6 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import reactPlugin from 'eslint-plugin-react';
 import importPlugin from 'eslint-plugin-import';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
@@ -39,7 +38,6 @@ export default defineConfig([
   {
     files: ['src/**/*.{ts,tsx}', '.storybook/**/*.{ts,tsx}'],
     plugins: {
-      '@typescript-eslint': tsPlugin,
       import: importPlugin,
       'jsx-a11y': jsxA11y,
       react: reactPlugin,
