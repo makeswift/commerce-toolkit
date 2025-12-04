@@ -13,22 +13,16 @@ export function CompareDrawerLink({
   children,
   ...props
 }: CompareDrawerLinkProps) {
-  const linkClassName = cn(
-    'group relative flex max-w-56 items-center overflow-hidden whitespace-nowrap rounded-xl border border-[var(--compare-drawer-link-border,hsl(var(--contrast-100)))] bg-[var(--compare-drawer-card-background,hsl(var(--background)))] font-semibold ring-[var(--compare-drawer-card-focus,hsl(var(--primary)))] transition-all duration-150 hover:bg-[var(--compare-drawer-card-background-hover,hsl(var(--contrast-100)))] focus:outline-none focus:ring-2',
-    className,
-  );
-
-  if (asChild) {
-    return (
-      <Slot className={linkClassName} data-slot="compare-drawer-link" {...props}>
-        {children}
-      </Slot>
-    );
-  }
+  const Component = asChild ? Slot : 'a';
 
   return (
-    <a className={linkClassName} data-slot="compare-drawer-link" {...props}>
-      {children}
-    </a>
+    <Component
+      className={cn(
+        'group relative flex max-w-56 items-center overflow-hidden whitespace-nowrap rounded-xl border border-[var(--compare-drawer-link-border,hsl(var(--contrast-100)))] bg-[var(--compare-drawer-card-background,hsl(var(--background)))] font-semibold ring-[var(--compare-drawer-card-focus,hsl(var(--primary)))] transition-all duration-150 hover:bg-[var(--compare-drawer-card-background-hover,hsl(var(--contrast-100)))] focus:outline-none focus:ring-2',
+        className,
+      )}
+      data-slot="compare-drawer-link"
+      {...props}
+    />
   );
 }

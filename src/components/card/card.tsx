@@ -27,11 +27,7 @@ export function Card({ as, className, children, link, ...props }: CardProps) {
   return (
     <CardPrimitive.Root as={as} className={className} {...props}>
       {children}
-      {link && (
-        <CardPrimitive.Link href={link.href}>
-          <span className="sr-only">{link.ariaLabel}</span>
-        </CardPrimitive.Link>
-      )}
+      {link && <CardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />}
     </CardPrimitive.Root>
   );
 }

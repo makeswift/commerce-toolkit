@@ -7,6 +7,10 @@ export {
   type BlogPostCardFallbackProps as FallbackProps,
 } from '@/components/blog-post-card/primitives/blog-post-card-fallback';
 export {
+  BlogPostCardThumbnail as Thumbnail,
+  type BlogPostCardThumbnailProps as ThumbnailProps,
+} from '@/components/blog-post-card/primitives/blog-post-card-thumbnail';
+export {
   BlogPostCardImage as Image,
   type BlogPostCardImageProps as ImageProps,
 } from '@/components/blog-post-card/primitives/blog-post-card-image';

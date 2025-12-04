@@ -23,6 +23,10 @@ export {
   type CompareDrawerLinkProps as LinkProps,
 } from '@/components/compare-drawer/primitives/compare-drawer-link';
 export {
+  CompareDrawerThumbnail as Thumbnail,
+  type CompareDrawerThumbnailProps as ThumbnailProps,
+} from '@/components/compare-drawer/primitives/compare-drawer-thumbnail';
+export {
   CompareDrawerImage as Image,
   type CompareDrawerImageProps as ImageProps,
 } from '@/components/compare-drawer/primitives/compare-drawer-image';

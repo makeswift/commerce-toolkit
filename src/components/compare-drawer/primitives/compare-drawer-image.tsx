@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
-export type CompareDrawerImageProps = ComponentProps<'div'> & {
+export type CompareDrawerImageProps = ComponentProps<'img'> & {
   asChild?: boolean;
 };
 
@@ -13,27 +13,16 @@ export function CompareDrawerImage({
   asChild = false,
   ...props
 }: CompareDrawerImageProps) {
-  const imageClassName =
-    'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110';
-
-  const renderImage = () => {
-    if (asChild && Boolean(children)) {
-      return <Slot className={imageClassName}>{children}</Slot>;
-    }
-
-    return children;
-  };
+  const Component = asChild ? Slot : 'img';
 
   return (
-    <div
+    <Component
       className={cn(
-        'relative aspect-square w-12 shrink-0 bg-[var(--compare-drawer-card-image-background,hsl(var(--contrast-100)))]',
+        'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110',
         className,
       )}
       data-slot="compare-drawer-image"
       {...props}
-    >
-      {renderImage()}
-    </div>
+    />
   );
 }

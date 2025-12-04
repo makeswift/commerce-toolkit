@@ -77,6 +77,16 @@
         "default": "./dist/carousel.cjs"
       }
     },
+    "./checkbox": {
+      "import": {
+        "types": "./dist/components/checkbox/primitives.d.ts",
+        "default": "./dist/checkbox.js"
+      },
+      "require": {
+        "types": "./dist/components/checkbox/primitives.d.ts",
+        "default": "./dist/checkbox.cjs"
+      }
+    },
     "./chip": {
       "import": {
         "types": "./dist/components/chip/primitives.d.ts",
@@ -165,6 +175,16 @@
       "require": {
         "types": "./dist/components/price/primitives.d.ts",
         "default": "./dist/price.cjs"
+      }
+    },
+    "./product-card": {
+      "import": {
+        "types": "./dist/components/product-card/primitives.d.ts",
+        "default": "./dist/product-card.js"
+      },
+      "require": {
+        "types": "./dist/components/product-card/primitives.d.ts",
+        "default": "./dist/product-card.cjs"
       }
     },
     "./rating": {
@@ -269,7 +289,6 @@
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.545.0",
-    "nuqs": "^2.7.2",
     "react-day-picker": "^9.11.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1"
