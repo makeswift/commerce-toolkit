@@ -14,6 +14,7 @@ const primitiveComponents = [
   'blog-post-card',
   'card',
   'carousel',
+  'category-card',
   'checkbox',
   'chip',
   'compare-drawer',

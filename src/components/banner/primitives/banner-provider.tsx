@@ -24,6 +24,7 @@ export function BannerProvider({ id, hideDismiss, onDismiss, children }: BannerP
 
   useEffect(() => {
     const hidden = localStorage.getItem(`${id}-hidden-banner`) === 'true';
+
     setIsDismissed(hidden);
     setIsInitialized(true);
   }, [id]);

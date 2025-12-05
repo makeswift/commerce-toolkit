@@ -77,6 +77,16 @@
         "default": "./dist/carousel.cjs"
       }
     },
+    "./category-card": {
+      "import": {
+        "types": "./dist/components/category-card/primitives.d.ts",
+        "default": "./dist/category-card.js"
+      },
+      "require": {
+        "types": "./dist/components/category-card/primitives.d.ts",
+        "default": "./dist/category-card.cjs"
+      }
+    },
     "./checkbox": {
       "import": {
         "types": "./dist/components/checkbox/primitives.d.ts",

@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
+
 export type ProductCardCompareProps = ComponentProps<'div'>;
 
 export function ProductCardCompare({ className, children, ...props }: ProductCardCompareProps) {

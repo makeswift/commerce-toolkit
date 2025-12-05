@@ -85,19 +85,14 @@ const productTabs: TabsProps['tabs'] = [
         <dl className="not-prose grid grid-cols-[1fr_2fr] gap-x-4 gap-y-2 text-sm text-foreground [&>dd]:font-normal [&>dt]:font-semibold">
           <dt>Dimensions</dt>
           <dd>12&quot; × 8&quot; × 4&quot; (30cm × 20cm × 10cm)</dd>
-
           <dt>Weight</dt>
           <dd>1.2 lbs (550g)</dd>
-
           <dt>Materials</dt>
           <dd>Recycled polyester, organic cotton, aluminum hardware</dd>
-
           <dt>Country of Origin</dt>
           <dd>Made in Portugal</dd>
-
           <dt>Care</dt>
           <dd>Spot clean or hand wash with mild detergent</dd>
-
           <dt>Capacity</dt>
           <dd>15L / Holds up to 15 lbs</dd>
         </dl>

@@ -36,6 +36,7 @@ export const Default: Story = {
   },
   render: () => {
     const [checked, setChecked] = useState(false);
+
     return <Favorite checked={checked} setChecked={setChecked} />;
   },
 };
@@ -47,6 +48,7 @@ export const Unchecked: Story = {
   },
   render: () => {
     const [checked, setChecked] = useState(false);
+
     return <Favorite checked={checked} setChecked={setChecked} />;
   },
 };
@@ -58,6 +60,7 @@ export const Checked: Story = {
   },
   render: () => {
     const [checked, setChecked] = useState(true);
+
     return <Favorite checked={checked} setChecked={setChecked} />;
   },
 };
