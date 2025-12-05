@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.41
+
+### Patch Changes
+
+- 1882f6f: Added OffsetPagination component
+
 ## 0.0.40
 
 ### Patch Changes
