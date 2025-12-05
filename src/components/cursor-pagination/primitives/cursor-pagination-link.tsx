@@ -23,6 +23,8 @@ export function CursorPaginationLink({
       )}
       data-slot="cursor-pagination-link"
       {...props}
-    />
+    >
+      {children}
+    </Component>
   );
 }
