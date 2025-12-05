@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.0.42
+
+### Patch Changes
+
+- dc65b15: Add missing offset-pagination primitives export to package.json and vite build config
+
 ## 0.0.41
 
 ### Patch Changes
