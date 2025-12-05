@@ -23,6 +23,7 @@ const primitiveComponents = [
   'icon',
   'logo',
   'modal',
+  'offset-pagination',
   'product-card',
   'price',
   'rating',

@@ -167,6 +167,16 @@
         "default": "./dist/modal.cjs"
       }
     },
+    "./offset-pagination": {
+      "import": {
+        "types": "./dist/components/offset-pagination/primitives.d.ts",
+        "default": "./dist/offset-pagination.js"
+      },
+      "require": {
+        "types": "./dist/components/offset-pagination/primitives.d.ts",
+        "default": "./dist/offset-pagination.cjs"
+      }
+    },
     "./price": {
       "import": {
         "types": "./dist/components/price/primitives.d.ts",
