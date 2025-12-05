@@ -10,5 +10,9 @@ export interface LogoImageProps extends ComponentProps<'img'> {
 export function LogoImage({ asChild = false, className, children, ...props }: LogoImageProps) {
   const Component = asChild ? Slot : 'img';
 
-  return <Component className={cn('object-contain object-left', className)} {...props} />;
+  return (
+    <Component className={cn('object-contain object-left', className)} {...props}>
+      {children}
+    </Component>
+  );
 }

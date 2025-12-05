@@ -23,6 +23,8 @@ export function CompareDrawerLink({
       )}
       data-slot="compare-drawer-link"
       {...props}
-    />
+    >
+      {children}
+    </Component>
   );
 }

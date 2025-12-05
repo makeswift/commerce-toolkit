@@ -18,6 +18,8 @@ export function LogoLink({ asChild = false, className, children, ...props }: Log
       )}
       data-slot="logo-link"
       {...props}
-    />
+    >
+      {children}
+    </Component>
   );
 }
