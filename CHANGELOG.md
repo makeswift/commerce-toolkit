@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.1.1
+
+### Patch Changes
+
+- db10848: Added SidePanel component
+
 ## 0.1.0
 
 ### Minor Changes
