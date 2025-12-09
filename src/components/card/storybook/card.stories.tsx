@@ -15,6 +15,14 @@ const meta: Meta<typeof Card> = {
       control: 'text',
       description: 'The HTML element to render as',
     },
+    children: {
+      control: false,
+      description: 'Content to display in the card',
+    },
+    link: {
+      control: false,
+      description: 'Link configuration for clickable cards',
+    },
   },
 };
 

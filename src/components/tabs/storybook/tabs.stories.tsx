@@ -17,6 +17,7 @@ const meta: Meta<typeof Tabs> = {
       description: 'The value of the tab to select by default',
     },
     tabs: {
+      control: false,
       description: 'Array of tabs with value, label, and content',
     },
     activationMode: {

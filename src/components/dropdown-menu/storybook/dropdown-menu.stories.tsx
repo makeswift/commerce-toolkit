@@ -37,6 +37,14 @@ const meta: Meta<typeof DropdownMenu> = {
       control: 'boolean',
       description: 'Whether to show the scroll area',
     },
+    trigger: {
+      control: false,
+      description: 'Custom trigger element',
+    },
+    items: {
+      control: false,
+      description: 'Array of menu items',
+    },
   },
 };
 

@@ -23,7 +23,12 @@ const meta: Meta<typeof ProductCard> = {
       description: 'The aspect ratio of the product image',
     },
     compareActions: {
+      control: false,
       description: 'Configuration for the compare checkbox',
+    },
+    product: {
+      control: false,
+      description: 'Product data including title, price, image, and link',
     },
     className: {
       control: 'text',

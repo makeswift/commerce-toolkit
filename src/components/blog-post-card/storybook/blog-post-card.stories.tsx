@@ -27,11 +27,11 @@ const meta: Meta<typeof BlogPostCard> = {
       description: 'The author name (optional)',
     },
     image: {
-      control: 'object',
+      control: false,
       description: 'The image object with src, alt, and optional render function',
     },
     link: {
-      control: 'object',
+      control: false,
       description: 'The link object with href, ariaLabel, and optional render function',
     },
     className: {

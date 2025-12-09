@@ -66,6 +66,10 @@ const meta: Meta<typeof CompareDrawer> = {
       action: 'onRemove',
       description: 'Callback fired when an item is removed, receives the item id',
     },
+    items: {
+      control: false,
+      description: 'Array of items to display in the compare drawer',
+    },
   },
 };
 

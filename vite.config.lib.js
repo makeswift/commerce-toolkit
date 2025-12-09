@@ -30,6 +30,7 @@ const primitiveComponents = [
   'rating',
   'reveal',
   'scroll-area',
+  'side-panel',
   'skeleton',
   'tabs',
 ];

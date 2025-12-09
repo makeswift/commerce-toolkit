@@ -37,6 +37,10 @@ const meta: Meta<typeof Accordion> = {
       options: ['light', 'dark'],
       description: 'The color scheme of the accordion',
     },
+    items: {
+      control: false,
+      description: 'Array of accordion items with value, title, and content',
+    },
   },
   decorators: [
     (Story) => (
