@@ -1,5 +1,29 @@
 # commerce-toolkit
 
+## 0.1.0
+
+### Minor Changes
+
+- 783e59c: Add category-card primitives subpath export. You can now import individual category card primitives via `commerce-toolkit/category-card`:
+
+  ```tsx
+  import {
+    Root,
+    Icon,
+    Thumbnail,
+    Image,
+    Fallback,
+    Overlay,
+    Title,
+    Link,
+    Skeleton,
+  } from 'commerce-toolkit/category-card';
+  ```
+
+### Patch Changes
+
+- 783e59c: Added CategoryCard component
+
 ## 0.0.42
 
 ### Patch Changes
