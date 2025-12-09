@@ -56,6 +56,7 @@ export const Controlled: Story = {
   args: {},
   render: () => {
     const [checked, setChecked] = useState(false);
+
     return (
       <div className="space-y-4">
         <Checkbox

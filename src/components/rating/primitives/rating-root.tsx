@@ -35,7 +35,9 @@ export function RatingRoot({
 
   const getNextStarIndex = useCallback(() => {
     const index = starIndexRef.current;
+
     starIndexRef.current += 1;
+
     return index;
   }, []);
 
@@ -49,6 +51,7 @@ export function RatingRoot({
     const stars: StarType[] = Array.from({ length: 5 }, (_, index) => {
       if (index < Math.floor(adjustedRating)) return 'full';
       if (index < Math.ceil(adjustedRating)) return 'half';
+
       return 'empty';
     });
 

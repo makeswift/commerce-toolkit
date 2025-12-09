@@ -1,0 +1,89 @@
+import { ArrowUpRight } from 'lucide-react';
+
+import * as CategoryCardPrimitive from '@/components/category-card';
+
+export interface CategoryCardContent {
+  title: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  link: {
+    href: string;
+    ariaLabel: string;
+  };
+}
+
+export interface CategoryCardProps extends CategoryCardContent {
+  className?: string;
+  textColorScheme?: 'light' | 'dark';
+  iconColorScheme?: 'light' | 'dark';
+  aspectRatio?: '5:6' | '3:4' | '1:1';
+  textSize?: 'small' | 'medium' | 'large' | 'x-large';
+  textPosition?: 'inside' | 'outside';
+  showOverlay?: boolean;
+}
+
+/**
+ * This component supports various CSS variables for theming. Here's a comprehensive list, along
+ * with their default values:
+ *
+ * ```css
+ * :root {
+ *   --category-card-focus: hsl(var(--primary));
+ *   --category-card-light-offset: hsl(var(--background));
+ *   --category-card-light-text: hsl(var(--foreground));
+ *   --category-card-light-icon: hsl(var(--foreground));
+ *   --category-card-light-background: hsl(var(--contrast-100));
+ *   --category-card-dark-offset: hsl(var(--foreground));
+ *   --category-card-dark-text: hsl(var(--background));
+ *   --category-card-dark-icon: hsl(var(--background));
+ *   --category-card-dark-background: hsl(var(--contrast-500));
+ *   --category-card-font-family: var(--font-family-body);
+ *   --category-card-border-radius: 1rem;
+ * }
+ * ```
+ */
+export function CategoryCard({
+  className,
+  title,
+  image,
+  link,
+  textColorScheme = 'light',
+  iconColorScheme = 'light',
+  aspectRatio = '5:6',
+  textPosition = 'outside',
+  textSize = 'small',
+  showOverlay = true,
+}: CategoryCardProps) {
+  return (
+    <CategoryCardPrimitive.Root
+      aspectRatio={aspectRatio}
+      className={className}
+      iconColorScheme={iconColorScheme}
+      showOverlay={showOverlay}
+      textColorScheme={textColorScheme}
+      textSize={textSize}
+    >
+      <CategoryCardPrimitive.Icon>
+        <ArrowUpRight absoluteStrokeWidth strokeWidth={1.5} />
+      </CategoryCardPrimitive.Icon>
+      <CategoryCardPrimitive.Thumbnail>
+        {image ? (
+          <CategoryCardPrimitive.Image alt={image.alt} src={image.src} />
+        ) : (
+          <CategoryCardPrimitive.Fallback>{title}</CategoryCardPrimitive.Fallback>
+        )}
+        {textPosition === 'inside' && (
+          <CategoryCardPrimitive.Overlay>
+            <CategoryCardPrimitive.Title>{title}</CategoryCardPrimitive.Title>
+          </CategoryCardPrimitive.Overlay>
+        )}
+      </CategoryCardPrimitive.Thumbnail>
+      {textPosition === 'outside' && (
+        <CategoryCardPrimitive.Title>{title}</CategoryCardPrimitive.Title>
+      )}
+      <CategoryCardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />
+    </CategoryCardPrimitive.Root>
+  );
+}

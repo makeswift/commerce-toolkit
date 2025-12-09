@@ -1,14 +1,14 @@
 'use client';
 
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
-import { useProductCard } from '@/components/product-card';
+import { useCategoryCard } from '@/components/category-card';
 import { cn } from '@/lib';
 
-export type ProductCardFallbackProps = ComponentProps<'div'>;
+export type CategoryCardFallbackProps = ComponentProps<'div'>;
 
-export function ProductCardFallback({ className, children, ...props }: ProductCardFallbackProps) {
-  const { colorScheme } = useProductCard();
+export function CategoryCardFallback({ className, children, ...props }: CategoryCardFallbackProps) {
+  const { textColorScheme } = useCategoryCard();
 
   return (
     <div
@@ -17,10 +17,10 @@ export function ProductCardFallback({ className, children, ...props }: ProductCa
         {
           light: '[color:color-mix(in_oklab,hsl(var(--foreground))_30%,transparent)]',
           dark: '[color:color-mix(in_oklab,hsl(var(--background))_30%,transparent)]',
-        }[colorScheme],
+        }[textColorScheme],
         className,
       )}
-      data-slot="product-card-fallback"
+      data-slot="category-card-fallback"
       {...props}
     >
       {children}

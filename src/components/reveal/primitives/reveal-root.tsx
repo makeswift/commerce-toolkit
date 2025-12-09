@@ -46,6 +46,7 @@ export function RevealRoot({
     function checkHeight() {
       if (contentRef.current) {
         const contentHeight = contentRef.current.scrollHeight;
+
         setHasOverflow(contentHeight > maxHeight);
       }
     }

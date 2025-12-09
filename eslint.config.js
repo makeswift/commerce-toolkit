@@ -79,6 +79,22 @@ export default defineConfig([
         { checksVoidReturn: { attributes: false } },
       ],
       '@typescript-eslint/strict-boolean-expressions': ['error', { allowString: false }],
+      'padding-line-between-statements': [
+        'error',
+        // Blank line after variable declarations block
+        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+        { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+        // Blank line before return statements
+        { blankLine: 'always', prev: '*', next: 'return' },
+        // Blank line after directive prologue ("use client", "use server", etc.)
+        { blankLine: 'always', prev: 'directive', next: '*' },
+        // Blank lines around function declarations
+        { blankLine: 'always', prev: '*', next: 'function' },
+        { blankLine: 'always', prev: 'function', next: '*' },
+        // Blank line after imports (handled by import/order, but this catches edge cases)
+        { blankLine: 'always', prev: 'import', next: '*' },
+        { blankLine: 'any', prev: 'import', next: 'import' },
+      ],
 
       // General rules from your config
       complexity: ['error', 20],
@@ -99,6 +115,7 @@ export default defineConfig([
       radix: 'error',
       'react/self-closing-comp': 'error',
       'react/jsx-sort-props': 'warn',
+      'react/jsx-newline': ['error', { prevent: true }],
       'react/style-prop-object': 'error',
       'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
     },

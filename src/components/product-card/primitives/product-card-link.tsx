@@ -23,6 +23,7 @@ export function ProductCardLink({ asChild = false, className, ...props }: Produc
           light: 'ring-offset-[var(--product-card-light-offset,hsl(var(--background)))]',
           dark: 'ring-offset-[var(--product-card-dark-offset,hsl(var(--foreground)))]',
         }[colorScheme],
+        className,
       )}
       data-slot="product-card-link"
       {...props}

@@ -3,20 +3,20 @@
 import { Slot } from '@radix-ui/react-slot';
 import type { ComponentProps } from 'react';
 
-import { useProductCard } from '@/components/product-card';
+import { useCategoryCard } from '@/components/category-card';
 import { cn } from '@/lib';
 
-export interface ProductCardImageProps extends ComponentProps<'img'> {
+export type CategoryCardImageProps = ComponentProps<'img'> & {
   asChild?: boolean;
-}
+};
 
-export function ProductCardImage({
+export function CategoryCardImage({
   className,
   children,
   asChild = false,
   ...props
-}: ProductCardImageProps) {
-  const { colorScheme } = useProductCard();
+}: CategoryCardImageProps) {
+  const { textColorScheme } = useCategoryCard();
 
   const Component = asChild ? Slot : 'img';
 
@@ -25,12 +25,12 @@ export function ProductCardImage({
       className={cn(
         'h-full w-full scale-100 select-none object-cover transition-transform duration-500 ease-out group-hover:scale-110',
         {
-          light: 'bg-[var(--product-card-light-background,hsl(var(--contrast-100)))]',
-          dark: 'bg-[var(--product-card-dark-background,hsl(var(--contrast-500)))]',
-        }[colorScheme],
+          light: 'bg-[var(--category-card-light-background,hsl(var(--contrast-100)))]',
+          dark: 'bg-[var(--category-card-dark-background,hsl(var(--contrast-500)))]',
+        }[textColorScheme],
         className,
       )}
-      data-slot="product-card-image"
+      data-slot="category-card-image"
       {...props}
     />
   );

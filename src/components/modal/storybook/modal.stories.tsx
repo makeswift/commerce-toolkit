@@ -47,6 +47,7 @@ export const Default: Story = {
   },
   render: (args) => {
     const [open, setOpen] = useState(false);
+
     return (
       <Modal
         isOpen={open}
