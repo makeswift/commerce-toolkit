@@ -15,6 +15,10 @@ const meta = {
       options: ['vertical', 'horizontal', 'both'],
       description: 'The orientation of the scroll area',
     },
+    children: {
+      control: false,
+      description: 'Content to display in the scroll area',
+    },
   },
   args: {
     className: 'h-64 w-64 border border-gray-300 rounded',

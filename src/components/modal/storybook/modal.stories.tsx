@@ -25,9 +25,11 @@ const meta: Meta<typeof Modal> = {
       description: 'Setter for open state',
     },
     trigger: {
+      control: false,
       description: 'Trigger element rendered as Dialog.Trigger (passed via asChild)',
     },
     children: {
+      control: false,
       description: 'Dialog content',
     },
   },

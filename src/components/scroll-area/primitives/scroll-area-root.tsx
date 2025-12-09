@@ -10,7 +10,7 @@ export type ScrollAreaRootProps = ComponentProps<typeof ScrollAreaPrimitive.Root
 export function ScrollAreaRoot({ className, children, ...props }: ScrollAreaRootProps) {
   return (
     <ScrollAreaPrimitive.Root
-      className={cn('relative', className)}
+      className={cn('relative overflow-hidden', className)}
       data-slot="scroll-area-root"
       {...props}
     >

@@ -47,6 +47,7 @@ const meta = {
       },
     },
     children: {
+      control: false,
       description: 'Content to show/hide',
     },
   },

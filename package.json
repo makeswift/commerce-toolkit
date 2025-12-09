@@ -237,6 +237,16 @@
         "default": "./dist/scroll-area.cjs"
       }
     },
+    "./side-panel": {
+      "import": {
+        "types": "./dist/components/side-panel/primitives.d.ts",
+        "default": "./dist/side-panel.js"
+      },
+      "require": {
+        "types": "./dist/components/side-panel/primitives.d.ts",
+        "default": "./dist/side-panel.cjs"
+      }
+    },
     "./skeleton": {
       "import": {
         "types": "./dist/components/skeleton/primitives.d.ts",
