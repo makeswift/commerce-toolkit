@@ -46,6 +46,9 @@ export { CompareCard, type CompareCardProps } from '@/components/compare-card';
 // Compare Drawer
 export { CompareDrawer, type CompareDrawerProps } from '@/components/compare-drawer';
 
+// Counter
+export { Counter, type CounterProps } from '@/components/counter';
+
 // CursorPagination
 export {
   CursorPagination,

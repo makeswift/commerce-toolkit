@@ -107,6 +107,16 @@
         "default": "./dist/chip.cjs"
       }
     },
+    "./counter": {
+      "import": {
+        "types": "./dist/components/counter/primitives.d.ts",
+        "default": "./dist/counter.js"
+      },
+      "require": {
+        "types": "./dist/components/counter/primitives.d.ts",
+        "default": "./dist/counter.cjs"
+      }
+    },
     "./compare-card": {
       "import": {
         "types": "./dist/components/compare-card/primitives.d.ts",
