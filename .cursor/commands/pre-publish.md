@@ -96,6 +96,8 @@ Ensure `package.json` exports are correctly configured:
 - Each export should have both `import` and `require` conditions
 - Types should be specified with the `"types"` condition
 
+> **Note:** While `vite.config.lib.js` auto-discovers components with `primitives.ts` files, you must manually add new subpath exports to `package.json` for consumers to import them.
+
 ### 7. Final Verification
 
 Run the full build one more time:
@@ -129,9 +131,8 @@ pnpm lint && pnpm format:check && pnpm build:lib
 
 If a subpath export fails, check:
 
-1. The `primitives.ts` file exists in the component folder
-2. The entry is added to `vite.config.lib.js`
-3. The export is defined in `package.json`
+1. The `primitives.ts` file exists in the component folder (auto-discovered by vite build)
+2. The export is defined in `package.json` (must be added manually)
 
 ### Type errors
 

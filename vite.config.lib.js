@@ -1,49 +1,30 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
+const componentsDir = path.resolve(dirname, 'src/components');
 
-// Components with primitives that need separate entry points
-const primitiveComponents = [
-  'accordion',
-  'alert',
-  'banner',
-  'blog-post-card',
-  'card',
-  'carousel',
-  'category-card',
-  'checkbox',
-  'chip',
-  'compare-drawer',
-  'cursor-pagination',
-  'dropdown-menu',
-  'favorite',
-  'icon',
-  'logo',
-  'modal',
-  'offset-pagination',
-  'product-card',
-  'price',
-  'rating',
-  'reveal',
-  'scroll-area',
-  'side-panel',
-  'skeleton',
-  'tabs',
-];
+// Auto-discover components with primitives.ts files
+const primitiveComponents = fs
+  .readdirSync(componentsDir, { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .filter((dirent) => fs.existsSync(path.join(componentsDir, dirent.name, 'primitives.ts')))
+  .map((dirent) => dirent.name);
 
 // Build entry points object
 const entry = {
   index: path.resolve(dirname, 'src/index.ts'),
+  ...Object.fromEntries(
+    primitiveComponents.map((component) => [
+      component,
+      path.resolve(dirname, `src/components/${component}/primitives.ts`),
+    ]),
+  ),
 };
-
-// Add primitive component entries
-primitiveComponents.forEach((component) => {
-  entry[component] = path.resolve(dirname, `src/components/${component}/primitives.ts`);
-});
 
 // https://vite.dev/config/
 export default defineConfig({

@@ -1,2 +1,2 @@
-export { ProductCard, type ProductCardProps } from './product-card';
-export * from './primitives';
+export { ProductCard, type ProductCardProps } from '@/components/product-card/product-card';
+export * from '@/components/product-card/primitives';

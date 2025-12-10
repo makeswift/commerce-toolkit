@@ -1,2 +1,2 @@
-export { DropdownMenu, type DropdownMenuProps } from './dropdown-menu';
-export * from './primitives';
+export { DropdownMenu, type DropdownMenuProps } from '@/components/dropdown-menu/dropdown-menu';
+export * from '@/components/dropdown-menu/primitives';

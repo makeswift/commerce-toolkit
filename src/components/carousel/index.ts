@@ -1,2 +1,2 @@
-export { Carousel, type CarouselProps } from './carousel';
-export * from './primitives';
+export { Carousel, type CarouselProps } from '@/components/carousel/carousel';
+export * from '@/components/carousel/primitives';
