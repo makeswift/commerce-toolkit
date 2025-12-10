@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.2.0
+
+### Minor Changes
+
+- 9ce52c3: Added CompareCard component
+
 ## 0.1.1
 
 ### Patch Changes
