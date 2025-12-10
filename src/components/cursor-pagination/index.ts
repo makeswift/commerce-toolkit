@@ -1,2 +1,5 @@
-export { CursorPagination, type CursorPaginationProps } from './cursor-pagination';
-export * from './primitives';
+export {
+  CursorPagination,
+  type CursorPaginationProps,
+} from '@/components/cursor-pagination/cursor-pagination';
+export * from '@/components/cursor-pagination/primitives';

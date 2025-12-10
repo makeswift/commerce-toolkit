@@ -1,2 +1,2 @@
-export { Tabs, type TabsProps } from './tabs';
-export * from './primitives';
+export { Tabs, type TabsProps } from '@/components/tabs/tabs';
+export * from '@/components/tabs/primitives';

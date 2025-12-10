@@ -1,2 +1,2 @@
-export { Logo, type LogoProps } from './logo';
-export * from './primitives';
+export { Logo, type LogoProps } from '@/components/logo/logo';
+export * from '@/components/logo/primitives';

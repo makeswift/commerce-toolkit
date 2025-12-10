@@ -1,2 +1,2 @@
-export { CompareDrawer, type CompareDrawerProps } from './compare-drawer';
-export * from './primitives';
+export { CompareDrawer, type CompareDrawerProps } from '@/components/compare-drawer/compare-drawer';
+export * from '@/components/compare-drawer/primitives';

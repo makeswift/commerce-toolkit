@@ -1,2 +1,2 @@
-export { Chip, type ChipProps } from './chip';
-export * from './primitives';
+export { Chip, type ChipProps } from '@/components/chip/chip';
+export * from '@/components/chip/primitives';

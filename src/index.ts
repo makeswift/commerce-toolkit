@@ -1,8 +1,8 @@
 // Accordion
-export { Accordion, type AccordionProps } from '@/components/accordion/accordion';
+export { Accordion, type AccordionProps } from '@/components/accordion';
 
 // Alert
-export { Alert, type AlertProps } from '@/components/alert/alert';
+export { Alert, type AlertProps } from '@/components/alert';
 
 // AnimatedUnderline
 export { AnimatedUnderline, type AnimatedUnderlineProps } from '@/components/animated-underline';
@@ -11,10 +11,10 @@ export { AnimatedUnderline, type AnimatedUnderlineProps } from '@/components/ani
 export { Badge, type BadgeProps } from '@/components/badge';
 
 // Banner
-export { Banner, type BannerProps } from '@/components/banner/banner';
+export { Banner, type BannerProps } from '@/components/banner';
 
 // BlogPostCard
-export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card/blog-post-card';
+export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card';
 
 // Button
 export { Button, type ButtonProps } from '@/components/button';
@@ -26,16 +26,25 @@ export { ButtonLink, type ButtonLinkProps } from '@/components/button-link';
 export { Calendar, type CalendarProps } from '@/components/calendar';
 
 // Card
-export { Card, type CardProps } from '@/components/card/card';
+export { Card, type CardProps } from '@/components/card';
 
 // Carousel
-export { Carousel, type CarouselProps } from '@/components/carousel/carousel';
+export { Carousel, type CarouselProps } from '@/components/carousel';
+
+// Category Card
+export { CategoryCard, type CategoryCardProps } from '@/components/category-card';
+
+// Checkbox
+export { Checkbox, type CheckboxProps } from '@/components/checkbox';
 
 // Chip
-export { Chip, type ChipProps } from '@/components/chip/chip';
+export { Chip, type ChipProps } from '@/components/chip';
+
+// Compare Card
+export { CompareCard, type CompareCardProps } from '@/components/compare-card';
 
 // Compare Drawer
-export { CompareDrawer, type CompareDrawerProps } from '@/components/compare-drawer/compare-drawer';
+export { CompareDrawer, type CompareDrawerProps } from '@/components/compare-drawer';
 
 // CursorPagination
 export {
@@ -44,43 +53,55 @@ export {
 } from '@/components/cursor-pagination/cursor-pagination';
 
 // DropdownMenu
-export { DropdownMenu, type DropdownMenuProps } from '@/components/dropdown-menu/dropdown-menu';
+export { DropdownMenu, type DropdownMenuProps } from '@/components/dropdown-menu';
 
 // Favorite
-export { Favorite, type FavoriteProps } from '@/components/favorite/favorite';
+export { Favorite, type FavoriteProps } from '@/components/favorite';
 
 // FieldError
 export { FieldError, type FieldErrorProps } from '@/components/field-error';
 
 // Icon
-export { Icon, type IconProps } from '@/components/icon/icon';
+export { Icon, type IconProps } from '@/components/icon';
+
+// Label
+export { Label, type LabelProps } from '@/components/label';
 
 // Logo
-export { Logo, type LogoProps } from '@/components/logo/logo';
+export { Logo, type LogoProps } from '@/components/logo';
 
 // Modal
-export { Modal, type ModalProps } from '@/components/modal/modal';
+export { Modal, type ModalProps } from '@/components/modal';
+
+// Offset Pagination
+export { OffsetPagination, type OffsetPaginationProps } from '@/components/offset-pagination';
 
 // Price
-export { Price, type PriceProps } from '@/components/price/price';
+export { Price, type PriceProps } from '@/components/price';
+
+// Product Card
+export { ProductCard, type ProductCardProps } from '@/components/product-card';
 
 // Rating
-export { Rating, type RatingProps } from '@/components/rating/rating';
+export { Rating, type RatingProps } from '@/components/rating';
 
 // Reveal
-export { Reveal, type RevealProps } from '@/components/reveal/reveal';
+export { Reveal, type RevealProps } from '@/components/reveal';
 
 // ScrollArea
-export { ScrollArea, type ScrollAreaProps } from '@/components/scroll-area/scroll-area';
+export { ScrollArea, type ScrollAreaProps } from '@/components/scroll-area';
+
+// Side Panel
+export { SidePanel, type SidePanelProps } from '@/components/side-panel';
 
 // Skeleton
-export * as Skeleton from '@/components/skeleton/primitives';
+export * as Skeleton from '@/components/skeleton';
 
 // Spinner
 export { Spinner, type SpinnerProps } from '@/components/spinner';
 
 // Tabs
-export { Tabs, type TabsProps } from '@/components/tabs/tabs';
+export { Tabs, type TabsProps } from '@/components/tabs';
 
 // Toaster
 export { Toaster, type ToasterProps, toast } from '@/components/toaster';

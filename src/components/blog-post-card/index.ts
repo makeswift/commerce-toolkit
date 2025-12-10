@@ -1,2 +1,2 @@
-export { BlogPostCard, type BlogPostCardProps } from './blog-post-card';
-export * from './primitives';
+export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card/blog-post-card';
+export * from '@/components/blog-post-card/primitives';

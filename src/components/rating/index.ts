@@ -1,2 +1,2 @@
-export { Rating, type RatingProps } from './rating';
-export * from './primitives';
+export { Rating, type RatingProps } from '@/components/rating/rating';
+export * from '@/components/rating/primitives';
