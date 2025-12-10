@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.3.0
+
+### Minor Changes
+
+- dc88402: Added Counter component
+
 ## 0.2.0
 
 ### Minor Changes
