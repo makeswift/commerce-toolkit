@@ -1,30 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Logo } from '@/components/logo/logo';
+import * as Logo from '@/components/logo';
 
 const meta = {
   title: 'Components/Logo',
-  component: Logo,
+  component: Logo.Link,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
+    href: {
+      control: 'text',
+      description: 'Link destination URL',
+    },
+    'aria-label': {
+      control: 'text',
+      description: 'Accessible label for the link',
+    },
     className: {
       control: 'text',
       description: 'Additional CSS classes',
     },
-    logo: {
-      control: 'text',
-      description:
-        'Logo content - can be a string (text logo), an object with image details, or asChild with custom element',
-    },
-    link: {
-      description:
-        'Link configuration with href and ariaLabel, or asChild with custom link element',
-    },
   },
-} satisfies Meta<typeof Logo>;
+} satisfies Meta<typeof Logo.Link>;
 
 export default meta;
 
@@ -32,23 +31,41 @@ type Story = StoryObj<typeof meta>;
 
 export const TextLogo: Story = {
   args: {
-    logo: 'Brand Name',
-    link: {
-      href: '#',
-      ariaLabel: 'Go to homepage',
-    },
+    href: '#',
+    'aria-label': 'Go to homepage',
   },
+  render: (args) => (
+    <Logo.Link {...args}>
+      <Logo.Text>Brand Name</Logo.Text>
+    </Logo.Link>
+  ),
 };
 
 export const ImageLogo: Story = {
   args: {
-    logo: {
-      src: 'https://placehold.co/120x40?text=Brand+Name',
-      alt: 'Brand Logo',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'Go to homepage',
-    },
+    href: '#',
+    'aria-label': 'Go to homepage',
   },
+  render: (args) => (
+    <Logo.Link {...args}>
+      <Logo.Image alt="Brand Logo" src="https://placehold.co/120x40?text=Brand+Name" />
+    </Logo.Link>
+  ),
+};
+
+export const LogoWithDimensions: Story = {
+  args: {
+    href: '#',
+    'aria-label': 'Go to homepage',
+  },
+  render: (args) => (
+    <Logo.Link {...args}>
+      <Logo.Image
+        alt="Brand Logo"
+        height={50}
+        src="https://placehold.co/150x50?text=Logo"
+        width={150}
+      />
+    </Logo.Link>
+  ),
 };

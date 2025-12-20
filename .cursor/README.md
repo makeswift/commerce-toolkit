@@ -8,6 +8,7 @@ Custom commands allow you to create reusable workflows that can be triggered wit
 
 ## Available Commands
 
+- **organize-tailwind-classes** - Breaks up long Tailwind className strings into organized, readable groups with comments indicating the purpose of each group.
 - **tailwind-downgrade** - Instructions for downgrading components from Tailwind CSS v4 to v3, including utility class renames and other migration details.
 
 ## Creating New Commands
