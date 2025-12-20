@@ -71,7 +71,7 @@ export { Icon, type IconProps } from '@/components/icon';
 export { Label, type LabelProps } from '@/components/label';
 
 // Logo
-export { Logo, type LogoProps } from '@/components/logo';
+export * as Logo from '@/components/logo';
 
 // Modal
 export { Modal, type ModalProps } from '@/components/modal';

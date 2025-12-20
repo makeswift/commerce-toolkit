@@ -167,6 +167,16 @@
         "default": "./dist/favorite.cjs"
       }
     },
+    "./form-status": {
+      "import": {
+        "types": "./dist/components/form-status/primitives.d.ts",
+        "default": "./dist/form-status.js"
+      },
+      "require": {
+        "types": "./dist/components/form-status/primitives.d.ts",
+        "default": "./dist/form-status.cjs"
+      }
+    },
     "./icon": {
       "import": {
         "types": "./dist/components/icon/primitives.d.ts",
@@ -195,6 +205,16 @@
       "require": {
         "types": "./dist/components/modal/primitives.d.ts",
         "default": "./dist/modal.cjs"
+      }
+    },
+    "./navigation-menu": {
+      "import": {
+        "types": "./dist/components/navigation-menu/primitives.d.ts",
+        "default": "./dist/navigation-menu.js"
+      },
+      "require": {
+        "types": "./dist/components/navigation-menu/primitives.d.ts",
+        "default": "./dist/navigation-menu.cjs"
       }
     },
     "./offset-pagination": {
