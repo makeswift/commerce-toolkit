@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.4.0
+
+### Minor Changes
+
+- e433df5: Added FormStatus and NavigationMenu
+
 ## 0.3.0
 
 ### Minor Changes
