@@ -13,8 +13,13 @@ export function ProductCardLabel({ className, children, ...props }: ProductCardL
 
   return (
     <Label
-      className={cn(className)}
-      colorScheme={colorScheme}
+      className={cn(
+        {
+          light: 'text-[var(--product-card-light-text,hsl(var(--foreground)))]',
+          dark: 'text-[var(--product-card-dark-text,hsl(var(--background)))]',
+        }[colorScheme],
+        className,
+      )}
       data-slot="product-card-label"
       {...props}
     >

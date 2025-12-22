@@ -13,16 +13,10 @@ const meta = {
     layout: 'padded',
   },
   argTypes: {
-    colorScheme: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'Visual theme for light/dark backgrounds',
-    },
     disabled: { control: 'boolean', description: 'Disabled state' },
     required: { control: 'boolean', description: 'Required state' },
   },
   args: {
-    colorScheme: 'light',
     required: false,
   },
 } satisfies Meta<typeof Checkbox>;
@@ -40,9 +34,6 @@ export const Disabled: Story = {
 };
 
 export const Dark: Story = {
-  args: {
-    colorScheme: 'dark',
-  },
   decorators: [
     (Story: ComponentType) => (
       <div className="rounded-lg bg-foreground p-6">

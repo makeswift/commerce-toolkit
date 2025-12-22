@@ -20,7 +20,7 @@ export function DropdownMenuSubTrigger({
       className={cn(
         'flex h-9 cursor-pointer select-none items-center rounded-lg bg-[var(--dropdown-menu-item-background,transparent)] pl-3 pr-1 outline-none transition-colors',
         // Font styles
-        'font-[family-name:var(--dropdown-menu-item-font-family,var(--font-family-body))] text-sm font-medium',
+        'font-[family-name:var(--dropdown-menu-item-font-family,var(--font-family-body))] text-sm font-normal',
         // Disabled styles
         'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
         // Default variant styles

@@ -1,7 +1,6 @@
 export {
   CheckboxRoot as Root,
   type CheckboxRootProps as RootProps,
-  useCheckbox,
 } from '@/components/checkbox/primitives/checkbox-root';
 export {
   CheckboxIndicator as Indicator,

@@ -2,14 +2,17 @@
 
 import type { ComponentProps } from 'react';
 
-import { useCounter } from '@/components/counter';
 import { cn } from '@/lib';
 
 export type CounterIncreaseProps = ComponentProps<'button'>;
 
-export function CounterIncrease({ children, className, ...props }: CounterIncreaseProps) {
-  const { count, max, increment } = useCounter();
-
+export function CounterIncrease({
+  children,
+  className,
+  disabled,
+  type = 'button',
+  ...props
+}: CounterIncreaseProps) {
   return (
     <button
       className={cn(
@@ -17,10 +20,8 @@ export function CounterIncrease({ children, className, ...props }: CounterIncrea
         className,
       )}
       data-slot="counter-increase"
-      data-state={count < max ? 'enabled' : 'disabled'}
-      disabled={count === max}
-      onClick={increment}
-      type="button"
+      disabled={disabled}
+      type={type}
       {...props}
     >
       {children}

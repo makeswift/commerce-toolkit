@@ -10,9 +10,16 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    start: {
+    defaultValue: {
       control: 'number',
-      description: 'Initial count value',
+      description: 'Initial count value (uncontrolled mode)',
+      table: {
+        defaultValue: { summary: '0' },
+      },
+    },
+    min: {
+      control: 'number',
+      description: 'Minimum count value (decrement button disabled at this value)',
       table: {
         defaultValue: { summary: '0' },
       },
@@ -22,6 +29,13 @@ const meta = {
       description: 'Maximum count value (increment button disabled at this value)',
       table: {
         defaultValue: { summary: '10' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the counter is disabled',
+      table: {
+        defaultValue: { summary: 'false' },
       },
     },
     decrementAriaLabel: {
@@ -40,7 +54,8 @@ const meta = {
     },
   },
   args: {
-    start: 0,
+    defaultValue: 0,
+    min: 0,
     max: 10,
     decrementAriaLabel: 'Decrease count',
     incrementAriaLabel: 'Increase count',
@@ -57,7 +72,7 @@ export const Default: Story = {
 
 export const WithInitialValue: Story = {
   args: {
-    start: 5,
+    defaultValue: 5,
   },
 };
 
@@ -69,7 +84,7 @@ export const SmallRange: Story = {
 
 export const AtMaximum: Story = {
   args: {
-    start: 10,
+    defaultValue: 10,
     max: 10,
   },
 };
@@ -77,5 +92,20 @@ export const AtMaximum: Story = {
 export const LargeRange: Story = {
   args: {
     max: 100,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    defaultValue: 3,
+    disabled: true,
+  },
+};
+
+export const WithMinValue: Story = {
+  args: {
+    defaultValue: 5,
+    min: 3,
+    max: 10,
   },
 };

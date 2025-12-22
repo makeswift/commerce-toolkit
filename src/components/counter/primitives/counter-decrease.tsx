@@ -2,14 +2,17 @@
 
 import type { ComponentProps } from 'react';
 
-import { useCounter } from '@/components/counter';
 import { cn } from '@/lib';
 
 export type CounterDecreaseProps = ComponentProps<'button'>;
 
-export function CounterDecrease({ children, className, ...props }: CounterDecreaseProps) {
-  const { count, decrement } = useCounter();
-
+export function CounterDecrease({
+  children,
+  className,
+  disabled,
+  type = 'button',
+  ...props
+}: CounterDecreaseProps) {
   return (
     <button
       className={cn(
@@ -17,10 +20,8 @@ export function CounterDecrease({ children, className, ...props }: CounterDecrea
         className,
       )}
       data-slot="counter-decrease"
-      data-state={count > 0 ? 'enabled' : 'disabled'}
-      disabled={count === 0}
-      onClick={decrement}
-      type="button"
+      disabled={disabled}
+      type={type}
       {...props}
     >
       {children}

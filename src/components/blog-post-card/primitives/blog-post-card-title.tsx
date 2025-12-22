@@ -8,7 +8,7 @@ export function BlogPostCardTitle({ className, children, ...props }: BlogPostCar
   return (
     <h5
       className={cn(
-        'mt-4 text-lg font-medium leading-snug text-[var(--blog-post-card-title-text,hsl(var(--foreground)))]',
+        'mt-4 text-lg font-normal leading-snug text-[var(--blog-post-card-title-text,hsl(var(--foreground)))]',
         className,
       )}
       data-slot="blog-post-card-title"

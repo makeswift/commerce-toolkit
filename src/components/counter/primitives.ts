@@ -1,7 +1,6 @@
 export {
   CounterRoot as Root,
   type CounterRootProps as RootProps,
-  useCounter,
 } from '@/components/counter/primitives/counter-root';
 export {
   CounterDecrease as Decrease,

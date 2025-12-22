@@ -2,14 +2,11 @@
 
 import type { ComponentProps } from 'react';
 
-import { useCounter } from '@/components/counter';
 import { cn } from '@/lib';
 
-export type CounterInputProps = Omit<ComponentProps<'input'>, 'type'>;
+export type CounterInputProps = ComponentProps<'input'>;
 
 export function CounterInput({ className, ...props }: CounterInputProps) {
-  const { count, max } = useCounter();
-
   return (
     <input
       className={cn(
@@ -17,9 +14,6 @@ export function CounterInput({ className, ...props }: CounterInputProps) {
         className,
       )}
       data-slot="counter-input"
-      max={max}
-      type="number"
-      value={count}
       {...props}
     />
   );
