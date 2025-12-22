@@ -54,7 +54,7 @@ export interface NavigationMenuProps {
  */
 export function NavigationMenu({ items, viewport = true, columns = 4 }: NavigationMenuProps) {
   return (
-    <NavigationMenuPrimitive.Root columns={columns} viewport={viewport}>
+    <NavigationMenuPrimitive.Root columns={columns} delayDuration={0} viewport={viewport}>
       <NavigationMenuPrimitive.List>
         {items.map(({ trigger, content }) => (
           <NavigationMenuPrimitive.Item key={trigger}>

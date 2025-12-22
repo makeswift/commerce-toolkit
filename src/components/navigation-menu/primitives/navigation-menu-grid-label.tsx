@@ -14,11 +14,11 @@ export function NavigationMenuGridLabel({
     <NavigationMenuPrimitive.Link
       className={cn(
         // Base layout
-        'rounded-lg',
+        'block rounded-lg',
         // Spacing
         'px-3 py-2',
         // Typography
-        'font-[family-name:var(--nav-grid-label-font-family,var(--font-family-body))] font-medium',
+        'font-[family-name:var(--nav-grid-label-font-family,var(--font-family-body))] text-sm font-semibold',
         // Colors
         'bg-[var(--nav-grid-label-background,transparent)] text-[var(--nav-grid-label-text,hsl(var(--foreground)))]',
         // Transitions

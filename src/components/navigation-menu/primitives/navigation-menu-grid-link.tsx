@@ -14,11 +14,11 @@ export function NavigationMenuGridLink({
     <NavigationMenuPrimitive.Link
       className={cn(
         // Base layout
-        'rounded-lg',
+        'block rounded-lg',
         // Spacing
         'px-3 py-2',
         // Typography
-        'font-[family-name:var(--nav-grid-link-font-family,var(--font-family-body))] text-sm font-semibold',
+        'font-[family-name:var(--nav-grid-link-font-family,var(--font-family-body))] text-sm font-medium',
         // Colors
         'bg-[var(--nav-grid-link-background,transparent)] text-[var(--nav-grid-link-text,hsl(var(--contrast-500)))]',
         // Transitions
