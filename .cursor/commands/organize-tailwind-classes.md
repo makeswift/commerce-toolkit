@@ -6,38 +6,32 @@ You are helping to organize long Tailwind CSS class strings into readable, group
 
 Organize classes into logical groups in this order (skip groups that don't apply):
 
-1. **Base layout** - display, flex, grid, positioning, sizing (`inline-flex`, `flex`, `grid`, `absolute`, `relative`, `h-*`, `w-*`, `items-*`, `justify-*`, `gap-*`)
-2. **Spacing** - padding, margin (`p-*`, `px-*`, `py-*`, `m-*`, `mx-*`, `my-*`)
-3. **Typography** - font, text (`text-*`, `font-*`, `leading-*`, `tracking-*`, `whitespace-*`)
-4. **Colors** - background, text color, border color (`bg-*`, `text-*`, `border-*`)
-5. **Borders & Rounded** - border width, radius (`border`, `border-*`, `rounded-*`)
-6. **Effects** - shadow, opacity, ring (`shadow-*`, `opacity-*`, `ring-*`)
-7. **Transitions** - transition, duration, animation (`transition-*`, `duration-*`, `animate-*`)
-8. **Hover state** - `hover:*` classes
-9. **Focus state** - `focus:*` classes
-10. **Focus-visible state** - `focus-visible:*` classes
-11. **Active state** - `active:*` classes
-12. **Open/Closed state** - `data-[state=open]:*`, `data-[state=closed]:*` classes
-13. **Motion state** - `data-[motion*]:*` classes
-14. **Disabled state** - `disabled:*` classes
-15. **Group/Peer states** - `group-*:`, `peer-*:` classes
-16. **Responsive** - breakpoint prefixes (`sm:*`, `md:*`, `lg:*`, `xl:*`, `2xl:*`)
-17. **Container queries** - `@*:` classes
+1. **Base styles** (no comment) - layout, spacing, typography, colors, borders, effects, transitions all on one line:
+   - Layout: `inline-flex`, `flex`, `grid`, `absolute`, `relative`, `h-*`, `w-*`, `items-*`, `justify-*`, `gap-*`
+   - Spacing: `p-*`, `px-*`, `py-*`, `m-*`, `mx-*`, `my-*`
+   - Typography: `text-*`, `font-*`, `leading-*`, `tracking-*`, `whitespace-*`
+   - Colors: `bg-*`, `text-*`, `border-*`
+   - Borders & Rounded: `border`, `border-*`, `rounded-*`
+   - Effects: `shadow-*`, `opacity-*`, `ring-*`
+   - Transitions: `transition-*`, `duration-*`, `animate-*`
+2. **Hover state** - `hover:*` classes
+3. **Focus state** - `focus:*` classes
+4. **Focus-visible state** - `focus-visible:*` classes
+5. **Active state** - `active:*` classes
+6. **Open/Closed state** - `data-[state=open]:*`, `data-[state=closed]:*` classes
+7. **Motion state** - `data-[motion*]:*` classes
+8. **Disabled state** - `disabled:*` classes
+9. **Group/Peer states** - `group-*:`, `peer-*:` classes
+10. **Responsive** - breakpoint prefixes (`sm:*`, `md:*`, `lg:*`, `xl:*`, `2xl:*`)
+11. **Container queries** - `@*:` classes
 
 ## Output Format
 
-Use the `cn()` function with each group on its own line, preceded by a comment:
+Use the `cn()` function with base styles on an uncommented first line, then state variants with comments:
 
 ```tsx
 className={cn(
-  // Base layout
-  'inline-flex items-center justify-center rounded-md px-4 py-2',
-  // Typography
-  'text-sm font-medium',
-  // Background
-  'bg-background',
-  // Transitions
-  'transition-colors duration-200',
+  'inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-background transition-colors duration-200',
   // Hover state
   'hover:bg-accent hover:text-accent-foreground',
   // Focus state
@@ -57,14 +51,7 @@ Here's a well-organized component to use as a reference:
 ```tsx
 <NavigationMenuPrimitive.Trigger
   className={cn(
-    // Base layout
-    'group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2',
-    // Typography
-    'text-sm font-medium',
-    // Background
-    'bg-background',
-    // Transitions
-    'outline-none transition-[color,box-shadow]',
+    'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium outline-none transition-[color,box-shadow]',
     // Hover state
     'hover:bg-contrast-100 hover:text-foreground',
     // Focus state
@@ -84,11 +71,12 @@ Here's a well-organized component to use as a reference:
 ## Rules
 
 1. **Preserve all classes** - Don't remove or modify any classes, just reorganize them
-2. **Keep related classes together** - If there are multiple classes for the same state (e.g., `hover:bg-*` and `hover:text-*`), keep them on the same line
-3. **Use consistent comment style** - Use `// Comment` format for group labels
-4. **End with className prop** - Always end with `className,` to allow external overrides
-5. **Split long state groups** - If a state group has many classes, split into multiple lines under the same comment section
-6. **Alphabetize within variants** - When multiple data attributes or modifiers exist, prefer alphabetical order (e.g., `data-[state=closed]` before `data-[state=open]`)
+2. **No comment for base styles** - The first line containing all base styles (layout, spacing, typography, colors, borders, effects, transitions) should have no comment
+3. **Keep related classes together** - If there are multiple classes for the same state (e.g., `hover:bg-*` and `hover:text-*`), keep them on the same line
+4. **Use consistent comment style** - Use `// Comment` format for state variant group labels
+5. **End with className prop** - Always end with `className,` to allow external overrides
+6. **Split long state groups** - If a state group has many classes, split into multiple lines under the same comment section
+7. **Alphabetize within variants** - When multiple data attributes or modifiers exist, prefer alphabetical order (e.g., `data-[state=closed]` before `data-[state=open]`)
 
 ## Handling Complex Modifiers
 
