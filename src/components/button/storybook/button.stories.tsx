@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'ghost', 'danger'],
+      options: ['primary', 'brand', 'outline', 'ghost', 'danger'],
       description: 'The visual style variant of the button',
     },
     size: {
@@ -51,17 +51,17 @@ export const Primary: Story = {
   },
 };
 
-export const Secondary: Story = {
+export const Brand: Story = {
   args: {
-    variant: 'secondary',
-    children: 'Secondary Button',
+    variant: 'brand',
+    children: 'Brand Button',
   },
 };
 
-export const Tertiary: Story = {
+export const Outline: Story = {
   args: {
-    variant: 'tertiary',
-    children: 'Tertiary Button',
+    variant: 'outline',
+    children: 'Outline Button',
   },
 };
 
@@ -162,9 +162,9 @@ export const DangerSmallPill: Story = {
   },
 };
 
-export const SecondaryMediumRounded: Story = {
+export const PrimaryMediumRounded: Story = {
   args: {
-    variant: 'secondary',
+    variant: 'primary',
     size: 'medium',
     shape: 'rounded',
     children: 'Cancel',

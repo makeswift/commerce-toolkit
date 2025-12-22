@@ -103,7 +103,7 @@ export const WithCustomTrigger: Story = {
   args: {
     label: 'Account',
     trigger: (
-      <Button size="medium" variant="secondary">
+      <Button size="medium" variant="primary">
         <User size={18} />
         My Account
       </Button>
@@ -186,7 +186,7 @@ export const WithGroups: Story = {
   args: {
     label: 'File Menu',
     trigger: (
-      <Button variant="secondary">
+      <Button variant="primary">
         <FileText size={18} />
         File
       </Button>
@@ -522,7 +522,7 @@ export const WithScrollArea: Story = {
   args: {
     label: 'Select Item',
     trigger: (
-      <Button size="medium" variant="secondary">
+      <Button size="medium" variant="primary">
         Choose Option
       </Button>
     ),

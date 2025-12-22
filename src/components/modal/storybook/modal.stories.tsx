@@ -63,7 +63,7 @@ export const Default: Story = {
             This is a basic modal. It uses a background overlay and prevents body scroll while open.
           </p>
           <div className="mt-4 flex justify-end gap-2">
-            <Button onClick={() => setOpen(false)} variant="secondary">
+            <Button onClick={() => setOpen(false)} variant="primary">
               Close
             </Button>
             <Button onClick={() => setOpen(false)}>Continue</Button>

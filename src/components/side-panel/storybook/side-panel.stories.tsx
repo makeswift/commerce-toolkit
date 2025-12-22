@@ -62,7 +62,7 @@ export const Default: Story = {
     title: 'Filters',
     children: <p className="text-lg text-contrast-400">This is the side panel content.</p>,
     trigger: (
-      <Button size="medium" variant="secondary">
+      <Button size="medium" variant="primary">
         <Sliders size={20} />
         Filters
       </Button>
@@ -75,7 +75,7 @@ export const Scrollable: Story = {
   args: {
     title: 'Filters',
     trigger: (
-      <Button size="medium" variant="secondary">
+      <Button size="medium" variant="primary">
         <Sliders size={20} />
         Filters
       </Button>

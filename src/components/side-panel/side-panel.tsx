@@ -43,7 +43,7 @@ export function SidePanel({ title, children, trigger, container }: SidePanelProp
             <SidePanelPrimitive.Header>
               <SidePanelPrimitive.Title>{title}</SidePanelPrimitive.Title>
               <SidePanelPrimitive.Close asChild>
-                <Button shape="circle" size="small" variant="tertiary">
+                <Button shape="circle" size="small" variant="outline">
                   <X size={20} strokeWidth={1} />
                 </Button>
               </SidePanelPrimitive.Close>

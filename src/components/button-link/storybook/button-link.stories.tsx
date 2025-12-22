@@ -13,7 +13,7 @@ const meta: Meta<typeof ButtonLink> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'ghost'],
+      options: ['primary', 'brand', 'outline', 'ghost'],
       description: 'The visual style variant of the button link',
     },
     size: {
@@ -41,23 +41,24 @@ export default meta;
 type Story = StoryObj<ButtonLinkProps>;
 
 // Variant stories
+
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    children: 'Shop Now',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
     children: 'Learn More',
   },
 };
 
-export const Tertiary: Story = {
+export const Brand: Story = {
   args: {
-    variant: 'tertiary',
+    variant: 'brand',
+    children: 'Shop Now',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
     children: 'View Details',
   },
 };
@@ -164,7 +165,7 @@ export const CallToAction: Story = {
 
 export const SecondaryAction: Story = {
   args: {
-    variant: 'secondary',
+    variant: 'primary',
     size: 'medium',
     children: 'View Collection',
   },
@@ -185,7 +186,7 @@ export const ButtonGroup: Story = {
       <ButtonLink href="#" variant="primary">
         Primary Action
       </ButtonLink>
-      <ButtonLink href="#" variant="secondary">
+      <ButtonLink href="#" variant="outline">
         Secondary Action
       </ButtonLink>
       <ButtonLink href="#" variant="ghost">
@@ -199,14 +200,14 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap gap-3">
+        <ButtonLink href="#" variant="brand">
+          Brand
+        </ButtonLink>
         <ButtonLink href="#" variant="primary">
           Primary
         </ButtonLink>
-        <ButtonLink href="#" variant="secondary">
-          Secondary
-        </ButtonLink>
-        <ButtonLink href="#" variant="tertiary">
-          Tertiary
+        <ButtonLink href="#" variant="outline">
+          Outline
         </ButtonLink>
         <ButtonLink href="#" variant="ghost">
           Ghost

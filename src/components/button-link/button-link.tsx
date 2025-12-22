@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 import { cn } from '@/lib';
 
 export interface ButtonLinkProps extends ComponentProps<'a'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost';
+  variant?: 'primary' | 'brand' | 'outline' | 'ghost' | 'danger';
   size?: 'large' | 'medium' | 'small' | 'x-small';
   shape?: 'pill' | 'rounded' | 'square' | 'circle';
   asChild?: boolean;
@@ -51,45 +51,52 @@ export function ButtonLink({
   return (
     <Comp
       className={cn(
-        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden border text-center font-semibold leading-normal [font-family:var(--button-font-family,var(--font-family-body))] after:absolute after:inset-0 after:-z-10 after:-translate-x-[105%] after:transition after:duration-300 after:[animation-timing-function:cubic-bezier(0,0.25,0,1)] hover:after:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--button-focus,hsl(var(--primary)))] focus-visible:ring-offset-2',
+        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal duration-200 ease-in-out [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
         {
+          brand:
+            'bg-[var(--button-brand-background,hsl(var(--primary)))] text-[var(--button-brand-text,hsl(var(--foreground)))] hover:opacity-70',
           primary:
-            'border-[var(--button-primary-border,hsl(var(--primary)))] bg-[var(--button-primary-background,hsl(var(--primary)))] text-[var(--button-primary-text,hsl(var(--foreground)))] after:bg-[var(--button-primary-background-hover,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
-          secondary:
-            'border-[var(--button-secondary-border,hsl(var(--foreground)))] bg-[var(--button-secondary-background,hsl(var(--foreground)))] text-[var(--button-secondary-text,hsl(var(--background)))] after:bg-[var(--button-secondary-background-hover,hsl(var(--background)))]',
-          tertiary:
-            'border-[var(--button-tertiary-border,hsl(var(--contrast-200)))] bg-[var(--button-tertiary-background,hsl(var(--background)))] text-[var(--button-tertiary-text,hsl(var(--foreground)))] after:bg-[var(--button-tertiary-background-hover,hsl(var(--contrast-100)))]',
+            'bg-[var(--button-primary-background,hsl(var(--foreground)))] text-[var(--button-primary-text,hsl(var(--background)))] hover:opacity-70',
+          outline:
+            'border border-[var(--button-outline-border,hsl(var(--contrast-200)))] bg-[var(--button-outline-background,hsl(var(--background)))] text-[var(--button-outline-text,hsl(var(--foreground)))] hover:bg-foreground/5',
           ghost:
-            'border-[var(--button-ghost-border,transparent)] bg-[var(--button-ghost-background,transparent)] text-[var(--button-ghost-text,hsl(var(--foreground)))] after:bg-[var(--button-ghost-background-hover,color-mix(in_oklab,hsl(var(--foreground))_5%,transparent))]',
+            'bg-transparent text-[var(--button-ghost-text,hsl(var(--foreground)))] hover:bg-foreground/5',
+          danger:
+            'bg-[var(--button-danger-background,hsl(var(--error)))] text-[var(--button-danger-text,hsl(var(--background)))] hover:opacity-70',
         }[variant],
-        {
-          pill: 'rounded-full after:rounded-full',
-          rounded: 'rounded-lg after:rounded-lg',
-          square: 'rounded-none after:rounded-none',
-          circle: 'rounded-full after:rounded-full',
-        }[shape],
+        shape === 'rounded'
+          ? {
+              'x-small': 'rounded-lg',
+              small: 'rounded-lg',
+              medium: 'rounded-xl',
+              large: 'rounded-xl',
+            }[size]
+          : {
+              pill: 'rounded-full',
+              square: 'rounded-none',
+              circle: 'rounded-full',
+            }[shape],
         className,
       )}
       {...props}
     >
       <span
         className={cn(
-          'inline-flex items-center justify-center',
+          'inline-flex items-center justify-center transition-all duration-300 ease-in-out',
           shape === 'circle' && 'aspect-square',
           {
             'x-small': 'min-h-8 text-xs',
-            small: 'min-h-10 text-sm',
-            medium: 'min-h-12 text-base',
+            small: 'min-h-9 text-sm',
+            medium: 'min-h-11 text-base',
             large: 'min-h-14 text-base',
           }[size],
           shape !== 'circle' &&
             {
               'x-small': 'gap-x-2 px-3 py-1.5',
-              small: 'gap-x-2 px-4 py-2.5',
-              medium: 'gap-x-2.5 px-5 py-3',
-              large: 'gap-x-3 px-6 py-4',
+              small: 'gap-x-2 px-3.5 py-2',
+              medium: 'gap-x-2.5 px-4 py-2.5',
+              large: 'gap-x-3 px-5 py-4',
             }[size],
-          variant === 'secondary' && 'mix-blend-difference',
         )}
       >
         <Slottable>{children}</Slottable>

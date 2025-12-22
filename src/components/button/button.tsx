@@ -6,7 +6,7 @@ import type { ComponentProps } from 'react';
 import { cn } from '@/lib';
 
 export interface ButtonProps extends ComponentProps<'button'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'danger';
+  variant?: 'primary' | 'brand' | 'outline' | 'ghost' | 'danger';
   size?: 'large' | 'medium' | 'small' | 'x-small';
   shape?: 'pill' | 'rounded' | 'square' | 'circle';
   loading?: boolean;
@@ -20,18 +20,18 @@ export interface ButtonProps extends ComponentProps<'button'> {
  * :root {
  *   --button-focus: hsl(var(--primary));
  *   --button-font-family: var(--font-family-body);
- *   --button-primary-background: hsl(var(--primary));
- *   --button-primary-background-hover: color-mix(in oklab, hsl(var(--primary)), white 75%);
- *   --button-primary-text: hsl(var(--foreground));
- *   --button-primary-border: hsl(var(--primary));
- *   --button-secondary-background: hsl(var(--foreground));
- *   --button-secondary-background-hover: hsl(var(--background));
- *   --button-secondary-text: hsl(var(--background));
- *   --button-secondary-border: hsl(var(--foreground));
- *   --button-tertiary-background: hsl(var(--background));
- *   --button-tertiary-background-hover: hsl(var(--contrast-100));
- *   --button-tertiary-text: hsl(var(--foreground));
- *   --button-tertiary-border: hsl(var(--contrast-200));
+ *   --button-brand-background: hsl(var(--primary));
+ *   --button-brand-background-hover: color-mix(in oklab, hsl(var(--primary)), white 75%);
+ *   --button-brand-text: hsl(var(--foreground));
+ *   --button-brand-border: hsl(var(--primary));
+ *   --button-primary-background: hsl(var(--foreground));
+ *   --button-primary-background-hover: hsl(var(--background));
+ *   --button-primary-text: hsl(var(--background));
+ *   --button-primary-border: hsl(var(--foreground));
+ *   --button-outline-background: hsl(var(--background));
+ *   --button-outline-background-hover: hsl(var(--contrast-100));
+ *   --button-outline-text: hsl(var(--foreground));
+ *   --button-outline-border: hsl(var(--contrast-200));
  *   --button-ghost-background: transparent;
  *   --button-ghost-background-hover: color-mix(in oklab, hsl(var(--foreground)) 5%, transparent);
  *   --button-ghost-text: hsl(var(--foreground));
@@ -59,26 +59,31 @@ export function Button({
     <button
       aria-busy={loading}
       className={cn(
-        'after:ease-[cubic-bezier(0,0.25,0,1)] relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden border text-center font-semibold leading-normal [font-family:var(--button-font-family,var(--font-family-body))] after:absolute after:inset-0 after:-z-10 after:-translate-x-[105%] after:transition-[opacity,transform] after:duration-300 focus-visible:outline-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
+        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal duration-200 ease-in-out [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
         {
+          brand:
+            'bg-[var(--button-brand-background,hsl(var(--primary)))] text-[var(--button-brand-text,hsl(var(--foreground)))] hover:opacity-70',
           primary:
-            'border-[var(--button-primary-border,hsl(var(--primary)))] bg-[var(--button-primary-background,hsl(var(--primary)))] text-[var(--button-primary-text,hsl(var(--foreground)))] after:bg-[var(--button-primary-background-hover,color-mix(in_oklab,hsl(var(--primary)),white_75%))] focus-visible:outline-offset-2',
-          secondary:
-            'border-[var(--button-secondary-border,hsl(var(--foreground)))] bg-[var(--button-secondary-background,hsl(var(--foreground)))] text-[var(--button-secondary-text,hsl(var(--background)))] after:bg-[var(--button-secondary-background-hover,hsl(var(--background)))] focus-visible:outline-offset-2',
-          tertiary:
-            'border-[var(--button-tertiary-border,hsl(var(--contrast-200)))] bg-[var(--button-tertiary-background,hsl(var(--background)))] text-[var(--button-tertiary-text,hsl(var(--foreground)))] after:bg-[var(--button-tertiary-background-hover,hsl(var(--contrast-100)))] focus-visible:outline-offset-2',
+            'bg-[var(--button-primary-background,hsl(var(--foreground)))] text-[var(--button-primary-text,hsl(var(--background)))] hover:opacity-70',
+          outline:
+            'border border-[var(--button-outline-border,hsl(var(--contrast-200)))] bg-[var(--button-outline-background,hsl(var(--background)))] text-[var(--button-outline-text,hsl(var(--foreground)))] hover:bg-foreground/5',
           ghost:
-            'border-[var(--button-ghost-border,transparent)] bg-[var(--button-ghost-background,transparent)] text-[var(--button-ghost-text,hsl(var(--foreground)))] after:bg-[var(--button-ghost-background-hover,color-mix(in_oklab,hsl(var(--foreground))_5%,transparent))] focus-visible:outline-offset-0',
+            'bg-transparent text-[var(--button-ghost-text,hsl(var(--foreground)))] hover:bg-foreground/5',
           danger:
-            'border-[var(--button-danger-border,color-mix(in_oklab,hsl(var(--error)),white_30%))] bg-[var(--button-danger-background,color-mix(in_oklab,hsl(var(--error)),white_30%))] text-[var(--button-danger-text,hsl(var(--foreground)))] after:bg-[var(--button-danger-background-hover,color-mix(in_oklab,hsl(var(--error)),white_75%))] focus-visible:outline-offset-2',
+            'bg-[var(--button-danger-background,hsl(var(--error)))] text-[var(--button-danger-text,hsl(var(--background)))] hover:opacity-70',
         }[variant],
-        {
-          pill: 'rounded-full after:rounded-full',
-          rounded: 'rounded-lg after:rounded-lg',
-          square: 'rounded-none after:rounded-none',
-          circle: 'rounded-full after:rounded-full',
-        }[shape],
-        !loading && !disabled && 'hover:after:translate-x-0',
+        shape === 'rounded'
+          ? {
+              'x-small': 'rounded-lg',
+              small: 'rounded-lg',
+              medium: 'rounded-xl',
+              large: 'rounded-xl',
+            }[size]
+          : {
+              pill: 'rounded-full',
+              square: 'rounded-none',
+              circle: 'rounded-full',
+            }[shape],
         loading && 'pointer-events-none',
         className,
       )}
@@ -90,22 +95,21 @@ export function Button({
       <span
         className={cn(
           'inline-flex items-center justify-center transition-all duration-300 ease-in-out',
-          loading ? '-translate-y-10 opacity-0' : 'translate-y-0 opacity-100',
+          loading ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100',
           shape === 'circle' && 'aspect-square',
           {
             'x-small': 'min-h-8 text-xs',
-            small: 'min-h-10 text-sm',
-            medium: 'min-h-12 text-base',
+            small: 'min-h-9 text-sm',
+            medium: 'min-h-11 text-base',
             large: 'min-h-14 text-base',
           }[size],
           shape !== 'circle' &&
             {
               'x-small': 'gap-x-2 px-3 py-1.5',
-              small: 'gap-x-2 px-4 py-2.5',
-              medium: 'gap-x-2.5 px-5 py-3',
-              large: 'gap-x-3 px-6 py-4',
+              small: 'gap-x-2 px-3.5 py-2',
+              medium: 'gap-x-2.5 px-4 py-2.5',
+              large: 'gap-x-3 px-5 py-4',
             }[size],
-          variant === 'secondary' && 'mix-blend-difference',
         )}
       >
         {children}
@@ -113,13 +117,13 @@ export function Button({
       <span
         className={cn(
           'absolute inset-0 grid place-content-center transition-all duration-300 ease-in-out',
-          loading ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0',
+          loading ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0',
         )}
       >
         <Loader2
           className={cn(
             'animate-spin',
-            variant === 'tertiary' && 'text-[var(--button-loader-icon,hsl(var(--foreground)))]',
+            variant === 'outline' && 'text-[var(--button-loader-icon,hsl(var(--foreground)))]',
           )}
         />
       </span>
