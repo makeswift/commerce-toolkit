@@ -37,7 +37,7 @@ const BannerWithReset = ({
         {children}
       </Banner>
       <div className="mt-8 flex justify-center">
-        <Button onClick={handleReset} variant="secondary">
+        <Button onClick={handleReset} variant="primary">
           Reset Banner
         </Button>
       </div>
@@ -157,7 +157,7 @@ export const InteractiveBanner = () => {
         <strong>&quot;WELCOME&quot;</strong>
       </Banner>
       <div className="mt-8 flex justify-center">
-        <Button onClick={handleReset} variant="secondary">
+        <Button onClick={handleReset} variant="primary">
           Reset Banner
         </Button>
       </div>
@@ -196,7 +196,7 @@ export const MultipleBanners = () => {
         </Banner>
       </div>
       <div className="mt-8 flex justify-center">
-        <Button onClick={handleResetAll} variant="secondary">
+        <Button onClick={handleResetAll} variant="primary">
           Reset All Banners
         </Button>
       </div>

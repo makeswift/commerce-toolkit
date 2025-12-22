@@ -30,7 +30,7 @@ export function RevealTrigger({ children, className, ...props }: RevealTriggerPr
           onClick={() => toggleOpen()}
           size="x-small"
           type="button"
-          variant="tertiary"
+          variant="outline"
           {...props}
         >
           {isOpen ? hideLabel : showLabel}
