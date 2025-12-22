@@ -12,7 +12,7 @@ export function NavigationMenuGridColumn({
   return (
     <li
       className={cn(
-        // Base layout - fixed width, no shrinking
+        // Base layout
         'w-full',
         className,
       )}
