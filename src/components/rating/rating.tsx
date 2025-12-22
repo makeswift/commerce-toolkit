@@ -2,7 +2,9 @@ import * as RatingPrimitive from '@/components/rating';
 
 export interface RatingProps {
   showRating?: boolean;
+  showTotalReviews?: boolean;
   rating: number;
+  totalReviews?: number;
   className?: string;
 }
 
@@ -18,11 +20,17 @@ export interface RatingProps {
  * }
  * ```
  */
-export function Rating({ showRating = true, rating, className }: Readonly<RatingProps>) {
+export function Rating({
+  showRating = true,
+  showTotalReviews = true,
+  rating,
+  totalReviews,
+  className,
+}: Readonly<RatingProps>) {
   return (
     <RatingPrimitive.Root className={className} rating={rating} showRating={showRating}>
       <RatingPrimitive.Stars />
-      <RatingPrimitive.Value />
+      <RatingPrimitive.Value totalReviews={showTotalReviews ? totalReviews : undefined} />
     </RatingPrimitive.Root>
   );
 }
