@@ -7,11 +7,7 @@ export type NavigationMenuPanelProps = ComponentProps<'div'>;
 export function NavigationMenuPanel({ children, className, ...props }: NavigationMenuPanelProps) {
   return (
     <div
-      className={cn(
-        // Base layout
-        'absolute left-0 right-0 top-full z-50 mx-auto w-full',
-        className,
-      )}
+      className={cn('absolute left-0 right-0 top-full z-50 mx-auto w-full', className)}
       data-slot="navigation-menu-panel"
       {...props}
     >

@@ -23,6 +23,10 @@ export {
   type NavigationMenuTriggerProps as TriggerProps,
 } from '@/components/navigation-menu/primitives/navigation-menu-trigger';
 export {
+  NavigationMenuLink as Link,
+  type NavigationMenuLinkProps as LinkProps,
+} from '@/components/navigation-menu/primitives/navigation-menu-link';
+export {
   NavigationMenuContent as Content,
   type NavigationMenuContentProps as ContentProps,
 } from '@/components/navigation-menu/primitives/navigation-menu-content';

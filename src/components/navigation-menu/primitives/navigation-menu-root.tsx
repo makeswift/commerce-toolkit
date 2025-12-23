@@ -18,7 +18,6 @@ export function NavigationRoot({
   return (
     <NavigationMenuPrimitive.Root
       className={cn(
-        // Base layout
         'group/navigation-menu relative mx-auto flex w-full max-w-7xl flex-1 items-center justify-center',
         className,
       )}

@@ -197,10 +197,10 @@ const defaultItems: NavigationMenuProps['items'] = [
 ];
 
 const simpleItems: NavigationMenuProps['items'] = [
-  { trigger: 'Home' },
-  { trigger: 'About' },
-  { trigger: 'Services' },
-  { trigger: 'Contact' },
+  { trigger: 'Home', href: '/' },
+  { trigger: 'About', href: '/about' },
+  { trigger: 'Services', href: '/services' },
+  { trigger: 'Contact', href: '/contact' },
 ];
 
 const meta: Meta<typeof NavigationMenu> = {

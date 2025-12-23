@@ -13,16 +13,7 @@ export function NavigationMenuGridLabel({
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        // Base layout
-        'block rounded-lg',
-        // Spacing
-        'px-3 py-2',
-        // Typography
-        'font-[family-name:var(--nav-grid-label-font-family,var(--font-family-body))] text-sm font-semibold',
-        // Colors
-        'bg-[var(--nav-grid-label-background,transparent)] text-[var(--nav-grid-label-text,hsl(var(--foreground)))]',
-        // Transitions
-        'transition-colors',
+        'block rounded-lg bg-[var(--nav-grid-label-background,transparent)] px-3 py-2 font-[family-name:var(--nav-grid-label-font-family,var(--font-family-body))] text-sm font-semibold text-[var(--nav-grid-label-text,hsl(var(--foreground)))] transition-colors',
         // Hover state
         'hover:bg-[var(--nav-grid-label-background-hover,hsl(var(--contrast-100)))] hover:text-[var(--nav-grid-label-text-hover,hsl(var(--foreground)))]',
         // Focus-visible state
