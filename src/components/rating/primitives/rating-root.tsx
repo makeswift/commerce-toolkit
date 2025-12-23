@@ -12,6 +12,8 @@ interface RatingContext {
   adjustedRating: number;
   stars: StarType[];
   showRating: boolean;
+  showTotalReviews: boolean;
+  totalReviews: number;
   getNextStarIndex: () => number;
   resetStarIndex: () => void;
 }
@@ -21,6 +23,8 @@ const RatingContext = createContext<RatingContext | undefined>(undefined);
 export interface RatingRootProps extends ComponentProps<'div'> {
   rating: number;
   showRating?: boolean;
+  showTotalReviews?: boolean;
+  totalReviews?: number;
   children: ReactNode;
 }
 
@@ -29,6 +33,8 @@ export function RatingRoot({
   className,
   rating,
   showRating = true,
+  showTotalReviews = true,
+  totalReviews = 0,
   ...props
 }: RatingRootProps) {
   const starIndexRef = useRef(0);
@@ -60,14 +66,16 @@ export function RatingRoot({
       adjustedRating,
       stars,
       showRating,
+      showTotalReviews,
+      totalReviews,
       getNextStarIndex,
       resetStarIndex,
     };
-  }, [rating, showRating, getNextStarIndex, resetStarIndex]);
+  }, [rating, showRating, showTotalReviews, totalReviews, getNextStarIndex, resetStarIndex]);
 
   return (
     <RatingContext.Provider value={contextValues}>
-      <div className={cn('flex items-center', className)} {...props}>
+      <div className={cn('flex items-center', className)} data-slot="rating-root" {...props}>
         {children}
       </div>
     </RatingContext.Provider>

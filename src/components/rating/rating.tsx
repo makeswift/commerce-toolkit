@@ -26,11 +26,19 @@ export function Rating({
   rating,
   totalReviews,
   className,
-}: Readonly<RatingProps>) {
+}: RatingProps) {
   return (
-    <RatingPrimitive.Root className={className} rating={rating} showRating={showRating}>
+    <RatingPrimitive.Root
+      className={className}
+      rating={rating}
+      showRating={showRating}
+      showTotalReviews={showTotalReviews}
+      totalReviews={totalReviews}
+    >
       <RatingPrimitive.Stars />
-      <RatingPrimitive.Value totalReviews={showTotalReviews ? totalReviews : undefined} />
+      <RatingPrimitive.Value>
+        <RatingPrimitive.Total />
+      </RatingPrimitive.Value>
     </RatingPrimitive.Root>
   );
 }
