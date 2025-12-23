@@ -10,15 +10,7 @@ export function NavigationMenuGridColumn({
   ...props
 }: NavigationMenuGridColumnProps) {
   return (
-    <li
-      className={cn(
-        // Base layout - fixed width, no shrinking
-        'flex w-40 shrink-0 flex-col gap-0.5',
-        className,
-      )}
-      data-slot="navigation-menu-grid-column"
-      {...props}
-    >
+    <li className={cn('w-full', className)} data-slot="navigation-menu-grid-column" {...props}>
       {children}
     </li>
   );

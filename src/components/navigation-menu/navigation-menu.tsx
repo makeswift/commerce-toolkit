@@ -14,6 +14,7 @@ interface NavigationMenuColumn {
 
 interface NavigationMenuItem {
   trigger: string;
+  href?: string;
   content?: {
     columns?: NavigationMenuColumn[];
     slot?: ReactNode;
@@ -54,33 +55,37 @@ export interface NavigationMenuProps {
  */
 export function NavigationMenu({ items, viewport = true, columns = 4 }: NavigationMenuProps) {
   return (
-    <NavigationMenuPrimitive.Root columns={columns} viewport={viewport}>
+    <NavigationMenuPrimitive.Root columns={columns} delayDuration={0} viewport={viewport}>
       <NavigationMenuPrimitive.List>
-        {items.map(({ trigger, content }) => (
+        {items.map(({ trigger, href, content }) => (
           <NavigationMenuPrimitive.Item key={trigger}>
-            <NavigationMenuPrimitive.Trigger>{trigger}</NavigationMenuPrimitive.Trigger>
-            {content && (
-              <NavigationMenuPrimitive.Content>
-                {content.columns && content.columns.length > 0 && (
-                  <NavigationMenuPrimitive.Grid>
-                    {content.columns.map((column) => (
-                      <NavigationMenuPrimitive.GridColumn key={column.label.label}>
-                        <NavigationMenuPrimitive.GridLabel href={column.label.href}>
-                          {column.label.label}
-                        </NavigationMenuPrimitive.GridLabel>
-                        {column.links.map((link) => (
-                          <NavigationMenuPrimitive.GridLink href={link.href} key={link.label}>
-                            {link.label}
-                          </NavigationMenuPrimitive.GridLink>
-                        ))}
-                      </NavigationMenuPrimitive.GridColumn>
-                    ))}
-                  </NavigationMenuPrimitive.Grid>
-                )}
-                {content.slot != null && (
-                  <NavigationMenuPrimitive.Slot>{content.slot}</NavigationMenuPrimitive.Slot>
-                )}
-              </NavigationMenuPrimitive.Content>
+            {content ? (
+              <>
+                <NavigationMenuPrimitive.Trigger>{trigger}</NavigationMenuPrimitive.Trigger>
+                <NavigationMenuPrimitive.Content>
+                  {content.columns && content.columns.length > 0 && (
+                    <NavigationMenuPrimitive.Grid>
+                      {content.columns.map((column) => (
+                        <NavigationMenuPrimitive.GridColumn key={column.label.label}>
+                          <NavigationMenuPrimitive.GridLabel href={column.label.href}>
+                            {column.label.label}
+                          </NavigationMenuPrimitive.GridLabel>
+                          {column.links.map((link) => (
+                            <NavigationMenuPrimitive.GridLink href={link.href} key={link.label}>
+                              {link.label}
+                            </NavigationMenuPrimitive.GridLink>
+                          ))}
+                        </NavigationMenuPrimitive.GridColumn>
+                      ))}
+                    </NavigationMenuPrimitive.Grid>
+                  )}
+                  {content.slot != null && (
+                    <NavigationMenuPrimitive.Slot>{content.slot}</NavigationMenuPrimitive.Slot>
+                  )}
+                </NavigationMenuPrimitive.Content>
+              </>
+            ) : (
+              <NavigationMenuPrimitive.Link href={href}>{trigger}</NavigationMenuPrimitive.Link>
             )}
           </NavigationMenuPrimitive.Item>
         ))}

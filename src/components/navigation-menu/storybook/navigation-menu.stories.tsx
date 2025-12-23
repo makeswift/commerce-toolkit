@@ -59,7 +59,6 @@ const defaultItems: NavigationMenuProps['items'] = [
       ],
       slot: (
         <CategoryCard
-          aspectRatio="1:1"
           iconColorScheme="dark"
           image={{
             src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop',
@@ -132,7 +131,6 @@ const defaultItems: NavigationMenuProps['items'] = [
       ],
       slot: (
         <CategoryCard
-          aspectRatio="1:1"
           iconColorScheme="dark"
           image={{
             src: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=400&fit=crop',
@@ -178,30 +176,6 @@ const defaultItems: NavigationMenuProps['items'] = [
             { label: 'Sandals', href: '/men/sandals' },
           ],
         },
-        {
-          label: { label: 'Activewear', href: '/men/activewear' },
-          links: [
-            { label: 'Shorts', href: '/men/shorts' },
-            { label: 'Tank tops', href: '/men/tank-tops' },
-            { label: 'Joggers', href: '/men/joggers' },
-          ],
-        },
-        {
-          label: { label: 'Formalwear', href: '/men/formalwear' },
-          links: [
-            { label: 'Suits', href: '/men/suits' },
-            { label: 'Dress shirts', href: '/men/dress-shirts' },
-            { label: 'Ties', href: '/men/ties' },
-          ],
-        },
-        {
-          label: { label: 'Outerwear', href: '/men/outerwear' },
-          links: [
-            { label: 'Coats', href: '/men/coats' },
-            { label: 'Parkas', href: '/men/parkas' },
-            { label: 'Vests', href: '/men/vests' },
-          ],
-        },
       ],
       slot: (
         <CategoryCard
@@ -223,10 +197,10 @@ const defaultItems: NavigationMenuProps['items'] = [
 ];
 
 const simpleItems: NavigationMenuProps['items'] = [
-  { trigger: 'Home' },
-  { trigger: 'About' },
-  { trigger: 'Services' },
-  { trigger: 'Contact' },
+  { trigger: 'Home', href: '/' },
+  { trigger: 'About', href: '/about' },
+  { trigger: 'Services', href: '/services' },
+  { trigger: 'Contact', href: '/contact' },
 ];
 
 const meta: Meta<typeof NavigationMenu> = {

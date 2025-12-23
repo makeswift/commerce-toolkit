@@ -8,11 +8,7 @@ export type NavigationMenuItemProps = ComponentProps<typeof NavigationMenuPrimit
 export function NavigationMenuItem({ children, className, ...props }: NavigationMenuItemProps) {
   return (
     <NavigationMenuPrimitive.Item
-      className={cn(
-        // Base layout
-        'relative',
-        className,
-      )}
+      className={cn('relative', className)}
       data-slot="navigation-menu-item"
       {...props}
     >

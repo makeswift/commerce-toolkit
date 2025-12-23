@@ -8,8 +8,9 @@ export function NavigationMenuSlot({ className, children, ...props }: Navigation
   return (
     <div
       className={cn(
-        // Base layout
-        'w-full max-w-72 flex-auto',
+        'w-full flex-auto',
+        // Container queries
+        '@lg:max-w-56 @2xl:max-w-72',
         className,
       )}
       data-slot="navigation-menu-slot"
