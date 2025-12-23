@@ -13,3 +13,7 @@ export {
   RatingValue as Value,
   type RatingValueProps as ValueProps,
 } from '@/components/rating/primitives/rating-value';
+export {
+  RatingTotal as Total,
+  type RatingTotalProps as TotalProps,
+} from '@/components/rating/primitives/rating-total';

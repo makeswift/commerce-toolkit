@@ -10,7 +10,7 @@ export function RatingStars() {
   return (
     <>
       {[0, 1, 2, 3, 4].map((i) => (
-        <RatingStar key={i} />
+        <RatingStar data-slot="rating-star" key={i} />
       ))}
     </>
   );

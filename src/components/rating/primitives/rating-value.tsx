@@ -7,7 +7,7 @@ import { cn } from '@/lib';
 
 export type RatingValueProps = ComponentProps<'span'>;
 
-export function RatingValue({ className, ...props }: RatingValueProps) {
+export function RatingValue({ className, children, ...props }: RatingValueProps) {
   const { adjustedRating, showRating } = useRating();
 
   if (!showRating) return null;
@@ -15,12 +15,14 @@ export function RatingValue({ className, ...props }: RatingValueProps) {
   return (
     <span
       className={cn(
-        'ml-1.5 flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full border border-[var(--rating-border,hsl(var(--contrast-100)))] px-1 text-xs font-medium text-[var(--rating-text,hsl(var(--contrast-400)))]',
+        'ml-2 flex text-xs font-bold leading-normal text-[var(--rating-text,hsl(var(--foreground)))]',
         className,
       )}
+      data-slot="rating-value"
       {...props}
     >
       {adjustedRating % 1 !== 0 ? adjustedRating.toFixed(1) : adjustedRating}
+      {children}
     </span>
   );
 }
