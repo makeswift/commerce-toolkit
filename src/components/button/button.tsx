@@ -59,7 +59,7 @@ export function Button({
     <button
       aria-busy={loading}
       className={cn(
-        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal duration-200 ease-in-out [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
+        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal transition-all duration-75 ease-linear [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
         {
           brand:
             'bg-[var(--button-brand-background,hsl(var(--primary)))] text-[var(--button-brand-text,hsl(var(--foreground)))] hover:opacity-70',

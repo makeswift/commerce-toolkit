@@ -1,8 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
+import * as React from 'react';
 import type { DateRange } from 'react-day-picker';
 
-import { Calendar, type CalendarProps } from '@/components/calendar';
+import { Calendar } from '@/components/calendar';
+
+function addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+
+  result.setDate(result.getDate() + days);
+
+  return result;
+}
+
+function addMonths(date: Date, months: number): Date {
+  const result = new Date(date);
+
+  result.setMonth(result.getMonth() + months);
+
+  return result;
+}
 
 const meta: Meta<typeof Calendar> = {
   title: 'Components/Calendar',
@@ -12,35 +28,38 @@ const meta: Meta<typeof Calendar> = {
     docs: {
       description: {
         component: `
-A date picker calendar component built on top of react-day-picker. Supports single date, multiple dates, and date range selection.
+The Calendar component provides a date picker built on top of [react-day-picker](https://react-day-picker.js.org/). It supports single date selection, date ranges, and multiple date selection.
 
 ## CSS Variables
+
+The following CSS variables can be used to customize the Calendar component:
 
 \`\`\`css
 :root {
   --calendar-font-family: var(--font-family-body);
-  --calendar-light-focus: var(--foreground);
-  --calendar-light-border: var(--contrast-100);
-  --calendar-light-text: var(--foreground);
-  --calendar-light-background: var(--background);
-  --calendar-light-button-border-hover: var(--contrast-200);
-  --calendar-light-selected-button-background: var(--primary);
-  --calendar-light-selected-button-text: var(--foreground);
-  --calendar-light-selected-middle-button-background: transparent;
-  --calendar-light-text-disabled: var(--contrast-300);
-  --calendar-light-range-background: var(--primary-highlight);
-  --calendar-dark-focus: var(--background);
-  --calendar-dark-border: var(--contrast-500);
-  --calendar-dark-text: var(--background);
-  --calendar-dark-background: var(--foreground);
-  --calendar-dark-button-border-hover: var(--contrast-400);
-  --calendar-dark-selected-button-background: var(--primary);
-  --calendar-dark-selected-button-text: var(--foreground);
-  --calendar-dark-selected-middle-button-background: transparent;
-  --calendar-dark-text-disabled: var(--contrast-300);
-  --calendar-dark-range-background: color-mix(in oklab, var(--primary), white 60%);
+  --calendar-focus: var(--foreground);
+  --calendar-text: var(--foreground);
+  --calendar-background: var(--background);
+  --calendar-selected-background: var(--primary);
+  --calendar-selected-text: var(--foreground);
+  --calendar-text-disabled: var(--contrast-300);
 }
 \`\`\`
+
+## Selection Modes
+
+The component supports three selection modes:
+- \`single\` (default) - Select a single date
+- \`range\` - Select a date range with start and end dates
+- \`multiple\` - Select multiple individual dates
+
+## Caption Layouts
+
+The \`captionLayout\` prop controls how month/year navigation is displayed:
+- \`label\` (default) - Shows month and year as text
+- \`dropdown\` - Shows dropdowns for month and year selection
+- \`dropdown-months\` - Shows dropdown for month only
+- \`dropdown-years\` - Shows dropdown for year only
         `,
       },
     },
@@ -49,97 +68,145 @@ A date picker calendar component built on top of react-day-picker. Supports sing
   argTypes: {
     mode: {
       control: 'select',
-      options: ['single', 'multiple', 'range'],
+      options: ['single', 'range', 'multiple'],
       description: 'The selection mode for the calendar',
+    },
+    captionLayout: {
+      control: 'select',
+      options: ['label', 'dropdown', 'dropdown-months', 'dropdown-years'],
+      description: 'Layout of the month/year caption',
     },
     showOutsideDays: {
       control: 'boolean',
-      description: 'Whether to show days from adjacent months',
+      description: 'Show days from adjacent months',
     },
-    disabled: {
+    showWeekNumber: {
       control: 'boolean',
-      description: 'Disables the calendar',
+      description: 'Show week numbers',
+    },
+    numberOfMonths: {
+      control: 'number',
+      description: 'Number of months to display',
     },
   },
 };
 
 export default meta;
+type Story = StoryObj<typeof Calendar>;
 
-type Story = StoryObj<CalendarProps>;
-
+/**
+ * The default Calendar displays a single month with single date selection.
+ */
 export const Default: Story = {
   render: () => {
-    const [selected, setSelected] = useState<Date | undefined>(new Date());
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
 
     return <Calendar mode="single" onSelect={setSelected} selected={selected} />;
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Single date selection mode. Click on a day to select it.',
-      },
-    },
-  },
 };
 
+/**
+ * Range selection allows users to select a start and end date.
+ */
 export const RangeSelection: Story = {
   render: () => {
-    const [range, setRange] = useState<DateRange | undefined>({
+    const [range, setRange] = React.useState<DateRange | undefined>({
       from: new Date(),
-      to: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      to: addDays(new Date(), 5),
     });
 
     return <Calendar mode="range" onSelect={setRange} selected={range} />;
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Range selection mode. Click to select a start date, then click again to select an end date.',
-      },
-    },
-  },
 };
 
+/**
+ * Multiple selection allows users to select multiple individual dates.
+ */
 export const MultipleSelection: Story = {
   render: () => {
-    const today = new Date();
-    const [selected, setSelected] = useState<Date[] | undefined>([
-      today,
-      new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000),
-      new Date(today.getTime() + 5 * 24 * 60 * 60 * 1000),
+    const [selected, setSelected] = React.useState<Date[] | undefined>([
+      new Date(),
+      addDays(new Date(), 2),
+      addDays(new Date(), 5),
     ]);
 
     return <Calendar mode="multiple" onSelect={setSelected} selected={selected} />;
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Multiple selection mode. Click on multiple days to select them individually.',
-      },
-    },
-  },
 };
 
-export const WithDisabledDates: Story = {
+/**
+ * Display dropdown selectors for quick month and year navigation.
+ */
+export const WithDropdowns: Story = {
   render: () => {
-    const [selected, setSelected] = useState<Date | undefined>();
-    const today = new Date();
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
 
     return (
       <Calendar
-        disabled={{ before: today }}
+        captionLayout="dropdown"
+        endMonth={addMonths(new Date(), 12)}
         mode="single"
         onSelect={setSelected}
         selected={selected}
+        startMonth={addMonths(new Date(), -12)}
       />
     );
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Past dates can be disabled using the `disabled` prop with date matchers.',
-      },
-    },
+};
+
+/**
+ * Display multiple months side by side for easier range selection.
+ */
+export const MultipleMonths: Story = {
+  render: () => {
+    const [range, setRange] = React.useState<DateRange | undefined>({
+      from: new Date(),
+      to: addDays(new Date(), 10),
+    });
+
+    return <Calendar mode="range" numberOfMonths={2} onSelect={setRange} selected={range} />;
+  },
+};
+
+/**
+ * Show week numbers alongside the calendar days.
+ */
+export const WithWeekNumbers: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
+
+    return <Calendar mode="single" onSelect={setSelected} selected={selected} showWeekNumber />;
+  },
+};
+
+/**
+ * Disable specific dates to prevent selection.
+ */
+export const DisabledDates: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>();
+
+    // Disable weekends and dates in the past
+    const disabledDays = [
+      { before: new Date() },
+      { dayOfWeek: [0, 6] }, // Sunday and Saturday
+    ];
+
+    return (
+      <Calendar disabled={disabledDays} mode="single" onSelect={setSelected} selected={selected} />
+    );
+  },
+};
+
+/**
+ * Hide days from adjacent months for a cleaner look.
+ */
+export const HideOutsideDays: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
+
+    return (
+      <Calendar mode="single" onSelect={setSelected} selected={selected} showOutsideDays={false} />
+    );
   },
 };
