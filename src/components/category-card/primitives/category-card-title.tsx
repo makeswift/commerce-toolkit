@@ -14,7 +14,7 @@ export function CategoryCardTitle({ children, className, ...props }: CategoryCar
   return (
     <h3
       className={cn(
-        'font-medium leading-tight',
+        'font-semibold leading-tight',
         {
           small: 'text-lg tracking-normal @xs:text-xl',
           medium: 'text-xl tracking-normal @xs:text-2xl',

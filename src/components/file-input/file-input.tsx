@@ -1,0 +1,141 @@
+'use client';
+
+import { UploadIcon, XIcon } from 'lucide-react';
+
+import * as FileInputPrimitive from '@/components/file-input';
+import { Label } from '@/components/label';
+
+export interface FileInputProps {
+  id: string;
+  className?: string;
+  accept?: string;
+  multiple?: boolean;
+  disabled?: boolean;
+  invalid?: boolean;
+  name?: string;
+  maxFiles?: number;
+  maxSize?: number;
+  onFileValidate?: (file: File) => string | null | undefined;
+  onFileAccept?: (file: File) => void;
+  onFileReject?: (file: File, reason: string) => void;
+  onUploadFile?: (file: File, reportProgress: (progress: number) => void) => Promise<unknown>;
+  onUploadSuccess?: (file: File, result: unknown) => void;
+  onUploadError?: (file: File, error: Error) => void;
+  hideLabel?: boolean;
+  label?: string;
+  cta?: string;
+  hint?: string;
+  message?: string;
+  uploadingLabel?: string;
+  successLabel?: string;
+  errorLabel?: string;
+}
+
+function formatBytes(bytes: number) {
+  if (bytes === 0) return '0 B';
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+
+  return `${(bytes / 1024 ** i).toFixed(i ? 1 : 0)} ${sizes[i]}`;
+}
+
+export function FileInput({
+  id,
+  className,
+  accept,
+  multiple,
+  disabled,
+  invalid,
+  name,
+  maxFiles,
+  maxSize,
+  onFileValidate,
+  onFileAccept,
+  onFileReject,
+  onUploadFile,
+  onUploadSuccess,
+  onUploadError,
+  hideLabel = true,
+  label = 'File upload',
+  cta = 'Upload file',
+  hint = 'or drag and drop files here',
+  message,
+  uploadingLabel = 'Uploading',
+  successLabel = 'Upload complete',
+  errorLabel = 'Error',
+}: FileInputProps) {
+  return (
+    <FileInputPrimitive.Root
+      accept={accept}
+      className={className}
+      disabled={disabled}
+      id={id}
+      invalid={invalid}
+      maxFiles={maxFiles}
+      maxSize={maxSize}
+      multiple={multiple}
+      name={name}
+      onFileAccept={onFileAccept}
+      onFileReject={onFileReject}
+      onFileValidate={onFileValidate}
+      onUploadError={onUploadError}
+      onUploadFile={onUploadFile}
+      onUploadSuccess={onUploadSuccess}
+    >
+      <Label className={hideLabel ? 'sr-only' : 'mb-2'} htmlFor={`${id}-input`}>
+        {label}
+      </Label>
+      <FileInputPrimitive.Dropzone>
+        <FileInputPrimitive.Trigger>
+          <UploadIcon className="size-5 text-[var(--file-input-trigger-icon,hsl(var(--foreground)))]" />
+          {cta}
+        </FileInputPrimitive.Trigger>
+        <FileInputPrimitive.DropzoneError />
+        <FileInputPrimitive.DropzoneHint>{hint}</FileInputPrimitive.DropzoneHint>
+      </FileInputPrimitive.Dropzone>
+      {message != null && <FileInputPrimitive.Message>{message}</FileInputPrimitive.Message>}
+      <FileInputPrimitive.List>
+        {({ files }) =>
+          Array.from(files.entries()).map(([file]) => (
+            <FileInputPrimitive.Item
+              file={file}
+              key={`${file.name}-${file.size}-${file.lastModified}`}
+            >
+              {({ fileState: { file: fileItem, status, error } }) => (
+                <>
+                  <FileInputPrimitive.Metadata>
+                    <FileInputPrimitive.Details>
+                      <FileInputPrimitive.Header>
+                        <FileInputPrimitive.Icon />
+                        <FileInputPrimitive.Name>{fileItem.name}</FileInputPrimitive.Name>
+                      </FileInputPrimitive.Header>
+                      <FileInputPrimitive.Status />
+                      {status === 'idle' && (
+                        <FileInputPrimitive.Status>
+                          {formatBytes(fileItem.size)}
+                        </FileInputPrimitive.Status>
+                      )}
+                      {status === 'uploading' && (
+                        <FileInputPrimitive.Status>{uploadingLabel}</FileInputPrimitive.Status>
+                      )}
+                      {status === 'success' && (
+                        <FileInputPrimitive.Status>{successLabel}</FileInputPrimitive.Status>
+                      )}
+                      {status === 'error' && (
+                        <FileInputPrimitive.Error>{error ?? errorLabel}</FileInputPrimitive.Error>
+                      )}
+                    </FileInputPrimitive.Details>
+                  </FileInputPrimitive.Metadata>
+                  <FileInputPrimitive.Remove>
+                    <XIcon className="size-5 text-[var(--file-input-item-delete-icon,hsl(var(--foreground)))]" />
+                  </FileInputPrimitive.Remove>
+                  {status === 'uploading' && <FileInputPrimitive.Progress />}
+                </>
+              )}
+            </FileInputPrimitive.Item>
+          ))
+        }
+      </FileInputPrimitive.List>
+    </FileInputPrimitive.Root>
+  );
+}

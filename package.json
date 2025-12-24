@@ -47,6 +47,16 @@
         "default": "./dist/banner.cjs"
       }
     },
+    "./button-radio-group": {
+      "import": {
+        "types": "./dist/components/button-radio-group/primitives.d.ts",
+        "default": "./dist/button-radio-group.js"
+      },
+      "require": {
+        "types": "./dist/components/button-radio-group/primitives.d.ts",
+        "default": "./dist/button-radio-group.cjs"
+      }
+    },
     "./blog-post-card": {
       "import": {
         "types": "./dist/components/blog-post-card/primitives.d.ts",
@@ -65,6 +75,16 @@
       "require": {
         "types": "./dist/components/card/primitives.d.ts",
         "default": "./dist/card.cjs"
+      }
+    },
+    "./card-radio-group": {
+      "import": {
+        "types": "./dist/components/card-radio-group/primitives.d.ts",
+        "default": "./dist/card-radio-group.js"
+      },
+      "require": {
+        "types": "./dist/components/card-radio-group/primitives.d.ts",
+        "default": "./dist/card-radio-group.cjs"
       }
     },
     "./carousel": {
@@ -95,6 +115,16 @@
       "require": {
         "types": "./dist/components/checkbox/primitives.d.ts",
         "default": "./dist/checkbox.cjs"
+      }
+    },
+    "./checkbox-group": {
+      "import": {
+        "types": "./dist/components/checkbox-group/primitives.d.ts",
+        "default": "./dist/checkbox-group.js"
+      },
+      "require": {
+        "types": "./dist/components/checkbox-group/primitives.d.ts",
+        "default": "./dist/checkbox-group.cjs"
       }
     },
     "./chip": {
@@ -147,6 +177,16 @@
         "default": "./dist/cursor-pagination.cjs"
       }
     },
+    "./date-picker": {
+      "import": {
+        "types": "./dist/components/date-picker/primitives.d.ts",
+        "default": "./dist/date-picker.js"
+      },
+      "require": {
+        "types": "./dist/components/date-picker/primitives.d.ts",
+        "default": "./dist/date-picker.cjs"
+      }
+    },
     "./dropdown-menu": {
       "import": {
         "types": "./dist/components/dropdown-menu/primitives.d.ts",
@@ -167,6 +207,26 @@
         "default": "./dist/favorite.cjs"
       }
     },
+    "./field": {
+      "import": {
+        "types": "./dist/components/field/primitives.d.ts",
+        "default": "./dist/field.js"
+      },
+      "require": {
+        "types": "./dist/components/field/primitives.d.ts",
+        "default": "./dist/field.cjs"
+      }
+    },
+    "./file-input": {
+      "import": {
+        "types": "./dist/components/file-input/primitives.d.ts",
+        "default": "./dist/file-input.js"
+      },
+      "require": {
+        "types": "./dist/components/file-input/primitives.d.ts",
+        "default": "./dist/file-input.cjs"
+      }
+    },
     "./form-status": {
       "import": {
         "types": "./dist/components/form-status/primitives.d.ts",
@@ -185,6 +245,16 @@
       "require": {
         "types": "./dist/components/icon/primitives.d.ts",
         "default": "./dist/icon.cjs"
+      }
+    },
+    "./input": {
+      "import": {
+        "types": "./dist/components/input/primitives.d.ts",
+        "default": "./dist/input.js"
+      },
+      "require": {
+        "types": "./dist/components/input/primitives.d.ts",
+        "default": "./dist/input.cjs"
       }
     },
     "./logo": {
@@ -247,6 +317,26 @@
         "default": "./dist/product-card.cjs"
       }
     },
+    "./radio-group": {
+      "import": {
+        "types": "./dist/components/radio-group/primitives.d.ts",
+        "default": "./dist/radio-group.js"
+      },
+      "require": {
+        "types": "./dist/components/radio-group/primitives.d.ts",
+        "default": "./dist/radio-group.cjs"
+      }
+    },
+    "./range-input": {
+      "import": {
+        "types": "./dist/components/range-input/primitives.d.ts",
+        "default": "./dist/range-input.js"
+      },
+      "require": {
+        "types": "./dist/components/range-input/primitives.d.ts",
+        "default": "./dist/range-input.cjs"
+      }
+    },
     "./rating": {
       "import": {
         "types": "./dist/components/rating/primitives.d.ts",
@@ -277,6 +367,16 @@
         "default": "./dist/scroll-area.cjs"
       }
     },
+    "./select": {
+      "import": {
+        "types": "./dist/components/select/primitives.d.ts",
+        "default": "./dist/select.js"
+      },
+      "require": {
+        "types": "./dist/components/select/primitives.d.ts",
+        "default": "./dist/select.cjs"
+      }
+    },
     "./side-panel": {
       "import": {
         "types": "./dist/components/side-panel/primitives.d.ts",
@@ -297,6 +397,16 @@
         "default": "./dist/skeleton.cjs"
       }
     },
+    "./swatch-radio-group": {
+      "import": {
+        "types": "./dist/components/swatch-radio-group/primitives.d.ts",
+        "default": "./dist/swatch-radio-group.js"
+      },
+      "require": {
+        "types": "./dist/components/swatch-radio-group/primitives.d.ts",
+        "default": "./dist/swatch-radio-group.cjs"
+      }
+    },
     "./tabs": {
       "import": {
         "types": "./dist/components/tabs/primitives.d.ts",
@@ -305,6 +415,16 @@
       "require": {
         "types": "./dist/components/tabs/primitives.d.ts",
         "default": "./dist/tabs.cjs"
+      }
+    },
+    "./toggle-group": {
+      "import": {
+        "types": "./dist/components/toggle-group/primitives.d.ts",
+        "default": "./dist/toggle-group.js"
+      },
+      "require": {
+        "types": "./dist/components/toggle-group/primitives.d.ts",
+        "default": "./dist/toggle-group.cjs"
       }
     },
     "./styles": "./dist/styles.css",
@@ -352,10 +472,13 @@
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-portal": "^1.1.9",
+    "@radix-ui/react-radio-group": "^1.3.8",
     "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-toggle": "^1.1.10",
+    "@radix-ui/react-toggle-group": "^1.1.11",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.545.0",

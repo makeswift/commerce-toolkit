@@ -6,6 +6,9 @@ import animate from 'tailwindcss-animate';
 export default {
   theme: {
     extend: {
+      aria: {
+        invalid: 'invalid="true"',
+      },
       typography: {
         DEFAULT: {
           css: {
