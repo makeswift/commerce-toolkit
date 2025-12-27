@@ -10,7 +10,11 @@ export function CardRadioGroupThumbnail({
   ...props
 }: CardRadioGroupThumbnailProps) {
   return (
-    <div className={cn('relative aspect-square h-full', className)} {...props}>
+    <div
+      className={cn('relative aspect-square h-full', className)}
+      data-slot="card-radio-group-thumbnail"
+      {...props}
+    >
       {children}
     </div>
   );

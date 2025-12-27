@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import * as RadioGroupPrimitive from '@/components/card-radio-group';
 
@@ -6,7 +6,12 @@ interface Option {
   value: string;
   label: string;
   id: string;
-  image?: { src: string; alt: string };
+  image?: {
+    src: string;
+    alt: string;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
   disabled?: boolean;
 }
 
@@ -54,7 +59,9 @@ export function CardRadioGroup({
         >
           {image && (
             <RadioGroupPrimitive.Thumbnail>
-              <RadioGroupPrimitive.Image alt={image.alt} src={image.src} />
+              <RadioGroupPrimitive.Image alt={image.alt} asChild={image.asChild} src={image.src}>
+                {image.children}
+              </RadioGroupPrimitive.Image>
             </RadioGroupPrimitive.Thumbnail>
           )}
           <RadioGroupPrimitive.Label>{label}</RadioGroupPrimitive.Label>

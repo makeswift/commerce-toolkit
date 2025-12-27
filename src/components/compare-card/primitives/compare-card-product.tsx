@@ -8,7 +8,7 @@ export function CompareCardProduct({ children, className, ...props }: CompareCar
   return (
     <div
       className={cn('mb-2 space-y-4 pb-4', className)}
-      data-slot="compare-card-product-info"
+      data-slot="compare-card-product"
       {...props}
     >
       {children}

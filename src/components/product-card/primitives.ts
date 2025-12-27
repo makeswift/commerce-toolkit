@@ -66,3 +66,15 @@ export {
   ProductCardInput as Input,
   type ProductCardInputProps as InputProps,
 } from '@/components/product-card/primitives/product-card-input';
+export {
+  ProductCardCartButton as CartButton,
+  type ProductCardCartButtonProps as CartButtonProps,
+} from '@/components/product-card/primitives/product-card-cart-button';
+export {
+  ProductCardCartLink as CartLink,
+  type ProductCardCartLinkProps as CartLinkProps,
+} from '@/components/product-card/primitives/product-card-cart-link';
+export {
+  ProductCardCompare as Compare,
+  type ProductCardCompareProps as CompareProps,
+} from '@/components/product-card/primitives/product-card-compare';

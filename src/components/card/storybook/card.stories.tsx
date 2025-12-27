@@ -1,48 +1,120 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ArrowRight, Package, Shield, Truck } from 'lucide-react';
+import { ArrowRight, Package } from 'lucide-react';
 
 import { Card, type CardProps } from '@/components/card';
+import * as CardPrimitive from '@/components/card/primitives';
 
 const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A versatile card component for displaying content in a contained, styled container. Supports optional link behavior for clickable cards.
+
+## CSS Variables
+
+The Card component supports theming through CSS variables:
+
+\`\`\`css
+:root {
+  --card-focus: var(--brand);
+  --card-border-color: var(--contrast-200);
+  --card-background: var(--background);
+  --card-hover-background: color-mix(in oklab, var(--contrast-100) 50%, transparent);
+}
+\`\`\`
+
+## Usage
+
+### High-Level Component
+
+The \`Card\` component provides a simple API with an optional \`link\` prop for clickable cards:
+
+\`\`\`tsx
+import { Card } from '@/components/card';
+
+<Card
+  link={{
+    href: '/products',
+    ariaLabel: 'View all products',
+  }}
+>
+  <h3>Shop Products</h3>
+  <p>Browse our collection</p>
+</Card>
+\`\`\`
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as Card from '@/components/card';
+
+<Card.Root>
+  <h3>Card Title</h3>
+  <p>Card content goes here.</p>
+  <Card.Link href="/page" aria-label="Go to page" />
+</Card.Root>
+\`\`\`
+
+\`Card.Root\` supports the \`as\` prop for semantic elements, and \`Card.Link\` supports \`asChild\` for router integration:
+
+\`\`\`tsx
+import * as Card from '@/components/card';
+import Link from 'next/link';
+
+<Card.Root as="article">
+  <h3>Products</h3>
+  <Card.Link asChild>
+    <Link href="/products" aria-label="View products" />
+  </Card.Link>
+</Card.Root>
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     as: {
-      control: 'text',
+      control: 'select',
+      options: ['div', 'article', 'section', 'aside'],
       description: 'The HTML element to render as',
-    },
-    children: {
-      control: false,
-      description: 'Content to display in the card',
     },
     link: {
       control: false,
-      description: 'Link configuration for clickable cards',
+      description: 'Link configuration with href and ariaLabel for clickable cards',
+    },
+    children: {
+      control: false,
+      description: 'Content to display inside the card',
     },
   },
+  decorators: [(Story) => <div className="w-96">{Story()}</div>],
 };
 
 export default meta;
-type Story = StoryObj<CardProps<'div'>>;
+type Story = StoryObj<CardProps>;
 
+// Default card
 export const Default: Story = {
   args: {
     children: (
       <div>
-        <h3 className="text-lg font-semibold">Default Card</h3>
+        <h3 className="text-lg font-semibold">Card Title</h3>
         <p className="mt-2 text-sm text-contrast-400">
           This is a simple card component with some basic content.
         </p>
       </div>
     ),
   },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
 };
 
+// Clickable card with link
 export const WithLink: Story = {
   args: {
     children: (
@@ -65,216 +137,113 @@ export const WithLink: Story = {
       ariaLabel: 'Learn more about this card',
     },
   },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
 };
 
+// Card with asChild link for router integration
+export const WithAsChildLink: Story = {
+  name: 'With asChild Link (Monolith)',
+  render: () => (
+    <Card
+      link={{
+        href: '/products',
+        ariaLabel: 'View products',
+        asChild: true,
+        children: (
+          <a
+            href="/products"
+            onClick={(e) => {
+              e.preventDefault();
+              alert('This would navigate using your routing library');
+            }}
+          />
+        ),
+      }}
+    >
+      <h3 className="text-lg font-semibold">Router Integration</h3>
+      <p className="mt-2 text-sm text-contrast-400">
+        Using asChild on the link for Next.js Link or React Router.
+      </p>
+    </Card>
+  ),
+};
+
+// Card with as prop for semantic element
+export const WithAsRoot: Story = {
+  name: 'With as Prop (Monolith)',
+  render: () => (
+    <Card as="article" link={{ href: '#', ariaLabel: 'Learn more' }}>
+      <h3 className="text-lg font-semibold">Semantic Article</h3>
+      <p className="mt-2 text-sm text-contrast-400">
+        Using the as prop to render as an article element for better semantics.
+      </p>
+    </Card>
+  ),
+};
+
+// Card with icon
 export const WithIcon: Story = {
   args: {
     children: (
       <div>
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
+        <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
           <Package className="text-brand-shadow" size={24} />
         </div>
         <h3 className="text-lg font-semibold">Free Shipping</h3>
-        <p className="mt-2 text-sm text-contrast-400">
-          Get free shipping on all orders over $50. No code required.
-        </p>
+        <p className="mt-2 text-sm text-contrast-400">Get free shipping on all orders over $50.</p>
       </div>
     ),
   },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
 };
 
-export const FeatureCard: Story = {
-  args: {
-    children: (
-      <div>
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
-          <Shield className="text-brand-shadow" size={24} />
-        </div>
-        <h3 className="text-lg font-semibold">Secure Checkout</h3>
-        <p className="mt-2 text-sm text-contrast-400">
-          Your payment information is encrypted and secure. We never store your credit card details.
-        </p>
-        <div className="mt-4 flex items-center gap-2 font-semibold text-foreground">
-          <span>View security policy</span>
-          <ArrowRight
-            className="transition-transform duration-100 ease-linear group-hover/card:translate-x-1"
-            size={18}
-          />
-        </div>
-      </div>
-    ),
-    link: {
-      href: '#',
-      ariaLabel: 'View our security policy',
-    },
-  },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
-};
-
-export const AccountSignup: Story = {
-  args: {
-    children: (
-      <div>
-        <h3 className="text-lg font-semibold">Sign up for a personal account</h3>
-        <p className="mt-4 text-sm text-contrast-400">
-          Create a personal account to enjoy faster checkout, save shipping addresses, track your
-          orders, and build your shopping lists.
-        </p>
-        <div className="mt-6 flex items-center gap-3 font-semibold">
-          <span>Create personal account</span>
-          <ArrowRight
-            className="transition-transform duration-100 ease-linear group-hover/card:translate-x-1"
-            size={20}
-          />
-        </div>
-      </div>
-    ),
-    link: {
-      href: '#',
-      ariaLabel: 'Sign up for a personal account',
-    },
-  },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
-};
-
-export const MinimalContent: Story = {
-  args: {
-    children: (
-      <div className="text-center">
-        <h3 className="text-base font-semibold">Simple Card</h3>
-      </div>
-    ),
-  },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
-};
-
-export const LongContent: Story = {
-  args: {
-    children: (
-      <div>
-        <h3 className="text-lg font-semibold">Returns & Exchanges</h3>
-        <p className="mt-2 text-sm text-contrast-400">
-          We want you to be completely satisfied with your purchase. If for any reason you&apos;re
-          not happy with your order, you can return it within 30 days for a full refund. Items must
-          be unused and in their original packaging. Some exclusions may apply.
-        </p>
-        <div className="mt-4 flex items-center gap-2 font-semibold text-foreground">
-          <span>Read full policy</span>
-          <ArrowRight
-            className="transition-transform duration-100 ease-linear group-hover/card:translate-x-1"
-            size={18}
-          />
-        </div>
-      </div>
-    ),
-    link: {
-      href: '#',
-      ariaLabel: 'Read our full return policy',
-    },
-  },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
-};
-
-export const AsArticle: Meta<typeof Card> = {
-  args: {
-    as: 'article' as const,
-    children: (
-      <div>
-        <h3 className="text-lg font-semibold">This is a section element</h3>
-        <p className="mt-2 text-sm text-contrast-400">
-          Using the &quot;as&quot; prop, you can render this card as any HTML element.
-        </p>
-      </div>
-    ),
-  },
-  decorators: [(Story) => <div className="w-96">{Story()}</div>],
-};
-
-export const FeatureGrid: Story = {
+// Composable anatomy example
+export const ComposableAnatomy: Story = {
   render: () => (
-    <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <Card>
-        <div>
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
-            <Truck className="text-brand-shadow" size={24} />
-          </div>
-          <h3 className="text-base font-semibold">Fast Delivery</h3>
-          <p className="mt-2 text-sm text-contrast-400">
-            Get your order delivered within 2-3 business days.
-          </p>
-        </div>
-      </Card>
-      <Card>
-        <div>
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
-            <Shield className="text-brand-shadow" size={24} />
-          </div>
-          <h3 className="text-base font-semibold">Secure Payment</h3>
-          <p className="mt-2 text-sm text-contrast-400">Your payment info is always protected.</p>
-        </div>
-      </Card>
-      <Card>
-        <div>
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
-            <Package className="text-brand-shadow" size={24} />
-          </div>
-          <h3 className="text-base font-semibold">Easy Returns</h3>
-          <p className="mt-2 text-sm text-contrast-400">30-day return policy on all items.</p>
-        </div>
-      </Card>
-    </div>
+    <CardPrimitive.Root>
+      <h3 className="text-lg font-semibold">Composable Card</h3>
+      <p className="mt-2 text-sm text-contrast-400">Using primitives for custom card layouts.</p>
+      <CardPrimitive.Link aria-label="View details" href="#" />
+    </CardPrimitive.Root>
   ),
-  parameters: {
-    layout: 'padded',
-  },
 };
 
-export const InteractiveCards: Story = {
+// With as prop for semantic element (primitives)
+export const WithAsRootPrimitive: Story = {
+  name: 'With as Prop (Primitive)',
   render: () => (
-    <div className="grid w-full max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
-      <Card
-        link={{
-          href: '#',
-          ariaLabel: 'View all products',
-        }}
-      >
-        <div>
-          <h3 className="text-lg font-semibold">Shop All Products</h3>
-          <p className="mt-2 text-sm text-contrast-400">
-            Browse our complete collection of products.
-          </p>
-          <div className="text-foreshadow mt-4 flex items-center gap-2 font-semibold">
-            <span>Browse now</span>
-            <ArrowRight
-              className="transition-transform duration-100 ease-linear group-hover/card:translate-x-1"
-              size={18}
-            />
-          </div>
-        </div>
-      </Card>
-      <Card
-        link={{
-          href: '#',
-          ariaLabel: 'View sale items',
-        }}
-      >
-        <div>
-          <h3 className="text-lg font-semibold">Sale Items</h3>
-          <p className="mt-2 text-sm text-contrast-400">Save up to 50% on select products.</p>
-          <div className="text-foreshadow mt-4 flex items-center gap-2 font-semibold">
-            <span>Shop sale</span>
-            <ArrowRight
-              className="transition-transform duration-100 ease-linear group-hover/card:translate-x-1"
-              size={18}
-            />
-          </div>
-        </div>
-      </Card>
-    </div>
+    <CardPrimitive.Root as="article">
+      <h3 className="text-lg font-semibold">Semantic Article</h3>
+      <p className="mt-2 text-sm text-contrast-400">
+        Using the as prop to render as an article element for better semantics.
+      </p>
+      <CardPrimitive.Link aria-label="View details" href="#" />
+    </CardPrimitive.Root>
   ),
-  parameters: {
-    layout: 'padded',
-  },
+};
+
+// With asChild for router integration (primitives)
+export const WithAsChildLinkPrimitive: Story = {
+  name: 'With asChild Link (Primitive)',
+  render: () => (
+    <CardPrimitive.Root>
+      <h3 className="text-lg font-semibold">Router Integration</h3>
+      <p className="mt-2 text-sm text-contrast-400">
+        The Card.Link supports asChild for Next.js Link or React Router.
+      </p>
+      <CardPrimitive.Link asChild>
+        <a
+          aria-label="View products"
+          href="/products"
+          onClick={(e) => {
+            e.preventDefault();
+            alert('This would navigate using your routing library');
+          }}
+        />
+      </CardPrimitive.Link>
+    </CardPrimitive.Root>
+  ),
+};
+
+// Skeleton loading state
+export const Skeleton: Story = {
+  render: () => <CardPrimitive.Skeleton className="h-40 w-96" />,
 };

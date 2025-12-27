@@ -32,6 +32,14 @@ export {
   type CarouselPrevProps as PrevProps,
 } from '@/components/carousel/primitives/carousel-prev';
 export {
+  CarouselPrevIcon as PrevIcon,
+  type CarouselPrevIconProps as PrevIconProps,
+} from '@/components/carousel/primitives/carousel-prev-icon';
+export {
   CarouselNext as Next,
   type CarouselNextProps as NextProps,
 } from '@/components/carousel/primitives/carousel-next';
+export {
+  CarouselNextIcon as NextIcon,
+  type CarouselNextIconProps as NextIconProps,
+} from '@/components/carousel/primitives/carousel-next-icon';

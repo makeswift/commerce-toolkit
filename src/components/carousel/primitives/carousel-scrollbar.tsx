@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentProps } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -6,7 +8,7 @@ import { cn } from '@/lib';
 
 export type CarouselScrollbarProps = ComponentProps<'div'>;
 
-export function CarouselScrollbar({ className }: CarouselScrollbarProps) {
+export function CarouselScrollbar({ className, ...props }: CarouselScrollbarProps) {
   const { api, canScrollPrev, canScrollNext } = useCarousel();
 
   const [progress, setProgress] = useState(0);
@@ -73,6 +75,7 @@ export function CarouselScrollbar({ className }: CarouselScrollbarProps) {
         className,
       )}
       data-slot="carousel-scrollbar"
+      {...props}
     >
       <input
         aria-label="Carousel scrollbar"

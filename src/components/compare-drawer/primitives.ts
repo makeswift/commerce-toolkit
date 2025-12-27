@@ -42,3 +42,15 @@ export {
   CompareDrawerRemove as Remove,
   type CompareDrawerRemoveProps as RemoveProps,
 } from '@/components/compare-drawer/primitives/compare-drawer-remove';
+export {
+  CompareDrawerRemoveIcon as RemoveIcon,
+  type CompareDrawerRemoveIconProps as RemoveIconProps,
+} from '@/components/compare-drawer/primitives/compare-drawer-remove-icon';
+export {
+  CompareDrawerSubmitIcon as SubmitIcon,
+  type CompareDrawerSubmitIconProps as SubmitIconProps,
+} from '@/components/compare-drawer/primitives/compare-drawer-submit-icon';
+export {
+  CompareDrawerSubmit as Submit,
+  type CompareDrawerSubmitProps as SubmitProps,
+} from '@/components/compare-drawer/primitives/compare-drawer-submit';

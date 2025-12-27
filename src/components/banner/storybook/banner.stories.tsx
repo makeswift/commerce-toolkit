@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 
 import { Banner, type BannerProps } from '@/components/banner';
+import * as BannerPrimitive from '@/components/banner/primitives';
 import { Button } from '@/components/button';
 
 // Wrapper component to handle banner reset functionality
@@ -50,6 +51,28 @@ const meta: Meta<typeof Banner> = {
   component: Banner,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: `
+A dismissible banner component for displaying promotional messages, announcements, and notifications at the top of a page.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --banner-focus: var(--foreground);
+  --banner-background: var(--brand);
+  --banner-text: var(--foreground);
+  --banner-close-icon: color-mix(in oklab, var(--foreground) 50%, transparent);
+  --banner-close-icon-hover: var(--foreground);
+  --banner-close-background: transparent;
+  --banner-close-background-hover: color-mix(in oklab, var(--background) 40%, transparent);
+  --banner-font-family: var(--font-family-body);
+}
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -85,6 +108,14 @@ export const WithoutDismiss: Story = {
       Important: Our store will be closed on December 25th
     </BannerWithReset>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Set `hideDismiss` to `true` to display a permanent banner that cannot be dismissed by the user.',
+      },
+    },
+  },
 };
 
 export const ShippingPromotion: Story = {
@@ -93,113 +124,69 @@ export const ShippingPromotion: Story = {
       🚚 <strong>Free shipping</strong> on all orders over $50
     </BannerWithReset>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Banners support rich content including emojis and HTML elements like `<strong>`.',
+      },
+    },
+  },
 };
 
-export const SaleAnnouncement: Story = {
-  render: () => (
-    <BannerWithReset id="sale-banner">
-      ✨ <strong>Summer Sale:</strong> Up to 50% off select items. Shop now!
-    </BannerWithReset>
-  ),
-};
+/**
+ * The Banner can be built using composable primitives for full customization.
+ * This example shows the component anatomy using the primitive components.
+ */
+export const ComposableAnatomy: Story = {
+  render: () => {
+    const [key, setKey] = useState(0);
+    const bannerId = 'composable-banner';
 
-export const NewArrival: Story = {
-  render: () => (
-    <BannerWithReset id="new-arrival-banner">
-      🎉 New collection just dropped! <strong>Explore now</strong>
-    </BannerWithReset>
-  ),
-};
+    useEffect(() => {
+      localStorage.removeItem(`${bannerId}-hidden-banner`);
+    }, []);
 
-export const LimitedTimeOffer: Story = {
-  render: () => (
-    <BannerWithReset id="limited-offer-banner">
-      ⏰ <strong>24 Hour Flash Sale</strong> - Extra 20% off everything!
-    </BannerWithReset>
-  ),
-};
+    const handleReset = () => {
+      localStorage.removeItem(`${bannerId}-hidden-banner`);
+      setKey((prev) => prev + 1);
+    };
 
-export const LongMessage: Story = {
-  render: () => (
-    <BannerWithReset id="long-message-banner">
-      Welcome to our store! We are currently offering free shipping on all orders over $50, plus get
-      an additional 15% off your first order with code WELCOME15. Limited time offer!
-    </BannerWithReset>
-  ),
-};
-
-export const WithCallback: Story = {
-  render: () => (
-    <BannerWithReset id="callback-banner" onDismiss={() => console.log('Banner dismissed!')}>
-      This banner logs to console when dismissed
-    </BannerWithReset>
-  ),
-};
-
-export const InteractiveBanner = () => {
-  const [key, setKey] = useState(0);
-  const bannerId = 'interactive-banner';
-
-  useEffect(() => {
-    // Clear localStorage on mount
-    localStorage.removeItem(`${bannerId}-hidden-banner`);
-  }, []);
-
-  const handleReset = () => {
-    localStorage.removeItem(`${bannerId}-hidden-banner`);
-    setKey((prev) => prev + 1);
-  };
-
-  return (
-    <div className="pb-4">
-      <Banner hideDismiss={false} id={bannerId} key={key}>
-        Get <strong>15% off</strong> and free shipping with discount code{' '}
-        <strong>&quot;WELCOME&quot;</strong>
-      </Banner>
-      <div className="mt-8 flex justify-center">
-        <Button onClick={handleReset} variant="primary">
-          Reset Banner
-        </Button>
+    return (
+      <div className="pb-4">
+        <BannerPrimitive.Root id={bannerId} key={key}>
+          <BannerPrimitive.Content>
+            <BannerPrimitive.Text>
+              ✨ <strong>Summer Sale:</strong> Up to 50% off select items. Shop now!
+            </BannerPrimitive.Text>
+            <BannerPrimitive.Dismiss />
+          </BannerPrimitive.Content>
+        </BannerPrimitive.Root>
+        <div className="mt-8 flex justify-center">
+          <Button onClick={handleReset} variant="primary">
+            Reset Banner
+          </Button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the composable primitives to build custom banner layouts:
 
-export const MultipleBanners = () => {
-  const [keys, setKeys] = useState({ banner1: 0, banner2: 0, banner3: 0 });
+\`\`\`tsx
+import * as BannerPrimitive from '@/components/banner/primitives';
 
-  useEffect(() => {
-    // Clear localStorage on mount
-    localStorage.removeItem('banner-1-hidden-banner');
-    localStorage.removeItem('banner-2-hidden-banner');
-    localStorage.removeItem('banner-3-hidden-banner');
-  }, []);
-
-  const handleResetAll = () => {
-    localStorage.removeItem('banner-1-hidden-banner');
-    localStorage.removeItem('banner-2-hidden-banner');
-    localStorage.removeItem('banner-3-hidden-banner');
-    setKeys({ banner1: keys.banner1 + 1, banner2: keys.banner2 + 1, banner3: keys.banner3 + 1 });
-  };
-
-  return (
-    <div className="pb-4">
-      <div className="space-y-4">
-        <Banner hideDismiss={false} id="banner-1" key={keys.banner1}>
-          🎁 <strong>Holiday Sale:</strong> 30% off sitewide!
-        </Banner>
-        <Banner hideDismiss={false} id="banner-2" key={keys.banner2}>
-          🚚 Free shipping on orders over $75
-        </Banner>
-        <Banner hideDismiss={true} id="banner-3" key={keys.banner3}>
-          📢 Store hours: Mon-Fri 9AM-6PM, Sat-Sun 10AM-4PM
-        </Banner>
-      </div>
-      <div className="mt-8 flex justify-center">
-        <Button onClick={handleResetAll} variant="primary">
-          Reset All Banners
-        </Button>
-      </div>
-    </div>
-  );
+<BannerPrimitive.Root id="unique-id">
+  <BannerPrimitive.Content>
+    <BannerPrimitive.Text>Banner message</BannerPrimitive.Text>
+    <BannerPrimitive.Dismiss />
+  </BannerPrimitive.Content>
+</BannerPrimitive.Root>
+\`\`\`
+        `,
+      },
+    },
+  },
 };

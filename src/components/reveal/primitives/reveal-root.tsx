@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { ComponentProps, ReactNode, RefObject } from 'react';
+import type { ComponentProps, CSSProperties, ReactNode, RefObject } from 'react';
 
 import { cn } from '@/lib';
 
@@ -82,9 +82,20 @@ export function RevealRoot({
     [isOpen, hasOverflow, variant, showLabel, hideLabel, maxHeight, toggleOpen],
   );
 
+  const revealStyle: CSSProperties & { '--reveal-max-height': string } = {
+    '--reveal-max-height': `${maxHeight}px`,
+  };
+
   return (
     <RevealContext.Provider value={contextValues}>
-      <div className={cn('relative', className)} {...props}>
+      <div
+        className={cn('group/reveal relative', className)}
+        data-open={isOpen}
+        data-overflow={hasOverflow}
+        data-slot="reveal-root"
+        style={revealStyle}
+        {...props}
+      >
         {children}
       </div>
     </RevealContext.Provider>

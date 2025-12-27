@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, LoaderCircle, X } from 'lucide-react';
 
 import { Button } from '@/components/button';
 
@@ -8,6 +8,59 @@ const meta = {
   component: Button,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A versatile button component with multiple variants, sizes, and shapes.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --button-focus: var(--brand);
+  --button-font-family: var(--font-family-body);
+  --button-brand-background: var(--brand);
+  --button-brand-text: var(--foreground);
+  --button-primary-background: var(--foreground);
+  --button-primary-text: var(--background);
+  --button-outline-background: var(--background);
+  --button-outline-text: var(--foreground);
+  --button-outline-border: var(--contrast-200);
+  --button-ghost-text: var(--foreground);
+  --button-danger-background: var(--error);
+  --button-danger-text: var(--background);
+  --button-loader-icon: var(--foreground);
+}
+\`\`\`
+
+## Custom Loader Icon
+
+The loading spinner can be customized using the \`loaderIcon\` prop with \`asChild\`:
+
+\`\`\`tsx
+<Button
+  loading
+  loaderIcon={{
+    asChild: true,
+    children: <LoaderCircle />,
+  }}
+>
+  Loading...
+</Button>
+\`\`\`
+
+The \`LoaderIcon\` primitive is also available:
+
+\`\`\`tsx
+import * as ButtonPrimitive from '@/components/button';
+
+<ButtonPrimitive.LoaderIcon asChild>
+  <MyCustomSpinner />
+</ButtonPrimitive.LoaderIcon>
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -29,6 +82,10 @@ const meta = {
     loading: {
       control: 'boolean',
       description: 'Shows a loading spinner',
+    },
+    loaderIcon: {
+      control: false,
+      description: 'Custom loader icon with asChild support',
     },
     disabled: {
       control: 'boolean',
@@ -142,6 +199,17 @@ export const Loading: Story = {
   args: {
     loading: true,
     children: 'Loading Button',
+  },
+};
+
+export const CustomLoaderIcon: Story = {
+  args: {
+    loading: true,
+    loaderIcon: {
+      asChild: true,
+      children: <LoaderCircle />,
+    },
+    children: 'Custom Loader',
   },
 };
 

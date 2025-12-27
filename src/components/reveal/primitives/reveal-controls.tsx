@@ -13,7 +13,11 @@ export function RevealControls({ children, className, ...props }: RevealControls
   if (!hasOverflow) return null;
 
   return (
-    <div className={cn('flex w-full items-end pt-4', className)} {...props}>
+    <div
+      className={cn('flex w-full items-end pt-4', className)}
+      data-slot="reveal-controls"
+      {...props}
+    >
       {children}
     </div>
   );

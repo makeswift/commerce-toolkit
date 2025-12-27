@@ -14,7 +14,7 @@ export interface ScrollAreaProps extends ComponentProps<typeof ScrollAreaPrimiti
  *
  * ```css
  * :root {
- *   --scroll-area-background: var(--contrast-100);
+ *   --scroll-area-focus: var(--brand);
  *   --scroll-area-thumb: var(--contrast-200);
  * }
  * ```

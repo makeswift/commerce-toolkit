@@ -1,25 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DollarSign } from 'lucide-react';
-import type { ComponentType, ReactNode } from 'react';
+import type { ComponentType } from 'react';
 import { useState } from 'react';
 
-import { Button } from '@/components/button';
-import { Input } from '@/components/input';
+import { RangeInput, type RangeInputProps } from '@/components/range-input';
 import * as RangeInputPrimitive from '@/components/range-input/primitives';
-import { RangeInput, type RangeInputValue } from '@/components/range-input/range-input';
 
-// Wrapper component for stories
-interface RangeInputStoryProps {
-  children?: ReactNode;
-}
-
-function RangeInputStory({ children }: RangeInputStoryProps) {
-  return <div className="w-80">{children}</div>;
-}
-
-const meta: Meta<typeof RangeInputStory> = {
+const meta: Meta<typeof RangeInput> = {
   title: 'Components/RangeInput',
-  component: RangeInputStory,
+  component: RangeInput,
   parameters: {
     layout: 'centered',
     docs: {
@@ -31,25 +19,20 @@ A range input component for selecting minimum and maximum values, commonly used 
 
 The RangeInput uses the Input and Button components internally, which support theming through CSS variables:
 
-### Input Variables
-
 \`\`\`css
 :root {
+  /* Input */
   --input-light-background: var(--background);
   --input-light-text: var(--foreground);
   --input-light-placeholder: var(--contrast-500);
   --input-light-border: var(--contrast-100);
   --input-light-focus: var(--foreground);
-}
-\`\`\`
 
-### Button Variables
-
-\`\`\`css
-:root {
-  --button-light-secondary-background: var(--contrast-100);
-  --button-light-secondary-background-hover: var(--contrast-200);
-  --button-light-secondary-text: var(--foreground);
+  /* Button */
+  --button-light-outline-background: transparent;
+  --button-light-outline-background-hover: var(--contrast-100);
+  --button-light-outline-border: var(--contrast-100);
+  --button-light-outline-text: var(--foreground);
 }
 \`\`\`
 
@@ -57,20 +40,22 @@ The RangeInput uses the Input and Button components internally, which support th
 
 ### High-Level Component
 
-The \`RangeInput\` component provides a controlled API with \`inputValue\` and \`onInputChange\` props:
+The \`RangeInput\` component is a controlled component with \`inputValue\` and \`onInputChange\`:
 
 \`\`\`tsx
-import { RangeInput, type RangeInputValue } from '@/components/range-input';
+import { RangeInput } from '@/components/range-input';
 import { useState } from 'react';
 
-function MyComponent() {
-  const [value, setValue] = useState<RangeInputValue>({ min: '', max: '' });
+function PriceFilter() {
+  const [value, setValue] = useState({ min: '', max: '' });
 
   return (
     <RangeInput
       inputValue={value}
       onInputChange={setValue}
       onApply={(range) => console.log('Applied:', range)}
+      minPlaceholder="Min"
+      maxPlaceholder="Max"
     />
   );
 }
@@ -78,20 +63,17 @@ function MyComponent() {
 
 ### Composable Anatomy
 
-For more control, use the primitive components directly:
+For more control, use the primitive components directly. The \`RangeInput.Root\` handles the layout automatically using \`data-slot\` selectors:
 
 \`\`\`tsx
 import * as RangeInput from '@/components/range-input';
-import { Input } from '@/components/input';
-import { Button } from '@/components/button';
-import { ArrowRight } from 'lucide-react';
 
 <RangeInput.Root>
-  <Input type="number" placeholder="Min" />
-  <Input type="number" placeholder="Max" />
-  <Button shape="circle" size="small" variant="outline">
-    <ArrowRight size={20} strokeWidth={1} />
-  </Button>
+  <RangeInput.Field type="number" placeholder="Min" />
+  <RangeInput.Field type="number" placeholder="Max" />
+  <RangeInput.Button shape="circle" size="small" variant="outline">
+    <RangeInput.Icon />
+  </RangeInput.Button>
 </RangeInput.Root>
 \`\`\`
         `,
@@ -99,9 +81,35 @@ import { ArrowRight } from 'lucide-react';
     },
   },
   tags: ['autodocs'],
+  argTypes: {
+    inputValue: {
+      control: false,
+      description: 'The controlled input values for min and max',
+    },
+    onInputChange: {
+      control: false,
+      description: 'Callback when input values change',
+    },
+    onApply: {
+      control: false,
+      description: 'Callback when the apply button is clicked',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the inputs are disabled',
+    },
+    minPlaceholder: {
+      control: 'text',
+      description: 'Placeholder for the min input',
+    },
+    maxPlaceholder: {
+      control: 'text',
+      description: 'Placeholder for the max input',
+    },
+  },
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex items-center justify-center p-8">
+      <div className="w-80">
         <Story />
       </div>
     ),
@@ -109,166 +117,61 @@ import { ArrowRight } from 'lucide-react';
 };
 
 export default meta;
+type Story = StoryObj<RangeInputProps>;
 
-type Story = StoryObj<typeof meta>;
-
+// Default range input
 export const Default: Story = {
-  args: {},
   render: () => {
-    const [value, setValue] = useState<RangeInputValue>({ min: '', max: '' });
+    const [value, setValue] = useState({ min: '', max: '' });
 
-    return (
-      <div className="w-80">
-        <RangeInput
-          inputValue={value}
-          onApply={(range) => console.log('Applied:', range)}
-          onInputChange={setValue}
-        />
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'The default RangeInput with min and max placeholders.',
-      },
-    },
+    return <RangeInput inputValue={value} onInputChange={setValue} />;
   },
 };
 
-export const WithInitialValues: Story = {
-  args: {},
+// Controlled with initial values
+export const Controlled: Story = {
   render: () => {
-    const [value, setValue] = useState<RangeInputValue>({ min: '25', max: '100' });
+    const [value, setValue] = useState({ min: '25', max: '100' });
 
     return (
-      <div className="w-80">
-        <RangeInput
-          inputValue={value}
-          onApply={(range) => console.log('Applied:', range)}
-          onInputChange={setValue}
-        />
-      </div>
+      <RangeInput
+        inputValue={value}
+        onApply={(range) => console.log('Applied:', range)}
+        onInputChange={setValue}
+      />
     );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'RangeInput initialized with preset minimum and maximum values.',
-      },
-    },
   },
 };
 
-export const PriceFilter: Story = {
-  args: {},
-  render: () => {
-    const [value, setValue] = useState<RangeInputValue>({ min: '', max: '' });
-    const [appliedRange, setAppliedRange] = useState<{
-      min: number | null;
-      max: number | null;
-    } | null>(null);
-
-    return (
-      <div className="w-80 space-y-4">
-        <RangeInput
-          inputValue={value}
-          max={500}
-          maxPlaceholder="500"
-          maxPrepend={<DollarSign className="h-4 w-4" strokeWidth={1.5} />}
-          min={0}
-          minPlaceholder="0"
-          minPrepend={<DollarSign className="h-4 w-4" strokeWidth={1.5} />}
-          onApply={setAppliedRange}
-          onInputChange={setValue}
-        />
-        {appliedRange && (
-          <div className="rounded-lg bg-contrast-100 p-3 text-sm">
-            <span className="font-medium text-contrast-500">Applied range:</span>{' '}
-            <span className="text-foreground">
-              ${appliedRange.min ?? 0} – ${appliedRange.max ?? 500}
-            </span>
-          </div>
-        )}
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'A price filter with currency icons prepended to each input field. Commonly used in e-commerce product filters.',
-      },
-    },
-  },
-};
-
-export const Disabled: Story = {
-  args: {},
-  render: () => {
-    const [value, setValue] = useState<RangeInputValue>({ min: '10', max: '50' });
-
-    return (
-      <div className="w-80">
-        <RangeInput
-          disabled
-          inputValue={value}
-          onApply={(range) => console.log('Applied:', range)}
-          onInputChange={setValue}
-        />
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Disabled state prevents user interaction.',
-      },
-    },
-  },
-};
-
+// Composable anatomy example
 export const ComposableAnatomy: Story = {
-  args: {},
   render: () => {
     const [minValue, setMinValue] = useState('');
     const [maxValue, setMaxValue] = useState('');
 
     return (
       <RangeInputPrimitive.Root>
-        <Input
-          className="flex-1"
-          min={0}
+        <RangeInputPrimitive.Field
           onChange={(e) => setMinValue(e.currentTarget.value)}
           placeholder="Min"
           type="number"
           value={minValue}
         />
-        <Input
-          className="flex-1"
-          max={100}
+        <RangeInputPrimitive.Field
           onChange={(e) => setMaxValue(e.currentTarget.value)}
           placeholder="Max"
           type="number"
           value={maxValue}
         />
-        <Button
+        <RangeInputPrimitive.Button
           onClick={() => console.log('Apply:', { min: minValue, max: maxValue })}
           shape="circle"
           size="small"
           variant="outline"
         >
-          Go
-        </Button>
+          <RangeInputPrimitive.Icon />
+        </RangeInputPrimitive.Button>
       </RangeInputPrimitive.Root>
     );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Using the primitive components directly for full control over the range input structure.',
-      },
-    },
   },
 };

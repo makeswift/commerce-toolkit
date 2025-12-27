@@ -10,6 +10,7 @@ export function CursorPaginationSkeleton({ className, ...props }: CursorPaginati
   return (
     <div
       className={cn('py-10 text-[var(--cursor-pagination-icon,var(--foreground))]', className)}
+      data-slot="cursor-pagination-skeleton"
       {...props}
     >
       <div className="flex items-center justify-center gap-3">

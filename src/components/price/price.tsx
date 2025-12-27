@@ -48,8 +48,8 @@ export function Price({ className, price, ...props }: PriceProps) {
       )}
       {price.type === 'sale' && (
         <>
-          <PricePrimitive.Strike>{price.currentValue}</PricePrimitive.Strike>{' '}
-          <PricePrimitive.Default>{price.previousValue}</PricePrimitive.Default>
+          <PricePrimitive.Strike>{price.previousValue}</PricePrimitive.Strike>{' '}
+          <PricePrimitive.Default>{price.currentValue}</PricePrimitive.Default>
         </>
       )}
       {price.type === 'default' && <PricePrimitive.Default>{price.value}</PricePrimitive.Default>}

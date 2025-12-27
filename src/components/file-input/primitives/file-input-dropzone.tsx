@@ -1,10 +1,10 @@
 'use client';
 
-import { clsx } from 'clsx';
 import { useCallback, useState } from 'react';
 import type { ClipboardEvent, ComponentPropsWithoutRef, DragEvent, KeyboardEvent } from 'react';
 
 import { useFileInput } from '@/components/file-input';
+import { cn } from '@/lib';
 
 export type FileInputDropzoneProps = ComponentPropsWithoutRef<'div'>;
 
@@ -96,28 +96,17 @@ export function FileInputDropzone({ children, className, ...props }: FileInputDr
       aria-controls={`${id}-input ${id}-list`}
       aria-disabled={disabled === true ? true : undefined}
       aria-invalid={invalid === true ? true : undefined}
-      className={clsx(
-        // Base layout
-        'min-h-19 flex flex-col items-center justify-center gap-1.5',
-        // Spacing
-        'p-4',
-        // Borders & Rounded
-        'rounded-lg border-[1.5px] border-dashed border-[var(--file-input-dropzone-border,var(--contrast-200))]',
-        // Background
-        'bg-[var(--file-input-dropzone-background,var(--background))]',
-        // Interaction
-        'cursor-pointer select-none',
-        // Transitions
-        'transition-colors duration-300 ease-in-out',
+      className={cn(
+        'min-h-19 flex cursor-pointer select-none flex-col items-center justify-center gap-1.5 rounded-lg border-[1.5px] border-dashed border-[var(--file-input-dropzone-border,var(--contrast-200))] bg-[var(--file-input-dropzone-background,var(--background))] p-4 transition-colors duration-300 ease-in-out',
         // Hover state
         'hover:border-[var(--file-input-dropzone-border-hover,var(--foreground))] hover:bg-[var(--file-input-dropzone-background-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--brand))] focus-visible:ring-offset-2',
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--file-input-focus,var(--brand))]',
         // Disabled state
-        'group-aria-disabled:cursor-not-allowed group-aria-disabled:border-[var(--file-input-dropzone-border-disabled,color-mix(in_oklab,var(--contrast-200)_70%,transparent))] group-aria-disabled:bg-[var(--file-input-dropzone-background-disabled,var(--background))]',
-        'group-aria-disabled:focus-visible:outline-none group-aria-disabled:focus-visible:ring-0 group-aria-disabled:focus-visible:ring-offset-0',
+        'group-aria-disabled/file-input:cursor-not-allowed group-aria-disabled/file-input:border-[var(--file-input-dropzone-border-disabled,color-mix(in_oklab,var(--contrast-200)_70%,transparent))] group-aria-disabled/file-input:bg-[var(--file-input-dropzone-background-disabled,var(--background))]',
+        'group-aria-disabled/file-input:focus-visible:outline-0',
         // Invalid state
-        'group-aria-invalid:border-[var(--file-input-dropzone-border-error,var(--error))]',
+        'group-aria-invalid/file-input:border-[var(--file-input-dropzone-border-error,var(--error))]',
         // Dragging state
         'data-[dragging]:border-[var(--file-input-dropzone-border-dragging,var(--foreground))] data-[dragging]:bg-[var(--file-input-dropzone-background-dragging,color-mix(in_oklab,var(--success),white_75%))]',
         // Container queries
@@ -125,6 +114,7 @@ export function FileInputDropzone({ children, className, ...props }: FileInputDr
         className,
       )}
       data-dragging={isDragging ? '' : undefined}
+      data-slot="file-input-dropzone"
       onClick={handleClick}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}

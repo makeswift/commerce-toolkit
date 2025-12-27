@@ -9,7 +9,7 @@ export function NavigationMenuLink({ className, children, ...props }: Navigation
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'group inline-flex h-9 w-max items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-semibold text-[var(--nav-link-text,var(--foreground))] outline-none transition-[color,box-shadow] duration-200 [font-family:var(--nav-link-font-family,var(--font-family-body))]',
+        'group/navigation-menu-link inline-flex h-9 w-max items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-semibold text-[var(--nav-link-text,var(--foreground))] outline-none transition-[color,box-shadow] duration-200 [font-family:var(--nav-link-font-family,var(--font-family-body))]',
         // Hover state
         'hover:bg-[var(--nav-link-background-hover,var(--contrast-100))] hover:text-[var(--nav-link-text-hover,var(--foreground))]',
         // Focus state

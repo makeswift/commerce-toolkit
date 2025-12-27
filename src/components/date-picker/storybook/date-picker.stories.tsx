@@ -1,53 +1,45 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CalendarIcon } from 'lucide-react';
-import type { ComponentType, ReactNode } from 'react';
+import { CalendarDays } from 'lucide-react';
+import type { ComponentType } from 'react';
 import { useState } from 'react';
 
-import { Calendar } from '@/components/calendar';
-import { DatePicker } from '@/components/date-picker/date-picker';
+import { DatePicker, type DatePickerProps } from '@/components/date-picker';
 import * as DatePickerPrimitive from '@/components/date-picker/primitives';
-import { Input } from '@/components/input';
 
-// Wrapper component for stories to avoid complex type issues
-interface DatePickerStoryProps {
-  children?: ReactNode;
+function addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+
+  result.setDate(result.getDate() + days);
+
+  return result;
 }
 
-function DatePickerStory({ children, ...props }: DatePickerStoryProps) {
-  return <DatePickerPrimitive.Root {...props}>{children}</DatePickerPrimitive.Root>;
-}
-
-const meta: Meta<typeof DatePickerStory> = {
+const meta: Meta<typeof DatePicker> = {
   title: 'Components/DatePicker',
-  component: DatePickerStory,
+  component: DatePicker,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component: `
-A date picker component that combines an input field with a calendar popover for selecting dates.
+A date picker component that combines an input field with a calendar popover. Built on top of Radix UI Popover and react-day-picker.
 
 ## CSS Variables
 
-The DatePicker uses the Input and Calendar components internally, which support theming through CSS variables:
-
-### Input Variables
+The DatePicker uses CSS variables from the Input and Calendar components:
 
 \`\`\`css
 :root {
+  /* Input styling */
   --input-light-background: var(--background);
-  --input-light-text: var(--foreground);
-  --input-light-placeholder: var(--contrast-500);
   --input-light-border: var(--contrast-100);
   --input-light-focus: var(--foreground);
   --input-light-border-error: var(--error);
-}
-\`\`\`
+  --input-light-text: var(--foreground);
+  --input-light-placeholder: var(--contrast-500);
+  --input-light-icon: var(--contrast-400);
 
-### Calendar Variables
-
-\`\`\`css
-:root {
+  /* Calendar styling */
   --calendar-font-family: var(--font-family-body);
   --calendar-light-focus: var(--foreground);
   --calendar-light-border: var(--contrast-100);
@@ -64,23 +56,20 @@ The DatePicker uses the Input and Calendar components internally, which support 
 
 ### High-Level Component
 
-The \`DatePicker\` component provides a controlled API with \`selected\` and \`onCalendarSelect\` props:
+The \`DatePicker\` component provides a simple API for single date selection:
 
 \`\`\`tsx
-import { DatePicker } from '@/components/date-picker/date-picker';
-import { useState } from 'react';
+import { DatePicker } from '@/components/date-picker';
 
-function MyComponent() {
-  const [date, setDate] = useState<Date | undefined>(undefined);
+const [date, setDate] = useState<Date | undefined>();
 
-  return (
-    <DatePicker
-      selected={date}
-      onCalendarSelect={setDate}
-      placeholder="Select a date"
-    />
-  );
-}
+<DatePicker
+  id="date-field"
+  name="date"
+  selected={date}
+  onCalendarSelect={setDate}
+  placeholder="Select a date"
+/>
 \`\`\`
 
 ### Composable Anatomy
@@ -89,22 +78,27 @@ For more control, use the primitive components directly:
 
 \`\`\`tsx
 import * as DatePicker from '@/components/date-picker';
-import { Calendar } from '@/components/calendar';
-import { Input } from '@/components/input';
-import { CalendarIcon } from 'lucide-react';
 
 <DatePicker.Root>
   <DatePicker.Trigger asChild>
-    <Input
+    <DatePicker.Input
+      id="date-field"
+      name="date"
       placeholder="MM/DD/YYYY"
-      prepend={<CalendarIcon className="h-5 w-5" strokeWidth={1} />}
+      prependIcon={{
+        asChild: true,
+        children: <DatePicker.Icon />,
+      }}
       readOnly
-      value={date ? Intl.DateTimeFormat().format(date) : ''}
     />
   </DatePicker.Trigger>
   <DatePicker.Portal>
     <DatePicker.Content align="start" sideOffset={8}>
-      <Calendar mode="single" selected={date} onCalendarSelect={setDate} />
+      <DatePicker.Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+      />
     </DatePicker.Content>
   </DatePicker.Portal>
 </DatePicker.Root>
@@ -114,185 +108,183 @@ import { CalendarIcon } from 'lucide-react';
     },
   },
   tags: ['autodocs'],
-  decorators: [
-    (Story: ComponentType) => (
-      <div className="flex items-center justify-center p-8">
-        <Story />
-      </div>
-    ),
-  ],
+  argTypes: {
+    id: {
+      control: 'text',
+      description: 'The id attribute for the input element',
+    },
+    name: {
+      control: 'text',
+      description: 'The name attribute for the input element',
+    },
+    selected: {
+      control: false,
+      description: 'The currently selected date',
+    },
+    onCalendarSelect: {
+      control: false,
+      description: 'Callback fired when a date is selected',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text displayed when no date is selected',
+    },
+    required: {
+      control: 'boolean',
+      description: 'Whether the input is required',
+    },
+    disabledDays: {
+      control: false,
+      description: 'Dates that cannot be selected',
+    },
+    icon: {
+      control: false,
+      description: 'Custom icon configuration with asChild and children props',
+    },
+  },
+  decorators: [(Story: ComponentType) => <Story />],
 };
 
 export default meta;
+type Story = StoryObj<DatePickerProps>;
 
-type Story = StoryObj<typeof meta>;
-
+/**
+ * The default DatePicker displays an input with a calendar icon that opens a calendar popover.
+ */
 export const Default: Story = {
-  args: {},
   render: () => {
-    const [date, setDate] = useState<Date | undefined>(undefined);
+    const [selected, setSelected] = useState<Date | undefined>(new Date());
 
-    return <DatePicker onCalendarSelect={setDate} placeholder="Select a date" selected={date} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'The default DatePicker with placeholder text.',
-      },
-    },
+    return (
+      <DatePicker
+        id="date-default"
+        name="date"
+        onCalendarSelect={setSelected}
+        placeholder="Select a date"
+        selected={selected}
+      />
+    );
   },
 };
 
-export const WithInitialDate: Story = {
-  args: {},
+/**
+ * A DatePicker with no initial value shows the placeholder text.
+ */
+export const WithPlaceholder: Story = {
   render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
+    const [selected, setSelected] = useState<Date | undefined>();
 
-    return <DatePicker onCalendarSelect={setDate} selected={date} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'DatePicker initialized with the current date.',
-      },
-    },
+    return (
+      <DatePicker
+        id="date-placeholder"
+        name="date"
+        onCalendarSelect={setSelected}
+        placeholder="Choose your date"
+        selected={selected}
+      />
+    );
   },
 };
 
-export const DisabledDays: Story = {
-  args: {},
+/**
+ * Customize the icon using the `icon` prop with `asChild` to render your own icon component.
+ */
+export const CustomIcon: Story = {
   render: () => {
-    const [date, setDate] = useState<Date | undefined>(undefined);
+    const [selected, setSelected] = useState<Date | undefined>(new Date());
 
-    // Disable weekends and past dates
-    const disabledDays = [
-      { dayOfWeek: [0, 6] }, // Weekends
-      { before: new Date() }, // Past dates
-    ];
+    return (
+      <DatePicker
+        icon={{ asChild: true, children: <CalendarDays /> }}
+        id="date-custom-icon"
+        name="date"
+        onCalendarSelect={setSelected}
+        placeholder="Select a date"
+        selected={selected}
+      />
+    );
+  },
+};
+
+/**
+ * Disable specific dates to prevent selection, such as past dates or weekends.
+ */
+export const DisabledDates: Story = {
+  render: () => {
+    const [selected, setSelected] = useState<Date | undefined>();
+
+    // Disable past dates and weekends
+    const disabledDays = [{ before: new Date() }, { dayOfWeek: [0, 6] }];
 
     return (
       <DatePicker
         disabledDays={disabledDays}
-        onCalendarSelect={setDate}
+        id="date-disabled"
+        name="date"
+        onCalendarSelect={setSelected}
         placeholder="Select a weekday"
-        selected={date}
+        selected={selected}
       />
     );
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use `disabledDays` to prevent selection of specific dates. This example disables weekends and past dates.',
-      },
-    },
-  },
 };
 
-export const Controlled: Story = {
-  args: {},
+/**
+ * Limit date selection to a specific range by disabling dates outside the range.
+ */
+export const DateRange: Story = {
   render: () => {
-    const [date, setDate] = useState<Date | undefined>(new Date());
+    const [selected, setSelected] = useState<Date | undefined>();
+
+    // Only allow dates within the next 30 days
+    const disabledDays = [{ before: new Date() }, { after: addDays(new Date(), 30) }];
 
     return (
-      <div className="space-y-4">
-        <DatePicker onCalendarSelect={setDate} selected={date} />
-        <div className="rounded-lg bg-contrast-100 p-3 text-sm">
-          <span className="font-medium text-contrast-500">Selected:</span>{' '}
-          <span className="text-foreground">
-            {date ? Intl.DateTimeFormat().format(date) : 'None'}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <button
-            className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
-            onClick={() => setDate(new Date())}
-            type="button"
-          >
-            Today
-          </button>
-          <button
-            className="rounded-lg bg-contrast-200 px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-contrast-300"
-            onClick={() => setDate(undefined)}
-            type="button"
-          >
-            Clear
-          </button>
-        </div>
-      </div>
+      <DatePicker
+        disabledDays={disabledDays}
+        id="date-range"
+        name="date"
+        onCalendarSelect={setSelected}
+        placeholder="Next 30 days only"
+        selected={selected}
+      />
     );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use `selected` and `onSelect` for controlled state management. The parent component manages the selected date.',
-      },
-    },
   },
 };
 
+/**
+ * Use the primitive components directly for full customization control.
+ */
 export const ComposableAnatomy: Story = {
-  args: {},
   render: () => {
-    const [date, setDate] = useState<Date | undefined>(undefined);
-
-    const formattedDate = date ? Intl.DateTimeFormat().format(date) : undefined;
+    const [selected, setSelected] = useState<Date | undefined>(new Date());
+    const formattedDate = selected ? Intl.DateTimeFormat().format(selected) : '';
 
     return (
       <DatePickerPrimitive.Root>
         <DatePickerPrimitive.Trigger asChild>
-          <Input
+          <DatePickerPrimitive.Input
+            id="date-composable"
+            name="date"
             placeholder="MM/DD/YYYY"
-            prepend={<CalendarIcon className="h-5 w-5" strokeWidth={1} />}
+            prependIcon={{
+              asChild: true,
+              children: <DatePickerPrimitive.Icon />,
+            }}
             readOnly
-            type="text"
-            value={formattedDate ?? ''}
+            value={formattedDate}
           />
         </DatePickerPrimitive.Trigger>
         <DatePickerPrimitive.Portal>
           <DatePickerPrimitive.Content align="start" sideOffset={8}>
-            <Calendar mode="single" onSelect={setDate} selected={date} />
+            <DatePickerPrimitive.Calendar
+              mode="single"
+              onSelect={setSelected}
+              selected={selected}
+            />
           </DatePickerPrimitive.Content>
         </DatePickerPrimitive.Portal>
       </DatePickerPrimitive.Root>
     );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Using the primitive components directly for full control over the date picker structure.',
-      },
-    },
-  },
-};
-
-export const BookingDate: Story = {
-  args: {},
-  render: () => {
-    const [date, setDate] = useState<Date | undefined>(undefined);
-
-    // Disable past dates
-    const disabledDays = { before: new Date() };
-
-    return (
-      <div className="space-y-3">
-        <label className="text-sm font-medium text-foreground">Delivery Date</label>
-        <DatePicker
-          disabledDays={disabledDays}
-          onCalendarSelect={setDate}
-          placeholder="Select delivery date"
-          selected={date}
-        />
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'DatePicker for selecting a delivery or booking date in e-commerce checkout flows.',
-      },
-    },
   },
 };

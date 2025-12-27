@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UploadIcon, XIcon } from 'lucide-react';
+import { Upload, X } from 'lucide-react';
 import type { ComponentType } from 'react';
 
 import * as FileInputPrimitive from '@/components/file-input';
 import { FileInput, type FileInputProps } from '@/components/file-input/file-input';
-import { Label } from '@/components/label';
 
 function formatBytes(bytes: number) {
   if (bytes === 0) return '0 B';
@@ -47,8 +46,6 @@ A file upload component with drag-and-drop support, progress tracking, and file 
 
 ## CSS Variables
 
-The FileInput component supports extensive theming through CSS variables:
-
 \`\`\`css
 :root {
   /* Dropzone */
@@ -88,6 +85,87 @@ The FileInput component supports extensive theming through CSS variables:
   /* File Icon */
   --file-input-icon: var(--contrast-400);
 }
+\`\`\`
+
+## Usage
+
+### High-Level Component
+
+The \`FileInput\` component provides a complete file upload experience:
+
+\`\`\`tsx
+import { FileInput } from '@/components/file-input';
+
+<FileInput
+  id="file-upload"
+  label="Upload files"
+  cta="Select files"
+  hint="or drag and drop files here"
+  multiple
+  accept="image/*"
+  maxSize={5 * 1024 * 1024} // 5MB
+  maxFiles={10}
+  onUploadFile={async (file, reportProgress) => {
+    // Upload logic with progress tracking
+    const result = await uploadToServer(file, reportProgress);
+    return result;
+  }}
+/>
+\`\`\`
+
+### Key Props
+
+- \`accept\` - Restrict file types (e.g., \`"image/*"\`, \`".pdf,.docx"\`)
+- \`multiple\` - Allow multiple file selection
+- \`maxSize\` - Maximum file size in bytes
+- \`maxFiles\` - Maximum number of files allowed
+- \`onUploadFile\` - Async upload handler with progress callback
+- \`onFileReject\` - Called when a file fails validation
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as FileInput from '@/components/file-input';
+
+<FileInput.Root id="custom-upload" multiple onUploadFile={handleUpload}>
+  <FileInput.Label>Upload files</FileInput.Label>
+  <FileInput.Dropzone>
+    <FileInput.Trigger>
+      <FileInput.UploadIcon />
+      Select files
+    </FileInput.Trigger>
+    <FileInput.DropzoneError />
+    <FileInput.DropzoneHint>or drag and drop here</FileInput.DropzoneHint>
+  </FileInput.Dropzone>
+  <FileInput.Message>Accepted formats: images, PDFs</FileInput.Message>
+  <FileInput.List>
+    {({ files }) =>
+      Array.from(files.entries()).map(([file]) => (
+        <FileInput.Item file={file} key={file.name}>
+          {({ fileState }) => (
+            <>
+              <FileInput.Metadata>
+                <FileInput.Details>
+                  <FileInput.Header>
+                    <FileInput.Icon />
+                    <FileInput.Name>{fileState.file.name}</FileInput.Name>
+                  </FileInput.Header>
+                  <FileInput.Status>...</FileInput.Status>
+                </FileInput.Details>
+              </FileInput.Metadata>
+              <FileInput.Remove>
+                <FileInput.RemoveIcon />
+              </FileInput.Remove>
+              {fileState.status === 'uploading' && <FileInput.Progress />}
+            </>
+          )}
+        </FileInput.Item>
+      ))
+    }
+  </FileInput.List>
+</FileInput.Root>
 \`\`\`
         `,
       },
@@ -143,18 +221,6 @@ The FileInput component supports extensive theming through CSS variables:
       control: 'text',
       description: 'Helper message displayed below the dropzone',
     },
-    uploadingLabel: {
-      control: 'text',
-      description: 'Label shown while uploading',
-    },
-    successLabel: {
-      control: 'text',
-      description: 'Label shown on successful upload',
-    },
-    errorLabel: {
-      control: 'text',
-      description: 'Label shown on upload error',
-    },
   },
   decorators: [
     (Story: ComponentType) => (
@@ -169,6 +235,7 @@ export default meta;
 
 type Story = StoryObj<FileInputProps>;
 
+// Default file input
 export const Default: Story = {
   args: {
     id: 'file-input-default',
@@ -179,6 +246,7 @@ export const Default: Story = {
   },
 };
 
+// With upload handler (shows progress)
 export const WithUploadHandler: Story = {
   args: {
     id: 'file-input-upload',
@@ -189,97 +257,9 @@ export const WithUploadHandler: Story = {
     multiple: true,
     onUploadFile: simulateUpload,
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When `onUploadFile` is provided, files are automatically uploaded after selection. Progress is tracked and displayed in real-time.',
-      },
-    },
-  },
 };
 
-export const SingleFile: Story = {
-  args: {
-    id: 'file-input-single',
-    label: 'Profile picture',
-    cta: 'Choose image',
-    hint: 'or drag and drop here',
-    accept: 'image/*',
-    multiple: false,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Set `multiple={false}` to allow only a single file selection.',
-      },
-    },
-  },
-};
-
-export const WithAcceptedTypes: Story = {
-  args: {
-    id: 'file-input-accepted',
-    label: 'Upload PDF documents',
-    cta: 'Select PDF',
-    hint: 'Only PDF files are accepted',
-    accept: '.pdf,application/pdf',
-    multiple: true,
-    message: 'Accepted formats: PDF',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Use the `accept` prop to restrict file types. Unsupported files will be rejected.',
-      },
-    },
-  },
-};
-
-export const WithMaxSize: Story = {
-  args: {
-    id: 'file-input-maxsize',
-    label: 'Upload images',
-    cta: 'Select images',
-    hint: 'Maximum 2MB per file',
-    accept: 'image/*',
-    multiple: true,
-    maxSize: 2 * 1024 * 1024, // 2MB
-    message: 'Images must be smaller than 2MB.',
-    onFileReject: (file, reason) => {
-      console.log(`File rejected: ${file.name} - ${reason}`);
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The `maxSize` prop limits individual file sizes. Files exceeding the limit will trigger the `onFileReject` callback.',
-      },
-    },
-  },
-};
-
-export const WithMaxFiles: Story = {
-  args: {
-    id: 'file-input-maxfiles',
-    label: 'Upload photos',
-    cta: 'Select photos',
-    hint: 'Maximum 3 photos allowed',
-    accept: 'image/*',
-    multiple: true,
-    maxFiles: 3,
-    message: 'You can upload up to 3 photos.',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Use `maxFiles` to limit the number of files that can be added.',
-      },
-    },
-  },
-};
-
+// Disabled state
 export const Disabled: Story = {
   args: {
     id: 'file-input-disabled',
@@ -290,71 +270,14 @@ export const Disabled: Story = {
   },
 };
 
-export const Invalid: Story = {
-  args: {
-    id: 'file-input-invalid',
-    label: 'Upload files',
-    cta: 'Upload file',
-    hint: 'or drag and drop files here',
-    invalid: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The `invalid` prop applies error styling to the dropzone. Validation errors from file rejection are automatically displayed in place of the hint.',
-      },
-    },
-  },
-};
-
-export const HiddenLabel: Story = {
-  args: {
-    id: 'file-input-hidden-label',
-    label: 'Upload files',
-    hideLabel: true,
-    cta: 'Upload file',
-    hint: 'or drag and drop files here',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Set `hideLabel={true}` to visually hide the label while keeping it accessible.',
-      },
-    },
-  },
-};
-
-export const CustomLabels: Story = {
-  args: {
-    id: 'file-input-custom-labels',
-    label: 'Attachments',
-    cta: 'Browse files',
-    hint: 'Drop files here to attach',
-    uploadingLabel: 'Sending...',
-    successLabel: 'Sent!',
-    errorLabel: 'Failed to send',
-    multiple: true,
-    onUploadFile: simulateUpload,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Customize the status labels shown during and after upload.',
-      },
-    },
-  },
-};
-
+// Composable anatomy example
 export const ComposableAnatomy: Story = {
   render: () => (
     <FileInputPrimitive.Root id="composable-file-input" multiple onUploadFile={simulateUpload}>
-      <Label className="mb-2" htmlFor="composable-file-input-input">
-        Upload files
-      </Label>
+      <FileInputPrimitive.Label>Upload files</FileInputPrimitive.Label>
       <FileInputPrimitive.Dropzone>
         <FileInputPrimitive.Trigger>
-          <UploadIcon className="size-5" />
+          <Upload size={20} />
           Select files
         </FileInputPrimitive.Trigger>
         <FileInputPrimitive.DropzoneError />
@@ -399,7 +322,7 @@ export const ComposableAnatomy: Story = {
                     </FileInputPrimitive.Details>
                   </FileInputPrimitive.Metadata>
                   <FileInputPrimitive.Remove>
-                    <XIcon className="size-5" />
+                    <X size={20} />
                   </FileInputPrimitive.Remove>
                   {status === 'uploading' && <FileInputPrimitive.Progress />}
                 </>
@@ -410,33 +333,4 @@ export const ComposableAnatomy: Story = {
       </FileInputPrimitive.List>
     </FileInputPrimitive.Root>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: `
-The FileInput component is built from composable primitives. You can use these primitives to build custom file upload experiences.
-
-### Available Primitives
-
-- \`Root\` - Container that manages file state and context
-- \`Dropzone\` - Interactive drop area with drag-and-drop support
-- \`Trigger\` - Button to open the file picker
-- \`DropzoneError\` - Validation error message (auto-displays when files are rejected)
-- \`DropzoneHint\` - Helper text within the dropzone (hidden when error is shown)
-- \`Message\` - Helper text below the dropzone
-- \`List\` - Container for file items with render prop
-- \`Item\` - Individual file item with render prop for state
-- \`Metadata\` - Container for file metadata
-- \`Details\` - Container for file details
-- \`Header\` - Container for icon and name
-- \`Icon\` - File type icon (auto-detected)
-- \`Name\` - File name
-- \`Status\` - Status text
-- \`Error\` - Error message
-- \`Remove\` - Remove button
-- \`Progress\` - Upload progress bar
-        `,
-      },
-    },
-  },
 };

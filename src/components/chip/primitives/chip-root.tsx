@@ -11,6 +11,7 @@ export function ChipRoot({ children, className, ...props }: ChipRootProps) {
         'flex h-9 items-center gap-1.5 rounded-lg bg-[var(--chip-background,var(--contrast-100))] py-2 pe-2 ps-3 text-sm font-semibold leading-5 text-[var(--chip-text,var(--foreground))] [font-family:var(--chip-font-family,var(--font-family-body))]',
         className,
       )}
+      data-slot="chip-root"
       {...props}
     >
       {children}

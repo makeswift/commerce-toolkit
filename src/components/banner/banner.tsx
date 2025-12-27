@@ -9,6 +9,7 @@ export interface BannerProps {
   children: ReactNode;
   onDismiss?: () => void;
 }
+
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
  * with their default values:
@@ -26,21 +27,18 @@ export interface BannerProps {
  * }
  * ```
  */
-export const Banner = ({
-  id,
-  children,
-  hideDismiss = false,
-  className,
-  onDismiss,
-}: BannerProps) => {
+export function Banner({ id, children, hideDismiss = false, className, onDismiss }: BannerProps) {
   return (
-    <BannerPrimitive.Provider hideDismiss={hideDismiss} id={id} onDismiss={onDismiss}>
-      <BannerPrimitive.Root className={className}>
-        <BannerPrimitive.Content>
-          <BannerPrimitive.Text>{children}</BannerPrimitive.Text>
-          <BannerPrimitive.Dismiss />
-        </BannerPrimitive.Content>
-      </BannerPrimitive.Root>
-    </BannerPrimitive.Provider>
+    <BannerPrimitive.Root
+      className={className}
+      hideDismiss={hideDismiss}
+      id={id}
+      onDismiss={onDismiss}
+    >
+      <BannerPrimitive.Content>
+        <BannerPrimitive.Text>{children}</BannerPrimitive.Text>
+        <BannerPrimitive.Dismiss />
+      </BannerPrimitive.Content>
+    </BannerPrimitive.Root>
   );
-};
+}

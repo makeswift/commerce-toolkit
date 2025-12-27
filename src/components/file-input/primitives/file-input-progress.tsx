@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentProps } from 'react';
 
 import { useFileInputItem } from '@/components/file-input';
@@ -22,6 +24,7 @@ export function FileInputProgress({ className, ...props }: FileInputProgressProp
         'absolute bottom-0 left-0 h-1 w-full bg-[var(--file-input-item-progress,var(--brand))] transition-transform duration-300 ease-linear',
         className,
       )}
+      data-slot="file-input-progress"
       role="progressbar"
       style={{ transform: `translateX(-${100 - progress}%)` }}
       {...props}

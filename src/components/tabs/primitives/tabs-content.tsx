@@ -11,7 +11,8 @@ export function TabsContent({ className, children, ...props }: TabsContentProps)
   return (
     <TabsPrimitive.Content
       className={cn(
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tabs-focus,var(--brand))] focus-visible:ring-offset-2',
+        // Focus-visible state
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--tabs-focus,var(--brand))]',
         className,
       )}
       data-slot="tabs-content"

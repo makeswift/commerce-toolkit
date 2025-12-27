@@ -1,7 +1,8 @@
 import type { ComponentProps } from 'react';
 
-export type AlertActionsProps = ComponentProps<'div'>;
 import { cn } from '@/lib';
+
+export type AlertActionsProps = ComponentProps<'div'>;
 
 export function AlertActions({ children, className, ...props }: AlertActionsProps) {
   return (

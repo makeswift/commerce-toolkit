@@ -1,6 +1,5 @@
 'use client';
 
-import { EllipsisIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import { Button } from '@/components/button';
@@ -47,6 +46,10 @@ export interface DropdownMenuProps {
   className?: string;
   items: MenuNode[];
   trigger?: ReactNode;
+  triggerIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
   label: string;
   align?: 'start' | 'center' | 'end';
   sideOffset?: number;
@@ -58,6 +61,7 @@ export function DropdownMenu({
   className,
   items,
   trigger,
+  triggerIcon,
   align,
   sideOffset,
   label,
@@ -76,7 +80,9 @@ export function DropdownMenu({
           trigger
         ) : (
           <Button shape="circle" size="small" variant="ghost">
-            <EllipsisIcon size={20} />
+            <DropdownMenuPrimitive.TriggerIcon asChild={triggerIcon?.asChild}>
+              {triggerIcon?.children}
+            </DropdownMenuPrimitive.TriggerIcon>
           </Button>
         )}
       </DropdownMenuPrimitive.Trigger>

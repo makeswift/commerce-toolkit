@@ -3,9 +3,9 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
-export type CompareDrawerImageProps = ComponentProps<'img'> & {
+export interface CompareDrawerImageProps extends ComponentProps<'img'> {
   asChild?: boolean;
-};
+}
 
 export function CompareDrawerImage({
   children,
@@ -18,7 +18,9 @@ export function CompareDrawerImage({
   return (
     <Component
       className={cn(
-        'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110',
+        'size-full object-cover transition-transform duration-500 ease-out',
+        // Group hover state
+        'group-hover/compare-drawer-link:scale-110',
         className,
       )}
       data-slot="compare-drawer-image"

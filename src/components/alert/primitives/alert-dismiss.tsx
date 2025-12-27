@@ -16,7 +16,7 @@ export function AlertDismiss({ ...props }: AlertDismissProps) {
   return (
     <Button
       aria-label={label}
-      data-slot="alert-close-button"
+      data-slot="alert-dismiss"
       onClick={onClick}
       shape="circle"
       size="x-small"

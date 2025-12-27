@@ -3,10 +3,10 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
-export type NavigationRootProps = ComponentProps<typeof NavigationMenuPrimitive.Root> & {
+export interface NavigationRootProps extends ComponentProps<typeof NavigationMenuPrimitive.Root> {
   viewport?: boolean;
   columns?: 3 | 4 | 5 | 6;
-};
+}
 
 export function NavigationRoot({
   children,

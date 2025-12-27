@@ -17,7 +17,8 @@ export function RevealTrigger({ children, className, ...props }: RevealTriggerPr
       {variant === 'underline' && (
         <button
           className={cn('group/underline text-sm focus:outline-none', className)}
-          onClick={() => toggleOpen()}
+          data-slot="reveal-trigger"
+          onClick={toggleOpen}
           type="button"
           {...props}
         >
@@ -27,7 +28,8 @@ export function RevealTrigger({ children, className, ...props }: RevealTriggerPr
       {variant === 'button' && (
         <Button
           className={className}
-          onClick={() => toggleOpen()}
+          data-slot="reveal-trigger"
+          onClick={toggleOpen}
           size="x-small"
           type="button"
           variant="outline"

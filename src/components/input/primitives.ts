@@ -10,3 +10,7 @@ export {
   InputPrepend as Prepend,
   type InputPrependProps as PrependProps,
 } from '@/components/input/primitives/input-prepend';
+export {
+  InputPrependIcon as PrependIcon,
+  type InputPrependIconProps as PrependIconProps,
+} from '@/components/input/primitives/input-prepend-icon';

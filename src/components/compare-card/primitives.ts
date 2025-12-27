@@ -6,8 +6,14 @@ export {
   CompareCardProduct as Product,
   type CompareCardProductProps as ProductProps,
 } from '@/components/compare-card/primitives/compare-card-product';
-
-export { CompareCardSkeleton as Skeleton } from '@/components/compare-card/primitives/compare-card-skeleton';
+export {
+  CompareCardProductCard as ProductCard,
+  type CompareCardProductCardProps as ProductCardProps,
+} from '@/components/compare-card/primitives/compare-card-product-card';
+export {
+  CompareCardSkeleton as Skeleton,
+  type CompareCardSkeletonProps as SkeletonProps,
+} from '@/components/compare-card/primitives/compare-card-skeleton';
 export {
   CompareCardDescription as Description,
   type CompareCardDescriptionProps as DescriptionProps,
@@ -48,3 +54,7 @@ export {
   CompareCardSpecsEmpty as SpecsEmpty,
   type CompareCardSpecsEmptyProps as SpecsEmptyProps,
 } from '@/components/compare-card/primitives/compare-card-specs-empty';
+export {
+  CompareCardReveal as Reveal,
+  type CompareCardRevealProps as RevealProps,
+} from '@/components/compare-card/primitives/compare-card-reveal';

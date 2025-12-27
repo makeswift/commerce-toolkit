@@ -8,6 +8,7 @@ export function InputPrepend({ className, children, ...props }: InputPrependProp
   return (
     <span
       className={cn('pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2', className)}
+      data-slot="input-prepend"
       {...props}
     >
       {children}

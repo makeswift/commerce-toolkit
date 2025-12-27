@@ -11,11 +11,9 @@ const meta: Meta<typeof Price> = {
     docs: {
       description: {
         component: `
-The Price component displays product pricing in various formats including default, range, and sale prices.
+A price display component supporting default, range, and sale price formats.
 
 ## CSS Variables
-
-The following CSS variables can be used to customize the Price component:
 
 \`\`\`css
 :root {
@@ -26,13 +24,37 @@ The following CSS variables can be used to customize the Price component:
 }
 \`\`\`
 
-## Price Types
+## Usage
 
-The component supports three price types:
+### High-Level Component
 
-- **default**: A single price value
-- **range**: A minimum and maximum price (e.g., "$10.00 – $25.00")
-- **sale**: Shows the current sale price with the original price struck through
+The \`Price\` component provides a simple API with a \`price\` object:
+
+\`\`\`tsx
+import { Price } from '@/components/price';
+
+// Default price
+<Price price={{ type: 'default', value: '$18.00' }} />
+
+// Range price (for products with variants)
+<Price price={{ type: 'range', minValue: '$8.99', maxValue: '$29.00' }} />
+
+// Sale price (with strikethrough)
+<Price price={{ type: 'sale', previousValue: '$18.00', currentValue: '$12.00' }} />
+\`\`\`
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as Price from '@/components/price';
+
+<Price.Root>
+  <Price.Strike>$18.00</Price.Strike>{' '}
+  <Price.Default>$12.00</Price.Default>
+</Price.Root>
+\`\`\`
         `,
       },
     },
@@ -41,7 +63,7 @@ The component supports three price types:
   argTypes: {
     price: {
       control: 'object',
-      description: 'The price object containing type and values',
+      description: 'The price object with type and values',
     },
   },
 };
@@ -49,9 +71,7 @@ The component supports three price types:
 export default meta;
 type Story = StoryObj<PriceProps>;
 
-/**
- * The default price display shows a single price value.
- */
+// Default single price
 export const Default: Story = {
   args: {
     price: {
@@ -61,9 +81,7 @@ export const Default: Story = {
   },
 };
 
-/**
- * Range prices display a minimum and maximum value, useful for products with variants.
- */
+// Range price for products with variants
 export const Range: Story = {
   args: {
     price: {
@@ -74,38 +92,18 @@ export const Range: Story = {
   },
 };
 
-/**
- * Sale prices display the current discounted price alongside the original price with a strikethrough.
- */
+// Sale price with strikethrough
 export const Sale: Story = {
   args: {
     price: {
       type: 'sale',
-      previousValue: '$12.00',
-      currentValue: '$9.99',
+      previousValue: '$18.00',
+      currentValue: '$12.00',
     },
   },
 };
 
-/**
- * ## Composable Anatomy
- *
- * For advanced customization, you can use the primitive components directly to build
- * your own price display. The primitives include:
- *
- * - `Root` - The container element
- * - `Default` - Standard price text
- * - `Strike` - Strikethrough price text (for original/previous prices)
- *
- * ```tsx
- * import * as PricePrimitive from '@/components/price';
- *
- * <PricePrimitive.Root>
- *   <PricePrimitive.Strike>$18.00</PricePrimitive.Strike>{' '}
- *   <PricePrimitive.Default>$12.00</PricePrimitive.Default>
- * </PricePrimitive.Root>
- * ```
- */
+// Composable anatomy example
 export const ComposableAnatomy: Story = {
   render: () => (
     <PricePrimitive.Root>

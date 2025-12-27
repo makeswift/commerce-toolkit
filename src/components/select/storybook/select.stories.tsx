@@ -2,29 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ComponentType } from 'react';
 import { useState } from 'react';
 
-import { Select, type SelectProps } from '@/components/select/select';
+import { Select, type SelectProps } from '@/components/select';
+import * as SelectPrimitive from '@/components/select/primitives';
 
-const defaultOptions = [
+const sizeOptions = [
   { label: 'Small', value: 'sm' },
   { label: 'Medium', value: 'md' },
   { label: 'Large', value: 'lg' },
   { label: 'Extra Large', value: 'xl' },
 ];
-
-const colorOptions = [
-  { label: 'Red', value: 'red' },
-  { label: 'Orange', value: 'orange' },
-  { label: 'Yellow', value: 'yellow' },
-  { label: 'Green', value: 'green' },
-  { label: 'Blue', value: 'blue' },
-  { label: 'Indigo', value: 'indigo' },
-  { label: 'Violet', value: 'violet' },
-];
-
-const manyOptions = Array.from({ length: 20 }, (_, i) => ({
-  label: `Option ${i + 1}`,
-  value: `option-${i + 1}`,
-}));
 
 const meta: Meta<typeof Select> = {
   title: 'Components/Select',
@@ -34,11 +20,9 @@ const meta: Meta<typeof Select> = {
     docs: {
       description: {
         component: `
-A customizable select dropdown component built on Radix UI primitives.
+A customizable select dropdown component built on Radix UI primitives. Supports two visual variants and extensive theming.
 
 ## CSS Variables
-
-The Select component supports extensive theming through CSS variables:
 
 \`\`\`css
 :root {
@@ -59,6 +43,65 @@ The Select component supports extensive theming through CSS variables:
   --select-light-item-text-focus: var(--foreground);
   --select-light-item-checked-text-focus: var(--foreground);
 }
+\`\`\`
+
+## Usage
+
+### High-Level Component
+
+The \`Select\` component provides a simple API with an \`options\` array:
+
+\`\`\`tsx
+import { Select } from '@/components/select';
+
+const options = [
+  { label: 'Small', value: 'sm' },
+  { label: 'Medium', value: 'md' },
+  { label: 'Large', value: 'lg' },
+];
+
+<Select
+  id="size-select"
+  label="Size"
+  options={options}
+  placeholder="Select a size"
+  variant="rectangle"
+/>
+\`\`\`
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as Select from '@/components/select';
+
+<Select.Root>
+  <Select.Trigger aria-label="Size">
+    <Select.Value placeholder="Select a size" />
+    <Select.Icon>
+      <Select.TriggerIcon />
+    </Select.Icon>
+  </Select.Trigger>
+  <Select.Portal>
+    <Select.Content>
+      <Select.ScrollUpButton>
+        <Select.ScrollUpIcon />
+      </Select.ScrollUpButton>
+      <Select.Viewport>
+        <Select.Item value="sm">
+          <Select.ItemText>Small</Select.ItemText>
+        </Select.Item>
+        <Select.Item value="md">
+          <Select.ItemText>Medium</Select.ItemText>
+        </Select.Item>
+      </Select.Viewport>
+      <Select.ScrollDownButton>
+        <Select.ScrollDownIcon />
+      </Select.ScrollDownButton>
+    </Select.Content>
+  </Select.Portal>
+</Select.Root>
 \`\`\`
         `,
       },
@@ -85,23 +128,11 @@ The Select component supports extensive theming through CSS variables:
     },
     label: {
       control: 'text',
-      description: 'Accessible label for the select (used as aria-label)',
+      description: 'Accessible label for the select',
     },
     options: {
       control: false,
       description: 'Array of options with label and value',
-    },
-    defaultValue: {
-      control: 'text',
-      description: 'The default selected value (uncontrolled)',
-    },
-    value: {
-      control: 'text',
-      description: 'The selected value (controlled)',
-    },
-    onValueChange: {
-      action: 'valueChanged',
-      description: 'Callback when the selected value changes',
     },
   },
   decorators: [
@@ -114,233 +145,85 @@ The Select component supports extensive theming through CSS variables:
 };
 
 export default meta;
-
 type Story = StoryObj<SelectProps>;
 
+// Default select
 export const Default: Story = {
   args: {
     id: 'select-default',
     label: 'Size',
-    options: defaultOptions,
+    options: sizeOptions,
     placeholder: 'Select a size',
   },
 };
 
-export const WithDefaultValue: Story = {
-  args: {
-    id: 'select-with-default',
-    label: 'Size',
-    options: defaultOptions,
-    placeholder: 'Select a size',
-    defaultValue: 'md',
-  },
-};
-
-export const RectangleVariant: Story = {
-  args: {
-    id: 'select-rectangle',
-    label: 'Color',
-    options: colorOptions,
-    placeholder: 'Choose a color',
-    variant: 'rectangle',
-  },
-};
-
-export const RoundVariant: Story = {
-  args: {
-    id: 'select-round',
-    label: 'Color',
-    options: colorOptions,
-    placeholder: 'Choose a color',
-    variant: 'round',
-  },
-};
-
-export const Pending: Story = {
-  args: {
-    id: 'select-pending',
-    label: 'Size',
-    options: defaultOptions,
-    placeholder: 'Loading...',
-    pending: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'The pending state can be used to indicate that options are being loaded.',
-      },
-    },
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    id: 'select-disabled',
-    label: 'Size',
-    options: defaultOptions,
-    placeholder: 'Select a size',
-    disabled: true,
-  },
-};
-
-export const WithManyOptions: Story = {
-  args: {
-    id: 'select-many',
-    label: 'Select option',
-    options: manyOptions,
-    placeholder: 'Choose an option',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When there are many options, the dropdown becomes scrollable with scroll indicators at the top and bottom.',
-      },
-    },
-  },
-};
-
-export const Controlled: Story = {
-  args: {
-    id: 'select-controlled',
-    label: 'Size',
-    options: defaultOptions,
-    placeholder: 'Select a size',
-  },
-  render: (args) => {
-    const [value, setValue] = useState<string>('');
-
-    return (
-      <div className="space-y-4">
-        <Select {...args} onValueChange={setValue} value={value} />
-        <div className="rounded-lg bg-contrast-100 p-3 text-sm">
-          <span className="font-medium text-contrast-500">Selected value:</span>{' '}
-          <span className="text-foreground">{value !== '' ? value : 'None'}</span>
-        </div>
-        <button
-          className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
-          onClick={() => setValue('')}
-          type="button"
-        >
-          Reset
-        </button>
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Use the `value` and `onValueChange` props to control the select state externally.',
-      },
-    },
-  },
-};
-
-export const SizeSelector: Story = {
-  args: {
-    id: 'select-size-product',
-    label: 'Product Size',
-    options: [
-      { label: 'XS (Extra Small)', value: 'xs' },
-      { label: 'S (Small)', value: 's' },
-      { label: 'M (Medium)', value: 'm' },
-      { label: 'L (Large)', value: 'l' },
-      { label: 'XL (Extra Large)', value: 'xl' },
-      { label: 'XXL (Double Extra Large)', value: 'xxl' },
-    ],
-    placeholder: 'Select your size',
-    variant: 'rectangle',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'A practical example of using the Select for product size selection.',
-      },
-    },
-  },
-};
-
-export const CountrySelector: Story = {
-  args: {
-    id: 'select-country',
-    label: 'Country',
-    options: [
-      { label: '🇺🇸 United States', value: 'us' },
-      { label: '🇬🇧 United Kingdom', value: 'uk' },
-      { label: '🇨🇦 Canada', value: 'ca' },
-      { label: '🇦🇺 Australia', value: 'au' },
-      { label: '🇩🇪 Germany', value: 'de' },
-      { label: '🇫🇷 France', value: 'fr' },
-      { label: '🇯🇵 Japan', value: 'jp' },
-      { label: '🇧🇷 Brazil', value: 'br' },
-    ],
-    placeholder: 'Select a country',
-    variant: 'rectangle',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Select can display rich content like emoji flags for country selection.',
-      },
-    },
-  },
-};
-
-export const CustomThemed: Story = {
-  args: {
-    id: 'select-themed',
-    label: 'Themed Select',
-    options: colorOptions,
-    placeholder: 'Custom themed',
-    variant: 'rectangle',
-  },
-  decorators: [
-    (Story: ComponentType) => (
-      <div className="themed-select-wrapper w-64 rounded-xl bg-contrast-100 p-6 [--select-light-icon:var(--background)] [--select-light-trigger-background-hover:color-mix(in_oklch,var(--brand)_90%,transparent)] [--select-light-trigger-background:var(--brand)] [--select-light-trigger-border-hover:color-mix(in_oklch,var(--brand)_80%,transparent)] [--select-light-trigger-border:var(--brand)] [--select-light-trigger-text:var(--background)]">
-        <Story />
-      </div>
-    ),
-  ],
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The Select component can be fully themed using CSS variables. This example shows a primary-colored trigger.',
-      },
-    },
-  },
-};
-
+// All variants
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
-      <div>
-        <p className="mb-2 text-sm font-medium text-contrast-500">Rectangle (default)</p>
-        <Select
-          id="all-variants-rect"
-          label="Size"
-          options={defaultOptions}
-          placeholder="Select a size"
-          variant="rectangle"
-        />
-      </div>
-      <div>
-        <p className="mb-2 text-sm font-medium text-contrast-500">Round</p>
-        <Select
-          id="all-variants-round"
-          label="Size"
-          options={defaultOptions}
-          placeholder="Select a size"
-          variant="round"
-        />
-      </div>
+      <Select
+        id="variant-rectangle"
+        label="Size"
+        options={sizeOptions}
+        placeholder="Rectangle variant"
+        variant="rectangle"
+      />
+      <Select
+        id="variant-round"
+        label="Size"
+        options={sizeOptions}
+        placeholder="Round variant"
+        variant="round"
+      />
     </div>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'A comparison of the two available variants: rectangle and round.',
-      },
-    },
+};
+
+// Controlled example
+export const Controlled: Story = {
+  render: () => {
+    const [value, setValue] = useState<string>('');
+
+    return (
+      <Select
+        id="select-controlled"
+        label="Size"
+        onValueChange={setValue}
+        options={sizeOptions}
+        placeholder="Select a size"
+        value={value}
+      />
+    );
   },
+};
+
+// Composable anatomy example
+export const ComposableAnatomy: Story = {
+  render: () => (
+    <SelectPrimitive.Root>
+      <SelectPrimitive.Trigger aria-label="Size" id="select-composable">
+        <SelectPrimitive.Value placeholder="Select a size" />
+        <SelectPrimitive.Icon>
+          <SelectPrimitive.TriggerIcon />
+        </SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+      <SelectPrimitive.Portal>
+        <SelectPrimitive.Content>
+          <SelectPrimitive.ScrollUpButton>
+            <SelectPrimitive.ScrollUpIcon />
+          </SelectPrimitive.ScrollUpButton>
+          <SelectPrimitive.Viewport>
+            {sizeOptions.map((option) => (
+              <SelectPrimitive.Item key={option.value} value={option.value}>
+                <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+              </SelectPrimitive.Item>
+            ))}
+          </SelectPrimitive.Viewport>
+          <SelectPrimitive.ScrollDownButton>
+            <SelectPrimitive.ScrollDownIcon />
+          </SelectPrimitive.ScrollDownButton>
+        </SelectPrimitive.Content>
+      </SelectPrimitive.Portal>
+    </SelectPrimitive.Root>
+  ),
 };

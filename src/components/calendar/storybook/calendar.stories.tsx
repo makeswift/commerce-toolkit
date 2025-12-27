@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ArrowLeftIcon, ArrowRightIcon, ChevronsUpDownIcon } from 'lucide-react';
 import * as React from 'react';
 import type { DateRange } from 'react-day-picker';
 
@@ -37,7 +38,7 @@ The following CSS variables can be used to customize the Calendar component:
 \`\`\`css
 :root {
   --calendar-font-family: var(--font-family-body);
-  --calendar-focus: var(--foreground);
+  --calendar-focus: var(--brand);
   --calendar-text: var(--foreground);
   --calendar-background: var(--background);
   --calendar-selected-background: var(--brand);
@@ -60,6 +61,25 @@ The \`captionLayout\` prop controls how month/year navigation is displayed:
 - \`dropdown\` - Shows dropdowns for month and year selection
 - \`dropdown-months\` - Shows dropdown for month only
 - \`dropdown-years\` - Shows dropdown for year only
+
+## Custom Icons
+
+The Calendar component exposes icon primitives that can be customized using the \`asChild\` pattern:
+- \`prevIcon\` - Previous month navigation icon
+- \`nextIcon\` - Next month navigation icon
+- \`dropdownIcon\` - Dropdown chevron icon (when using dropdown caption layout)
+
+## Icon Primitives
+
+The following icon primitives are available for composable usage:
+
+\`\`\`tsx
+import * as CalendarPrimitive from '@/components/calendar';
+
+<CalendarPrimitive.PrevIcon />
+<CalendarPrimitive.NextIcon />
+<CalendarPrimitive.DropdownIcon />
+\`\`\`
         `,
       },
     },
@@ -87,6 +107,15 @@ The \`captionLayout\` prop controls how month/year navigation is displayed:
     numberOfMonths: {
       control: 'number',
       description: 'Number of months to display',
+    },
+    prevIcon: {
+      description: 'Custom previous navigation icon with asChild support',
+    },
+    nextIcon: {
+      description: 'Custom next navigation icon with asChild support',
+    },
+    dropdownIcon: {
+      description: 'Custom dropdown chevron icon with asChild support',
     },
   },
 };
@@ -207,6 +236,56 @@ export const HideOutsideDays: Story = {
 
     return (
       <Calendar mode="single" onSelect={setSelected} selected={selected} showOutsideDays={false} />
+    );
+  },
+};
+
+/**
+ * Use custom icons for navigation by leveraging the `asChild` pattern.
+ * This allows you to substitute your own icon components.
+ */
+export const CustomIcons: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
+
+    return (
+      <Calendar
+        mode="single"
+        nextIcon={{
+          asChild: true,
+          children: <ArrowRightIcon absoluteStrokeWidth strokeWidth={1.5} />,
+        }}
+        onSelect={setSelected}
+        prevIcon={{
+          asChild: true,
+          children: <ArrowLeftIcon absoluteStrokeWidth strokeWidth={1.5} />,
+        }}
+        selected={selected}
+      />
+    );
+  },
+};
+
+/**
+ * Customize the dropdown icon when using dropdown caption layouts.
+ */
+export const CustomDropdownIcon: Story = {
+  render: () => {
+    const [selected, setSelected] = React.useState<Date | undefined>(new Date());
+
+    return (
+      <Calendar
+        captionLayout="dropdown"
+        dropdownIcon={{
+          asChild: true,
+          children: <ChevronsUpDownIcon absoluteStrokeWidth strokeWidth={1.5} />,
+        }}
+        endMonth={addMonths(new Date(), 12)}
+        mode="single"
+        onSelect={setSelected}
+        selected={selected}
+        startMonth={addMonths(new Date(), -12)}
+      />
     );
   },
 };

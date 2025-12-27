@@ -8,6 +8,53 @@ const meta: Meta<typeof ButtonLink> = {
   component: ButtonLink,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A link styled as a button. Shares the same visual styles and CSS variables as the Button component.
+
+## CSS Variables
+
+The ButtonLink component supports extensive theming through the shared Button CSS variables:
+
+\`\`\`css
+:root {
+  --button-focus: var(--brand);
+  --button-font-family: var(--font-family-body);
+
+  /* Primary variant */
+  --button-primary-background: var(--foreground);
+  --button-primary-text: var(--background);
+
+  /* Brand variant */
+  --button-brand-background: var(--brand);
+  --button-brand-text: var(--foreground);
+
+  /* Outline variant */
+  --button-outline-background: var(--background);
+  --button-outline-text: var(--foreground);
+  --button-outline-border: var(--contrast-200);
+
+  /* Ghost variant */
+  --button-ghost-text: var(--foreground);
+}
+\`\`\`
+
+## Usage with Routing Libraries
+
+The \`asChild\` prop allows ButtonLink to integrate seamlessly with routing libraries like Next.js Link or React Router:
+
+\`\`\`tsx
+import { ButtonLink } from '@/components/button-link';
+import Link from 'next/link';
+
+<ButtonLink asChild variant="primary">
+  <Link href="/products">View Products</Link>
+</ButtonLink>
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -30,6 +77,11 @@ const meta: Meta<typeof ButtonLink> = {
       control: 'text',
       description: 'The URL to link to',
     },
+    asChild: {
+      control: 'boolean',
+      description:
+        'When true, the component will render its child element instead of an anchor tag, merging props and behavior',
+    },
   },
   args: {
     children: 'Button Link',
@@ -40,183 +92,35 @@ const meta: Meta<typeof ButtonLink> = {
 export default meta;
 type Story = StoryObj<ButtonLinkProps>;
 
-// Variant stories
-
-export const Primary: Story = {
+// Default story
+export const Default: Story = {
   args: {
     variant: 'primary',
     children: 'Learn More',
   },
 };
 
-export const Brand: Story = {
-  args: {
-    variant: 'brand',
-    children: 'Shop Now',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-    children: 'View Details',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    children: 'Cancel',
-  },
-};
-
-// Size stories
-export const Large: Story = {
-  args: {
-    size: 'large',
-    children: 'Large Button',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    size: 'medium',
-    children: 'Medium Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    children: 'Small Button',
-  },
-};
-
-export const ExtraSmall: Story = {
-  args: {
-    size: 'x-small',
-    children: 'Extra Small',
-  },
-};
-
-// Shape stories
-export const Pill: Story = {
-  args: {
-    shape: 'pill',
-    children: 'Pill Shape',
-  },
-};
-
-export const Rounded: Story = {
-  args: {
-    shape: 'rounded',
-    children: 'Rounded Shape',
-  },
-};
-
-export const Square: Story = {
-  args: {
-    shape: 'square',
-    children: 'Square Shape',
-  },
-};
-
-export const Circle: Story = {
-  args: {
-    shape: 'circle',
-    children: <ArrowRight size={20} />,
-  },
-};
-
-// With icon examples
-export const WithIcon: Story = {
-  args: {
-    variant: 'primary',
-    children: (
-      <>
-        Shop Now
-        <ArrowRight size={20} />
-      </>
-    ),
-  },
-};
-
-export const IconOnly: Story = {
-  args: {
-    variant: 'primary',
-    shape: 'circle',
-    size: 'medium',
-    children: <ArrowRight size={20} />,
-  },
-};
-
-// Use case examples
-export const CallToAction: Story = {
-  args: {
-    variant: 'primary',
-    size: 'large',
-    children: (
-      <>
-        Get Started <ArrowRight size={20} />
-      </>
-    ),
-  },
-};
-
-export const SecondaryAction: Story = {
-  args: {
-    variant: 'primary',
-    size: 'medium',
-    children: 'View Collection',
-  },
-};
-
-export const TextLink: Story = {
-  args: {
-    variant: 'ghost',
-    size: 'small',
-    children: 'Read more',
-  },
-};
-
-// Multiple button links
-export const ButtonGroup: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-3">
-      <ButtonLink href="#" variant="primary">
-        Primary Action
-      </ButtonLink>
-      <ButtonLink href="#" variant="outline">
-        Secondary Action
-      </ButtonLink>
-      <ButtonLink href="#" variant="ghost">
-        Cancel
-      </ButtonLink>
-    </div>
-  ),
-};
-
+// Variants
 export const AllVariants: Story = {
   render: () => (
-    <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap gap-3">
-        <ButtonLink href="#" variant="brand">
-          Brand
-        </ButtonLink>
-        <ButtonLink href="#" variant="primary">
-          Primary
-        </ButtonLink>
-        <ButtonLink href="#" variant="outline">
-          Outline
-        </ButtonLink>
-        <ButtonLink href="#" variant="ghost">
-          Ghost
-        </ButtonLink>
-      </div>
+    <div className="flex flex-wrap items-center gap-3">
+      <ButtonLink href="#" variant="brand">
+        Brand
+      </ButtonLink>
+      <ButtonLink href="#" variant="primary">
+        Primary
+      </ButtonLink>
+      <ButtonLink href="#" variant="outline">
+        Outline
+      </ButtonLink>
+      <ButtonLink href="#" variant="ghost">
+        Ghost
+      </ButtonLink>
     </div>
   ),
 };
 
+// Sizes
 export const AllSizes: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-3">
@@ -230,12 +134,13 @@ export const AllSizes: Story = {
         Small
       </ButtonLink>
       <ButtonLink href="#" size="x-small">
-        Extra Small
+        X-Small
       </ButtonLink>
     </div>
   ),
 };
 
+// Shapes
 export const AllShapes: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-3">
@@ -255,44 +160,45 @@ export const AllShapes: Story = {
   ),
 };
 
-// Custom component example - useful for routing libraries
+// With Icon
+export const WithIcon: Story = {
+  args: {
+    variant: 'primary',
+    size: 'large',
+    children: (
+      <>
+        Shop Now
+        <ArrowRight size={20} />
+      </>
+    ),
+  },
+};
+
+// Icon Only
+export const IconOnly: Story = {
+  args: {
+    variant: 'primary',
+    shape: 'circle',
+    size: 'medium',
+    children: <ArrowRight size={20} />,
+  },
+};
+
+// asChild usage with custom link
 export const WithAsChild: Story = {
+  name: 'With asChild (Router Integration)',
   render: () => (
-    <ButtonLink asChild size="medium" variant="primary">
+    <ButtonLink asChild variant="primary">
       <a
         href="/products"
         onClick={(e) => {
           e.preventDefault();
-          alert(
-            `Custom link clicked! Would navigate to: /products\n\nIn a real app, this could be a Next.js Link or React Router Link component.`,
-          );
+          alert('This would navigate using your routing library (e.g., Next.js Link)');
         }}
       >
-        Custom Router Link
+        View Products
       </a>
+      <ArrowRight size={20} />
     </ButtonLink>
-  ),
-};
-
-// Example with Next.js style Link (simulated)
-export const NextJsStyleLink: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4">
-      <p className="text-sm text-gray-600">
-        Example showing how to integrate with routing libraries using asChild:
-      </p>
-      <ButtonLink asChild variant="primary">
-        {/* In a real Next.js app, you'd use: <Link href="/products">...</Link> */}
-        <a
-          href="/products"
-          onClick={(e) => {
-            e.preventDefault();
-            alert(`Would navigate to: /products`);
-          }}
-        >
-          View Products <ArrowRight size={20} />
-        </a>
-      </ButtonLink>
-    </div>
   ),
 };

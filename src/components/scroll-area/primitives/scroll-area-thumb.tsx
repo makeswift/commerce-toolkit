@@ -10,7 +10,10 @@ export type ScrollAreaThumbProps = ComponentProps<typeof ScrollAreaPrimitive.Scr
 export function ScrollAreaThumb({ className, ...props }: ScrollAreaThumbProps) {
   return (
     <ScrollAreaPrimitive.ScrollAreaThumb
-      className={cn('relative flex-1 rounded-full bg-contrast-200', className)}
+      className={cn(
+        'relative flex-1 rounded-full bg-[var(--scroll-area-thumb,var(--contrast-200))]',
+        className,
+      )}
       data-slot="scroll-area-thumb"
       {...props}
     />

@@ -1,3 +1,5 @@
+'use client';
+
 import * as SelectPrimitive from '@radix-ui/react-select';
 import type { ComponentProps } from 'react';
 
@@ -8,13 +10,7 @@ export type SelectScrollUpButtonProps = ComponentProps<typeof SelectPrimitive.Sc
 export function SelectScrollUpButton({ children, className, ...props }: SelectScrollUpButtonProps) {
   return (
     <SelectPrimitive.ScrollUpButton
-      className={cn(
-        // Base layout
-        'flex w-full cursor-default items-center justify-center',
-        // Spacing
-        'py-3',
-        className,
-      )}
+      className={cn('flex w-full cursor-default items-center justify-center py-3', className)}
       data-slot="select-scroll-up-button"
       {...props}
     >

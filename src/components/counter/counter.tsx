@@ -1,14 +1,21 @@
 'use client';
 
-import { Minus, Plus } from 'lucide-react';
 import { useRef } from 'react';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import * as CounterPrimitive from '@/components/counter/primitives';
 
 export type CounterProps = ComponentProps<'input'> & {
-  decrementAriaLabel?: string;
-  incrementAriaLabel?: string;
+  decrementIcon?: {
+    label?: string;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  incrementIcon?: {
+    label?: string;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 };
 
 /**
@@ -30,8 +37,8 @@ export type CounterProps = ComponentProps<'input'> & {
  */
 export function Counter({
   className,
-  decrementAriaLabel = 'Decrease count',
-  incrementAriaLabel = 'Increase count',
+  decrementIcon,
+  incrementIcon,
   disabled,
   min = 0,
   max = 10,
@@ -67,39 +74,33 @@ export function Counter({
   return (
     <CounterPrimitive.Root className={className}>
       <CounterPrimitive.Decrease
-        aria-label={decrementAriaLabel}
+        aria-label={decrementIcon?.label ?? 'Decrease count'}
         disabled={disabled === true || numValue <= numMin}
         onClick={handleDecrement}
       >
-        <Minus
-          absoluteStrokeWidth
-          className="text-[var(--counter-icon,var(--contrast-300))] transition-colors duration-300 group-enabled:group-hover:text-[var(--counter-icon-hover,var(--foreground))]"
-          size={18}
-          strokeWidth={1.5}
-        />
+        <CounterPrimitive.DecreaseIcon asChild={decrementIcon?.asChild}>
+          {decrementIcon?.children}
+        </CounterPrimitive.DecreaseIcon>
       </CounterPrimitive.Decrease>
       <CounterPrimitive.Input
-        ref={inputRef}
-        {...props}
         defaultValue={defaultValue}
         disabled={disabled}
         max={max}
         min={min}
         onChange={onChange}
+        ref={inputRef}
         type="number"
         value={value}
+        {...props}
       />
       <CounterPrimitive.Increase
-        aria-label={incrementAriaLabel}
+        aria-label={incrementIcon?.label ?? 'Increase count'}
         disabled={disabled === true || numValue >= numMax}
         onClick={handleIncrement}
       >
-        <Plus
-          absoluteStrokeWidth
-          className="text-[var(--counter-icon,var(--contrast-300))] transition-colors duration-300 group-enabled:group-hover:text-[var(--counter-icon-hover,var(--foreground))]"
-          size={18}
-          strokeWidth={1.5}
-        />
+        <CounterPrimitive.IncreaseIcon asChild={incrementIcon?.asChild}>
+          {incrementIcon?.children}
+        </CounterPrimitive.IncreaseIcon>
       </CounterPrimitive.Increase>
     </CounterPrimitive.Root>
   );

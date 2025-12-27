@@ -15,7 +15,7 @@ export function CompareDrawerThumbnail({
         'relative aspect-square w-12 shrink-0 bg-[var(--compare-drawer-card-image-background,var(--contrast-100))]',
         className,
       )}
-      data-slot="compare-drawer-image"
+      data-slot="compare-drawer-thumbnail"
       {...props}
     >
       {children}

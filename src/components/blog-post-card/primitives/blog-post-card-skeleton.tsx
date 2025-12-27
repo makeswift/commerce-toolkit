@@ -7,7 +7,11 @@ export type BlogPostCardSkeletonProps = ComponentProps<'div'>;
 
 export function BlogPostCardSkeleton({ className, ...props }: BlogPostCardSkeletonProps) {
   return (
-    <div className={cn('w-full max-w-md @container', className)} {...props}>
+    <div
+      className={cn('w-full max-w-md @container', className)}
+      data-slot="blog-post-card-skeleton"
+      {...props}
+    >
       <SkeletonPrimitive.Box
         className={cn(
           'mb-4 w-full rounded-2xl',

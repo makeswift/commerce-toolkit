@@ -1,78 +1,68 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Spinner } from '@/components/spinner';
+import { Spinner, type SpinnerProps } from '@/components/spinner';
 
-const meta = {
+const meta: Meta<typeof Spinner> = {
   title: 'Components/Spinner',
   component: Spinner,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A loading spinner component for indicating pending operations. Supports multiple sizes and theming via CSS variables.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --spinner-base: var(--contrast-100);
+  --spinner-ring: color-mix(in oklab, var(--brand), black 75%);
+}
+\`\`\`
+
+## Usage
+
+\`\`\`tsx
+import { Spinner } from '@/components/spinner';
+
+<Spinner size="sm" />
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
-      description: 'Spinner size',
-      table: { defaultValue: { summary: 'sm' } },
+      description: 'The size of the spinner',
     },
   },
   args: {
     size: 'sm',
   },
-} satisfies Meta<typeof Spinner>;
+};
 
 export default meta;
+type Story = StoryObj<SpinnerProps>;
 
-type Story = StoryObj<typeof meta>;
-
+// Default spinner
 export const Default: Story = {
-  args: {},
+  args: {
+    size: 'sm',
+  },
 };
 
-export const Sizes: Story = {
+// All sizes
+export const AllSizes: Story = {
   render: () => (
     <div className="flex items-center gap-6">
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="xs" />
-        <span className="text-xs text-contrast-400">xs</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="sm" />
-        <span className="text-xs text-contrast-400">sm</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="md" />
-        <span className="text-xs text-contrast-400">md</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Spinner size="lg" />
-        <span className="text-xs text-contrast-400">lg</span>
-      </div>
+      <Spinner size="xs" />
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
     </div>
   ),
-};
-
-export const InButton: Story = {
-  render: () => (
-    <button
-      className="inline-flex items-center gap-2 rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-background disabled:opacity-70"
-      disabled
-    >
-      <Spinner size="xs" />
-      Saving...
-    </button>
-  ),
-};
-
-export const DarkBackground: Story = {
-  decorators: [
-    (Story) => (
-      <div className="rounded-lg bg-foreground p-8">
-        <Story />
-      </div>
-    ),
-  ],
-  parameters: { backgrounds: { default: 'dark' } },
-  render: () => <Spinner size="md" />,
 };

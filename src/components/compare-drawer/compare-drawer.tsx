@@ -1,8 +1,7 @@
 'use client';
 
-import { ArrowRight, X } from 'lucide-react';
+import type { ReactNode } from 'react';
 
-import { ButtonLink } from '@/components/button-link';
 import * as CompareDrawerPrimitive from '@/components/compare-drawer';
 
 export interface CompareDrawerItem {
@@ -10,10 +9,14 @@ export interface CompareDrawerItem {
   image?: {
     src: string;
     alt: string;
+    asChild?: boolean;
+    children?: ReactNode;
   };
   link: {
     href: string;
     ariaLabel: string;
+    asChild?: boolean;
+    children?: ReactNode;
   };
   title: string;
 }
@@ -22,9 +25,17 @@ export interface CompareDrawerProps {
   container?: HTMLElement;
   submitHref?: string;
   submitLabel?: string;
+  submitIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
   items: CompareDrawerItem[];
   onRemove?: (item: CompareDrawerItem['id']) => void;
   removeLabel?: string;
+  removeIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 /**
@@ -56,7 +67,9 @@ export function CompareDrawer({
   container,
   submitHref,
   submitLabel = 'Compare',
+  submitIcon,
   removeLabel = 'Remove',
+  removeIcon,
   onRemove,
 }: CompareDrawerProps) {
   return (
@@ -66,43 +79,67 @@ export function CompareDrawer({
           <CompareDrawerPrimitive.ItemList>
             {items.map((item) => (
               <CompareDrawerPrimitive.Item key={item.id}>
-                <CompareDrawerPrimitive.Link aria-label={item.link.ariaLabel} href={item.link.href}>
-                  <CompareDrawerPrimitive.Thumbnail>
-                    {item.image ? (
-                      <CompareDrawerPrimitive.Image alt={item.image.alt} src={item.image.src} />
-                    ) : (
-                      <CompareDrawerPrimitive.Fallback>
-                        {item.title}
-                      </CompareDrawerPrimitive.Fallback>
-                    )}
-                  </CompareDrawerPrimitive.Thumbnail>
-                  <CompareDrawerPrimitive.Title>{item.title}</CompareDrawerPrimitive.Title>
+                <CompareDrawerPrimitive.Link
+                  aria-label={item.link.ariaLabel}
+                  asChild={item.link.asChild}
+                  href={item.link.href}
+                >
+                  {item.link.asChild === true ? (
+                    item.link.children
+                  ) : (
+                    <>
+                      <CompareDrawerPrimitive.Thumbnail>
+                        {item.image != null ? (
+                          <CompareDrawerPrimitive.Image
+                            alt={item.image.alt}
+                            asChild={item.image.asChild}
+                            src={item.image.src}
+                          >
+                            {item.image.children}
+                          </CompareDrawerPrimitive.Image>
+                        ) : (
+                          <CompareDrawerPrimitive.Fallback>
+                            {item.title}
+                          </CompareDrawerPrimitive.Fallback>
+                        )}
+                      </CompareDrawerPrimitive.Thumbnail>
+                      <CompareDrawerPrimitive.Title>{item.title}</CompareDrawerPrimitive.Title>
+                    </>
+                  )}
                 </CompareDrawerPrimitive.Link>
                 <CompareDrawerPrimitive.Remove
                   aria-label={`${removeLabel} ${item.title}`}
                   onClick={() => onRemove?.(item.id)}
                 >
-                  <X absoluteStrokeWidth size={16} strokeWidth={1.5} />
+                  <CompareDrawerPrimitive.RemoveIcon asChild={removeIcon?.asChild}>
+                    {removeIcon?.children}
+                  </CompareDrawerPrimitive.RemoveIcon>
                 </CompareDrawerPrimitive.Remove>
               </CompareDrawerPrimitive.Item>
             ))}
           </CompareDrawerPrimitive.ItemList>
-          <ButtonLink
+          <CompareDrawerPrimitive.Submit
             className="hidden @md:block"
             href={submitHref}
             size="medium"
             variant="primary"
           >
-            {submitLabel} <ArrowRight absoluteStrokeWidth size={20} strokeWidth={1} />
-          </ButtonLink>
-          <ButtonLink
+            {submitLabel}{' '}
+            <CompareDrawerPrimitive.SubmitIcon asChild={submitIcon?.asChild} size="medium">
+              {submitIcon?.children}
+            </CompareDrawerPrimitive.SubmitIcon>
+          </CompareDrawerPrimitive.Submit>
+          <CompareDrawerPrimitive.Submit
             className="w-full @md:hidden"
             href={submitHref}
             size="small"
             variant="primary"
           >
-            {submitLabel} <ArrowRight absoluteStrokeWidth size={16} strokeWidth={1} />
-          </ButtonLink>
+            {submitLabel}{' '}
+            <CompareDrawerPrimitive.SubmitIcon asChild={submitIcon?.asChild} size="small">
+              {submitIcon?.children}
+            </CompareDrawerPrimitive.SubmitIcon>
+          </CompareDrawerPrimitive.Submit>
         </CompareDrawerPrimitive.Content>
       </CompareDrawerPrimitive.Viewport>
     </CompareDrawerPrimitive.Root>

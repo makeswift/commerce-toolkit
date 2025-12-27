@@ -26,3 +26,7 @@ export {
   SwatchRadioGroupIndicator as Indicator,
   type SwatchRadioGroupIndicatorProps as IndicatorProps,
 } from '@/components/swatch-radio-group/primitives/swatch-radio-group-indicator';
+export {
+  SwatchRadioGroupIndicatorIcon as IndicatorIcon,
+  type SwatchRadioGroupIndicatorIconProps as IndicatorIconProps,
+} from '@/components/swatch-radio-group/primitives/swatch-radio-group-indicator-icon';

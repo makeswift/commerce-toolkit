@@ -1,8 +1,5 @@
-import { ArrowRight } from 'lucide-react';
-import { FocusEvent, ReactNode } from 'react';
+import type { FocusEvent, ReactNode } from 'react';
 
-import { Button } from '@/components/button';
-import { Input } from '@/components/input';
 import * as RangeInputPrimitive from '@/components/range-input/primitives';
 
 export interface RangeInputValue {
@@ -15,20 +12,28 @@ export interface RangeInputProps {
   disabled?: boolean;
   inputValue: RangeInputValue;
   max?: number;
-  maxLabel?: string;
   maxName?: string;
   maxPlaceholder?: string;
-  maxPrepend?: ReactNode;
+  maxPrepend?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
   maxStep?: number;
   min?: number;
-  minLabel?: string;
   minName?: string;
   minPlaceholder?: string;
-  minPrepend?: ReactNode;
+  minPrepend?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
   minStep?: number;
   onApply?: (value: { min: number | null; max: number | null }) => void;
   onInputBlur?: (field: 'min' | 'max', event: FocusEvent<HTMLInputElement>) => void;
   onInputChange?: (value: RangeInputValue) => void;
+  icon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 export const parseInputValue = (value: string): number | null => {
@@ -44,24 +49,24 @@ export function RangeInput({
   max = 100,
   maxName = 'max',
   maxPlaceholder = 'Max',
-  maxPrepend = null,
+  maxPrepend,
   maxStep = 1,
   min = 0,
   minName = 'min',
   minPlaceholder = 'Min',
-  minPrepend = null,
+  minPrepend,
   minStep = 1,
   onApply,
   onInputBlur,
   onInputChange,
+  icon,
 }: RangeInputProps) {
   const minAsNumber = parseInputValue(inputValue.min);
   const maxAsNumber = parseInputValue(inputValue.max);
 
   return (
     <RangeInputPrimitive.Root>
-      <Input
-        className="flex-1"
+      <RangeInputPrimitive.Field
         disabled={disabled}
         max={maxAsNumber ?? max}
         min={min}
@@ -69,13 +74,12 @@ export function RangeInput({
         onBlur={(e) => onInputBlur?.('min', e)}
         onChange={(e) => onInputChange?.({ ...inputValue, min: e.currentTarget.value })}
         placeholder={minPlaceholder}
-        prepend={minPrepend}
+        prependIcon={minPrepend}
         step={minStep}
         type="number"
         value={inputValue.min}
       />
-      <Input
-        className="flex-1"
+      <RangeInputPrimitive.Field
         disabled={disabled}
         max={max}
         min={minAsNumber ?? min}
@@ -83,14 +87,13 @@ export function RangeInput({
         onBlur={(e) => onInputBlur?.('max', e)}
         onChange={(e) => onInputChange?.({ ...inputValue, max: e.currentTarget.value })}
         placeholder={maxPlaceholder}
-        prepend={maxPrepend}
+        prependIcon={maxPrepend}
         step={maxStep}
         type="number"
         value={inputValue.max}
       />
-      <Button
+      <RangeInputPrimitive.Button
         aria-label={applyLabel}
-        className="shrink-0"
         disabled={
           disabled ||
           (inputValue.min === inputValue.max && inputValue.min !== '' && inputValue.max !== '')
@@ -105,8 +108,10 @@ export function RangeInput({
         size="small"
         variant="outline"
       >
-        <ArrowRight absoluteStrokeWidth size={20} strokeWidth={1} />
-      </Button>
+        <RangeInputPrimitive.Icon asChild={icon?.asChild}>
+          {icon?.children}
+        </RangeInputPrimitive.Icon>
+      </RangeInputPrimitive.Button>
     </RangeInputPrimitive.Root>
   );
 }

@@ -1,6 +1,5 @@
 import type { ComponentProps } from 'react';
 
-import * as Field from '@/components/field';
 import * as RadioGroupPrimitive from '@/components/radio-group';
 
 interface Option {
@@ -20,22 +19,22 @@ export type RadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root> & 
  * with their default values:
  *
  * ```css
- *  :root {
+ * :root {
  *   --radio-group-light-background: var(--background);
  *   --radio-group-light-border: var(--contrast-200);
+ *   --radio-group-light-border-hover: var(--contrast-300);
  *   --radio-group-light-border-error: var(--error);
  *   --radio-group-light-disabled-border-error: color-mix(in oklab, var(--error) 50%, transparent);
- *   --radio-group-light-border-hover: var(--contrast-300);
- *   --radio-group-light-border-focus: var(--contrast-300);
+ *   --radio-group-light-focus: var(--brand);
  *   --radio-group-light-indicator-background: var(--foreground);
- *  }
+ * }
  * ```
  */
 export function RadioGroup({ options, className, onOptionMouseEnter, ...props }: RadioGroupProps) {
   return (
     <RadioGroupPrimitive.Root {...props}>
       {options.map(({ value, label, id, disabled }) => (
-        <Field.Item key={id} orientation="horizontal">
+        <RadioGroupPrimitive.FieldItem key={id}>
           <RadioGroupPrimitive.Item
             disabled={disabled}
             id={id}
@@ -46,8 +45,8 @@ export function RadioGroup({ options, className, onOptionMouseEnter, ...props }:
           >
             <RadioGroupPrimitive.Indicator />
           </RadioGroupPrimitive.Item>
-          <Field.Label htmlFor={id}>{label}</Field.Label>
-        </Field.Item>
+          <RadioGroupPrimitive.Label htmlFor={id}>{label}</RadioGroupPrimitive.Label>
+        </RadioGroupPrimitive.FieldItem>
       ))}
     </RadioGroupPrimitive.Root>
   );

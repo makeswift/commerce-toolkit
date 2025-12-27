@@ -1,20 +1,27 @@
-import { X } from 'lucide-react';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import { cn } from '@/lib';
 
-export type ChipButtonProps = ComponentProps<'button'>;
+export interface ChipButtonProps extends ComponentProps<'button'> {
+  children?: ReactNode;
+}
 
-export function ChipButton({ className, ...props }: ChipButtonProps) {
+export function ChipButton({ className, children, ...props }: ChipButtonProps) {
   return (
     <button
       className={cn(
-        'flex h-5 w-5 items-center justify-center rounded-full hover:bg-[var(--chip-background-hover,var(--contrast-200))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--button-focus,var(--foreground))]',
+        'flex size-5 items-center justify-center rounded-full',
+        // Hover state
+        'hover:bg-[var(--chip-background-hover,var(--contrast-200))]',
+        // Focus-visible state
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--chip-focus,var(--foreground))]',
         className,
       )}
+      data-slot="chip-button"
+      type="button"
       {...props}
     >
-      <X size={12} />
+      {children}
     </button>
   );
 }

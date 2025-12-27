@@ -6,7 +6,7 @@ export type BlogPostCardDateProps = ComponentProps<'time'> & {
 
 export function BlogPostCardDate({ className, children, ...props }: BlogPostCardDateProps) {
   return (
-    <time className={className} dateTime={children} {...props} data-slot="blog-post-card-date">
+    <time className={className} data-slot="blog-post-card-date" dateTime={children} {...props}>
       {new Date(children).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',

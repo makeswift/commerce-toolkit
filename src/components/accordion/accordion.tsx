@@ -31,13 +31,12 @@ export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
  * ```css
  * :root {
  *   --accordion-focus: var(--brand);
- *   --acordion-light-offset: var(--background);
+ *   --accordion-offset: var(--background);
  *   --accordion-light-title-text: var(--contrast-400);
  *   --accordion-light-title-text-hover: var(--foreground);
  *   --accordion-light-title-icon: var(--contrast-500);
  *   --accordion-light-title-icon-hover: var(--foreground);
  *   --accordion-light-content-text: var(--foreground);
- *   --acordion-dark-offset: var(--foreground);
  *   --accordion-dark-title-text: var(--contrast-200);
  *   --accordion-dark-title-text-hover: var(--background);
  *   --accordion-dark-title-icon: var(--contrast-200);

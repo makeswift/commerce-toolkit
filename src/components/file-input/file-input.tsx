@@ -1,9 +1,8 @@
 'use client';
 
-import { UploadIcon, XIcon } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 import * as FileInputPrimitive from '@/components/file-input';
-import { Label } from '@/components/label';
 
 export interface FileInputProps {
   id: string;
@@ -29,6 +28,14 @@ export interface FileInputProps {
   uploadingLabel?: string;
   successLabel?: string;
   errorLabel?: string;
+  uploadIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  removeIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 function formatBytes(bytes: number) {
@@ -63,6 +70,8 @@ export function FileInput({
   uploadingLabel = 'Uploading',
   successLabel = 'Upload complete',
   errorLabel = 'Error',
+  uploadIcon,
+  removeIcon,
 }: FileInputProps) {
   return (
     <FileInputPrimitive.Root
@@ -82,12 +91,14 @@ export function FileInput({
       onUploadFile={onUploadFile}
       onUploadSuccess={onUploadSuccess}
     >
-      <Label className={hideLabel ? 'sr-only' : 'mb-2'} htmlFor={`${id}-input`}>
+      <FileInputPrimitive.Label className={hideLabel ? 'sr-only' : 'mb-2'}>
         {label}
-      </Label>
+      </FileInputPrimitive.Label>
       <FileInputPrimitive.Dropzone>
         <FileInputPrimitive.Trigger>
-          <UploadIcon className="size-5 text-[var(--file-input-trigger-icon,var(--foreground))]" />
+          <FileInputPrimitive.UploadIcon asChild={uploadIcon?.asChild}>
+            {uploadIcon?.children}
+          </FileInputPrimitive.UploadIcon>
           {cta}
         </FileInputPrimitive.Trigger>
         <FileInputPrimitive.DropzoneError />
@@ -127,7 +138,9 @@ export function FileInput({
                     </FileInputPrimitive.Details>
                   </FileInputPrimitive.Metadata>
                   <FileInputPrimitive.Remove>
-                    <XIcon className="size-5 text-[var(--file-input-item-delete-icon,var(--foreground))]" />
+                    <FileInputPrimitive.RemoveIcon asChild={removeIcon?.asChild}>
+                      {removeIcon?.children}
+                    </FileInputPrimitive.RemoveIcon>
                   </FileInputPrimitive.Remove>
                   {status === 'uploading' && <FileInputPrimitive.Progress />}
                 </>

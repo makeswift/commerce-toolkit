@@ -8,7 +8,10 @@ export {
   RatingStar as Star,
   type RatingStarProps as StarProps,
 } from '@/components/rating/primitives/rating-star';
-export { RatingStars as Stars } from '@/components/rating/primitives/rating-stars';
+export {
+  RatingStars as Stars,
+  type RatingStarsProps as StarsProps,
+} from '@/components/rating/primitives/rating-stars';
 export {
   RatingValue as Value,
   type RatingValueProps as ValueProps,

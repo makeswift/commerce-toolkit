@@ -7,6 +7,23 @@ const meta: Meta<typeof AnimatedUnderline> = {
   component: AnimatedUnderline,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+An animated underline component that creates a smooth expanding underline effect on hover or focus.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --animated-underline-hover: var(--brand);
+  --animated-underline-text: var(--foreground);
+  --animated-underline-font-family: var(--font-family-body);
+}
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -33,16 +50,33 @@ export const Default: Story = {
   },
 };
 
-export const InText: Story = {
+export const InParagraph: Story = {
   render: () => (
-    <p className="max-w-md text-base">
-      This is a paragraph with an{' '}
-      <a className="group/underline focus:outline-hidden" href="#">
-        <AnimatedUnderline>animated underline link</AnimatedUnderline>
-      </a>{' '}
-      embedded within the text.
-    </p>
+    <div className="max-w-lg space-y-4">
+      <p className="text-base">
+        Welcome to our store! We offer a wide range of products.{' '}
+        <a className="group/underline focus-visible:outline-none" href="#">
+          <AnimatedUnderline>Browse our catalog</AnimatedUnderline>
+        </a>{' '}
+        to find what you&apos;re looking for.
+      </p>
+      <p className="text-base">
+        Need help?{' '}
+        <a className="group/underline focus-visible:outline-none" href="#">
+          <AnimatedUnderline>Contact our support team</AnimatedUnderline>
+        </a>{' '}
+        for assistance.
+      </p>
+    </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Wrap the AnimatedUnderline in an anchor tag with `group/underline` class for proper hover effects.',
+      },
+    },
+  },
 };
 
 export const MultiLine: Story = {
@@ -57,46 +91,11 @@ export const MultiLine: Story = {
       </div>
     ),
   ],
-};
-
-export const InParagraph: Story = {
-  render: () => (
-    <div className="max-w-lg space-y-4">
-      <p className="text-base">
-        Welcome to our store! We offer a wide range of products.{' '}
-        <a className="group/underline focus:outline-hidden" href="#">
-          <AnimatedUnderline>Browse our catalog</AnimatedUnderline>
-        </a>{' '}
-        to find what you&apos;re looking for.
-      </p>
-      <p className="text-base">
-        Need help?{' '}
-        <a className="group/underline focus:outline-hidden" href="#">
-          <AnimatedUnderline>Contact our support team</AnimatedUnderline>
-        </a>{' '}
-        for assistance.
-      </p>
-    </div>
-  ),
-};
-
-export const WithCustomClass: Story = {
-  args: {
-    children: 'Custom styled link',
-    className: 'text-xl',
-  },
-};
-
-export const LargeText: Story = {
-  args: {
-    children: 'Large heading link',
-    className: 'text-3xl',
-  },
-};
-
-export const SmallText: Story = {
-  args: {
-    children: 'Small footnote link',
-    className: 'text-xs',
+  parameters: {
+    docs: {
+      description: {
+        story: 'The underline effect works across multiple lines of text.',
+      },
+    },
   },
 };

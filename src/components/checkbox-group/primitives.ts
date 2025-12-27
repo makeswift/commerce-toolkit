@@ -3,6 +3,14 @@ export {
   type CheckboxGroupRootProps as RootProps,
 } from '@/components/checkbox-group/primitives/checkbox-group-root';
 export {
-  CheckboxGroupOption as Option,
-  type CheckboxGroupOptionProps as OptionProps,
-} from '@/components/checkbox-group/primitives/checkbox-group-option';
+  CheckboxGroupCheckbox as Checkbox,
+  type CheckboxGroupCheckboxProps as CheckboxProps,
+} from '@/components/checkbox-group/primitives/checkbox-group-checkbox';
+export {
+  CheckboxGroupFieldItem as FieldItem,
+  type CheckboxGroupFieldItemProps as FieldItemProps,
+} from '@/components/checkbox-group/primitives/checkbox-group-field-item';
+export {
+  CheckboxGroupLabel as Label,
+  type CheckboxGroupLabelProps as LabelProps,
+} from '@/components/checkbox-group/primitives/checkbox-group-label';

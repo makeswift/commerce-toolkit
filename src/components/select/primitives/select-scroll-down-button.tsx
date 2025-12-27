@@ -1,3 +1,5 @@
+'use client';
+
 import * as SelectPrimitive from '@radix-ui/react-select';
 import type { ComponentProps } from 'react';
 
@@ -12,13 +14,7 @@ export function SelectScrollDownButton({
 }: SelectScrollDownButtonProps) {
   return (
     <SelectPrimitive.ScrollDownButton
-      className={cn(
-        // Base layout
-        'flex w-full cursor-default items-center justify-center',
-        // Spacing
-        'py-3',
-        className,
-      )}
+      className={cn('flex w-full cursor-default items-center justify-center py-3', className)}
       data-slot="select-scroll-down-button"
       {...props}
     >

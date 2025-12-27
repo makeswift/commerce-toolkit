@@ -34,3 +34,7 @@ export {
   FieldError as Error,
   type FieldErrorProps as ErrorProps,
 } from '@/components/field/primitives/field-error';
+export {
+  FieldErrorIcon as ErrorIcon,
+  type FieldErrorIconProps as ErrorIconProps,
+} from '@/components/field/primitives/field-error-icon';

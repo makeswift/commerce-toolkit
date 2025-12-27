@@ -17,7 +17,9 @@ export function BlogPostCardImage({
   return (
     <Component
       className={cn(
-        'h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110',
+        'h-full w-full object-cover transition-transform duration-500 ease-out',
+        // Group hover state
+        'group-hover/blog-post-card:scale-110',
         className,
       )}
       data-slot="blog-post-card-image"

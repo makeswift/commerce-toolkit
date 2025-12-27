@@ -1,14 +1,18 @@
-import type { ComponentProps, ElementType } from 'react';
+import type { ElementType, ReactNode } from 'react';
 
 import * as CardPrimitive from '@/components/card';
 
-export type CardProps<E extends ElementType = 'article'> = Omit<ComponentProps<E>, 'as'> & {
-  as?: E;
+export interface CardProps {
+  as?: ElementType;
+  className?: string;
+  children?: ReactNode;
   link?: {
     href: string;
     ariaLabel: string;
+    asChild?: boolean;
+    children?: ReactNode;
   };
-};
+}
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -23,11 +27,15 @@ export type CardProps<E extends ElementType = 'article'> = Omit<ComponentProps<E
  * }
  * ```
  */
-export function Card({ as, className, children, link, ...props }: CardProps) {
+export function Card({ as, className, children, link }: CardProps) {
   return (
-    <CardPrimitive.Root as={as} className={className} {...props}>
+    <CardPrimitive.Root as={as} className={className}>
       {children}
-      {link && <CardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />}
+      {link && (
+        <CardPrimitive.Link aria-label={link.ariaLabel} asChild={link.asChild} href={link.href}>
+          {link.children}
+        </CardPrimitive.Link>
+      )}
     </CardPrimitive.Root>
   );
 }

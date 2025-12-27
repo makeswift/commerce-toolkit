@@ -1,11 +1,18 @@
-import { CheckCircle, CircleAlert } from 'lucide-react';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import * as FormStatusPrimitive from '@/components/form-status';
 
-export type FormStatusProps = ComponentProps<'div'> & {
+export interface FormStatusProps extends ComponentProps<'div'> {
   type?: 'error' | 'success';
-};
+  errorIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  successIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+}
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -24,17 +31,21 @@ export function FormStatus({
   className,
   children,
   type = 'success',
+  errorIcon,
+  successIcon,
   ...props
-}: React.ComponentPropsWithoutRef<'div'> & {
-  type?: 'error' | 'success';
-}) {
+}: FormStatusProps) {
   return (
     <FormStatusPrimitive.Root className={className} type={type} {...props}>
       {type === 'error' && (
-        <CircleAlert absoluteStrokeWidth className="shrink-0" size={20} strokeWidth={1.5} />
+        <FormStatusPrimitive.ErrorIcon asChild={errorIcon?.asChild}>
+          {errorIcon?.children}
+        </FormStatusPrimitive.ErrorIcon>
       )}
       {type === 'success' && (
-        <CheckCircle absoluteStrokeWidth className="shrink-0" size={20} strokeWidth={1.5} />
+        <FormStatusPrimitive.SuccessIcon asChild={successIcon?.asChild}>
+          {successIcon?.children}
+        </FormStatusPrimitive.SuccessIcon>
       )}
       {children}
     </FormStatusPrimitive.Root>

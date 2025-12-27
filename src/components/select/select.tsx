@@ -1,11 +1,8 @@
 'use client';
 
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import type { ComponentProps } from 'react';
-import type { FocusEvent } from 'react';
+import type { ComponentProps, FocusEvent, ReactNode } from 'react';
 
 import * as SelectPrimitive from '@/components/select/primitives';
-import { cn } from '@/lib';
 
 export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> & {
   label: string;
@@ -17,6 +14,18 @@ export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> & {
   onBlur?: (e: FocusEvent<HTMLButtonElement>) => void;
   onOptionMouseEnter?: (value: string) => void;
   id: string;
+  triggerIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  scrollUpIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  scrollDownIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 };
 
 /**
@@ -56,30 +65,27 @@ export function Select({
   onOptionMouseEnter,
   value,
   id,
+  triggerIcon,
+  scrollUpIcon,
+  scrollDownIcon,
   ...props
 }: SelectProps) {
   return (
-    <SelectPrimitive.Root pending={pending} variant={variant} {...props}>
+    <SelectPrimitive.Root className={className} pending={pending} variant={variant} {...props}>
       <SelectPrimitive.Trigger aria-label={label} id={id} onBlur={onBlur} onFocus={onFocus}>
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon asChild>
-          <ChevronDown
-            absoluteStrokeWidth
-            className={cn(
-              'w-5 text-[var(--select-light-icon,var(--foreground))] transition-transform',
-            )}
-            strokeWidth={1.5}
-          />
+          <SelectPrimitive.TriggerIcon asChild={triggerIcon?.asChild}>
+            {triggerIcon?.children}
+          </SelectPrimitive.TriggerIcon>
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content>
           <SelectPrimitive.ScrollUpButton>
-            <ChevronUp
-              absoluteStrokeWidth
-              className={cn('w-5 text-[var(--select-light-icon,var(--foreground))]')}
-              strokeWidth={1.5}
-            />
+            <SelectPrimitive.ScrollUpIcon asChild={scrollUpIcon?.asChild}>
+              {scrollUpIcon?.children}
+            </SelectPrimitive.ScrollUpIcon>
           </SelectPrimitive.ScrollUpButton>
           <SelectPrimitive.Viewport>
             {options.map((option) => (
@@ -95,11 +101,9 @@ export function Select({
             ))}
           </SelectPrimitive.Viewport>
           <SelectPrimitive.ScrollDownButton>
-            <ChevronDown
-              absoluteStrokeWidth
-              className={cn('w-5 text-[var(--select-icon,var(--foreground))]')}
-              strokeWidth={1.5}
-            />
+            <SelectPrimitive.ScrollDownIcon asChild={scrollDownIcon?.asChild}>
+              {scrollDownIcon?.children}
+            </SelectPrimitive.ScrollDownIcon>
           </SelectPrimitive.ScrollDownButton>
         </SelectPrimitive.Content>
       </SelectPrimitive.Portal>

@@ -15,12 +15,9 @@ export function SwatchRadioGroupColor({
   return (
     <span
       className={cn(
-        // Base layout
-        'block size-full',
-        // Borders & Rounded
-        'rounded-full border [border-color:var(--swatch-radio-group-light-option-border,color-mix(in_oklab,var(--foreground)_10%,transparent))]',
-        // Group states
-        'group-disabled:opacity-20',
+        'block size-full rounded-full border [border-color:var(--swatch-radio-group-light-option-border,color-mix(in_oklab,var(--foreground)_10%,transparent))]',
+        // Group disabled state
+        'group-disabled/swatch-radio-group-item:opacity-20',
         className,
       )}
       data-slot="swatch-radio-group-color"

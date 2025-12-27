@@ -10,7 +10,7 @@ const meta: Meta<typeof Badge> = {
     docs: {
       description: {
         component: `
-A badge component for displaying short status text, labels, or notifications. Supports multiple semantic variants and shapes.
+A small status indicator component for displaying labels, tags, and statuses.
 
 ## CSS Variables
 
@@ -53,56 +53,8 @@ type Story = StoryObj<BadgeProps>;
 
 export const Default: Story = {
   args: {
-    children: 'Badge',
-  },
-};
-
-export const Primary: Story = {
-  args: {
     children: 'New',
     variant: 'primary',
-  },
-};
-
-export const Success: Story = {
-  args: {
-    children: 'In Stock',
-    variant: 'success',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    children: 'Low Stock',
-    variant: 'warning',
-  },
-};
-
-export const Error: Story = {
-  args: {
-    children: 'Sold Out',
-    variant: 'error',
-  },
-};
-
-export const Info: Story = {
-  args: {
-    children: 'Coming Soon',
-    variant: 'info',
-  },
-};
-
-export const PillShape: Story = {
-  args: {
-    children: 'Sale',
-    shape: 'pill',
-  },
-};
-
-export const RoundedShape: Story = {
-  args: {
-    children: 'Featured',
-    shape: 'rounded',
   },
 };
 
@@ -119,43 +71,46 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All available semantic variants displayed together.',
+        story: 'The badge supports five semantic variants for different use cases.',
       },
     },
   },
 };
 
-export const AllShapes: Story = {
+export const Shapes: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-3">
-      <Badge shape="rounded">Rounded</Badge>
-      <Badge shape="pill">Pill</Badge>
-    </div>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Both shape options: `rounded` (default) and `pill`.',
-      },
-    },
-  },
-};
-
-export const ProductBadges: Story = {
-  render: () => (
-    <div className="flex flex-wrap items-center gap-3">
-      <Badge variant="primary">New Arrival</Badge>
-      <Badge shape="pill" variant="error">
-        Sale
+    <div className="flex flex-wrap gap-3">
+      <Badge shape="rounded" variant="primary">
+        Rounded
       </Badge>
-      <Badge variant="success">Best Seller</Badge>
-      <Badge variant="warning">Limited Edition</Badge>
+      <Badge shape="pill" variant="primary">
+        Pill
+      </Badge>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Common badge patterns used in e-commerce product displays.',
+        story:
+          'Badges come in two shapes: `rounded` (default) with subtle corners and `pill` with fully rounded ends.',
+      },
+    },
+  },
+};
+
+export const ProductStatus: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="success">In Stock</Badge>
+      <Badge variant="warning">Low Stock</Badge>
+      <Badge variant="error">Out of Stock</Badge>
+      <Badge variant="info">Pre-Order</Badge>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common use case for displaying product availability status.',
       },
     },
   },
