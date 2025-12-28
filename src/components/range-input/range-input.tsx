@@ -12,7 +12,6 @@ export interface RangeInputValue {
 
 export interface RangeInputProps {
   applyLabel?: string;
-  colorScheme?: 'light' | 'dark';
   disabled?: boolean;
   inputValue: RangeInputValue;
   max?: number;

@@ -19,7 +19,6 @@ interface CarouselContext {
   scrollNext: () => void;
   canScrollPrev: boolean;
   canScrollNext: boolean;
-  colorScheme: 'light' | 'dark';
   hideOverflow: boolean;
 }
 
@@ -30,7 +29,6 @@ export interface CarouselRootProps extends ComponentProps<'div'> {
   plugins?: CarouselPlugin;
   setApi?: (api: CarouselApi) => void;
   hideOverflow?: boolean;
-  colorScheme?: 'light' | 'dark';
 }
 
 export function CarouselRoot({
@@ -40,7 +38,6 @@ export function CarouselRoot({
   plugins,
   setApi,
   hideOverflow = true,
-  colorScheme = 'light',
   ...props
 }: CarouselRootProps) {
   const [carouselRef, api] = useEmblaCarousel(opts, plugins);
@@ -99,7 +96,6 @@ export function CarouselRoot({
       scrollNext,
       canScrollPrev,
       canScrollNext,
-      colorScheme,
       hideOverflow,
     }),
     [carouselRef, api, scrollPrev, scrollNext, canScrollPrev, canScrollNext],

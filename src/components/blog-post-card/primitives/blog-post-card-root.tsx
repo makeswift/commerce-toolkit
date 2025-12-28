@@ -7,12 +7,14 @@ export type BlogPostCardRootProps<E extends ElementType = 'article'> = Omit<
   'as'
 > & {
   as?: E;
+  aspectRatio?: '5/6' | '3/4' | '4/3' | '1/1';
 };
 
 export function BlogPostCardRoot<T extends ElementType = 'article'>({
   as,
   className,
   children,
+  aspectRatio = '4/3',
   ...props
 }: BlogPostCardRootProps<T>) {
   const BlogPostCardRootElement = as ?? 'article';
@@ -20,9 +22,10 @@ export function BlogPostCardRoot<T extends ElementType = 'article'>({
   return (
     <BlogPostCardRootElement
       className={cn(
-        'group relative w-full max-w-md @container [font-family:var(--blog-post-card-font-family,var(--font-family-body))]',
+        'group/blog-post-card relative w-full max-w-md @container [font-family:var(--blog-post-card-font-family,var(--font-family-body))]',
         className,
       )}
+      data-aspect-ratio={aspectRatio}
       data-slot="blog-post-card-root"
       {...props}
     >

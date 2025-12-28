@@ -1,7 +1,6 @@
 export {
   ProductCardRoot as Root,
   type ProductCardRootProps as RootProps,
-  useProductCard,
 } from '@/components/product-card/primitives/product-card-root';
 export {
   ProductCardContent as Content,

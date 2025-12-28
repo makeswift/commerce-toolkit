@@ -2,6 +2,7 @@ import * as BlogPostCardPrimitive from '@/components/blog-post-card';
 
 export interface BlogPostCardProps {
   className?: string;
+  aspectRatio?: '5/6' | '3/4' | '4/3' | '1/1';
   title: string;
   author?: string;
   content: string;
@@ -36,6 +37,7 @@ export interface BlogPostCardProps {
  */
 export function BlogPostCard({
   author,
+  aspectRatio = '4/3',
   content,
   date,
   link,
@@ -44,7 +46,7 @@ export function BlogPostCard({
   className,
 }: BlogPostCardProps) {
   return (
-    <BlogPostCardPrimitive.Root className={className}>
+    <BlogPostCardPrimitive.Root aspectRatio={aspectRatio} className={className}>
       <BlogPostCardPrimitive.Thumbnail>
         {image ? (
           <BlogPostCardPrimitive.Image alt={image.alt} src={image.src} />

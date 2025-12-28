@@ -2,22 +2,15 @@
 
 import type { ComponentProps } from 'react';
 
-import { useCarousel } from '@/components/carousel';
 import { cn } from '@/lib';
 
 export type CarouselControlsProps = ComponentProps<'div'>;
 
 export function CarouselControls({ className, children, ...props }: CarouselControlsProps) {
-  const { colorScheme } = useCarousel();
-
   return (
     <div
       className={cn(
-        'mt-10 flex w-full items-center justify-between gap-2',
-        {
-          light: 'text-[var(--carousel-light-button,hsl(var(--foreground)))]',
-          dark: 'text-[var(--carousel-dark-button,hsl(var(--background)))]',
-        }[colorScheme],
+        'mt-10 flex w-full items-center justify-between gap-2 text-[var(--carousel-light-button,hsl(var(--foreground)))]',
         className,
       )}
       data-slot="carousel-controls"

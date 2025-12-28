@@ -16,9 +16,7 @@ export interface CategoryCardContent {
 
 export interface CategoryCardProps extends CategoryCardContent {
   className?: string;
-  textColorScheme?: 'light' | 'dark';
-  iconColorScheme?: 'light' | 'dark';
-  aspectRatio?: '5:6' | '3:4' | '1:1';
+  aspectRatio?: '5/6' | '3/4' | '1/1';
   textSize?: 'small' | 'medium' | 'large' | 'x-large';
   textPosition?: 'inside' | 'outside';
   showOverlay?: boolean;
@@ -49,9 +47,7 @@ export function CategoryCard({
   title,
   image,
   link,
-  textColorScheme = 'light',
-  iconColorScheme = 'light',
-  aspectRatio = '5:6',
+  aspectRatio = '5/6',
   textPosition = 'outside',
   textSize = 'small',
   showOverlay = true,
@@ -60,9 +56,7 @@ export function CategoryCard({
     <CategoryCardPrimitive.Root
       aspectRatio={aspectRatio}
       className={className}
-      iconColorScheme={iconColorScheme}
       showOverlay={showOverlay}
-      textColorScheme={textColorScheme}
       textSize={textSize}
     >
       <CategoryCardPrimitive.Icon>

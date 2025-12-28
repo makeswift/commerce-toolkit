@@ -1,23 +1,14 @@
-'use client';
-
 import { ComponentProps } from 'react';
 
-import { useProductCard } from '@/components/product-card';
 import { cn } from '@/lib';
 
 export type ProductCardFallbackProps = ComponentProps<'div'>;
 
 export function ProductCardFallback({ className, children, ...props }: ProductCardFallbackProps) {
-  const { colorScheme } = useProductCard();
-
   return (
     <div
       className={cn(
-        'break-words p-4 text-4xl font-bold leading-none tracking-tight transition-transform duration-500 ease-out group-hover:scale-105',
-        {
-          light: '[color:color-mix(in_oklab,hsl(var(--foreground))_30%,transparent)]',
-          dark: '[color:color-mix(in_oklab,hsl(var(--background))_30%,transparent)]',
-        }[colorScheme],
+        'break-words p-4 text-4xl font-bold leading-none tracking-tight transition-transform duration-500 ease-out [color:color-mix(in_oklab,hsl(var(--foreground))_30%,transparent)] group-hover:scale-105',
         className,
       )}
       data-slot="product-card-fallback"

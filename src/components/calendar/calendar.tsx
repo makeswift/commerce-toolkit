@@ -8,9 +8,7 @@ const components = {
   Chevron: () => <ChevronLeftIcon className="h-5 w-5" strokeWidth={1} />,
 };
 
-export type CalendarProps = ComponentProps<typeof DayPicker> & {
-  colorScheme?: 'light' | 'dark';
-};
+export type CalendarProps = ComponentProps<typeof DayPicker>;
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -42,21 +40,11 @@ export type CalendarProps = ComponentProps<typeof DayPicker> & {
  *  }
  * ```
  */
-export function Calendar({
-  className,
-  colorScheme = 'light',
-  classNames,
-  ...props
-}: CalendarProps) {
+export function Calendar({ className, classNames, ...props }: CalendarProps) {
   return (
     <DayPicker
       className={cn(
-        'box-content w-[280px] rounded-lg border p-3 font-[var(--calendar-font-family,var(--font-family-body))]',
-        {
-          light:
-            'border-[var(--calendar-light-border,hsl(var(--contrast-100)))] bg-[var(--calendar-light-background,hsl(var(--background)))] text-[var(--calendar-light-text,hsl(var(--foreground)))]',
-          dark: 'border-[var(--calendar-dark-border,hsl(var(--contrast-500)))] bg-[var(--calendar-dark-background,hsl(var(--foreground)))] text-[var(--calendar-dark-text,hsl(var(--background)))]',
-        }[colorScheme],
+        'box-content w-[280px] rounded-lg border border-[var(--calendar-light-border,hsl(var(--contrast-100)))] bg-[var(--calendar-light-background,hsl(var(--background)))] p-3 font-[var(--calendar-font-family,var(--font-family-body))] text-[var(--calendar-light-text,hsl(var(--foreground)))]',
         className,
       )}
       classNames={{
@@ -64,18 +52,10 @@ export function Calendar({
         month_caption: 'flex justify-center w-full font-medium pb-0.5',
         nav: 'absolute flex justify-between w-full',
         button_next: cn(
-          'rotate-180 rounded-full focus-visible:outline-none focus-visible:ring-1',
-          {
-            light: 'focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
-            dark: 'focus-visible:ring-[var(--calendar-dark-focus,hsl(var(--background)))]',
-          }[colorScheme],
+          'rotate-180 rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
         ),
         button_previous: cn(
-          'rounded-full focus-visible:outline-none focus-visible:ring-1',
-          {
-            light: 'focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
-            dark: 'focus-visible:ring-[var(--calendar-dark-focus,hsl(var(--background)))]',
-          }[colorScheme],
+          'rounded-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))]',
         ),
         month_grid: 'flex flex-col gap-0.5',
         weeks: 'flex flex-col gap-0.5',
@@ -84,49 +64,16 @@ export function Calendar({
         week: 'flex',
         day: 'h-10 w-10 flex text-xs font-medium group p-0',
         day_button: cn(
-          'flex h-full w-full items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-1 disabled:hover:border-none',
-          {
-            light:
-              'hover:border hover:border-[var(--calendar-light-button-border-hover,hsl(var(--contrast-200)))] focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))] group-data-[selected=true]/middle:bg-[var(--calendar-light-selected-middle-button-background,transparent)] group-data-[selected=true]:bg-[var(--calendar-light-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]:text-[var(--calendar-light-selected-button-text,hsl(var(--foreground)))]',
-            dark: 'hover:border hover:border-[var(--calendar-dark-button-border-hover,hsl(var(--contrast-400)))] focus-visible:ring-[var(--calendar-dark-focus,hsl(var(--background)))] group-data-[selected=true]/middle:bg-[var(--calendar-dark-selected-middle-button-background,transparent)] group-data-[selected=true]:bg-[var(--calendar-dark-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]:text-[var(--calendar-dark-selected-button-text,hsl(var(--foreground)))]',
-          }[colorScheme],
+          'flex h-full w-full items-center justify-center rounded-full hover:border hover:border-[var(--calendar-light-button-border-hover,hsl(var(--contrast-200)))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--calendar-light-focus,hsl(var(--foreground)))] disabled:hover:border-none group-data-[selected=true]/middle:bg-[var(--calendar-light-selected-middle-button-background,transparent)] group-data-[selected=true]:bg-[var(--calendar-light-selected-button-background,hsl(var(--primary)))] group-data-[selected=true]:text-[var(--calendar-light-selected-button-text,hsl(var(--foreground)))]',
         ),
-        disabled: cn(
-          {
-            light: 'text-[var(--calendar-light-text-disabled,hsl(var(--contrast-300)))]',
-            dark: 'text-[var(--calendar-dark-text-disabled,hsl(var(--contrast-300)))]',
-          }[colorScheme],
-        ),
-        outside: cn(
-          {
-            light: 'text-[var(--calendar-light-text-disabled,hsl(var(--contrast-300)))]',
-            dark: 'text-[var(--calendar-dark-text-disabled,hsl(var(--contrast-300)))]',
-          }[colorScheme],
-        ),
-        range_start: cn(
-          'bg-gradient-to-l',
-          {
-            light:
-              'from-[var(--calendar-light-range-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
-            dark: 'from-[var(--calendar-dark-range-background,color-mix(in_oklab,hsl(var(--primary)),white_60%))]',
-          }[colorScheme],
-        ),
-        range_middle: cn(
-          'group/middle',
-          {
-            light:
-              'bg-[var(--calendar-light-range-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
-            dark: 'bg-[var(--calendar-dark-range-background,color-mix(in_oklab,hsl(var(--primary)),white_60%))]',
-          }[colorScheme],
-        ),
-        range_end: cn(
-          'bg-gradient-to-r',
-          {
-            light:
-              'from-[var(--calendar-light-range-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
-            dark: 'from-[var(--calendar-dark-range-background,color-mix(in_oklab,hsl(var(--primary)),white_60%))]',
-          }[colorScheme],
-        ),
+        disabled: 'text-[var(--calendar-light-text-disabled,hsl(var(--contrast-300)))]',
+        outside: 'text-[var(--calendar-light-text-disabled,hsl(var(--contrast-300)))]',
+        range_start:
+          'bg-gradient-to-l from-[var(--calendar-light-range-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
+        range_middle:
+          'group/middle bg-[var(--calendar-light-range-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
+        range_end:
+          'bg-gradient-to-r from-[var(--calendar-light-range-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
         ...classNames,
       }}
       components={components}

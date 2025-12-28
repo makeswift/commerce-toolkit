@@ -7,7 +7,7 @@ import { cn } from '@/lib';
 export type CarouselScrollbarProps = ComponentProps<'div'>;
 
 export function CarouselScrollbar({ className }: CarouselScrollbarProps) {
-  const { api, canScrollPrev, canScrollNext, colorScheme } = useCarousel();
+  const { api, canScrollPrev, canScrollNext } = useCarousel();
 
   const [progress, setProgress] = useState(0);
 
@@ -89,22 +89,14 @@ export function CarouselScrollbar({ className }: CarouselScrollbarProps) {
       {/* Track */}
       <div
         className={cn(
-          'pointer-events-none absolute h-1 w-full rounded-full opacity-10',
-          {
-            light: 'bg-[var(--carousel-light-scrollbar,hsl(var(--foreground)))]',
-            dark: 'bg-[var(--carousel-dark-scrollbar,hsl(var(--background)))]',
-          }[colorScheme],
+          'pointer-events-none absolute h-1 w-full rounded-full bg-[var(--carousel-light-scrollbar,hsl(var(--foreground)))] opacity-10',
         )}
         data-slot="carousel-track"
       />
       {/* Bar */}
       <div
         className={cn(
-          'pointer-events-none absolute h-1 rounded-full transition-all ease-out',
-          {
-            light: 'bg-[var(--carousel-light-scrollbar,hsl(var(--foreground)))]',
-            dark: 'bg-[var(--carousel-dark-scrollbar,hsl(var(--background)))]',
-          }[colorScheme],
+          'pointer-events-none absolute h-1 rounded-full bg-[var(--carousel-light-scrollbar,hsl(var(--foreground)))] transition-all ease-out',
         )}
         data-slot="carousel-bar"
         style={{
