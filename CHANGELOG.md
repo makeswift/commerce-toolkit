@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.6.0
+
+### Minor Changes
+
+- ffa4bdf: Removed colorScheme and refactored aspectRatio with data attributes
+
 ## 0.5.0
 
 ### Minor Changes
