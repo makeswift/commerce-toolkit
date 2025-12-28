@@ -1,7 +1,6 @@
 export {
   CategoryCardRoot as Root,
   type CategoryCardRootProps as RootProps,
-  useCategoryCard,
 } from '@/components/category-card/primitives/category-card-root';
 
 export {

@@ -1,222 +1,274 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card';
+import * as BlogPostCardPrimitive from '@/components/blog-post-card';
+import { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card/blog-post-card';
 
 const meta: Meta<typeof BlogPostCard> = {
   title: 'Components/BlogPostCard',
   component: BlogPostCard,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+The BlogPostCard component displays a blog post preview with image, title, content summary, date, and optional author.
+
+## CSS Variables
+
+The following CSS variables can be used to customize the BlogPostCard component:
+
+\`\`\`css
+:root {
+  --blog-post-card-focus: hsl(var(--primary));
+  --blog-post-card-image-background: hsl(var(--contrast-100));
+  --blog-post-card-empty-text: color-mix(in oklab, hsl(var(--foreground)) 15%, transparent);
+  --blog-post-card-title-text: hsl(var(--foreground));
+  --blog-post-card-content-text: hsl(var(--contrast-400));
+  --blog-post-card-author-date-text: hsl(var(--foreground));
+  --blog-post-card-font-family: var(--font-family-body);
+  --blog-post-card-summary-text: hsl(var(--contrast-400));
+}
+\`\`\`
+
+## Aspect Ratios
+
+The component supports four aspect ratios for the thumbnail image:
+- \`4/3\` (default) - Landscape, ideal for blog imagery
+- \`5/6\` - Slightly tall
+- \`3/4\` - Portrait orientation
+- \`1/1\` - Square format
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
+    aspectRatio: {
+      control: 'select',
+      options: ['5/6', '3/4', '4/3', '1/1'],
+      description: 'The aspect ratio of the thumbnail image',
+    },
     title: {
       control: 'text',
-      description: 'The title of the blog post',
+      description: 'The blog post title',
     },
     content: {
       control: 'text',
-      description: 'The excerpt or summary of the blog post',
+      description: 'The blog post content summary',
     },
     date: {
       control: 'text',
-      description: 'The publication date (ISO format)',
+      description: 'The publication date',
     },
     author: {
       control: 'text',
       description: 'The author name (optional)',
     },
     image: {
-      control: false,
-      description: 'The image object with src, alt, and optional render function',
+      control: 'object',
+      description: 'The thumbnail image object with src and alt',
     },
     link: {
-      control: false,
-      description: 'The link object with href, ariaLabel, and optional render function',
-    },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes for the root element',
+      control: 'object',
+      description: 'The link object with href and ariaLabel',
     },
   },
-  decorators: [
-    (Story) => (
-      <div>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 type Story = StoryObj<BlogPostCardProps>;
 
-const defaultBlogPost = {
-  title: 'The Future of E-commerce',
-  author: 'Sarah Johnson',
-  content:
-    'Discover the latest trends shaping the future of online retail and how businesses are adapting to meet evolving consumer expectations in the digital age.',
-  date: '2024-03-15',
-  image: {
-    src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
-    alt: 'Modern e-commerce workspace',
-  },
-  link: {
-    href: '#',
-    ariaLabel: 'Read more about The Future of E-commerce',
-  },
-};
+function StoryWrapper({ children }: { children: React.ReactNode }) {
+  return <div className="w-80">{children}</div>;
+}
 
+/**
+ * The default BlogPostCard displays a thumbnail, title, content summary, and date.
+ */
 export const Default: Story = {
-  args: defaultBlogPost,
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
+  args: {
+    title: "Sustainable Cleaning: A Beginner's Guide",
+    content:
+      'Discover how small changes in your cleaning routine can make a big impact on the environment. From natural ingredients to reusable tools, we cover everything you need to get started.',
+    date: 'December 15, 2024',
+    image: {
+      src: 'https://images.unsplash.com/photo-1685052392996-5c042ab4c170?w=900',
+      alt: 'Eco-friendly cleaning supplies arranged on a wooden surface',
+    },
+    link: {
+      href: '/blog/sustainable-cleaning-guide',
+      ariaLabel: "Read Sustainable Cleaning: A Beginner's Guide",
+    },
+  },
 };
 
+/**
+ * BlogPostCard with an author displayed below the date.
+ */
+export const WithAuthor: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
+  args: {
+    title: 'The Art of Minimalist Home Organization',
+    content:
+      'Learn how to declutter your space and create a serene home environment with our step-by-step guide to minimalist organization principles.',
+    date: 'December 10, 2024',
+    author: 'Sarah Mitchell',
+    image: {
+      src: 'https://images.unsplash.com/photo-1597816189341-6ed558ab017e?w=900',
+      alt: 'Minimal ceramic soap dispenser in a clean bathroom',
+    },
+    link: {
+      href: '/blog/minimalist-home-organization',
+      ariaLabel: 'Read The Art of Minimalist Home Organization',
+    },
+  },
+};
+
+/**
+ * BlogPostCard without an image displays a fallback with the title.
+ */
 export const WithoutImage: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
-    title: 'Design Systems in Modern Web Development',
-    author: 'Michael Chen',
+    title: 'Natural Cleaning Ingredients You Already Have',
     content:
-      'Learn how design systems are revolutionizing the way teams build consistent, scalable user interfaces across large-scale applications.',
-    date: '2024-03-10',
+      'Your pantry is full of powerful cleaning agents. Learn how to use vinegar, baking soda, and lemon to keep your home sparkling clean.',
+    date: 'December 5, 2024',
+    author: 'James Chen',
     link: {
-      href: '#',
-      ariaLabel: 'Read more about Design Systems in Modern Web Development',
+      href: '/blog/natural-cleaning-ingredients',
+      ariaLabel: 'Read Natural Cleaning Ingredients You Already Have',
     },
   },
 };
 
-export const WithoutAuthor: Story = {
+/**
+ * BlogPostCard with a square aspect ratio.
+ */
+export const SquareAspectRatio: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
-    title: 'New Product Launch Announcement',
+    aspectRatio: '1/1',
+    title: 'Zero-Waste Kitchen Essentials',
     content:
-      'We are excited to announce the launch of our new product line, featuring innovative solutions designed to enhance your shopping experience.',
-    date: '2024-03-20',
+      'Transform your kitchen into an eco-friendly space with these essential zero-waste products and practices.',
+    date: 'November 28, 2024',
     image: {
-      src: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=600&fit=crop',
-      alt: 'New product showcase',
+      src: 'https://images.unsplash.com/photo-1590439471364-192aa70c0b53?w=900',
+      alt: 'Bamboo countertop brush',
     },
     link: {
-      href: '#',
-      ariaLabel: 'Read more about New Product Launch Announcement',
+      href: '/blog/zero-waste-kitchen',
+      ariaLabel: 'Read Zero-Waste Kitchen Essentials',
     },
   },
 };
 
-export const LongTitle: Story = {
-  args: {
-    title:
-      'Understanding the Impact of Artificial Intelligence on Customer Experience and Personalization',
-    author: 'Dr. Emily Rodriguez',
-    content:
-      'An in-depth analysis of how AI technologies are transforming the retail landscape and creating unprecedented opportunities for personalized shopping experiences.',
-    date: '2024-03-18',
-    image: {
-      src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
-      alt: 'AI and technology concept',
-    },
-    link: {
-      href: '#',
-      ariaLabel:
-        'Read more about Understanding the Impact of Artificial Intelligence on Customer Experience and Personalization',
-    },
-  },
-};
-
-export const LongContent: Story = {
-  args: {
-    title: 'Sustainability in Fashion',
-    author: 'Jessica Williams',
-    content:
-      'The fashion industry is undergoing a major transformation as brands and consumers alike prioritize sustainability. From eco-friendly materials to ethical manufacturing practices, discover how companies are reducing their environmental footprint while maintaining style and quality. This comprehensive guide explores the latest innovations and trends.',
-    date: '2024-03-12',
-    image: {
-      src: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=800&h=600&fit=crop',
-      alt: 'Sustainable fashion',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'Read more about Sustainability in Fashion',
-    },
-  },
-};
-
-export const RecentPost: Story = {
-  args: {
-    title: '5 Tips for Better Product Photography',
-    author: 'David Martinez',
-    content:
-      'Master the art of product photography with these essential tips that will help your products stand out and drive more conversions.',
-    date: new Date().toISOString().split('T')[0],
-    image: {
-      src: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=800&h=600&fit=crop',
-      alt: 'Professional photography setup',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'Read more about 5 Tips for Better Product Photography',
-    },
-  },
-};
-
-export const MinimalContent: Story = {
-  args: {
-    title: 'Quick Update',
-    author: 'Admin',
-    content: 'A brief announcement about our latest changes.',
-    date: '2024-03-14',
-    image: {
-      src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop',
-      alt: 'Office update',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'Read more about Quick Update',
-    },
-  },
-};
-
-export const MultipleCards: Story = {
+/**
+ * ## Composable Anatomy
+ *
+ * For advanced customization, you can use the primitive components directly. The primitives include:
+ *
+ * - `Root` - Container with aspect ratio configuration
+ * - `Thumbnail` - Image container
+ * - `Image` - Blog post image with hover effects
+ * - `Fallback` - Displayed when no image is available
+ * - `Title` - Blog post title
+ * - `Content` - Content summary text
+ * - `Details` - Container for date and author
+ * - `Date` - Publication date
+ * - `Author` - Author name
+ * - `Link` - Invisible link overlay for click area
+ *
+ * ```tsx
+ * import * as BlogPostCardPrimitive from '@/components/blog-post-card';
+ *
+ * <BlogPostCardPrimitive.Root aspectRatio="4/3">
+ *   <BlogPostCardPrimitive.Thumbnail>
+ *     <BlogPostCardPrimitive.Image src="..." alt="..." />
+ *   </BlogPostCardPrimitive.Thumbnail>
+ *   <BlogPostCardPrimitive.Title>Post Title</BlogPostCardPrimitive.Title>
+ *   <BlogPostCardPrimitive.Content>Summary text...</BlogPostCardPrimitive.Content>
+ *   <BlogPostCardPrimitive.Details>
+ *     <BlogPostCardPrimitive.Date>December 15, 2024</BlogPostCardPrimitive.Date>
+ *     <BlogPostCardPrimitive.Author>Author Name</BlogPostCardPrimitive.Author>
+ *   </BlogPostCardPrimitive.Details>
+ *   <BlogPostCardPrimitive.Link href="/blog/post" aria-label="Read post" />
+ * </BlogPostCardPrimitive.Root>
+ * ```
+ */
+export const ComposableAnatomy: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   render: () => (
-    <div className="w-full max-w-5xl p-4">
-      <div className="mx-auto grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <BlogPostCard
-          author="Sarah Johnson"
-          content="Discover the latest trends shaping the future of online retail and consumer expectations."
-          date="2024-03-15"
-          image={{
-            src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
-            alt: 'E-commerce',
-          }}
-          link={{ href: '#', ariaLabel: 'Read more about The Future of E-commerce' }}
-          title="The Future of E-commerce"
+    <BlogPostCardPrimitive.Root aspectRatio="4/3">
+      <BlogPostCardPrimitive.Thumbnail>
+        <BlogPostCardPrimitive.Image
+          alt="Glass soap pump bottles on a shelf"
+          src="https://images.unsplash.com/photo-1606448009227-af1758630e60?w=900"
         />
-        <BlogPostCard
-          author="Michael Chen"
-          content="Learn how design systems are revolutionizing the way teams build interfaces."
-          date="2024-03-10"
-          image={{
-            src: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&h=600&fit=crop',
-            alt: 'Design',
-          }}
-          link={{ href: '#', ariaLabel: 'Read more about Design Systems' }}
-          title="Design Systems in Modern Web"
-        />
-        <BlogPostCard
-          author="Jessica Williams"
-          content="The fashion industry is prioritizing sustainability with eco-friendly materials."
-          date="2024-03-12"
-          image={{
-            src: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=800&h=600&fit=crop',
-            alt: 'Fashion',
-          }}
-          link={{ href: '#', ariaLabel: 'Read more about Sustainability' }}
-          title="Sustainability in Fashion"
-        />
-      </div>
-    </div>
+      </BlogPostCardPrimitive.Thumbnail>
+      <BlogPostCardPrimitive.Title>DIY Natural Cleaning Solutions</BlogPostCardPrimitive.Title>
+      <BlogPostCardPrimitive.Content>
+        Create your own effective cleaning products using simple, natural ingredients. Safe for your
+        family and the environment.
+      </BlogPostCardPrimitive.Content>
+      <BlogPostCardPrimitive.Details>
+        <BlogPostCardPrimitive.Date>November 20, 2024</BlogPostCardPrimitive.Date>
+        <BlogPostCardPrimitive.Author>Emma Wilson</BlogPostCardPrimitive.Author>
+      </BlogPostCardPrimitive.Details>
+      <BlogPostCardPrimitive.Link
+        aria-label="Read DIY Natural Cleaning Solutions"
+        href="/blog/diy-natural-cleaning"
+      />
+    </BlogPostCardPrimitive.Root>
   ),
-  decorators: [],
-  parameters: {
-    layout: 'fullscreen',
-  },
+};
+
+/**
+ * The skeleton state is displayed while blog post data is loading.
+ */
+export const Skeleton: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
+  render: () => (
+    <BlogPostCardPrimitive.Root aspectRatio="4/3">
+      <BlogPostCardPrimitive.Skeleton />
+    </BlogPostCardPrimitive.Root>
+  ),
 };

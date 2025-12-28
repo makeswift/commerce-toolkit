@@ -3,26 +3,18 @@ import type { ComponentProps } from 'react';
 import * as SkeletonPrimitive from '@/components/skeleton';
 import { cn } from '@/lib';
 
-export type BlogPostCardSkeletonProps = ComponentProps<'div'> & {
-  aspectRatio?: '5:6' | '3:4' | '4:3' | '1:1';
-};
+export type BlogPostCardSkeletonProps = ComponentProps<'div'>;
 
-export function BlogPostCardSkeleton({
-  className,
-  aspectRatio = '4:3',
-  ...props
-}: BlogPostCardSkeletonProps) {
+export function BlogPostCardSkeleton({ className, ...props }: BlogPostCardSkeletonProps) {
   return (
     <div className={cn('w-full max-w-md @container', className)} {...props}>
       <SkeletonPrimitive.Box
         className={cn(
           'mb-4 w-full rounded-2xl',
-          {
-            '5:6': 'aspect-[5/6]',
-            '3:4': 'aspect-[3/4]',
-            '4:3': 'aspect-[4/3]',
-            '1:1': 'aspect-square',
-          }[aspectRatio],
+          'group-data-[aspect-ratio=5/6]/blog-post-card:aspect-[5/6]',
+          'group-data-[aspect-ratio=3/4]/blog-post-card:aspect-[3/4]',
+          'group-data-[aspect-ratio=4/3]/blog-post-card:aspect-[4/3]',
+          'group-data-[aspect-ratio=1/1]/blog-post-card:aspect-square',
         )}
       />
       <SkeletonPrimitive.Text characterCount={25} className="mt-4 rounded text-lg" />

@@ -4,7 +4,6 @@ import * as AccordionPrimitive from '@/components/accordion';
 
 interface BaseAccordionProps {
   className?: string;
-  colorScheme?: 'light' | 'dark';
   items: Array<{
     title: string;
     content: ReactNode;
@@ -49,9 +48,9 @@ export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
  * }
  * ```
  */
-export function Accordion({ className, colorScheme = 'light', items, ...props }: AccordionProps) {
+export function Accordion({ className, items, ...props }: AccordionProps) {
   return (
-    <AccordionPrimitive.Root className={className} colorScheme={colorScheme} {...props}>
+    <AccordionPrimitive.Root className={className} {...props}>
       {items.map(({ content, title, value }) => (
         <AccordionPrimitive.Item key={value} value={value}>
           <AccordionPrimitive.Header>

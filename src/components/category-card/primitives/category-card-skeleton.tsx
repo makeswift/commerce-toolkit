@@ -3,23 +3,18 @@ import type { ComponentProps } from 'react';
 import * as SkeletonPrimitive from '@/components/skeleton';
 import { cn } from '@/lib';
 
-import { useCategoryCard } from '../primitives';
-
 export type CategoryCardSkeletonProps = ComponentProps<'div'>;
 
 export function CategoryCardSkeleton({ className, ...props }: CategoryCardSkeletonProps) {
-  const { aspectRatio } = useCategoryCard();
-
   return (
     <div className={cn('@container', className)} {...props} data-slot="category-card-skeleton">
       <SkeletonPrimitive.Box
         className={cn(
           'rounded-[var(--category-card-border-radius,1rem)]',
-          {
-            '5:6': 'aspect-[5/6]',
-            '3:4': 'aspect-[3/4]',
-            '1:1': 'aspect-square',
-          }[aspectRatio],
+          // Aspect ratio variants
+          'group-data-[aspect-ratio=1/1]/category-card:aspect-square',
+          'group-data-[aspect-ratio=3/4]/category-card:aspect-[3/4]',
+          'group-data-[aspect-ratio=5/6]/category-card:aspect-[5/6]',
         )}
       />
       <div className="mt-3">

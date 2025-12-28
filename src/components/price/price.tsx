@@ -36,9 +36,9 @@ export interface PriceProps extends PricePrimitive.RootProps {
  * }
  * ```
  */
-export function Price({ className, colorScheme = 'light', price, ...props }: PriceProps) {
+export function Price({ className, price, ...props }: PriceProps) {
   return (
-    <PricePrimitive.Root className={className} colorScheme={colorScheme} {...props}>
+    <PricePrimitive.Root className={className} {...props}>
       {price.type === 'range' && (
         <>
           <PricePrimitive.Default>{price.minValue}</PricePrimitive.Default>

@@ -1,375 +1,337 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
 
 import * as ProductCardPrimitive from '@/components/product-card';
-import { ProductCard, type ProductCardProps } from '@/components/product-card';
+import { ProductCard, type ProductCardProps } from '@/components/product-card/product-card';
 
 const meta: Meta<typeof ProductCard> = {
   title: 'Components/ProductCard',
   component: ProductCard,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+The ProductCard component displays a product with image, title, subtitle, price, badge, and optional compare functionality.
+
+## CSS Variables
+
+The following CSS variables can be used to customize the ProductCard component:
+
+\`\`\`css
+:root {
+  --product-card-focus: var(--primary);
+  --product-card-empty-text: color-mix(in oklab, hsl(var(--foreground)) 15%, transparent);
+  --product-card-light-offset: var(--background);
+  --product-card-light-background: var(--contrast-100);
+  --product-card-light-title: var(--foreground);
+  --product-card-light-subtitle: color-mix(in oklab, var(--foreground) 75%, transparent);
+  --product-card-dark-offset: var(--foreground);
+  --product-card-dark-background: var(--contrast-500);
+  --product-card-dark-title: var(--background);
+  --product-card-dark-subtitle: color-mix(in oklab, var(--background) 75%, transparent);
+  --product-card-font-family: var(--font-family-body);
+  --product-card-border-radius: 1rem;
+}
+\`\`\`
+
+## Aspect Ratios
+
+The component supports three aspect ratios for the product image:
+- \`5/6\` (default) - Slightly tall, ideal for most product photography
+- \`3/4\` - Portrait orientation
+- \`1/1\` - Square format
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
-    colorScheme: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'The color scheme of the card',
-    },
     aspectRatio: {
       control: 'select',
-      options: ['5:6', '3:4', '1:1'],
+      options: ['5/6', '3/4', '1/1'],
       description: 'The aspect ratio of the product image',
     },
-    compareActions: {
-      control: false,
-      description: 'Configuration for the compare checkbox',
-    },
     product: {
-      control: false,
-      description: 'Product data including title, price, image, and link',
+      control: 'object',
+      description: 'The product data object',
     },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes for the root element',
+    compareActions: {
+      control: 'object',
+      description: 'Configuration for the compare checkbox feature',
     },
   },
-  decorators: [
-    (Story) => (
-      <div className="w-80">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 type Story = StoryObj<ProductCardProps>;
 
-const defaultProduct = {
-  id: '1',
-  title: 'Classic Cotton T-Shirt',
-  subtitle: 'Heather Gray',
-  badge: 'New',
-  price: {
-    type: 'default' as const,
-    value: '$29.99',
-  },
-  image: {
-    src: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=720&fit=crop',
-    alt: 'Classic cotton t-shirt in heather gray',
-  },
-  link: {
-    href: '#',
-    ariaLabel: 'View Classic Cotton T-Shirt',
-  },
-};
+function StoryWrapper({ children }: { children: React.ReactNode }) {
+  return <div className="w-72">{children}</div>;
+}
 
+/**
+ * The default ProductCard displays an image, title, subtitle, and price.
+ */
 export const Default: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
-    product: defaultProduct,
+    product: {
+      id: '1',
+      title: 'Minimal Ceramic Soap Dispenser',
+      subtitle: 'White Matte Finish',
+      link: {
+        href: '/products/ceramic-soap-dispenser',
+        ariaLabel: 'View Minimal Ceramic Soap Dispenser',
+      },
+      image: {
+        src: 'https://images.unsplash.com/photo-1597816189341-6ed558ab017e?w=900',
+        alt: 'Minimal Ceramic Soap Dispenser',
+      },
+      price: {
+        type: 'default',
+        value: '$18.00',
+      },
+    },
   },
 };
 
-export const WithSalePrice: Story = {
+/**
+ * ProductCard with a badge overlay to highlight product status.
+ */
+export const WithBadge: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
     product: {
       id: '2',
-      title: 'Premium Leather Jacket',
-      subtitle: 'Vintage Brown',
-      badge: 'Sale',
-      price: {
-        type: 'sale' as const,
-        previousValue: '$299.99',
-        currentValue: '$199.99',
+      title: 'Natural Fiber Scrub Brush',
+      subtitle: 'Eco-Friendly',
+      link: {
+        href: '/products/natural-fiber-scrub-brush',
+        ariaLabel: 'View Natural Fiber Scrub Brush',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=720&fit=crop',
-        alt: 'Premium leather jacket in vintage brown',
+        src: 'https://images.unsplash.com/photo-1685052392951-4eb54985d3ae?w=900',
+        alt: 'Natural Fiber Scrub Brush',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Premium Leather Jacket',
+      price: {
+        type: 'default',
+        value: '$8.99',
       },
+      badge: 'New',
     },
   },
 };
 
-export const WithPriceRange: Story = {
+/**
+ * ProductCard displaying a sale price with the original price struck through.
+ */
+export const SalePrice: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
     product: {
       id: '3',
-      title: 'Cashmere Sweater',
-      subtitle: 'Multiple Colors',
-      price: {
-        type: 'range' as const,
-        minValue: '$89.99',
-        maxValue: '$129.99',
+      title: 'Amber Glass Spray Bottle',
+      subtitle: 'Refillable',
+      link: {
+        href: '/products/amber-glass-spray-bottle',
+        ariaLabel: 'View Amber Glass Spray Bottle',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=720&fit=crop',
-        alt: 'Cashmere sweater available in multiple colors',
+        src: 'https://images.unsplash.com/photo-1638609927127-aeb9e74c3cfd?w=900',
+        alt: 'Amber Glass Spray Bottle',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Cashmere Sweater',
+      price: {
+        type: 'sale',
+        previousValue: '$13.00',
+        currentValue: '$9.99',
       },
+      badge: 'Sale',
     },
   },
 };
 
-export const WithoutImage: Story = {
+/**
+ * ProductCard with a square aspect ratio.
+ */
+export const SquareAspectRatio: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
+    aspectRatio: '1/1',
     product: {
       id: '4',
-      title: 'Minimalist Watch',
-      subtitle: 'Silver',
-      price: {
-        type: 'default' as const,
-        value: '$149.99',
-      },
+      title: 'Stoneware Soap Tray',
+      subtitle: 'Handcrafted',
       link: {
-        href: '#',
-        ariaLabel: 'View Minimalist Watch',
+        href: '/products/stoneware-soap-tray',
+        ariaLabel: 'View Stoneware Soap Tray',
+      },
+      image: {
+        src: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=900',
+        alt: 'Stoneware Soap Tray',
+      },
+      price: {
+        type: 'default',
+        value: '$16.00',
       },
     },
   },
 };
 
-export const WithoutSubtitle: Story = {
+/**
+ * ProductCard with compare actions for product comparison functionality.
+ */
+export const WithCompare: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   args: {
     product: {
       id: '5',
-      title: 'Running Shoes',
-      badge: 'Best Seller',
-      price: {
-        type: 'default' as const,
-        value: '$119.99',
+      title: 'Eco Cleaning Starter Kit',
+      subtitle: 'Complete Set',
+      link: {
+        href: '/products/eco-cleaning-starter-kit',
+        ariaLabel: 'View Eco Cleaning Starter Kit',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=720&fit=crop',
-        alt: 'Running shoes',
+        src: 'https://images.unsplash.com/photo-1685052392996-5c042ab4c170?w=900',
+        alt: 'Eco Cleaning Starter Kit',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Running Shoes',
+      price: {
+        type: 'default',
+        value: '$29.00',
       },
+    },
+    compareActions: {
+      label: 'Compare',
+      checked: false,
+      onCheckedChange: (checked) => console.log('Compare changed:', checked),
     },
   },
 };
 
-export const WithoutBadge: Story = {
-  args: {
-    product: {
-      id: '6',
-      title: 'Denim Jeans',
-      subtitle: 'Dark Wash',
-      price: {
-        type: 'default' as const,
-        value: '$79.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=720&fit=crop',
-        alt: 'Dark wash denim jeans',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Denim Jeans',
-      },
-    },
-  },
-};
-
-export const DarkColorScheme: Story = {
-  args: {
-    colorScheme: 'dark',
-    product: {
-      id: '7',
-      title: 'Wool Coat',
-      subtitle: 'Charcoal',
-      badge: 'Limited',
-      price: {
-        type: 'default' as const,
-        value: '$249.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&h=720&fit=crop',
-        alt: 'Charcoal wool coat',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Wool Coat',
-      },
-    },
-  },
+/**
+ * ## Composable Anatomy
+ *
+ * For advanced customization, you can use the primitive components directly. The primitives include:
+ *
+ * - `Root` - Container with context provider for aspect ratio and color scheme
+ * - `Preview` - Wrapper for the image area
+ * - `Thumbnail` - Image container with aspect ratio
+ * - `Image` - Product image with hover effects
+ * - `Fallback` - Displayed when no image is available
+ * - `Badge` - Overlay badge for status/labels
+ * - `Link` - Invisible link overlay for click area
+ * - `Details` - Container for product information
+ * - `Header` - Groups title, subtitle, and price
+ * - `Title` - Product title
+ * - `Subtitle` - Product subtitle
+ * - `Price` - Product price display
+ * - `Compare` - Compare checkbox container
+ * - `Checkbox` - Compare checkbox input
+ * - `Label` - Compare checkbox label
+ *
+ * ```tsx
+ * import * as ProductCardPrimitive from '@/components/product-card';
+ *
+ * <ProductCardPrimitive.Root aspectRatio="5/6">
+ *   <ProductCardPrimitive.Preview>
+ *     <ProductCardPrimitive.Thumbnail>
+ *       <ProductCardPrimitive.Image src="..." alt="..." />
+ *       <ProductCardPrimitive.Badge>New</ProductCardPrimitive.Badge>
+ *     </ProductCardPrimitive.Thumbnail>
+ *     <ProductCardPrimitive.Link href="/product" aria-label="View product" />
+ *   </ProductCardPrimitive.Preview>
+ *   <ProductCardPrimitive.Details>
+ *     <ProductCardPrimitive.Header>
+ *       <ProductCardPrimitive.Title>Product Name</ProductCardPrimitive.Title>
+ *       <ProductCardPrimitive.Subtitle>Subtitle</ProductCardPrimitive.Subtitle>
+ *       <ProductCardPrimitive.Price price={{ type: 'default', value: '$19.99' }} />
+ *       <ProductCardPrimitive.Link href="/product" aria-label="View product" />
+ *     </ProductCardPrimitive.Header>
+ *   </ProductCardPrimitive.Details>
+ * </ProductCardPrimitive.Root>
+ * ```
+ */
+export const ComposableAnatomy: Story = {
   decorators: [
     (Story) => (
-      <div className="w-80 rounded-lg bg-contrast-500 p-4">
+      <StoryWrapper>
         <Story />
-      </div>
+      </StoryWrapper>
     ),
   ],
-};
-
-export const SquareAspectRatio: Story = {
-  args: {
-    aspectRatio: '1:1',
-    product: {
-      id: '8',
-      title: 'Canvas Sneakers',
-      subtitle: 'Off White',
-      price: {
-        type: 'default' as const,
-        value: '$59.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=600&h=600&fit=crop',
-        alt: 'Off white canvas sneakers',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Canvas Sneakers',
-      },
-    },
-  },
-};
-
-export const WithCompare: Story = {
-  args: {
-    product: {
-      id: '9',
-      title: 'Linen Shirt',
-      subtitle: 'Ocean Blue',
-      price: {
-        type: 'default' as const,
-        value: '$69.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=720&fit=crop',
-        alt: 'Ocean blue linen shirt',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Linen Shirt',
-      },
-    },
-    compareActions: {
-      checked: false,
-      label: 'Compare',
-    },
-  },
-};
-
-export const WithCompareChecked: Story = {
-  args: {
-    product: {
-      id: '10',
-      title: 'Silk Blouse',
-      subtitle: 'Ivory',
-      badge: 'Popular',
-      price: {
-        type: 'sale' as const,
-        previousValue: '$129.99',
-        currentValue: '$89.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=600&h=720&fit=crop',
-        alt: 'Ivory silk blouse',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Silk Blouse',
-      },
-    },
-    compareActions: {
-      checked: true,
-      label: 'Compare',
-    },
-  },
-};
-
-export const WithCompareDisabled: Story = {
-  args: {
-    product: {
-      id: '11',
-      title: 'Merino Cardigan',
-      subtitle: 'Oatmeal',
-      price: {
-        type: 'default' as const,
-        value: '$99.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&h=720&fit=crop',
-        alt: 'Oatmeal merino cardigan',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Merino Cardigan',
-      },
-    },
-    compareActions: {
-      checked: false,
-      disabled: true,
-      label: 'Compare',
-    },
-  },
-};
-
-const InteractiveCompareTemplate = (args: ProductCardProps) => {
-  const [checked, setChecked] = useState(false);
-
-  return (
-    <ProductCard
-      {...args}
-      compareActions={{
-        label: 'Compare',
-        ...args.compareActions,
-        checked,
-        onCheckedChange: (value) => setChecked(value === true),
-      }}
-    />
-  );
-};
-
-export const WithCompareInteractive: Story = {
-  render: InteractiveCompareTemplate,
-  args: {
-    product: {
-      id: '12',
-      title: 'Quilted Vest',
-      subtitle: 'Forest Green',
-      badge: 'New',
-      price: {
-        type: 'default' as const,
-        value: '$149.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&h=720&fit=crop',
-        alt: 'Forest green quilted vest',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Quilted Vest',
-      },
-    },
-    compareActions: {
-      label: 'Compare',
-    },
-  },
-};
-
-export const Skeleton: Story = {
   render: () => (
-    <ProductCardPrimitive.Root>
-      <ProductCardPrimitive.Skeleton />
+    <ProductCardPrimitive.Root aspectRatio="5/6">
+      <ProductCardPrimitive.Preview>
+        <ProductCardPrimitive.Thumbnail>
+          <ProductCardPrimitive.Image
+            alt="Glass Soap Pump Bottle"
+            src="https://images.unsplash.com/photo-1606448009227-af1758630e60?w=900"
+          />
+          <ProductCardPrimitive.Badge>Popular</ProductCardPrimitive.Badge>
+        </ProductCardPrimitive.Thumbnail>
+        <ProductCardPrimitive.Link
+          aria-label="View Glass Soap Pump Bottle"
+          href="/products/glass-soap-pump"
+        />
+      </ProductCardPrimitive.Preview>
+      <ProductCardPrimitive.Details>
+        <ProductCardPrimitive.Header>
+          <ProductCardPrimitive.Title>Glass Soap Pump Bottle</ProductCardPrimitive.Title>
+          <ProductCardPrimitive.Subtitle>Clear Glass</ProductCardPrimitive.Subtitle>
+          <ProductCardPrimitive.Price price={{ type: 'default', value: '$14.50' }} />
+          <ProductCardPrimitive.Link
+            aria-label="View Glass Soap Pump Bottle"
+            href="/products/glass-soap-pump"
+          />
+        </ProductCardPrimitive.Header>
+      </ProductCardPrimitive.Details>
     </ProductCardPrimitive.Root>
   ),
 };
 
-export const SkeletonSquare: Story = {
+/**
+ * The skeleton state is displayed while product data is loading.
+ */
+export const Skeleton: Story = {
+  decorators: [
+    (Story) => (
+      <StoryWrapper>
+        <Story />
+      </StoryWrapper>
+    ),
+  ],
   render: () => (
-    <ProductCardPrimitive.Root aspectRatio="1:1">
+    <ProductCardPrimitive.Root aspectRatio="5/6">
       <ProductCardPrimitive.Skeleton />
     </ProductCardPrimitive.Root>
   ),

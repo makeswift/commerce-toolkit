@@ -1,30 +1,26 @@
-'use client';
-
 import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
-import { useCategoryCard } from '../primitives';
-
 export type CategoryCardTitleProps = ComponentProps<'h3'>;
 
 export function CategoryCardTitle({ children, className, ...props }: CategoryCardTitleProps) {
-  const { textSize, textColorScheme } = useCategoryCard();
-
   return (
     <h3
       className={cn(
-        'font-semibold leading-tight',
-        {
-          small: 'text-lg tracking-normal @xs:text-xl',
-          medium: 'text-xl tracking-normal @xs:text-2xl',
-          large: 'text-2xl tracking-tight @xs:text-3xl',
-          'x-large': 'text-3xl tracking-tight @xs:text-4xl',
-        }[textSize],
-        {
-          light: 'text-[var(--category-card-light-text,hsl(var(--foreground)))]',
-          dark: 'text-[var(--category-card-dark-text,hsl(var(--background)))]',
-        }[textColorScheme],
+        'font-semibold leading-tight text-[var(--category-card-light-text,hsl(var(--foreground)))]',
+        // Text size: small
+        'group-data-[text-size=small]/category-card:text-lg group-data-[text-size=small]/category-card:tracking-normal',
+        'group-data-[text-size=small]/category-card:@xs:text-xl',
+        // Text size: medium
+        'group-data-[text-size=medium]/category-card:text-xl group-data-[text-size=medium]/category-card:tracking-normal',
+        'group-data-[text-size=medium]/category-card:@xs:text-2xl',
+        // Text size: large
+        'group-data-[text-size=large]/category-card:text-2xl group-data-[text-size=large]/category-card:tracking-tight',
+        'group-data-[text-size=large]/category-card:@xs:text-3xl',
+        // Text size: x-large
+        'group-data-[text-size=x-large]/category-card:text-3xl group-data-[text-size=x-large]/category-card:tracking-tight',
+        'group-data-[text-size=x-large]/category-card:@xs:text-4xl',
         className,
       )}
       data-slot="category-card-title"

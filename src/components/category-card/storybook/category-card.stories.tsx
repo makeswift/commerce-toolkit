@@ -1,53 +1,78 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ArrowUpRight } from 'lucide-react';
+import type { ComponentType } from 'react';
 
-import * as CategoryCardPrimitive from '@/components/category-card';
 import { CategoryCard, type CategoryCardProps } from '@/components/category-card';
+import * as CategoryCardPrimitive from '@/components/category-card/primitives';
 
 const meta: Meta<typeof CategoryCard> = {
   title: 'Components/CategoryCard',
   component: CategoryCard,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A card component for displaying product categories with an image, title, and link. Supports customizable aspect ratios, text sizes, and text positioning.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --category-card-focus: hsl(var(--primary));
+  --category-card-light-offset: hsl(var(--background));
+  --category-card-light-text: hsl(var(--foreground));
+  --category-card-light-icon: hsl(var(--foreground));
+  --category-card-light-background: hsl(var(--contrast-100));
+  --category-card-dark-offset: hsl(var(--foreground));
+  --category-card-dark-text: hsl(var(--background));
+  --category-card-dark-icon: hsl(var(--background));
+  --category-card-dark-background: hsl(var(--contrast-500));
+  --category-card-font-family: var(--font-family-body);
+  --category-card-border-radius: 1rem;
+}
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     title: {
       control: 'text',
-      description: 'Category title',
-    },
-    textColorScheme: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'Text color scheme',
-    },
-    iconColorScheme: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'Icon color scheme',
+      description: 'The category title displayed on the card',
     },
     aspectRatio: {
       control: 'select',
-      options: ['5:6', '3:4', '1:1'],
-      description: 'Image aspect ratio',
-    },
-    textPosition: {
-      control: 'select',
-      options: ['inside', 'outside'],
-      description: 'Position of text relative to image',
+      options: ['5/6', '3/4', '1/1'],
+      description: 'The aspect ratio of the card thumbnail',
     },
     textSize: {
       control: 'select',
       options: ['small', 'medium', 'large', 'x-large'],
-      description: 'Text size',
+      description: 'The size of the title text',
+    },
+    textPosition: {
+      control: 'select',
+      options: ['inside', 'outside'],
+      description: 'Whether the title appears inside or outside the thumbnail',
     },
     showOverlay: {
       control: 'boolean',
-      description: 'Show gradient overlay when text is inside',
+      description: 'Whether to show the gradient overlay when text is inside',
+    },
+    image: {
+      control: false,
+      description: 'Image object with src and alt properties',
+    },
+    link: {
+      control: false,
+      description: 'Link object with href and ariaLabel properties',
     },
   },
   decorators: [
-    (Story) => (
-      <div className="w-80">
+    (Story: ComponentType) => (
+      <div className="w-72 bg-background p-4">
         <Story />
       </div>
     ),
@@ -55,204 +80,148 @@ const meta: Meta<typeof CategoryCard> = {
 };
 
 export default meta;
-type Story = StoryObj<CategoryCardProps>;
 
-const defaultCategory = {
-  title: 'Low Maintenance',
-  image: {
-    src: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=720&fit=crop',
-    alt: 'Low maintenance plants',
-  },
-  link: {
-    href: '#',
-    ariaLabel: 'View Low Maintenance',
-  },
-};
+type Story = StoryObj<CategoryCardProps>;
 
 export const Default: Story = {
   args: {
-    ...defaultCategory,
+    title: 'Kitchen Essentials',
+    image: {
+      src: 'https://images.unsplash.com/photo-1597816189341-6ed558ab017e?w=900',
+      alt: 'Minimal ceramic soap dispenser',
+    },
+    link: {
+      href: '/categories/kitchen',
+      ariaLabel: 'Shop Kitchen Essentials',
+    },
+    aspectRatio: '5/6',
+    textSize: 'small',
+    textPosition: 'outside',
+    showOverlay: true,
   },
 };
 
-export const WithTextInside: Story = {
+export const TextInside: Story = {
   args: {
-    title: 'Indoor Plants',
+    title: 'Cleaning Supplies',
     image: {
-      src: 'https://images.unsplash.com/photo-1463320726281-696a485928c7?w=600&h=720&fit=crop',
-      alt: 'Indoor plants collection',
+      src: 'https://images.unsplash.com/photo-1685052392996-5c042ab4c170?w=900',
+      alt: 'Eco cleaning starter kit',
     },
     link: {
-      href: '#',
-      ariaLabel: 'View Indoor Plants',
+      href: '/categories/cleaning',
+      ariaLabel: 'Shop Cleaning Supplies',
     },
+    aspectRatio: '5/6',
+    textSize: 'medium',
     textPosition: 'inside',
-    textColorScheme: 'dark',
+    showOverlay: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When `textPosition` is set to `"inside"`, the title appears overlaid on the image with an optional gradient overlay.',
+      },
+    },
   },
 };
 
-export const WithTextInsideLarge: Story = {
+export const SquareAspectRatio: Story = {
   args: {
-    title: 'Succulents',
+    title: 'Bath & Body',
     image: {
-      src: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=600&h=720&fit=crop',
-      alt: 'Succulent plants',
+      src: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=900',
+      alt: 'Linen hand towel',
     },
     link: {
-      href: '#',
-      ariaLabel: 'View Succulents',
+      href: '/categories/bath',
+      ariaLabel: 'Shop Bath & Body',
     },
-    textPosition: 'inside',
-    textColorScheme: 'dark',
-    textSize: 'large',
+    aspectRatio: '1/1',
+    textSize: 'small',
+    textPosition: 'outside',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `aspectRatio="1/1"` for a square card layout.',
+      },
+    },
   },
 };
 
 export const WithoutImage: Story = {
   args: {
-    title: 'Outdoor Plants',
+    title: 'New Arrivals',
     link: {
-      href: '#',
-      ariaLabel: 'View Outdoor Plants',
+      href: '/categories/new',
+      ariaLabel: 'Shop New Arrivals',
+    },
+    aspectRatio: '3/4',
+    textSize: 'large',
+    textPosition: 'outside',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When no image is provided, a fallback displays the title text as a decorative background.',
+      },
     },
   },
 };
 
-export const DarkTextScheme: Story = {
-  args: {
-    title: 'Tropical',
-    image: {
-      src: 'https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=600&h=720&fit=crop',
-      alt: 'Tropical plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Tropical',
-    },
-    textColorScheme: 'dark',
-  },
-  decorators: [
-    (Story) => (
-      <div className="w-80 rounded-lg bg-foreground p-4">
-        <Story />
-      </div>
-    ),
-  ],
-};
-
-export const DarkIconScheme: Story = {
-  args: {
-    title: 'Flowering',
-    image: {
-      src: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&h=720&fit=crop',
-      alt: 'Flowering plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Flowering',
-    },
-    iconColorScheme: 'dark',
-  },
-  decorators: [
-    (Story) => (
-      <div className="w-80 rounded-lg p-4">
-        <Story />
-      </div>
-    ),
-  ],
-};
-
-export const SquareAspectRatio: Story = {
-  args: {
-    title: 'Cacti',
-    image: {
-      src: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&h=600&fit=crop',
-      alt: 'Cactus plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Cacti',
-    },
-    aspectRatio: '1:1',
-  },
-};
-
-export const ThreeByFourAspectRatio: Story = {
-  args: {
-    title: 'Air Plants',
-    image: {
-      src: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&h=800&fit=crop',
-      alt: 'Air plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Air Plants',
-    },
-    aspectRatio: '3:4',
-  },
-};
-
-export const WithoutOverlay: Story = {
-  args: {
-    title: 'Herbs',
-    image: {
-      src: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=600&h=720&fit=crop',
-      alt: 'Herb plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Herbs',
-    },
-    textPosition: 'inside',
-    textColorScheme: 'dark',
-    showOverlay: false,
-  },
-};
-
-export const MediumText: Story = {
-  args: {
-    title: 'Ferns',
-    image: {
-      src: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&h=720&fit=crop',
-      alt: 'Fern plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Ferns',
-    },
-    textSize: 'medium',
-  },
-};
-
-export const XLargeText: Story = {
-  args: {
-    title: 'Palms',
-    image: {
-      src: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=600&h=720&fit=crop',
-      alt: 'Palm plants',
-    },
-    link: {
-      href: '#',
-      ariaLabel: 'View Palms',
-    },
-    textPosition: 'inside',
-    textColorScheme: 'dark',
-    textSize: 'x-large',
-  },
-};
-
-export const Skeleton: Story = {
+/**
+ * The CategoryCard can be built using composable primitives for full customization.
+ * This example shows the component anatomy using the primitive components.
+ */
+export const ComposableAnatomy: Story = {
   render: () => (
-    <CategoryCardPrimitive.Root>
-      <CategoryCardPrimitive.Skeleton />
+    <CategoryCardPrimitive.Root aspectRatio="5/6" showOverlay textSize="small">
+      <CategoryCardPrimitive.Icon>
+        <ArrowUpRight absoluteStrokeWidth strokeWidth={1.5} />
+      </CategoryCardPrimitive.Icon>
+      <CategoryCardPrimitive.Thumbnail>
+        <CategoryCardPrimitive.Image
+          alt="Bamboo countertop brush"
+          src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?w=900"
+        />
+      </CategoryCardPrimitive.Thumbnail>
+      <CategoryCardPrimitive.Title>Home Accessories</CategoryCardPrimitive.Title>
+      <CategoryCardPrimitive.Link aria-label="Shop Home Accessories" href="/categories/home" />
     </CategoryCardPrimitive.Root>
   ),
-};
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the composable primitives to build custom category card layouts:
 
-export const SkeletonSquare: Story = {
-  render: () => (
-    <CategoryCardPrimitive.Root aspectRatio="1:1">
-      <CategoryCardPrimitive.Skeleton />
-    </CategoryCardPrimitive.Root>
-  ),
+\`\`\`tsx
+import * as CategoryCardPrimitive from '@/components/category-card/primitives';
+import { ArrowUpRight } from 'lucide-react';
+
+<CategoryCardPrimitive.Root aspectRatio="5/6" textSize="small" showOverlay>
+  <CategoryCardPrimitive.Icon>
+    <ArrowUpRight />
+  </CategoryCardPrimitive.Icon>
+  <CategoryCardPrimitive.Thumbnail>
+    <CategoryCardPrimitive.Image src="..." alt="..." />
+    {/* Or use Fallback when no image is available */}
+    <CategoryCardPrimitive.Fallback>Title</CategoryCardPrimitive.Fallback>
+    {/* For text inside the thumbnail */}
+    <CategoryCardPrimitive.Overlay>
+      <CategoryCardPrimitive.Title>Title</CategoryCardPrimitive.Title>
+    </CategoryCardPrimitive.Overlay>
+  </CategoryCardPrimitive.Thumbnail>
+  {/* For text outside the thumbnail */}
+  <CategoryCardPrimitive.Title>Title</CategoryCardPrimitive.Title>
+  <CategoryCardPrimitive.Link href="..." aria-label="..." />
+</CategoryCardPrimitive.Root>
+\`\`\`
+        `,
+      },
+    },
+  },
 };

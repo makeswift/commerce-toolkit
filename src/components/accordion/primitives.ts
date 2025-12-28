@@ -5,7 +5,6 @@ export {
 export {
   AccordionRoot as Root,
   type AccordionRootProps as RootProps,
-  useAccordion,
 } from '@/components/accordion/primitives/accordion-root';
 export {
   AccordionContent as Content,

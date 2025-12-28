@@ -27,8 +27,7 @@ interface CompareActions {
 
 export interface ProductCardProps {
   className?: string;
-  colorScheme?: 'light' | 'dark';
-  aspectRatio?: '5:6' | '3:4' | '1:1';
+  aspectRatio?: '5/6' | '3/4' | '1/1';
   compareActions?: CompareActions;
   product: Product;
 }
@@ -56,17 +55,12 @@ export interface ProductCardProps {
  */
 export function ProductCard({
   product: { title, subtitle, badge, price, image, link },
-  colorScheme = 'light',
   className,
-  aspectRatio = '5:6',
+  aspectRatio = '5/6',
   compareActions,
 }: ProductCardProps) {
   return (
-    <ProductCardPrimitive.Root
-      aspectRatio={aspectRatio}
-      className={className}
-      colorScheme={colorScheme}
-    >
+    <ProductCardPrimitive.Root aspectRatio={aspectRatio} className={className}>
       <ProductCardPrimitive.Preview>
         <ProductCardPrimitive.Thumbnail>
           {image ? (

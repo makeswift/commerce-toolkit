@@ -1,120 +1,116 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Price } from '@/components/price';
+import * as PricePrimitive from '@/components/price';
+import { Price, type PriceProps } from '@/components/price/price';
 
-const meta = {
+const meta: Meta<typeof Price> = {
   title: 'Components/Price',
   component: Price,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+The Price component displays product pricing in various formats including default, range, and sale prices.
+
+## CSS Variables
+
+The following CSS variables can be used to customize the Price component:
+
+\`\`\`css
+:root {
+  --price-light-text: hsl(var(--foreground));
+  --price-light-sale-text: hsl(var(--foreground));
+  --price-dark-text: hsl(var(--background));
+  --price-dark-sale-text: hsl(var(--background));
+}
+\`\`\`
+
+## Price Types
+
+The component supports three price types:
+
+- **default**: A single price value
+- **range**: A minimum and maximum price (e.g., "$10.00 – $25.00")
+- **sale**: Shows the current sale price with the original price struck through
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes',
-    },
-    colorScheme: {
-      control: 'select',
-      options: ['light', 'dark'],
-      description: 'Color scheme for the price',
-      table: {
-        defaultValue: { summary: 'light' },
-      },
-    },
     price: {
-      description: 'Price value - can be a default, range, or sale object',
+      control: 'object',
+      description: 'The price object containing type and values',
     },
   },
-  args: {
-    colorScheme: 'light',
-  },
-} satisfies Meta<typeof Price>;
+};
 
 export default meta;
+type Story = StoryObj<PriceProps>;
 
-type Story = StoryObj<typeof meta>;
-
-export const SimplePrice: Story = {
+/**
+ * The default price display shows a single price value.
+ */
+export const Default: Story = {
   args: {
     price: {
       type: 'default',
-      value: '$49.99',
+      value: '$18.00',
     },
   },
 };
 
-export const SimplePriceLarge: Story = {
-  args: {
-    price: {
-      type: 'default',
-      value: '$1,299.99',
-    },
-    className: 'text-2xl',
-  },
-};
-
-export const PriceRange: Story = {
+/**
+ * Range prices display a minimum and maximum value, useful for products with variants.
+ */
+export const Range: Story = {
   args: {
     price: {
       type: 'range',
-      minValue: '$29.99',
-      maxValue: '$79.99',
+      minValue: '$8.99',
+      maxValue: '$29.00',
     },
   },
 };
 
-export const SalePrice: Story = {
+/**
+ * Sale prices display the current discounted price alongside the original price with a strikethrough.
+ */
+export const Sale: Story = {
   args: {
     price: {
       type: 'sale',
-      previousValue: '$79.99',
-      currentValue: '$59.99',
+      previousValue: '$12.00',
+      currentValue: '$9.99',
     },
   },
 };
 
-export const DarkColorScheme: Story = {
-  args: {
-    price: {
-      type: 'default',
-      value: '$49.99',
-    },
-    colorScheme: 'dark',
-  },
-  decorators: [
-    (Story) => (
-      <div className="rounded-lg bg-foreground p-8">
-        <Story />
-      </div>
-    ),
-  ],
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
-};
-
-export const DarkColorSchemeSale: Story = {
-  args: {
-    price: {
-      type: 'sale',
-      previousValue: '$79.99',
-      currentValue: '$59.99',
-    },
-    colorScheme: 'dark',
-  },
-  decorators: [
-    (Story) => (
-      <div className="rounded-lg bg-foreground p-8">
-        <Story />
-      </div>
-    ),
-  ],
-  parameters: {
-    backgrounds: {
-      default: 'dark',
-    },
-  },
+/**
+ * ## Composable Anatomy
+ *
+ * For advanced customization, you can use the primitive components directly to build
+ * your own price display. The primitives include:
+ *
+ * - `Root` - The container element
+ * - `Default` - Standard price text
+ * - `Strike` - Strikethrough price text (for original/previous prices)
+ *
+ * ```tsx
+ * import * as PricePrimitive from '@/components/price';
+ *
+ * <PricePrimitive.Root>
+ *   <PricePrimitive.Strike>$18.00</PricePrimitive.Strike>{' '}
+ *   <PricePrimitive.Default>$12.00</PricePrimitive.Default>
+ * </PricePrimitive.Root>
+ * ```
+ */
+export const ComposableAnatomy: Story = {
+  render: () => (
+    <PricePrimitive.Root>
+      <PricePrimitive.Strike>$18.00</PricePrimitive.Strike>{' '}
+      <PricePrimitive.Default>$12.00</PricePrimitive.Default>
+    </PricePrimitive.Root>
+  ),
 };

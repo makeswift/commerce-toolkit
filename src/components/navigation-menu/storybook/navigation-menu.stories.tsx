@@ -59,13 +59,11 @@ const defaultItems: NavigationMenuProps['items'] = [
       ],
       slot: (
         <CategoryCard
-          iconColorScheme="dark"
           image={{
             src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop',
             alt: 'New collection',
           }}
           link={{ href: '/new-collection', ariaLabel: 'Shop new collection' }}
-          textColorScheme="dark"
           textPosition="inside"
           textSize="medium"
           title="New Collection"
@@ -131,13 +129,11 @@ const defaultItems: NavigationMenuProps['items'] = [
       ],
       slot: (
         <CategoryCard
-          iconColorScheme="dark"
           image={{
             src: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=400&fit=crop',
             alt: 'Women collection',
           }}
           link={{ href: '/women', ariaLabel: 'Shop women' }}
-          textColorScheme="dark"
           textPosition="inside"
           textSize="medium"
           title="Shop Women"
@@ -179,14 +175,12 @@ const defaultItems: NavigationMenuProps['items'] = [
       ],
       slot: (
         <CategoryCard
-          aspectRatio="1:1"
-          iconColorScheme="dark"
+          aspectRatio="1/1"
           image={{
             src: 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=400&h=400&fit=crop',
             alt: 'Men collection',
           }}
           link={{ href: '/men', ariaLabel: 'Shop men' }}
-          textColorScheme="dark"
           textPosition="inside"
           textSize="medium"
           title="Shop Men"

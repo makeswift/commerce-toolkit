@@ -6,7 +6,7 @@ export type CarouselNavProps = ComponentProps<'div'>;
 
 export function CarouselNav({ className, children, ...props }: CarouselNavProps) {
   return (
-    <div className={cn('flex items-center gap-2', className)} {...props} data-slot="carousel-nav">
+    <div className={cn('flex items-center gap-2', className)} data-slot="carousel-nav" {...props}>
       {children}
     </div>
   );

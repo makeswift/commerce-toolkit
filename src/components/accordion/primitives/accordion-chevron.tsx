@@ -1,22 +1,14 @@
 import type { ComponentProps } from 'react';
 
-import { useAccordion } from '@/components/accordion';
 import { cn } from '@/lib';
 
 export type AccordionChevronProps = ComponentProps<'svg'>;
 
 export function AccordionChevron({ className, ...props }: AccordionChevronProps) {
-  const { colorScheme } = useAccordion();
-
   return (
     <svg
       className={cn(
-        'mt-1 shrink-0 [&>line]:origin-center [&>line]:transition [&>line]:duration-300 [&>line]:ease-out',
-        {
-          light:
-            'stroke-[var(--accordion-light-title-icon,hsl(var(--contrast-500)))] group-hover:stroke-[var(--accordion-light-title-icon-hover,hsl(var(--foreground)))]',
-          dark: 'stroke-[var(--accordion-dark-title-icon,hsl(var(--contrast-200)))] group-hover:stroke-[var(--accordion-dark-title-icon-hover,hsl(var(--background)))]',
-        }[colorScheme],
+        'mt-1 shrink-0 stroke-[var(--accordion-light-title-icon,hsl(var(--contrast-500)))] group-hover:stroke-[var(--accordion-light-title-icon-hover,hsl(var(--foreground)))] [&>line]:origin-center [&>line]:transition [&>line]:duration-300 [&>line]:ease-out',
         className,
       )}
       data-slot="accordion-chevron"
