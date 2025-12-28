@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.7.0
+
+### Minor Changes
+
+- ae628e8: Added month and year dropdowns to Calendar component
+
 ## 0.6.0
 
 ### Minor Changes
