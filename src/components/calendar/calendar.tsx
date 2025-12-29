@@ -5,12 +5,7 @@ import type { ComponentProps, CSSProperties } from 'react';
 import { useEffect, useRef } from 'react';
 import { type DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
 
-import { type ButtonProps } from '@/components/button';
 import { cn } from '@/lib';
-
-export type CalendarProps = ComponentProps<typeof DayPicker> & {
-  buttonVariant?: ButtonProps['variant'];
-};
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -28,6 +23,8 @@ export type CalendarProps = ComponentProps<typeof DayPicker> & {
  * }
  * ```
  */
+export type CalendarProps = ComponentProps<typeof DayPicker>;
+
 export function Calendar({
   className,
   classNames,
@@ -36,9 +33,7 @@ export function Calendar({
   formatters,
   components,
   ...props
-}: ComponentProps<typeof DayPicker> & {
-  buttonVariant?: ButtonProps['variant'];
-}) {
+}: CalendarProps) {
   const defaultClassNames = getDefaultClassNames();
 
   const cellSizeStyle: CSSProperties & { '--cell-size': string } = {
@@ -114,7 +109,15 @@ export function Calendar({
           defaultClassNames.range_end,
         ),
         today: cn(
-          'rounded-full ring-1 ring-inset ring-contrast-200 data-[selected=true]:rounded-full data-[selected=true]:ring-0',
+          'data-[selected-single=true]:before:ring-0',
+          'before:content-[""]',
+          'before:absolute',
+          'before:-z-10',
+          'before:inset-0',
+          'before:ring-1',
+          'before:ring-foreground/15',
+          'before:ring-inset',
+          'before:rounded-full',
           defaultClassNames.today,
         ),
         outside: cn(
