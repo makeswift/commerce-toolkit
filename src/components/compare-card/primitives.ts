@@ -3,35 +3,11 @@ export {
   type CompareCardRootProps as RootProps,
 } from '@/components/compare-card/primitives/compare-card-root';
 export {
-  CompareCardForm as Form,
-  type CompareCardFormProps as FormProps,
-} from '@/components/compare-card/primitives/compare-card-form';
-export {
-  CompareCardFormInput as FormInput,
-  type CompareCardFormInputProps as FormInputProps,
-} from '@/components/compare-card/primitives/compare-card-form-input';
-export {
-  CompareCardLink as Link,
-  type CompareCardLinkProps as LinkProps,
-} from '@/components/compare-card/primitives/compare-card-link';
-export {
   CompareCardProduct as Product,
   type CompareCardProductProps as ProductProps,
 } from '@/components/compare-card/primitives/compare-card-product';
 
 export { CompareCardSkeleton as Skeleton } from '@/components/compare-card/primitives/compare-card-skeleton';
-export {
-  CompareCardRating as Rating,
-  type CompareCardRatingProps as RatingProps,
-} from '@/components/compare-card/primitives/compare-card-rating';
-export {
-  CompareCardRatingLabel as RatingLabel,
-  type CompareCardRatingLabelProps as RatingLabelProps,
-} from '@/components/compare-card/primitives/compare-card-rating-label';
-export {
-  CompareCardRatingEmpty as RatingEmpty,
-  type CompareCardRatingEmptyProps as RatingEmptyProps,
-} from '@/components/compare-card/primitives/compare-card-rating-empty';
 export {
   CompareCardDescription as Description,
   type CompareCardDescriptionProps as DescriptionProps,

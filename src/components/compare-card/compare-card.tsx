@@ -1,36 +1,21 @@
-import type { ReactNode } from 'react';
 import { Fragment } from 'react';
 
-import { Button } from '@/components/button';
-import { ButtonLink } from '@/components/button-link';
 import * as CompareCardPrimitive from '@/components/compare-card';
 import { ProductCard } from '@/components/product-card';
 import type { ProductCardProps } from '@/components/product-card';
-import { Rating } from '@/components/rating';
 import { Reveal } from '@/index';
-
-type CompareCardProduct = ProductCardProps['product'] & {
-  description?: string | ReactNode;
-  specs?: Array<{ name: string; value: string }>;
-  hasVariants?: boolean;
-  disabled?: boolean;
-  isPreorder?: boolean;
-};
 
 export interface CompareCardProps {
   className?: string;
-  product: CompareCardProduct;
-  addToCartLabel?: string;
+  product: ProductCardProps['product'];
+  cartAction?: ProductCardProps['cartAction'];
+  compareAction?: ProductCardProps['compareAction'];
+  description?: string;
   descriptionLabel?: string;
-  noDescriptionLabel?: string;
-  ratingLabel?: string;
-  noRatingsLabel?: string;
-  otherDetailsLabel?: string;
-  noOtherDetailsLabel?: string;
-  viewOptionsLabel?: string;
-  preorderLabel?: string;
-  addToCartAction?: string | ((formData: FormData) => void | Promise<void>);
-  loading?: boolean;
+  emptyDescriptionLabel?: string;
+  specs?: Array<{ name: string; value: string }>;
+  specsLabel?: string;
+  emptySpecsLabel?: string;
 }
 
 /**
@@ -51,61 +36,20 @@ export interface CompareCardProps {
 export function CompareCard({
   className,
   product,
-  addToCartAction,
-  addToCartLabel = 'Add to cart',
+  cartAction,
+  compareAction,
+  description,
   descriptionLabel = 'Description',
-  noDescriptionLabel = 'There is no description available.',
-  ratingLabel = 'Rating',
-  noRatingsLabel = 'There are no reviews.',
-  otherDetailsLabel = 'Other details',
-  noOtherDetailsLabel = 'There are no other details.',
-  viewOptionsLabel = 'View options',
-  preorderLabel = 'Preorder',
-  loading = false,
+  emptyDescriptionLabel = 'There is no description available.',
+  specs,
+  specsLabel = 'Other details',
+  emptySpecsLabel = 'There are no other details.',
 }: CompareCardProps) {
-  const {
-    id,
-    rating,
-    description,
-    specs,
-    disabled,
-    isPreorder,
-    hasVariants,
-    link: { href },
-  } = product;
-
   return (
     <CompareCardPrimitive.Root className={className}>
       <CompareCardPrimitive.Product>
-        <ProductCard product={product} />
-        {addToCartAction != null &&
-          (hasVariants === false ? (
-            <CompareCardPrimitive.Form action={addToCartAction}>
-              <CompareCardPrimitive.FormInput name="id" type="hidden" value={id} />
-              <Button
-                className="w-full"
-                disabled={disabled}
-                loading={loading}
-                size="medium"
-                type="submit"
-              >
-                {isPreorder === true ? preorderLabel : addToCartLabel}
-              </Button>
-            </CompareCardPrimitive.Form>
-          ) : (
-            <ButtonLink className="w-full" href={href} size="medium">
-              {viewOptionsLabel}
-            </ButtonLink>
-          ))}
+        <ProductCard cartAction={cartAction} compareAction={compareAction} product={product} />
       </CompareCardPrimitive.Product>
-      <CompareCardPrimitive.Rating>
-        <CompareCardPrimitive.RatingLabel>{ratingLabel}</CompareCardPrimitive.RatingLabel>
-        {rating != null ? (
-          <Rating rating={rating} />
-        ) : (
-          <CompareCardPrimitive.RatingEmpty>{noRatingsLabel}</CompareCardPrimitive.RatingEmpty>
-        )}
-      </CompareCardPrimitive.Rating>
       <CompareCardPrimitive.Description>
         <CompareCardPrimitive.DescriptionLabel>
           {descriptionLabel}
@@ -118,12 +62,12 @@ export function CompareCard({
           </Reveal>
         ) : (
           <CompareCardPrimitive.DescriptionEmpty>
-            {noDescriptionLabel}
+            {emptyDescriptionLabel}
           </CompareCardPrimitive.DescriptionEmpty>
         )}
       </CompareCardPrimitive.Description>
       <CompareCardPrimitive.Specs>
-        <CompareCardPrimitive.SpecsLabel>{otherDetailsLabel}</CompareCardPrimitive.SpecsLabel>
+        <CompareCardPrimitive.SpecsLabel>{specsLabel}</CompareCardPrimitive.SpecsLabel>
         {specs ? (
           <Reveal>
             <CompareCardPrimitive.SpecsList>
@@ -138,7 +82,7 @@ export function CompareCard({
             </CompareCardPrimitive.SpecsList>
           </Reveal>
         ) : (
-          <CompareCardPrimitive.SpecsEmpty>{noOtherDetailsLabel}</CompareCardPrimitive.SpecsEmpty>
+          <CompareCardPrimitive.SpecsEmpty>{emptySpecsLabel}</CompareCardPrimitive.SpecsEmpty>
         )}
       </CompareCardPrimitive.Specs>
     </CompareCardPrimitive.Root>

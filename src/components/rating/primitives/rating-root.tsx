@@ -75,7 +75,11 @@ export function RatingRoot({
 
   return (
     <RatingContext.Provider value={contextValues}>
-      <div className={cn('flex items-center', className)} data-slot="rating-root" {...props}>
+      <div
+        className={cn('flex items-center @container/rating', className)}
+        data-slot="rating-root"
+        {...props}
+      >
         {children}
       </div>
     </RatingContext.Provider>

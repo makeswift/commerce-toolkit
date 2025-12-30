@@ -3,10 +3,6 @@ export {
   type ProductCardRootProps as RootProps,
 } from '@/components/product-card/primitives/product-card-root';
 export {
-  ProductCardContent as Content,
-  type ProductCardContentProps as ContentProps,
-} from '@/components/product-card/primitives/product-card-content';
-export {
   ProductCardPreview as Preview,
   type ProductCardPreviewProps as PreviewProps,
 } from '@/components/product-card/primitives/product-card-preview';
@@ -51,18 +47,22 @@ export {
   type ProductCardPriceProps as PriceProps,
 } from '@/components/product-card/primitives/product-card-price';
 export {
+  ProductCardRating as Rating,
+  type ProductCardRatingProps as RatingProps,
+} from '@/components/product-card/primitives/product-card-rating';
+export {
   ProductCardSkeleton as Skeleton,
   type ProductCardSkeletonProps as SkeletonProps,
 } from '@/components/product-card/primitives/product-card-skeleton';
 export {
-  ProductCardCompare as Compare,
-  type ProductCardCompareProps as CompareProps,
-} from '@/components/product-card/primitives/product-card-compare';
+  ProductCardActions as Actions,
+  type ProductCardActionsProps as ActionsProps,
+} from '@/components/product-card/primitives/product-card-actions';
 export {
-  ProductCardCheckbox as Checkbox,
-  type ProductCardCheckboxProps as CheckboxProps,
-} from '@/components/product-card/primitives/product-card-checkbox';
+  ProductCardForm as Form,
+  type ProductCardFormProps as FormProps,
+} from '@/components/product-card/primitives/product-card-form';
 export {
-  ProductCardLabel as Label,
-  type ProductCardLabelProps as LabelProps,
-} from '@/components/product-card/primitives/product-card-label';
+  ProductCardInput as Input,
+  type ProductCardInputProps as InputProps,
+} from '@/components/product-card/primitives/product-card-input';

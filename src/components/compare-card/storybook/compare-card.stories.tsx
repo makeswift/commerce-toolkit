@@ -1,73 +1,127 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
+import { type ComponentType, Fragment } from 'react';
 
-import * as CompareCardPrimitive from '@/components/compare-card';
-import { CompareCard, type CompareCardProps } from '@/components/compare-card/compare-card';
+import { CompareCard, type CompareCardProps } from '@/components/compare-card';
+import * as CompareCardPrimitive from '@/components/compare-card/primitives';
+import { ProductCard } from '@/components/product-card';
+import { Reveal } from '@/index';
 
 const meta: Meta<typeof CompareCard> = {
   title: 'Components/CompareCard',
   component: CompareCard,
   parameters: {
-    layout: 'padded',
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A product comparison card that extends the ProductCard with additional description and specification sections. Ideal for side-by-side product comparisons.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --compare-card-divider: var(--contrast-100);
+  --compare-card-label: var(--foreground);
+  --compare-card-description: var(--contrast-400);
+  --compare-card-field: var(--foreground);
+  --compare-card-font-family-primary: var(--font-family-body);
+  --compare-card-font-family-secondary: var(--font-family-mono);
+}
+\`\`\`
+
+## Composable Anatomy
+
+The CompareCard can be built using composable primitives for full customization:
+
+\`\`\`tsx
+import * as CompareCardPrimitive from '@/components/compare-card/primitives';
+import { ProductCard } from '@/components/product-card';
+
+<CompareCardPrimitive.Root>
+  <CompareCardPrimitive.Product>
+    <ProductCard product={...} cartAction={...} compareAction={...} />
+  </CompareCardPrimitive.Product>
+  <CompareCardPrimitive.Description>
+    <CompareCardPrimitive.DescriptionLabel>Description</CompareCardPrimitive.DescriptionLabel>
+    <CompareCardPrimitive.DescriptionContent>...</CompareCardPrimitive.DescriptionContent>
+    {/* Or use DescriptionEmpty when no description is available */}
+    <CompareCardPrimitive.DescriptionEmpty>No description</CompareCardPrimitive.DescriptionEmpty>
+  </CompareCardPrimitive.Description>
+  <CompareCardPrimitive.Specs>
+    <CompareCardPrimitive.SpecsLabel>Specifications</CompareCardPrimitive.SpecsLabel>
+    <CompareCardPrimitive.SpecsList>
+      <CompareCardPrimitive.SpecsTerm>Material:</CompareCardPrimitive.SpecsTerm>
+      <CompareCardPrimitive.SpecsDefinition>Bamboo</CompareCardPrimitive.SpecsDefinition>
+    </CompareCardPrimitive.SpecsList>
+    {/* Or use SpecsEmpty when no specs are available */}
+    <CompareCardPrimitive.SpecsEmpty>No specifications</CompareCardPrimitive.SpecsEmpty>
+  </CompareCardPrimitive.Specs>
+</CompareCardPrimitive.Root>
+\`\`\`
+
+## Components
+
+| Component | Description |
+|-----------|-------------|
+| \`Root\` | Container with flex layout and dividers between sections. |
+| \`Product\` | Wrapper for the embedded ProductCard. |
+| \`Description\` | Container for the description section. |
+| \`DescriptionLabel\` | Label heading for the description section. |
+| \`DescriptionContent\` | The product description text. |
+| \`DescriptionEmpty\` | Empty state message when no description is available. |
+| \`Specs\` | Container for the specifications section. |
+| \`SpecsLabel\` | Label heading for the specifications section. |
+| \`SpecsList\` | Definition list container for spec items. |
+| \`SpecsTerm\` | The name/label of a specification. |
+| \`SpecsDefinition\` | The value of a specification. |
+| \`SpecsEmpty\` | Empty state message when no specs are available. |
+| \`Skeleton\` | Loading placeholder for the card. |
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     product: {
       control: false,
-      description: 'Product data including all details for comparison',
+      description: 'Product data object passed to the embedded ProductCard',
     },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes for the root element',
+    cartAction: {
+      control: false,
+      description: 'Cart action configuration passed to the embedded ProductCard',
     },
-    addToCartLabel: {
+    compareAction: {
+      control: false,
+      description: 'Compare action configuration passed to the embedded ProductCard',
+    },
+    description: {
       control: 'text',
-      description: 'Label for the add to cart button',
+      description: 'Product description text',
     },
     descriptionLabel: {
       control: 'text',
       description: 'Label for the description section',
     },
-    noDescriptionLabel: {
+    emptyDescriptionLabel: {
       control: 'text',
-      description: 'Label shown when there is no description',
+      description: 'Message shown when no description is available',
     },
-    ratingLabel: {
-      control: 'text',
-      description: 'Label for the rating section',
-    },
-    noRatingsLabel: {
-      control: 'text',
-      description: 'Label shown when there are no ratings',
-    },
-    otherDetailsLabel: {
-      control: 'text',
-      description: 'Label for the specs/other details section',
-    },
-    noOtherDetailsLabel: {
-      control: 'text',
-      description: 'Label shown when there are no specs',
-    },
-    viewOptionsLabel: {
-      control: 'text',
-      description: 'Label for the view options button (shown when hasVariants is true)',
-    },
-    preorderLabel: {
-      control: 'text',
-      description: 'Label for the preorder button',
-    },
-    addToCartAction: {
+    specs: {
       control: false,
-      description: 'Action to perform when adding to cart',
+      description: 'Array of specification objects with name and value',
     },
-    loading: {
-      control: 'boolean',
-      description: 'Loading state for the add to cart button',
+    specsLabel: {
+      control: 'text',
+      description: 'Label for the specifications section',
+    },
+    emptySpecsLabel: {
+      control: 'text',
+      description: 'Message shown when no specs are available',
     },
   },
   decorators: [
-    (Story) => (
-      <div className="w-full max-w-md">
+    (Story: ComponentType) => (
+      <div className="w-80 bg-background p-4">
         <Story />
       </div>
     ),
@@ -75,485 +129,352 @@ const meta: Meta<typeof CompareCard> = {
 };
 
 export default meta;
+
 type Story = StoryObj<CompareCardProps>;
 
 const defaultProduct = {
-  id: '1',
-  title: 'Classic Cotton T-Shirt',
-  subtitle: 'Heather Gray',
-  badge: 'New',
-  price: {
-    type: 'default' as const,
-    value: '$29.99',
+  id: 'natural-fiber-scrub-brush',
+  title: 'Natural Fiber Scrub Brush',
+  subtitle: 'Kitchen Essentials',
+  link: {
+    href: '/products/natural-fiber-scrub-brush',
+    ariaLabel: 'View Natural Fiber Scrub Brush',
   },
   image: {
-    src: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=720&fit=crop',
-    alt: 'Classic cotton t-shirt in heather gray',
+    src: 'https://images.unsplash.com/photo-1685052392951-4eb54985d3ae?w=900',
+    alt: 'Natural fiber scrub brush with wooden handle',
   },
-  link: {
-    href: '#',
-    ariaLabel: 'View Classic Cotton T-Shirt',
-  },
+  showRating: true,
   rating: 4.5,
-  description:
-    'A timeless wardrobe staple crafted from 100% premium cotton. This classic t-shirt features a comfortable crew neck, relaxed fit, and durable construction that gets softer with every wash.',
-  specs: [
-    { name: 'Material', value: '100% Cotton' },
-    { name: 'Fit', value: 'Relaxed' },
-    { name: 'Care', value: 'Machine wash cold' },
-    { name: 'Origin', value: 'Made in USA' },
-  ],
-  hasVariants: false,
+  price: { type: 'default' as const, value: '$8.99' },
 };
 
 export const Default: Story = {
   args: {
     product: defaultProduct,
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
-    },
+    description:
+      'A sturdy, eco-friendly scrub brush made from natural plant fibers and a sustainably sourced wooden handle. Perfect for pots, pans, and tough kitchen messes.',
+    specs: [
+      { name: 'Material', value: 'Natural plant fiber, beechwood' },
+      { name: 'Dimensions', value: '6" x 2.5"' },
+      { name: 'Care', value: 'Rinse and air dry' },
+    ],
   },
 };
 
-export const WithSalePrice: Story = {
+export const WithDescription: Story = {
   args: {
     product: {
-      id: '2',
-      title: 'Premium Leather Jacket',
-      subtitle: 'Vintage Brown',
-      badge: 'Sale',
-      price: {
-        type: 'sale' as const,
-        previousValue: '$299.99',
-        currentValue: '$199.99',
+      id: 'minimal-ceramic-soap-dispenser',
+      title: 'Minimal Ceramic Soap Dispenser',
+      subtitle: 'Home Decor',
+      link: {
+        href: '/products/minimal-ceramic-soap-dispenser',
+        ariaLabel: 'View Minimal Ceramic Soap Dispenser',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=720&fit=crop',
-        alt: 'Premium leather jacket in vintage brown',
+        src: 'https://images.unsplash.com/photo-1597816189341-6ed558ab017e?w=900',
+        alt: 'White ceramic soap dispenser',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Premium Leather Jacket',
-      },
-      rating: 5,
-      description:
-        'Handcrafted from the finest full-grain leather, this jacket combines classic style with modern durability. Features multiple pockets, brass hardware, and a timeless silhouette that improves with age.',
-      specs: [
-        { name: 'Material', value: 'Full-grain leather' },
-        { name: 'Lining', value: '100% Polyester' },
-        { name: 'Hardware', value: 'Brass' },
-        { name: 'Care', value: 'Professional leather cleaning' },
-      ],
-      hasVariants: false,
-    },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
-    },
-  },
-};
-
-export const WithPriceRange: Story = {
-  args: {
-    product: {
-      id: '3',
-      title: 'Cashmere Sweater',
-      subtitle: 'Multiple Colors',
-      price: {
-        type: 'range' as const,
-        minValue: '$89.99',
-        maxValue: '$129.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=720&fit=crop',
-        alt: 'Cashmere sweater available in multiple colors',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Cashmere Sweater',
-      },
-      rating: 4.8,
-      description:
-        'Luxuriously soft cashmere sweater perfect for layering or wearing on its own. Available in a range of classic and seasonal colors.',
-      specs: [
-        { name: 'Material', value: '100% Cashmere' },
-        { name: 'Weight', value: 'Lightweight' },
-        { name: 'Care', value: 'Dry clean or hand wash' },
-        { name: 'Origin', value: 'Made in Scotland' },
-      ],
-      hasVariants: true,
-    },
-  },
-};
-
-export const WithVariants: Story = {
-  args: {
-    product: {
-      id: '4',
-      title: 'Running Shoes',
-      subtitle: 'Performance Series',
-      badge: 'Best Seller',
-      price: {
-        type: 'default' as const,
-        value: '$119.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=720&fit=crop',
-        alt: 'Performance running shoes',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Running Shoes',
-      },
+      showRating: true,
       rating: 4.7,
-      description:
-        'Engineered for optimal performance with responsive cushioning and breathable mesh. Multiple size and color options available.',
-      specs: [
-        { name: 'Type', value: 'Road running' },
-        { name: 'Drop', value: '8mm' },
-        { name: 'Weight', value: '9.2 oz' },
-        { name: 'Upper', value: 'Engineered mesh' },
-      ],
-      hasVariants: true,
+      price: { type: 'default' as const, value: '$18.00' },
+    },
+    description:
+      'A beautifully crafted ceramic soap dispenser with a matte finish and stainless steel pump. Elevates any bathroom or kitchen counter with its minimalist design.',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When only a description is provided, the specs section displays an empty state message.',
+      },
     },
   },
 };
 
-export const WithoutDescription: Story = {
+export const WithSpecs: Story = {
   args: {
     product: {
-      id: '5',
-      title: 'Minimalist Watch',
-      subtitle: 'Silver',
-      price: {
-        type: 'default' as const,
-        value: '$149.99',
+      id: 'bamboo-countertop-brush',
+      title: 'Bamboo Countertop Brush',
+      subtitle: 'Kitchen',
+      link: {
+        href: '/products/bamboo-countertop-brush',
+        ariaLabel: 'View Bamboo Countertop Brush',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=720&fit=crop',
-        alt: 'Minimalist silver watch',
+        src: 'https://images.unsplash.com/photo-1590439471364-192aa70c0b53?w=900',
+        alt: 'Bamboo countertop brush',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Minimalist Watch',
-      },
+      showRating: true,
       rating: 4.3,
-      specs: [
-        { name: 'Case', value: 'Stainless steel' },
-        { name: 'Movement', value: 'Quartz' },
-        { name: 'Water resistance', value: '50m' },
-        { name: 'Strap', value: 'Leather' },
-      ],
-      hasVariants: false,
+      price: { type: 'default' as const, value: '$10.50' },
     },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
+    specs: [
+      { name: 'Material', value: 'Bamboo, horsehair bristles' },
+      { name: 'Dimensions', value: '8" x 3"' },
+      { name: 'Weight', value: '4 oz' },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When only specs are provided, the description section displays an empty state message.',
+      },
     },
   },
 };
 
-export const WithoutSpecs: Story = {
+export const EmptyStates: Story = {
   args: {
     product: {
-      id: '6',
-      title: 'Denim Jeans',
-      subtitle: 'Dark Wash',
-      price: {
-        type: 'default' as const,
-        value: '$79.99',
+      id: 'eco-dish-sponge-set',
+      title: 'Eco Dish Sponge Set (2-Pack)',
+      subtitle: 'Kitchen',
+      link: {
+        href: '/products/eco-dish-sponge-set',
+        ariaLabel: 'View Eco Dish Sponge Set',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=720&fit=crop',
-        alt: 'Dark wash denim jeans',
+        src: 'https://images.unsplash.com/photo-1685052391251-e09402a6b8e8?w=900',
+        alt: 'Eco dish sponge set',
       },
+      showRating: true,
+      rating: 4.2,
+      price: { type: 'default' as const, value: '$6.49' },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When no description or specs are provided, empty state messages are displayed for both sections.',
+      },
+    },
+  },
+};
+
+export const WithCartAction: Story = {
+  args: {
+    product: {
+      id: 'glass-soap-pump-bottle',
+      title: 'Glass Soap Pump Bottle',
+      subtitle: 'Bathroom',
       link: {
-        href: '#',
-        ariaLabel: 'View Denim Jeans',
+        href: '/products/glass-soap-pump-bottle',
+        ariaLabel: 'View Glass Soap Pump Bottle',
       },
+      image: {
+        src: 'https://images.unsplash.com/photo-1606448009227-af1758630e60?w=900',
+        alt: 'Clear glass soap pump bottle',
+      },
+      showRating: true,
       rating: 4.6,
-      description:
-        'Classic five-pocket denim jeans with a modern slim fit. Crafted from premium Japanese selvedge denim that ages beautifully over time.',
-      hasVariants: false,
+      price: { type: 'default' as const, value: '$14.50' },
     },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
+    cartAction: {
+      type: 'form',
+      action: (formData) => {
+        console.log('Added to cart:', formData.get('id'));
+      },
+      label: 'Add to Cart',
+    },
+    description:
+      'A sleek glass pump bottle with a brushed metal pump mechanism. Perfect for hand soap, dish soap, or lotion.',
+    specs: [
+      { name: 'Capacity', value: '16 oz' },
+      { name: 'Material', value: 'Recycled glass, stainless steel' },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `cartAction` prop is passed through to the embedded ProductCard to enable add-to-cart functionality.',
+      },
     },
   },
 };
 
-export const WithoutRating: Story = {
+export const WithCompareAction: Story = {
   args: {
     product: {
-      id: '7',
-      title: 'Wool Coat',
-      subtitle: 'Charcoal',
-      badge: 'Limited',
-      price: {
-        type: 'default' as const,
-        value: '$249.99',
+      id: 'amber-glass-spray-bottle',
+      title: 'Amber Glass Spray Bottle',
+      subtitle: 'Cleaning Supplies',
+      link: {
+        href: '/products/amber-glass-spray-bottle',
+        ariaLabel: 'View Amber Glass Spray Bottle',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&h=720&fit=crop',
-        alt: 'Charcoal wool coat',
+        src: 'https://images.unsplash.com/photo-1638609927127-aeb9e74c3cfd?w=900',
+        alt: 'Amber glass spray bottle',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Wool Coat',
-      },
-      description:
-        'Elegant wool blend coat perfect for the colder months. Features a timeless double-breasted design with notch lapels and side pockets.',
-      specs: [
-        { name: 'Material', value: '80% Wool, 20% Polyester' },
-        { name: 'Style', value: 'Double-breasted' },
-        { name: 'Length', value: 'Knee-length' },
-        { name: 'Care', value: 'Dry clean only' },
-      ],
-      hasVariants: false,
+      showRating: true,
+      rating: 4.8,
+      price: { type: 'default' as const, value: '$12.00' },
     },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
+    compareAction: {
+      id: 'compare-amber-glass-spray-bottle',
+      label: 'Compare',
     },
+    description:
+      'A durable amber glass spray bottle that protects light-sensitive solutions. Great for DIY cleaning products.',
+    specs: [
+      { name: 'Capacity', value: '16 oz' },
+      { name: 'Material', value: 'Amber glass, plastic trigger' },
+    ],
   },
-};
-
-export const MinimalProduct: Story = {
-  args: {
-    product: {
-      id: '8',
-      title: 'Canvas Sneakers',
-      subtitle: 'Off White',
-      price: {
-        type: 'default' as const,
-        value: '$59.99',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `compareAction` prop is passed through to the embedded ProductCard to enable product comparison functionality.',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Canvas Sneakers',
-      },
-      hasVariants: false,
     },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
-    },
-  },
-};
-
-export const LoadingState: Story = {
-  args: {
-    product: defaultProduct,
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
-    },
-    loading: true,
-  },
-};
-
-export const DisabledProduct: Story = {
-  args: {
-    product: {
-      ...defaultProduct,
-      id: '9',
-      title: 'Out of Stock Item',
-      badge: 'Sold Out',
-      disabled: true,
-    },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
-    },
-  },
-};
-
-export const PreorderProduct: Story = {
-  args: {
-    product: {
-      id: '10',
-      title: 'Limited Edition Sneakers',
-      subtitle: 'Midnight Blue',
-      badge: 'Pre-order',
-      price: {
-        type: 'default' as const,
-        value: '$179.99',
-      },
-      image: {
-        src: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=720&fit=crop',
-        alt: 'Limited edition midnight blue sneakers',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Limited Edition Sneakers',
-      },
-      rating: 4.9,
-      description:
-        'Exclusive limited edition release. Features premium materials and unique colorway. Ships in 4-6 weeks.',
-      specs: [
-        { name: 'Material', value: 'Premium leather' },
-        { name: 'Style', value: 'High-top' },
-        { name: 'Release', value: 'Limited edition' },
-        { name: 'Availability', value: 'Pre-order only' },
-      ],
-      hasVariants: false,
-      isPreorder: true,
-    },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding preorder to cart:', formData.get('id'));
-    },
-  },
-};
-
-export const WithoutAddToCart: Story = {
-  args: {
-    product: defaultProduct,
   },
 };
 
 export const CustomLabels: Story = {
   args: {
-    product: defaultProduct,
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
-    },
-    addToCartLabel: 'Add to Bag',
-    descriptionLabel: 'Product Details',
-    noDescriptionLabel: 'No details available at this time.',
-    ratingLabel: 'Customer Reviews',
-    noRatingsLabel: 'Be the first to review!',
-    otherDetailsLabel: 'Specifications',
-    noOtherDetailsLabel: 'No specifications available.',
-    viewOptionsLabel: 'Choose Options',
-    preorderLabel: 'Reserve Now',
-  },
-};
-
-const InteractiveTemplate = (args: CompareCardProps) => {
-  const [loading, setLoading] = useState(false);
-
-  const handleAddToCart = async (formData: FormData) => {
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log('Added to cart:', formData.get('id'));
-    setLoading(false);
-  };
-
-  return <CompareCard {...args} addToCartAction={handleAddToCart} loading={loading} />;
-};
-
-export const InteractiveAddToCart: Story = {
-  render: InteractiveTemplate,
-  args: {
-    product: defaultProduct,
-  },
-};
-
-export const WithLongDescription: Story = {
-  args: {
     product: {
-      id: '14',
-      title: 'Heritage Backpack',
-      subtitle: 'Olive Canvas',
-      badge: "Editor's Choice",
-      price: {
-        type: 'default' as const,
-        value: '$189.99',
+      id: 'linen-hand-towel',
+      title: 'Linen Hand Towel',
+      subtitle: 'Textiles',
+      link: {
+        href: '/products/linen-hand-towel',
+        ariaLabel: 'View Linen Hand Towel',
       },
       image: {
-        src: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=720&fit=crop',
-        alt: 'Olive canvas heritage backpack',
+        src: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=900',
+        alt: 'Linen hand towel',
       },
-      link: {
-        href: '#',
-        ariaLabel: 'View Heritage Backpack',
-      },
-      rating: 4.8,
-      description: (
-        <>
-          <p>
-            This premium heritage backpack combines timeless design with modern functionality,
-            making it the perfect companion for both urban adventures and outdoor excursions.
-            Crafted from durable, water-resistant canvas and reinforced with genuine leather
-            accents, this backpack is built to withstand years of daily use while developing a
-            unique patina that tells your story.
-          </p>
-          <p>
-            The spacious main compartment features a padded laptop sleeve that fits up to 15-inch
-            devices, keeping your tech safe and secure. Multiple interior pockets and organizers
-            help you keep everything from pens and notebooks to chargers and cables neatly arranged
-            and easily accessible. The exterior includes two side pockets perfect for water bottles
-            or umbrellas, and a quick-access front pocket for items you need on the go.
-          </p>
-          <p>
-            Ergonomically designed padded shoulder straps and a ventilated back panel ensure all-day
-            comfort, even when fully loaded. The adjustable sternum strap and removable waist belt
-            provide additional stability for heavier loads or longer journeys.
-          </p>
-          <p>
-            Whether you&apos;re commuting to work, heading to class, or embarking on a weekend
-            getaway, this versatile backpack adapts to your lifestyle with style and durability that
-            stands the test of time.
-          </p>
-        </>
-      ),
-      specs: [
-        { name: 'Material', value: 'Water-resistant canvas & leather' },
-        { name: 'Capacity', value: '25 liters' },
-        { name: 'Laptop sleeve', value: 'Up to 15 inches' },
-        { name: 'Dimensions', value: '18" x 12" x 6"' },
-        { name: 'Weight', value: '2.2 lbs' },
-        { name: 'Warranty', value: 'Lifetime' },
-      ],
-      hasVariants: false,
+      showRating: true,
+      rating: 4.4,
+      price: { type: 'default' as const, value: '$12.00' },
     },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
+    descriptionLabel: 'About this product',
+    emptyDescriptionLabel: 'No product details available.',
+    specsLabel: 'Specifications',
+    emptySpecsLabel: 'No specifications listed.',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Customize section labels and empty state messages using the label props.',
+      },
     },
   },
 };
 
-export const WithLongSpecs: Story = {
-  args: {
-    product: {
-      id: '15',
-      title: 'Professional Camera',
-      subtitle: 'Mirrorless Full Frame',
-      badge: 'Pro',
-      price: {
-        type: 'default' as const,
-        value: '$2,499.99',
+/**
+ * Use the composable primitives to build custom compare card layouts.
+ */
+export const ComposableAnatomy: Story = {
+  render: () => (
+    <CompareCardPrimitive.Root>
+      <CompareCardPrimitive.Product>
+        <ProductCard
+          product={{
+            id: 'wood-handle-cleaning-brush',
+            title: 'Wood Handle Cleaning Brush',
+            subtitle: 'Kitchen Essentials',
+            link: {
+              href: '/products/wood-handle-cleaning-brush',
+              ariaLabel: 'View Wood Handle Cleaning Brush',
+            },
+            image: {
+              src: 'https://images.unsplash.com/photo-1682251008222-412b140cbf4f?w=900',
+              alt: 'Wood handle cleaning brush',
+            },
+            showRating: true,
+            rating: 4.5,
+            price: { type: 'default', value: '$9.99' },
+          }}
+        />
+      </CompareCardPrimitive.Product>
+      <CompareCardPrimitive.Description>
+        <CompareCardPrimitive.DescriptionLabel>Description</CompareCardPrimitive.DescriptionLabel>
+        <Reveal>
+          <CompareCardPrimitive.DescriptionContent>
+            A versatile cleaning brush with an ergonomic wooden handle and durable bristles. Great
+            for dishes, vegetables, and general cleaning tasks.
+          </CompareCardPrimitive.DescriptionContent>
+        </Reveal>
+      </CompareCardPrimitive.Description>
+      <CompareCardPrimitive.Specs>
+        <CompareCardPrimitive.SpecsLabel>Specifications</CompareCardPrimitive.SpecsLabel>
+        <Reveal>
+          <CompareCardPrimitive.SpecsList>
+            <Fragment>
+              <CompareCardPrimitive.SpecsTerm>Material: </CompareCardPrimitive.SpecsTerm>
+              <CompareCardPrimitive.SpecsDefinition>
+                Beechwood, natural bristle
+              </CompareCardPrimitive.SpecsDefinition>
+            </Fragment>
+            <Fragment>
+              <CompareCardPrimitive.SpecsTerm>Dimensions: </CompareCardPrimitive.SpecsTerm>
+              <CompareCardPrimitive.SpecsDefinition>7" x 2"</CompareCardPrimitive.SpecsDefinition>
+            </Fragment>
+          </CompareCardPrimitive.SpecsList>
+        </Reveal>
+      </CompareCardPrimitive.Specs>
+    </CompareCardPrimitive.Root>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the composable primitives to build custom compare card layouts:
+
+\`\`\`tsx
+import * as CompareCardPrimitive from '@/components/compare-card/primitives';
+import { ProductCard } from '@/components/product-card';
+import { Reveal } from '@/index';
+
+<CompareCardPrimitive.Root>
+  <CompareCardPrimitive.Product>
+    <ProductCard product={...} />
+  </CompareCardPrimitive.Product>
+  <CompareCardPrimitive.Description>
+    <CompareCardPrimitive.DescriptionLabel>Description</CompareCardPrimitive.DescriptionLabel>
+    <Reveal>
+      <CompareCardPrimitive.DescriptionContent>
+        Product description text...
+      </CompareCardPrimitive.DescriptionContent>
+    </Reveal>
+  </CompareCardPrimitive.Description>
+  <CompareCardPrimitive.Specs>
+    <CompareCardPrimitive.SpecsLabel>Specifications</CompareCardPrimitive.SpecsLabel>
+    <Reveal>
+      <CompareCardPrimitive.SpecsList>
+        <CompareCardPrimitive.SpecsTerm>Material: </CompareCardPrimitive.SpecsTerm>
+        <CompareCardPrimitive.SpecsDefinition>Wood</CompareCardPrimitive.SpecsDefinition>
+      </CompareCardPrimitive.SpecsList>
+    </Reveal>
+  </CompareCardPrimitive.Specs>
+</CompareCardPrimitive.Root>
+\`\`\`
+        `,
       },
-      image: {
-        src: 'https://images.unsplash.com/photo-1606986601547-a4d886b671b2?w=600&h=720&fit=crop',
-        alt: 'Professional mirrorless camera',
-      },
-      link: {
-        href: '#',
-        ariaLabel: 'View Professional Camera',
-      },
-      rating: 4.9,
-      description:
-        'Professional-grade mirrorless camera with cutting-edge technology for photographers and videographers.',
-      specs: [
-        { name: 'Sensor', value: '45.7MP Full-Frame CMOS' },
-        { name: 'Processor', value: 'EXPEED 7' },
-        { name: 'ISO Range', value: '64-25,600 (expandable to 102,400)' },
-        { name: 'Autofocus', value: '493-point hybrid AF system' },
-        { name: 'Video', value: '8K 30p, 4K 120p' },
-        { name: 'Viewfinder', value: '3.69M-dot OLED EVF, 0.80x magnification' },
-        { name: 'Display', value: '3.2" tilting touchscreen LCD' },
-        { name: 'Burst Rate', value: '20 fps mechanical, 120 fps electronic' },
-        { name: 'Image Stabilization', value: '5-axis in-body, up to 8 stops' },
-        { name: 'Storage', value: 'Dual CFexpress Type B / SD UHS-II' },
-        { name: 'Battery Life', value: 'Approx. 740 shots' },
-        { name: 'Weather Sealing', value: 'Magnesium alloy, dust & moisture resistant' },
-        { name: 'Connectivity', value: 'Wi-Fi 6, Bluetooth 5.0, USB-C 3.2, HDMI' },
-        { name: 'Dimensions', value: '5.4" x 4.1" x 2.7"' },
-        { name: 'Weight', value: '1.5 lbs (body only)' },
-      ],
-      hasVariants: false,
-    },
-    addToCartAction: (formData: FormData) => {
-      console.log('Adding to cart:', formData.get('id'));
     },
   },
 };
 
 export const Skeleton: Story = {
-  render: () => <CompareCardPrimitive.Skeleton />,
+  render: () => (
+    <CompareCardPrimitive.Root>
+      <CompareCardPrimitive.Skeleton />
+    </CompareCardPrimitive.Root>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the `Skeleton` primitive to display a loading placeholder while product data is being fetched.',
+      },
+    },
+  },
 };
