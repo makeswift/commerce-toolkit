@@ -34,20 +34,17 @@ export function Badge({
   return (
     <span
       className={cn(
-        'px-2 py-0.5 text-xs uppercase tracking-tighter text-[var(--badge-text,var(--foreground))] [font-family:var(--badge-font-family,var(--font-family-body))]',
+        'border border-black/10 px-2 py-1 text-xs font-semibold text-[var(--badge-text,var(--text-primary))] antialiased [font-family:var(--badge-font-family,var(--font-family-body))]',
         {
           pill: 'rounded-full',
-          rounded: 'rounded',
+          rounded: 'rounded-md',
         }[shape],
         {
-          primary:
-            'bg-[var(--badge-primary-background,color-mix(in_oklab,var(--primary),white_75%))]',
-          warning:
-            'bg-[var(--badge-warning-background,color-mix(in_oklab,var(--warning),white_75%))]',
-          error: 'bg-[var(--badge-error-background,color-mix(in_oklab,var(--error),white_75%))]',
-          success:
-            'bg-[var(--badge-success-background,color-mix(in_oklab,var(--success),white_75%))]',
-          info: 'bg-[var(--badge-info-background,color-mix(in_oklab,var(--info),white_75%))]',
+          primary: 'bg-[var(--badge-primary-background,var(--primary-background))]',
+          warning: 'bg-[var(--badge-warning-background,var(--warning-background))]',
+          error: 'bg-[var(--badge-error-background,var(--error-background))]',
+          success: 'bg-[var(--badge-success-background,var(--success-background))]',
+          info: 'bg-[var(--badge-info-background,var(--background))]',
         }[variant],
         className,
       )}

@@ -15,7 +15,7 @@
 
 :root {
   --primary-lch: 0.9 0.2 136;
-  --primary-background-lch: 0.9 0.05 136;
+  --primary-background-lch: 0.95 0.05 136;
   --primary-foreground-lch: 0.3 0.03 136;
   --background-lch: 1 0 0;
   --foreground-lch: 0.18 0 0;
@@ -57,6 +57,7 @@
   --text-primary: oklch(var(--foreground-lch));
   --text-secondary: oklch(var(--contrast-500-lch));
   --text-disabled: oklch(var(--contrast-400-lch));
+  --text-inverse: oklch(var(--background-lch));
 
   --fill-pending: oklch(var(--contrast-100-lch));
 

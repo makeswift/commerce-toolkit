@@ -7,159 +7,108 @@ const meta: Meta<typeof Badge> = {
   component: Badge,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A badge component for displaying short status text, labels, or notifications. Supports multiple semantic variants and shapes.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --badge-primary-background: var(--primary-background);
+  --badge-success-background: var(--success-background);
+  --badge-warning-background: var(--warning-background);
+  --badge-error-background: var(--error-background);
+  --badge-info-background: var(--background);
+  --badge-text: var(--text-primary);
+  --badge-font-family: var(--font-family-body);
+}
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'warning', 'error', 'success', 'info'],
-      description: 'The visual style variant of the badge',
-    },
-    shape: {
-      control: 'select',
-      options: ['pill', 'rounded'],
-      description: 'The border radius style of the badge',
-    },
     children: {
       control: 'text',
       description: 'The text content of the badge',
     },
-  },
-  args: {
-    children: 'Badge',
+    variant: {
+      control: 'select',
+      options: ['primary', 'success', 'warning', 'error', 'info'],
+      description: 'The semantic variant of the badge',
+    },
+    shape: {
+      control: 'select',
+      options: ['pill', 'rounded'],
+      description: 'The shape of the badge',
+    },
   },
 };
 
 export default meta;
 type Story = StoryObj<BadgeProps>;
 
-// Variant stories
+export const Default: Story = {
+  args: {
+    children: 'Badge',
+  },
+};
+
 export const Primary: Story = {
   args: {
+    children: 'New',
     variant: 'primary',
-    children: 'Primary',
   },
 };
 
 export const Success: Story = {
   args: {
+    children: 'In Stock',
     variant: 'success',
-    children: 'Success',
   },
 };
 
 export const Warning: Story = {
   args: {
+    children: 'Low Stock',
     variant: 'warning',
-    children: 'Warning',
   },
 };
 
 export const Error: Story = {
   args: {
+    children: 'Sold Out',
     variant: 'error',
-    children: 'Error',
   },
 };
 
 export const Info: Story = {
   args: {
+    children: 'Coming Soon',
     variant: 'info',
-    children: 'Info',
   },
 };
 
-// Shape stories
-export const Pill: Story = {
+export const PillShape: Story = {
   args: {
+    children: 'Sale',
     shape: 'pill',
-    children: 'Pill',
   },
 };
 
-export const Rounded: Story = {
+export const RoundedShape: Story = {
   args: {
+    children: 'Featured',
     shape: 'rounded',
-    children: 'Rounded',
   },
-};
-
-// Use case examples
-export const ProductStatus: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2">
-      <Badge variant="success">In Stock</Badge>
-      <Badge variant="warning">Low Stock</Badge>
-      <Badge variant="error">Out of Stock</Badge>
-      <Badge variant="info">Pre-Order</Badge>
-    </div>
-  ),
-};
-
-export const ProductTags: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2">
-      <Badge shape="pill" variant="primary">
-        New
-      </Badge>
-      <Badge shape="pill" variant="error">
-        Sale
-      </Badge>
-      <Badge shape="pill" variant="success">
-        Featured
-      </Badge>
-      <Badge shape="pill" variant="info">
-        Limited
-      </Badge>
-    </div>
-  ),
-};
-
-export const OrderStatus: Story = {
-  render: () => (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Order #12345:</span>
-        <Badge variant="info">Processing</Badge>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Order #12346:</span>
-        <Badge variant="warning">Shipped</Badge>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Order #12347:</span>
-        <Badge variant="success">Delivered</Badge>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Order #12348:</span>
-        <Badge variant="error">Cancelled</Badge>
-      </div>
-    </div>
-  ),
-};
-
-export const MixedShapes: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-3">
-      <Badge shape="rounded" variant="primary">
-        Rounded
-      </Badge>
-      <Badge shape="pill" variant="primary">
-        Pill
-      </Badge>
-      <Badge shape="rounded" variant="success">
-        Rounded
-      </Badge>
-      <Badge shape="pill" variant="success">
-        Pill
-      </Badge>
-    </div>
-  ),
 };
 
 export const AllVariants: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap items-center gap-3">
       <Badge variant="primary">Primary</Badge>
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
@@ -167,4 +116,47 @@ export const AllVariants: Story = {
       <Badge variant="info">Info</Badge>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'All available semantic variants displayed together.',
+      },
+    },
+  },
+};
+
+export const AllShapes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Badge shape="rounded">Rounded</Badge>
+      <Badge shape="pill">Pill</Badge>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Both shape options: `rounded` (default) and `pill`.',
+      },
+    },
+  },
+};
+
+export const ProductBadges: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Badge variant="primary">New Arrival</Badge>
+      <Badge shape="pill" variant="error">
+        Sale
+      </Badge>
+      <Badge variant="success">Best Seller</Badge>
+      <Badge variant="warning">Limited Edition</Badge>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Common badge patterns used in e-commerce product displays.',
+      },
+    },
+  },
 };
