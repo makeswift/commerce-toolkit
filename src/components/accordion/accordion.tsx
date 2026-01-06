@@ -43,7 +43,7 @@ export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
  *   --accordion-dark-title-icon: var(--contrast-200);
  *   --accordion-dark-title-icon-hover: var(--background);
  *   --accordion-dark-content-text: var(--background);
- *   --accordion-title-font-family: var(--font-family-mono);
+ *   --accordion-title-font-family: var(--font-family-body);
  *   --accordion-content-font-family: var(--font-family-body);
  * }
  * ```

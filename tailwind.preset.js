@@ -71,12 +71,12 @@ export default {
             },
             code: {
               color: 'var(--contrast-500)',
-              fontFamily: 'var(--font-family-mono)',
+              fontFamily: 'var(--font-family-body)',
             },
             pre: {
               color: 'var(--background)',
               backgroundColor: 'var(--foreground)',
-              fontFamily: 'var(--font-family-mono)',
+              fontFamily: 'var(--font-family-body)',
             },
           },
         },

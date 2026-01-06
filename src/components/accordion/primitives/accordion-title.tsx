@@ -8,7 +8,7 @@ export function AccordionTitle({ children, className, ...props }: AccordionTitle
   return (
     <div
       className={cn(
-        'flex-1 select-none text-sm font-normal uppercase text-[var(--accordion-light-title-text,var(--contrast-400))] transition-colors duration-300 ease-out [font-family:var(--accordion-title-font-family,var(--font-family-mono))] group-hover:text-[var(--accordion-light-title-text-hover,var(--foreground))]',
+        'flex-1 select-none text-sm font-normal uppercase text-[var(--accordion-light-title-text,var(--contrast-400))] transition-colors duration-300 ease-out [font-family:var(--accordion-title-font-family,var(--font-family-body))] group-hover:text-[var(--accordion-light-title-text-hover,var(--foreground))]',
         className,
       )}
       {...props}
