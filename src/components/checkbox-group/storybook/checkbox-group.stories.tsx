@@ -214,7 +214,7 @@ export const Controlled: Story = {
         </div>
         <div className="flex gap-2">
           <button
-            className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
+            className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
             onClick={() => setSelected(categoryOptions.map((o) => o.value))}
             type="button"
           >

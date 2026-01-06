@@ -276,7 +276,7 @@ export const Controlled: Story = {
           <span className="text-foreground">{value.toUpperCase()}</span>
         </div>
         <button
-          className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
+          className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
           onClick={() => setValue('m')}
           type="button"
         >

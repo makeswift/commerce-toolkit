@@ -72,7 +72,7 @@ export const WithIcon: Story = {
   args: {
     children: (
       <div>
-        <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
           <Package className="text-brand-shadow" size={24} />
         </div>
         <h3 className="text-lg font-semibold">Free Shipping</h3>
@@ -89,7 +89,7 @@ export const FeatureCard: Story = {
   args: {
     children: (
       <div>
-        <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
           <Shield className="text-brand-shadow" size={24} />
         </div>
         <h3 className="text-lg font-semibold">Secure Checkout</h3>
@@ -197,7 +197,7 @@ export const FeatureGrid: Story = {
     <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       <Card>
         <div>
-          <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
             <Truck className="text-brand-shadow" size={24} />
           </div>
           <h3 className="text-base font-semibold">Fast Delivery</h3>
@@ -208,7 +208,7 @@ export const FeatureGrid: Story = {
       </Card>
       <Card>
         <div>
-          <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
             <Shield className="text-brand-shadow" size={24} />
           </div>
           <h3 className="text-base font-semibold">Secure Payment</h3>
@@ -217,7 +217,7 @@ export const FeatureGrid: Story = {
       </Card>
       <Card>
         <div>
-          <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
             <Package className="text-brand-shadow" size={24} />
           </div>
           <h3 className="text-base font-semibold">Easy Returns</h3>
