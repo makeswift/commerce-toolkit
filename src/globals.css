@@ -14,19 +14,46 @@
 }
 
 :root {
-  --primary: 96 100% 68%;
-  --accent: 96 100% 88%;
-  --background: 0 0% 100%;
-  --foreground: 0 0% 7%;
-  --success: 116 78% 65%;
-  --error: 0 100% 60%;
-  --warning: 40 100% 60%;
-  --info: 220 70% 45%;
-  --contrast-100: 0 0% 93%;
-  --contrast-200: 0 0% 82%;
-  --contrast-300: 0 0% 70%;
-  --contrast-400: 0 0% 54%;
-  --contrast-500: 0 0% 34%;
+  --primary-lch: 0.9 0.2 136;
+  --primary-background-lch: 0.9 0.05 136;
+  --primary-foreground-lch: 0.3 0.03 136;
+  --background-lch: 1 0 0;
+  --foreground-lch: 0.18 0 0;
+  --contrast-100-lch: 0.95 0 0;
+  --contrast-200-lch: 0.86 0 0;
+  --contrast-300-lch: 0.76 0 0;
+  --contrast-400-lch: 0.63 0 0;
+  --contrast-500-lch: 0.45 0 0;
+  --success-lch: 0.85 0.2 142;
+  --success-background-lch: 0.95 0.05 142;
+  --success-foreground-lch: 0.35 0.1 142;
+  --error-lch: 0.65 0.24 26;
+  --error-background-lch: 0.95 0.05 26;
+  --error-foreground-lch: 0.25 0.1 26;
+  --warning-lch: 0.8 0.16 80;
+  --warning-background-lch: 0.95 0.05 80;
+  --warning-foreground-lch: 0.3 0.06 80;
+
+  --primary: oklch(var(--primary-lch));
+  --primary-background: oklch(var(--primary-background-lch));
+  --primary-foreground: oklch(var(--primary-foreground-lch));
+  --background: oklch(var(--background-lch));
+  --foreground: oklch(var(--foreground-lch));
+  --contrast-100: oklch(var(--contrast-100-lch));
+  --contrast-200: oklch(var(--contrast-200-lch));
+  --contrast-300: oklch(var(--contrast-300-lch));
+  --contrast-400: oklch(var(--contrast-400-lch));
+  --contrast-500: oklch(var(--contrast-500-lch));
+  --success: oklch(var(--success-lch));
+  --success-background: oklch(var(--success-background-lch));
+  --success-foreground: oklch(var(--success-foreground-lch));
+  --error: oklch(var(--error-lch));
+  --error-background: oklch(var(--error-background-lch));
+  --error-foreground: oklch(var(--error-foreground-lch));
+  --warning: oklch(var(--warning-lch));
+  --warning-background: oklch(var(--warning-background-lch));
+  --warning-foreground: oklch(var(--warning-foreground-lch));
+
   --font-family-heading: 'DM Serif Text', serif;
   --font-family-body: 'Inter', sans-serif;
   --font-family-mono: 'Roboto Mono', monospace;

@@ -59,18 +59,18 @@ export function Button({
     <button
       aria-busy={loading}
       className={cn(
-        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal transition-all duration-75 ease-linear [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
+        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal transition-all duration-75 ease-linear [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,var(--primary))] disabled:pointer-events-none disabled:opacity-30',
         {
           brand:
-            'bg-[var(--button-brand-background,hsl(var(--primary)))] text-[var(--button-brand-text,hsl(var(--foreground)))] hover:opacity-70',
+            'bg-[var(--button-brand-background,var(--primary))] text-[var(--button-brand-text,var(--foreground))] hover:opacity-70',
           primary:
-            'bg-[var(--button-primary-background,hsl(var(--foreground)))] text-[var(--button-primary-text,hsl(var(--background)))] hover:opacity-70',
+            'bg-[var(--button-primary-background,var(--foreground))] text-[var(--button-primary-text,var(--background))] hover:opacity-70',
           outline:
-            'border border-[var(--button-outline-border,hsl(var(--contrast-200)))] bg-[var(--button-outline-background,hsl(var(--background)))] text-[var(--button-outline-text,hsl(var(--foreground)))] hover:bg-foreground/5',
+            'border border-[var(--button-outline-border,var(--contrast-200))] bg-[var(--button-outline-background,var(--background))] text-[var(--button-outline-text,var(--foreground))] hover:bg-foreground/5',
           ghost:
-            'bg-transparent text-[var(--button-ghost-text,hsl(var(--foreground)))] hover:bg-foreground/5',
+            'bg-transparent text-[var(--button-ghost-text,var(--foreground))] hover:bg-foreground/5',
           danger:
-            'bg-[var(--button-danger-background,hsl(var(--error)))] text-[var(--button-danger-text,hsl(var(--background)))] hover:opacity-70',
+            'bg-[var(--button-danger-background,var(--error))] text-[var(--button-danger-text,var(--background))] hover:opacity-70',
         }[variant],
         shape === 'rounded'
           ? {
@@ -123,7 +123,7 @@ export function Button({
         <Loader2
           className={cn(
             'animate-spin',
-            variant === 'outline' && 'text-[var(--button-loader-icon,hsl(var(--foreground)))]',
+            variant === 'outline' && 'text-[var(--button-loader-icon,var(--foreground))]',
           )}
         />
       </span>
