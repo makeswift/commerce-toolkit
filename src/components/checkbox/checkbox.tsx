@@ -5,10 +5,7 @@ import type { ComponentProps } from 'react';
 
 import * as CheckboxPrimitive from '@/components/checkbox';
 
-export type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root> & {
-  id?: string;
-  label?: string;
-};
+export type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root>;
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -34,7 +31,7 @@ export type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root> & {
  *  }
  * ```
  */
-export function Checkbox({ className, id, label, ...props }: CheckboxProps) {
+export function Checkbox({ className, ...props }: CheckboxProps) {
   return (
     <CheckboxPrimitive.Root className={className} {...props}>
       <CheckboxPrimitive.Indicator>

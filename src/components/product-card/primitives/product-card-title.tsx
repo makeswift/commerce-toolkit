@@ -8,7 +8,7 @@ export function ProductCardTitle({ className, children, ...props }: ProductCardT
   return (
     <h3
       className={cn(
-        'block font-semibold text-[var(--product-card-light-title,hsl(var(--foreground)))]',
+        'mb-0.5 block text-base font-semibold leading-snug text-[var(--product-card-light-title,hsl(var(--foreground)))]',
         className,
       )}
       data-slot="product-card-title"

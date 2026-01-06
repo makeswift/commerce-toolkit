@@ -22,7 +22,7 @@ export function ProductCardRoot<T extends ElementType = 'article'>({
   return (
     <ProductCardRootElement
       className={cn(
-        'group/product-card w-full max-w-md font-[var(--product-card-font-family,var(--font-family-body))] @container',
+        'group/product-card flex w-full max-w-md flex-col font-[var(--product-card-font-family,var(--font-family-body))] @container',
         className,
       )}
       data-aspect-ratio={aspectRatio}
