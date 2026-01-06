@@ -24,8 +24,8 @@ A product comparison card that extends the ProductCard with additional descripti
   --compare-card-label: var(--foreground);
   --compare-card-description: var(--contrast-400);
   --compare-card-field: var(--foreground);
-  --compare-card-font-family-primary: var(--font-family-body);
-  --compare-card-font-family-secondary: var(--font-family-mono);
+  --compare-card-font-family-brand: var(--font-family-body);
+  --compare-card-font-family-secondary: var(--font-family-body);
 }
 \`\`\`
 

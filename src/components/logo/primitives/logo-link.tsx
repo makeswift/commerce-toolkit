@@ -13,7 +13,7 @@ export function LogoLink({ asChild = false, className, children, ...props }: Log
   return (
     <Component
       className={cn(
-        'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--logo-focus,hsl(var(--primary)))]',
+        'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--logo-focus,var(--brand))]',
         className,
       )}
       data-slot="logo-link"

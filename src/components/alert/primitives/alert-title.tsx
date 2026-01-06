@@ -8,7 +8,7 @@ export function AlertTitle({ children, className, ...props }: AlertTitleProps) {
   return (
     <h5
       className={cn(
-        'text-sm font-normal text-[var(--alert-message-text,hsl(var(--foreground)))]',
+        'text-sm font-normal text-[var(--alert-message-text,var(--foreground))]',
         className,
       )}
       data-slot="alert-title"

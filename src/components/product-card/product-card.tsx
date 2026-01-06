@@ -76,8 +76,8 @@ export interface ProductCardProps {
  *
  * ```css
  * :root {
- *   --product-card-focus: var(--primary);
- *   --product-card-empty-text: color-mix(in oklab, hsl(var(--foreground)) 15%, transparent);
+ *   --product-card-focus: var(--brand);
+ *   --product-card-empty-text: color-mix(in oklab, var(--foreground) 15%, transparent);
  *   --product-card-light-offset: var(--background);
  *   --product-card-light-background: var(--contrast-100);
  *   --product-card-light-title: var(--foreground);

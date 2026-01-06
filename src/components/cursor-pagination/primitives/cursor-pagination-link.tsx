@@ -18,7 +18,7 @@ export function CursorPaginationLink({
   return (
     <Component
       className={cn(
-        'flex h-12 w-12 items-center justify-center rounded-full border border-[var(--cursor-pagination-border,hsl(var(--contrast-100)))] bg-[var(--cursor-pagination-background,hsl(var(--background)))] ring-[var(--cursor-pagination-focus,hsl(var(--primary)))] transition-colors duration-300 hover:border-[var(--cursor-pagination-border-hover,hsl(var(--contrast-200)))] hover:bg-[var(--cursor-pagination-background-hover,hsl(var(--contrast-100)))] focus:outline-none focus-visible:ring-2 aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
+        'flex h-12 w-12 items-center justify-center rounded-full border border-[var(--cursor-pagination-border,var(--contrast-100))] bg-[var(--cursor-pagination-background,var(--background))] ring-[var(--cursor-pagination-focus,var(--brand))] transition-colors duration-300 hover:border-[var(--cursor-pagination-border-hover,var(--contrast-200))] hover:bg-[var(--cursor-pagination-background-hover,var(--contrast-100))] focus:outline-none focus-visible:ring-2 aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
         className,
       )}
       data-slot="cursor-pagination-link"

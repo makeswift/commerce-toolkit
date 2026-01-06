@@ -51,7 +51,7 @@ export function RatingStar({ className, ...props }: RatingStarProps) {
 
   return (
     <svg
-      className={cn('inline-block text-[var(--rating-icon,hsl(var(--foreground)))]', className)}
+      className={cn('inline-block text-[var(--rating-icon,var(--foreground))]', className)}
       data-slot="rating-star"
       fill="none"
       height={20}

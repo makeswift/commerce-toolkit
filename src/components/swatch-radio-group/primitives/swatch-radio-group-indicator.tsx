@@ -15,7 +15,7 @@ export function SwatchRadioGroupIndicator({
         // Base layout
         'disabled-icon absolute inset-0 hidden place-content-center',
         // Colors
-        'text-[var(--swatch-radio-group-light-icon,hsl(var(--foreground)))]',
+        'text-[var(--swatch-radio-group-light-icon,var(--foreground))]',
         className,
       )}
       data-slot="swatch-radio-group-indicator"

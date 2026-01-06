@@ -11,11 +11,11 @@ export interface FavoriteProps {
  *
  * ```css
  * :root {
- *   --favorite-focus: hsl(var(--primary));
- *   --favorite-border: hsl(var(--contrast-100));
- *   --favorite-icon: hsl(var(--foreground));
- *   --favorite-on-background: hsl(var(--contrast-100));
- *   --favorite-off-border: hsl(var(--contrast-200));
+ *   --favorite-focus: var(--brand);
+ *   --favorite-border: var(--contrast-100);
+ *   --favorite-icon: var(--foreground);
+ *   --favorite-on-background: var(--contrast-100);
+ *   --favorite-off-border: var(--contrast-200);
  * }
  * ```
  */

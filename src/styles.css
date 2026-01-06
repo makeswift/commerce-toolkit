@@ -1,6 +1,6 @@
 /* Commerce Toolkit CSS Variables */
 :root {
-  --primary: 96 100% 68%;
+  --brand: 96 100% 68%;
   --accent: 96 100% 88%;
   --background: 0 0% 100%;
   --foreground: 0 0% 7%;
@@ -18,7 +18,7 @@
   --font-family-body:
     'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-family-mono:
+  --font-family-body:
     'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
   --font-feature-settings-heading: normal;

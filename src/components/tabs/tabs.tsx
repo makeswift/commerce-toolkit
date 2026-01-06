@@ -20,15 +20,15 @@ export interface TabsProps extends TabsPrimitives.RootProps {
  *
  * ```css
  * :root {
- *   --tabs-focus: hsl(var(--primary));
+ *   --tabs-focus: var(--brand);
  *   --tabs-font-family: var(--font-family-body);
- *   --tabs-text: hsl(var(--contrast-500));
- *   --tabs-text-hover: hsl(var(--foreground));
- *   --tabs-text-active: hsl(var(--foreground));
- *   --tabs-underline-default: hsl(var(--contrast-200));
- *   --tabs-underline-active: hsl(var(--primary));
- *   --tabs-underline-hover: hsl(var(--contrast-200));
- *   --tabs-border: hsl(var(--contrast-100));
+ *   --tabs-text: var(--contrast-500);
+ *   --tabs-text-hover: var(--foreground);
+ *   --tabs-text-active: var(--foreground);
+ *   --tabs-underline-default: var(--contrast-200);
+ *   --tabs-underline-active: var(--brand);
+ *   --tabs-underline-hover: var(--contrast-200);
+ *   --tabs-border: var(--contrast-100);
  * }
  * ```
  */

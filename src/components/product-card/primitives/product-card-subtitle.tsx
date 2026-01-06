@@ -8,7 +8,7 @@ export function ProductCardSubtitle({ children, className, ...props }: ProductCa
   return (
     <span
       className={cn(
-        'mb-1.5 block text-sm font-normal leading-normal text-[var(--product-card-light-subtitle,color-mix(in_oklab,hsl(var(--foreground))_75%,transparent))]',
+        'block text-sm font-normal text-[var(--product-card-light-subtitle,color-mix(in_oklab,var(--foreground)_75%,transparent))]',
         className,
       )}
       data-slot="product-card-subtitle"

@@ -85,7 +85,7 @@ The CardRadioGroup component supports extensive theming through CSS variables:
 
 \`\`\`css
 :root {
-  --card-radio-group-focus: var(--primary);
+  --card-radio-group-focus: var(--brand);
   --card-radio-group-light-unchecked-border: var(--contrast-100);
   --card-radio-group-light-unchecked-border-hover: var(--contrast-200);
   --card-radio-group-light-unchecked-background: var(--background);
@@ -321,7 +321,7 @@ export const Controlled: Story = {
           </span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
           onClick={() => setValue('credit-card')}
           type="button"
         >
@@ -458,7 +458,7 @@ export const CustomThemed: Story = {
   ),
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex w-80 items-center justify-center rounded-xl bg-contrast-100 p-8 [--card-radio-group-light-checked-background:hsl(var(--primary))] [--card-radio-group-light-unchecked-background-hover:hsl(var(--primary)/0.1)] [--card-radio-group-light-unchecked-border-hover:hsl(var(--primary))]">
+      <div className="flex w-80 items-center justify-center rounded-xl bg-contrast-100 p-8 [--card-radio-group-light-checked-background:var(--brand)] [--card-radio-group-light-unchecked-background-hover:color-mix(in_oklch,var(--brand)_10%,transparent)] [--card-radio-group-light-unchecked-border-hover:var(--brand)]">
         <Story />
       </div>
     ),

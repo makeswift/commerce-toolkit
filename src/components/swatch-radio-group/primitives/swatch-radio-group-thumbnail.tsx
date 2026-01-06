@@ -15,7 +15,7 @@ export function SwatchRadioGroupThumbnail({
         // Base layout
         'relative block size-full overflow-hidden',
         // Borders & Rounded
-        'rounded-full border border-[var(--swatch-radio-group-light-option-border,color-mix(in_oklab,hsl(var(--foreground))_10%,transparent))]',
+        'rounded-full border border-[var(--swatch-radio-group-light-option-border,color-mix(in_oklab,var(--foreground)_10%,transparent))]',
         // Effects
         'bg-clip-padding shadow',
         className,

@@ -12,7 +12,7 @@ export function CompareCardSpecsEmpty({
   return (
     <p
       className={cn(
-        'text-sm text-[var(--compare-card-description,hsl(var(--contrast-400)))]',
+        'text-sm text-[var(--compare-card-description,var(--contrast-400))]',
         className,
       )}
       data-slot="compare-card-specs-empty"

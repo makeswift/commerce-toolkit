@@ -87,7 +87,7 @@ export function FileInput({
       </Label>
       <FileInputPrimitive.Dropzone>
         <FileInputPrimitive.Trigger>
-          <UploadIcon className="size-5 text-[var(--file-input-trigger-icon,hsl(var(--foreground)))]" />
+          <UploadIcon className="size-5 text-[var(--file-input-trigger-icon,var(--foreground))]" />
           {cta}
         </FileInputPrimitive.Trigger>
         <FileInputPrimitive.DropzoneError />
@@ -127,7 +127,7 @@ export function FileInput({
                     </FileInputPrimitive.Details>
                   </FileInputPrimitive.Metadata>
                   <FileInputPrimitive.Remove>
-                    <XIcon className="size-5 text-[var(--file-input-item-delete-icon,hsl(var(--foreground)))]" />
+                    <XIcon className="size-5 text-[var(--file-input-item-delete-icon,var(--foreground))]" />
                   </FileInputPrimitive.Remove>
                   {status === 'uploading' && <FileInputPrimitive.Progress />}
                 </>

@@ -52,7 +52,7 @@ The CheckboxGroup uses the Checkbox component internally, which supports theming
 
 \`\`\`css
 :root {
-  --checkbox-focus: var(--primary);
+  --checkbox-focus: var(--brand);
   --checkbox-light-label: var(--foreground);
   --checkbox-light-error: var(--error);
   --checkbox-light-unchecked-border: var(--contrast-200);
@@ -214,7 +214,7 @@ export const Controlled: Story = {
         </div>
         <div className="flex gap-2">
           <button
-            className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+            className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
             onClick={() => setSelected(categoryOptions.map((o) => o.value))}
             type="button"
           >

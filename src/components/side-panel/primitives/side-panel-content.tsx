@@ -11,7 +11,7 @@ export function SidePanelContent({ children, className, ...props }: SidePanelCon
   return (
     <Dialog.Content
       className={cn(
-        'fixed inset-y-0 right-0 flex w-96 max-w-full flex-col bg-[var(--side-panel-background,hsl(var(--background)))] font-[var(--side-panel-content-font-family,var(--font-family-body))] transition duration-500 [animation-timing-function:cubic-bezier(0.25,1,0,1)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
+        'fixed inset-y-0 right-0 flex w-96 max-w-full flex-col bg-[var(--side-panel-background,var(--background))] font-[var(--side-panel-content-font-family,var(--font-family-body))] transition duration-500 [animation-timing-function:cubic-bezier(0.25,1,0,1)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
         className,
       )}
       data-slot="side-panel-content"

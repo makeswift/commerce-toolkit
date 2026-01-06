@@ -18,7 +18,7 @@ export interface CursorPaginationProps {
  *
  * ```css
  * :root {
- *   --cursor-pagination-focus: var(--primary);
+ *   --cursor-pagination-focus: var(--brand);
  *   --cursor-pagination-border: var(--contrast-100);
  *   --cursor-pagination-border-hover: var(--contrast-200);
  *   --cursor-pagination-icon: var(--foreground);

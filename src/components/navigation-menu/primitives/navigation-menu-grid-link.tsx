@@ -13,11 +13,11 @@ export function NavigationMenuGridLink({
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'block rounded-lg bg-[var(--nav-grid-link-background,transparent)] px-3 py-2 font-[family-name:var(--nav-grid-link-font-family,var(--font-family-body))] text-sm font-medium text-[var(--nav-grid-link-text,hsl(var(--contrast-500)))] transition-colors',
+        'block rounded-lg bg-[var(--nav-grid-link-background,transparent)] px-3 py-2 font-[family-name:var(--nav-grid-link-font-family,var(--font-family-body))] text-sm font-medium text-[var(--nav-grid-link-text,var(--contrast-500))] transition-colors',
         // Hover state
-        'hover:bg-[var(--nav-grid-label-background-hover,hsl(var(--contrast-100)))] hover:text-[var(--nav-grid-label-text-hover,hsl(var(--foreground)))]',
+        'hover:bg-[var(--nav-grid-label-background-hover,var(--contrast-100))] hover:text-[var(--nav-grid-label-text-hover,var(--foreground))]',
         // Focus-visible state
-        'focus-visible:bg-[var(--nav-grid-label-background-hover,hsl(var(--contrast-100)))] focus-visible:text-[var(--nav-grid-label-text-hover,hsl(var(--foreground)))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--nav-focus,hsl(var(--primary)))]',
+        'focus-visible:bg-[var(--nav-grid-label-background-hover,var(--contrast-100))] focus-visible:text-[var(--nav-grid-label-text-hover,var(--foreground))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--nav-focus,var(--brand))]',
         className,
       )}
       data-slot="navigation-menu-grid-link"

@@ -13,7 +13,7 @@ export function RadioGroupIndicator({ className, children, ...props }: RadioGrou
         'relative flex h-full w-full items-center justify-center',
         // After pseudo-element (indicator dot)
         'after:block after:h-3 after:w-3 after:rounded-full',
-        'after:bg-[var(--radio-group-light-indicator-background,hsl(var(--foreground)))]',
+        'after:bg-[var(--radio-group-light-indicator-background,var(--foreground))]',
         className,
       )}
       data-slot="radio-group-indicator"

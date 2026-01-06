@@ -21,7 +21,7 @@ export type ToggleGroupProps = ComponentProps<typeof ToggleGroupPrimitive.Root> 
  *
  * ```css
  *  :root {
- *   --toggle-group-light-focus: var(--primary);
+ *   --toggle-group-light-focus: var(--brand);
  *   --toggle-group-light-border: var(--contrast-100);
  *   --toggle-group-light-on-border: var(--foreground);
  *   --toggle-group-light-on-background: var(--foreground);

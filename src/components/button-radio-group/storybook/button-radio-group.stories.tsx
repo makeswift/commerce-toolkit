@@ -77,7 +77,7 @@ The ButtonRadioGroup component supports extensive theming through CSS variables:
 
 \`\`\`css
 :root {
-  --button-radio-group-focus: var(--primary);
+  --button-radio-group-focus: var(--brand);
   --button-radio-group-light-unchecked-border: var(--contrast-100);
   --button-radio-group-light-unchecked-background: var(--background);
   --button-radio-group-light-unchecked-text: var(--foreground);
@@ -276,7 +276,7 @@ export const Controlled: Story = {
           <span className="text-foreground">{value.toUpperCase()}</span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
           onClick={() => setValue('m')}
           type="button"
         >
@@ -426,7 +426,7 @@ export const CustomThemed: Story = {
   ),
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--button-radio-group-light-checked-background:hsl(var(--primary))] [--button-radio-group-light-unchecked-background-hover:hsl(var(--primary)/0.1)] [--button-radio-group-light-unchecked-border-hover:hsl(var(--primary))]">
+      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--button-radio-group-light-checked-background:var(--brand)] [--button-radio-group-light-unchecked-background-hover:color-mix(in_oklch,var(--brand)_10%,transparent)] [--button-radio-group-light-unchecked-border-hover:var(--brand)]">
         <Story />
       </div>
     ),

@@ -29,10 +29,10 @@ export interface PriceProps extends PricePrimitive.RootProps {
  *
  * ```css
  * :root {
- *   --price-light-text: hsl(var(--foreground));
- *   --price-light-sale-text: hsl(var(--foreground));
- *   --price-dark-text: hsl(var(--background));
- *   --price-dark-sale-text: hsl(var(--background));
+ *   --price-light-text: var(--foreground);
+ *   --price-light-sale-text: var(--foreground);
+ *   --price-dark-text: var(--background);
+ *   --price-dark-sale-text: var(--background);
  * }
  * ```
  */

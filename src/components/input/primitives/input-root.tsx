@@ -13,7 +13,7 @@ export function InputRoot({ className, children, prepend, ...props }: InputRootP
         // Base layout
         'group/input relative overflow-hidden',
         // Colors
-        'border-[var(--input-light-border,hsl(var(--contrast-100)))] bg-[var(--input-light-background,hsl(var(--background)))]',
+        'border-[var(--input-light-border,var(--contrast-100))] bg-[var(--input-light-background,var(--background))]',
         // Borders & rounded
         'rounded-lg border',
         // Transitions
@@ -21,9 +21,9 @@ export function InputRoot({ className, children, prepend, ...props }: InputRootP
         // Focus state
         'focus:outline-none',
         // Focus-within state
-        'focus-within:border-[var(--input-light-focus,hsl(var(--foreground)))]',
+        'focus-within:border-[var(--input-light-focus,var(--foreground))]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--input-light-border-error,hsl(var(--error)))]',
+        'aria-invalid:border-[var(--input-light-border-error,var(--error))]',
         className,
       )}
       data-prepend={prepend != null && prepend !== '' ? '' : undefined}

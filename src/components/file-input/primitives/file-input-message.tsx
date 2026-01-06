@@ -13,7 +13,7 @@ export function FileInputMessage({ className, children, ...props }: FileInputMes
   return (
     <p
       className={cn(
-        'mt-2 font-[family-name:var(--file-input-message-font-family,var(--font-family-body))] text-sm font-normal text-[var(--file-input-message,hsl(var(--contrast-500)))]',
+        'mt-2 font-[family-name:var(--file-input-message-font-family,var(--font-family-body))] text-sm font-normal text-[var(--file-input-message,var(--contrast-500))]',
         className,
       )}
       data-slot="file-input-message"

@@ -26,9 +26,9 @@ export function DropdownMenuCheckboxItem({
         // Disabled styles
         'data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50',
         // Default variant styles
-        'data-[variant=default]:text-[var(--dropdown-menu-item-text,hsl(var(--contrast-500)))] data-[variant=default]:[&:not([data-disabled])]:focus:bg-[var(--dropdown-menu-item-background-hover,hsl(var(--contrast-100)))] data-[variant=default]:[&:not([data-disabled])]:focus:text-[var(--dropdown-menu-item-text-hover,hsl(var(--foreground)))]',
+        'data-[variant=default]:text-[var(--dropdown-menu-item-text,var(--contrast-500))] data-[variant=default]:[&:not([data-disabled])]:focus:bg-[var(--dropdown-menu-item-background-hover,var(--contrast-100))] data-[variant=default]:[&:not([data-disabled])]:focus:text-[var(--dropdown-menu-item-text-hover,var(--foreground))]',
         // Danger variant styles
-        'data-[variant=danger]:text-[var(--dropdown-menu-item-danger-text,hsl(var(--error)))] data-[variant=danger]:[&:not([data-disabled])]:focus:bg-[var(--dropdown-menu-item-danger-background-hover,color-mix(in_oklab,hsl(var(--error)),white_75%))] data-[variant=danger]:[&:not([data-disabled])]:focus:text-[var(--dropdown-menu-item-danger-text-hover,color-mix(in_oklab,hsl(var(--error)),black_75%))]',
+        'data-[variant=danger]:text-[var(--dropdown-menu-item-danger-text,var(--error))] data-[variant=danger]:[&:not([data-disabled])]:focus:bg-[var(--dropdown-menu-item-danger-background-hover,color-mix(in_oklab,var(--error),white_75%))] data-[variant=danger]:[&:not([data-disabled])]:focus:text-[var(--dropdown-menu-item-danger-text-hover,color-mix(in_oklab,var(--error),black_75%))]',
         className,
       )}
       data-slot="dropdown-menu-checkbox-item"

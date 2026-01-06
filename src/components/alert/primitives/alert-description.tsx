@@ -8,7 +8,7 @@ export function AlertDescription({ className, children, ...props }: AlertDescrip
   return (
     <p
       className={cn(
-        'text-xs font-medium text-[color:var(--alert-description-text,color-mix(in_oklab,hsl(var(--foreground))_50%,transparent))]',
+        'text-xs font-medium text-[color:var(--alert-description-text,color-mix(in_oklab,var(--foreground)_50%,transparent))]',
         className,
       )}
       data-slot="alert-description"

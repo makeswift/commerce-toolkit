@@ -17,14 +17,14 @@ export type CounterProps = ComponentProps<'input'> & {
  *
  * ```css
  * :root {
- *   --counter-focus: hsl(var(--primary));
+ *   --counter-focus: var(--brand);
  *   --counter-font-family: var(--font-family-body);
- *   --counter-background: hsl(var(--background));
- *   --counter-background-hover: color-mix(in oklab, hsl(var(--contrast-100)) 50%, transparent);
- *   --counter-border: hsl(var(--contrast-100));
- *   --counter-text: hsl(var(--foreground));
- *   --counter-icon-hover: hsl(var(--foreground));
- *   --counter-icon: hsl(var(--contrast-300));
+ *   --counter-background: var(--background);
+ *   --counter-background-hover: color-mix(in oklab, var(--contrast-100) 50%, transparent);
+ *   --counter-border: var(--contrast-100);
+ *   --counter-text: var(--foreground);
+ *   --counter-icon-hover: var(--foreground);
+ *   --counter-icon: var(--contrast-300);
  * }
  * ```
  */
@@ -73,7 +73,7 @@ export function Counter({
       >
         <Minus
           absoluteStrokeWidth
-          className="text-[var(--counter-icon,hsl(var(--contrast-300)))] transition-colors duration-300 group-enabled:group-hover:text-[var(--counter-icon-hover,hsl(var(--foreground)))]"
+          className="text-[var(--counter-icon,var(--contrast-300))] transition-colors duration-300 group-enabled:group-hover:text-[var(--counter-icon-hover,var(--foreground))]"
           size={18}
           strokeWidth={1.5}
         />
@@ -96,7 +96,7 @@ export function Counter({
       >
         <Plus
           absoluteStrokeWidth
-          className="text-[var(--counter-icon,hsl(var(--contrast-300)))] transition-colors duration-300 group-enabled:group-hover:text-[var(--counter-icon-hover,hsl(var(--foreground)))]"
+          className="text-[var(--counter-icon,var(--contrast-300))] transition-colors duration-300 group-enabled:group-hover:text-[var(--counter-icon-hover,var(--foreground))]"
           size={18}
           strokeWidth={1.5}
         />

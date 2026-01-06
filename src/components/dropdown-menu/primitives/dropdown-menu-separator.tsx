@@ -9,7 +9,7 @@ export function DropdownMenuSeparator({ className, ...props }: DropdownMenuSepar
   return (
     <DropdownMenuPrimitive.Separator
       className={cn(
-        'relative my-1.5 after:absolute after:-left-2 after:-right-5 after:h-px after:bg-[var(--dropdown-menu-seperator,hsl(var(--contrast-100)))]',
+        'relative my-1.5 after:absolute after:-left-2 after:-right-5 after:h-px after:bg-[var(--dropdown-menu-seperator,var(--contrast-100))]',
         className,
       )}
       data-slot="dropdown-menu-separator"

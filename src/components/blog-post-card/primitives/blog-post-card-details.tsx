@@ -8,7 +8,7 @@ export function BlogPostCardDetails({ children, className, ...props }: BlogPostC
   return (
     <div
       className={cn(
-        'mt-3 text-sm text-[var(--blog-post-card-author-date-text,hsl(var(--foreground)))]',
+        'mt-3 text-sm text-[var(--blog-post-card-author-date-text,var(--foreground))]',
         className,
       )}
       data-slot="blog-post-card-details"

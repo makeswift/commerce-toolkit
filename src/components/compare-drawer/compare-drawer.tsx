@@ -35,12 +35,12 @@ export interface CompareDrawerProps {
  * :root {
  *   --compare-drawer-background: var(--background);
  *   --compare-drawer-font-family: var(--font-family-body);
- *   --compare-drawer-card-focus: var(--primary);
+ *   --compare-drawer-card-focus: var(--brand);
  *   --compare-drawer-card-border: var(--contrast-100);
  *   --compare-drawer-card-background: var(--background);
  *   --compare-drawer-card-background-hover: var(--contrast-100);
  *   --compare-drawer-card-image-background: var(--contrast-100);
- *   --compare-drawer-empty-image-text: var(--primary-shadow);
+ *   --compare-drawer-empty-image-text: var(--brand-shadow);
  *   --compare-drawer-card-text: var(--foreground);
  *   --compare-drawer-dismiss-border: var(--contast-100);
  *   --compare-drawer-dismiss-border-hover: var(--contast-200);

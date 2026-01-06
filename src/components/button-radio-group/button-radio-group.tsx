@@ -20,7 +20,7 @@ export type ButtonRadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Ro
  *
  * ```css
  *  :root {
- *   --button-radio-group-focus: var(--primary);
+ *   --button-radio-group-focus: var(--brand);
  *   --button-radio-group-light-unchecked-border: var(--contrast-100);
  *   --button-radio-group-light-unchecked-background: var(--background);
  *   --button-radio-group-light-unchecked-text: var(--foreground);

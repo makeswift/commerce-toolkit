@@ -21,7 +21,7 @@ export type CardRadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root
  *
  * ```css
  *  :root {
- *   --card-radio-group-focus: var(--primary);
+ *   --card-radio-group-focus: var(--brand);
  *   --card-radio-group-light-unchecked-border: var(--contrast-100);
  *   --card-radio-group-light-unchecked-border-hover: var(--contrast-200);
  *   --card-radio-group-light-unchecked-background: var(--background);
