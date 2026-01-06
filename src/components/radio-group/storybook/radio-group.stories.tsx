@@ -248,7 +248,7 @@ export const Controlled: Story = {
           </span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
           onClick={() => setValue('sm')}
           type="button"
         >

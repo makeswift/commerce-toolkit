@@ -21,7 +21,7 @@ export function ButtonRadioGroupItem({ children, className, ...props }: ButtonRa
         'transition-colors',
         // Focus-visible state
         'focus-visible:outline-0 focus-visible:ring-2',
-        'focus-visible:ring-[var(--button-radio-group-light-focus,var(--primary))]',
+        'focus-visible:ring-[var(--button-radio-group-light-focus,var(--brand))]',
         // Checked state
         'data-[state=checked]:border-[var(--button-radio-group-light-checked-background,var(--foreground))]',
         'data-[state=checked]:bg-[var(--button-radio-group-light-checked-background,var(--foreground))]',

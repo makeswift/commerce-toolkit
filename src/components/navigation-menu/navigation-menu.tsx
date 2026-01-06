@@ -33,7 +33,7 @@ export interface NavigationMenuProps {
  *
  * ```css
  * :root {
- *   --nav-focus: var(--primary);
+ *   --nav-focus: var(--brand);
  *   --nav-text: var(--foreground);
  *   --nav-viewport-background: var(--background);
  *   --nav-viewport-border: color-mix(in oklab, var(--foreground) 15%, transparent);

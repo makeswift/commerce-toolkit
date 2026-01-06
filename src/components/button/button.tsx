@@ -18,16 +18,16 @@ export interface ButtonProps extends ComponentProps<'button'> {
  *
  * ```css
  * :root {
- *   --button-focus: var(--primary);
+ *   --button-focus: var(--brand);
  *   --button-font-family: var(--font-family-body);
- *   --button-brand-background: var(--primary);
- *   --button-brand-background-hover: color-mix(in oklab, var(--primary), white 75%);
+ *   --button-brand-background: var(--brand);
+ *   --button-brand-background-hover: color-mix(in oklab, var(--brand), white 75%);
  *   --button-brand-text: var(--foreground);
- *   --button-brand-border: var(--primary);
- *   --button-primary-background: var(--foreground);
- *   --button-primary-background-hover: var(--background);
- *   --button-primary-text: var(--background);
- *   --button-primary-border: var(--foreground);
+ *   --button-brand-border: var(--brand);
+ *   --button-brand-background: var(--foreground);
+ *   --button-brand-background-hover: var(--background);
+ *   --button-brand-text: var(--background);
+ *   --button-brand-border: var(--foreground);
  *   --button-outline-background: var(--background);
  *   --button-outline-background-hover: var(--contrast-100);
  *   --button-outline-text: var(--foreground);
@@ -59,12 +59,12 @@ export function Button({
     <button
       aria-busy={loading}
       className={cn(
-        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal transition-all duration-75 ease-linear [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,var(--primary))] disabled:pointer-events-none disabled:opacity-30',
+        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal transition-all duration-75 ease-linear [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,var(--brand))] disabled:pointer-events-none disabled:opacity-30',
         {
           brand:
-            'bg-[var(--button-brand-background,var(--primary))] text-[var(--button-brand-text,var(--foreground))] hover:opacity-70',
+            'bg-[var(--button-brand-background,var(--brand))] text-[var(--button-brand-text,var(--foreground))] hover:opacity-70',
           primary:
-            'bg-[var(--button-primary-background,var(--foreground))] text-[var(--button-primary-text,var(--background))] hover:opacity-70',
+            'bg-[var(--button-brand-background,var(--foreground))] text-[var(--button-brand-text,var(--background))] hover:opacity-70',
           outline:
             'border border-[var(--button-outline-border,var(--contrast-200))] bg-[var(--button-outline-background,var(--background))] text-[var(--button-outline-text,var(--foreground))] hover:bg-foreground/5',
           ghost:

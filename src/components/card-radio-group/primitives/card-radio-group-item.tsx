@@ -22,7 +22,7 @@ export function CardRadioGroupItem({ children, className, ...props }: CardRadioG
         'transition-colors',
         // Focus-visible state
         'focus-visible:outline-0 focus-visible:ring-2',
-        'focus-visible:ring-[var(--card-radio-group-focus,var(--primary))]',
+        'focus-visible:ring-[var(--card-radio-group-focus,var(--brand))]',
         // Checked state
         'data-[state=checked]:border-[var(--card-radio-group-light-checked-background,var(--foreground))]',
         'data-[state=checked]:bg-[var(--card-radio-group-light-checked-background,var(--foreground))]',

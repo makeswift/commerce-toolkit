@@ -23,7 +23,7 @@ export interface BlogPostCardProps {
  *
  * ```css
  * :root {
- *   --blog-post-card-focus: var(--primary);
+ *   --blog-post-card-focus: var(--brand);
  *   --blog-post-card-image-background: var(--contrast-100);
  *   --blog-post-card-empty-text: color-mix(in oklab, var(--foreground) 15%, transparent);
  *   --blog-post-card-title-text: var(--foreground);

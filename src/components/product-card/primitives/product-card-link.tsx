@@ -13,7 +13,7 @@ export function ProductCardLink({ asChild = false, className, ...props }: Produc
   return (
     <Component
       className={cn(
-        'absolute inset-0 rounded-[var(--product-card-border-radius,1rem)] ring-offset-[var(--product-card-light-offset,var(--background))] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--product-card-focus,var(--primary))] focus-visible:ring-offset-4',
+        'absolute inset-0 rounded-[var(--product-card-border-radius,1rem)] ring-offset-[var(--product-card-light-offset,var(--background))] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--product-card-focus,var(--brand))] focus-visible:ring-offset-4',
         className,
       )}
       data-slot="product-card-link"

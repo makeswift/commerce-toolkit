@@ -21,7 +21,7 @@ export function FileInputRemove({ className, children, ...props }: FileInputRemo
         // Hover state
         'hover:bg-[var(--file-input-item-delete-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--primary))]',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--brand))]',
         className,
       )}
       data-slot="file-input-remove"

@@ -16,7 +16,7 @@ export interface BannerProps {
  * ```css
  * :root {
  *   --banner-focus: var(--foreground);
- *   --banner-background: var(--primary);
+ *   --banner-background: var(--brand);
  *   --banner-text: var(--foreground);
  *   --banner-close-icon: color-mix(in oklab, var(--foreground) 50%, transparent);
  *   --banner-close-icon-hover: var(--foreground);

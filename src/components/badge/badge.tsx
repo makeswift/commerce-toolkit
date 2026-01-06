@@ -14,7 +14,7 @@ export type BadgeProps = ComponentProps<'span'> & {
  *
  * ```css
  * :root {
- *   --badge-primary-background: color-mix(in oklab, var(--primary), white 75%);
+ *   --badge-brand-background: color-mix(in oklab, var(--brand), white 75%);
  *   --badge-success-background: color-mix(in oklab, var(--success), white 75%);
  *   --badge-warning-background: color-mix(in oklab, var(--warning), white 75%);
  *   --badge-error-background: color-mix(in oklab, var(--error), white 75%);
@@ -34,13 +34,13 @@ export function Badge({
   return (
     <span
       className={cn(
-        'border border-black/10 px-2 py-1 text-xs font-semibold text-[var(--badge-text,var(--text-primary))] antialiased [font-family:var(--badge-font-family,var(--font-family-body))]',
+        'border border-black/10 px-2 py-1 text-xs font-semibold text-[var(--badge-text,var(--text-brand))] antialiased [font-family:var(--badge-font-family,var(--font-family-body))]',
         {
           pill: 'rounded-full',
           rounded: 'rounded-md',
         }[shape],
         {
-          primary: 'bg-[var(--badge-primary-background,var(--primary-background))]',
+          primary: 'bg-[var(--badge-brand-background,var(--brand-background))]',
           warning: 'bg-[var(--badge-warning-background,var(--warning-background))]',
           error: 'bg-[var(--badge-error-background,var(--error-background))]',
           success: 'bg-[var(--badge-success-background,var(--success-background))]',

@@ -11,7 +11,7 @@ export function AccordionItem({ children, className, ...props }: AccordionItemPr
   return (
     <AccordionPrimitive.Item
       className={cn(
-        'ring-offset-[var(--acordion-light-offset,var(--background))] focus:outline-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[var(--accordion-focus,var(--primary))] has-[:focus-visible]:ring-offset-4',
+        'ring-offset-[var(--acordion-light-offset,var(--background))] focus:outline-2 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[var(--accordion-focus,var(--brand))] has-[:focus-visible]:ring-offset-4',
         className,
       )}
       data-slot="accordion-item"

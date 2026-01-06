@@ -11,7 +11,7 @@ export interface FavoriteProps {
  *
  * ```css
  * :root {
- *   --favorite-focus: var(--primary);
+ *   --favorite-focus: var(--brand);
  *   --favorite-border: var(--contrast-100);
  *   --favorite-icon: var(--foreground);
  *   --favorite-on-background: var(--contrast-100);

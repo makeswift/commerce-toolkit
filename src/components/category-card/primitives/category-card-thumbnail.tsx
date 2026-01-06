@@ -14,7 +14,7 @@ export function CategoryCardThumbnail({
       className={cn(
         'relative overflow-hidden rounded-[inherit] bg-[var(--category-card-light-background,var(--contrast-100))]',
         // Group focus state
-        'group-focus/category-card:ring-[var(--category-card-focus,var(--primary))]',
+        'group-focus/category-card:ring-[var(--category-card-focus,var(--brand))]',
         // Group focus-visible state
         'group-focus-visible/category-card:ring-2',
         // Aspect ratio variants

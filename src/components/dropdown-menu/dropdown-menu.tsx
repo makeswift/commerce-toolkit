@@ -15,8 +15,8 @@ import { cn } from '@/lib';
  * :root {
  *   --dropdown-menu-background: var(--background);
  *   --dropdown-menu-border: var(--contrast-100);
- *   --dropdown-menu-focus: var(--primary);
- *   --dropdown-menu-item-focus: var(--primary);
+ *   --dropdown-menu-focus: var(--brand);
+ *   --dropdown-menu-item-focus: var(--brand);
  *   --dropdown-menu-item-text: var(--contrast-400);
  *   --dropdown-menu-item-text-hover: var(--foreground);
  *   --dropdown-menu-item-danger-text: var(--error);

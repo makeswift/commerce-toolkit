@@ -16,7 +16,7 @@ export type CardProps<E extends ElementType = 'article'> = Omit<ComponentProps<E
  *
  * ```css
  * :root {
- *   --card-focus: var(--primary);
+ *   --card-focus: var(--brand);
  *   --card-border-color: var(--contrast-200);
  *   --card-background: var(--background);
  *   --card-hover-background: color-mix(in oklab, var(--contrast-100) 50%,transparent);

@@ -17,7 +17,7 @@ export function NavigationMenuGridLink({
         // Hover state
         'hover:bg-[var(--nav-grid-label-background-hover,var(--contrast-100))] hover:text-[var(--nav-grid-label-text-hover,var(--foreground))]',
         // Focus-visible state
-        'focus-visible:bg-[var(--nav-grid-label-background-hover,var(--contrast-100))] focus-visible:text-[var(--nav-grid-label-text-hover,var(--foreground))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--nav-focus,var(--primary))]',
+        'focus-visible:bg-[var(--nav-grid-label-background-hover,var(--contrast-100))] focus-visible:text-[var(--nav-grid-label-text-hover,var(--foreground))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--nav-focus,var(--brand))]',
         className,
       )}
       data-slot="navigation-menu-grid-link"

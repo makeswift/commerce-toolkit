@@ -19,7 +19,7 @@ export function NavigationMenuTrigger({
         // Focus state
         'focus:bg-[var(--nav-link-background-hover,var(--contrast-100))] focus:text-[var(--nav-link-text-hover,var(--foreground))]',
         // Focus-visible state
-        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,var(--primary))]',
+        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,var(--brand))]',
         // Open state
         'data-[state=open]:bg-contrast-100/50 data-[state=open]:text-foreground',
         'data-[state=open]:hover:bg-contrast-100 data-[state=open]:focus:bg-contrast-100',

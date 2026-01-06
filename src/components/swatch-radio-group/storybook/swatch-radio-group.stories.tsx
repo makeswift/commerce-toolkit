@@ -60,7 +60,7 @@ The SwatchRadioGroup component supports theming through CSS variables:
 
 \`\`\`css
 :root {
-  --swatch-radio-group-focus: var(--primary);
+  --swatch-radio-group-focus: var(--brand);
   --swatch-radio-group-light-icon: var(--foreground);
   --swatch-radio-group-light-unchecked-border: transparent;
   --swatch-radio-group-light-unchecked-border-hover: var(--contrast-200);
@@ -255,7 +255,7 @@ export const Controlled: Story = {
           </span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
           onClick={() => setValue('black')}
           type="button"
         >

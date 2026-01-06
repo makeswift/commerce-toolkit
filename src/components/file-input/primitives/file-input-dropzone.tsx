@@ -112,7 +112,7 @@ export function FileInputDropzone({ children, className, ...props }: FileInputDr
         // Hover state
         'hover:border-[var(--file-input-dropzone-border-hover,var(--foreground))] hover:bg-[var(--file-input-dropzone-background-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--primary))] focus-visible:ring-offset-2',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--brand))] focus-visible:ring-offset-2',
         // Disabled state
         'group-aria-disabled:cursor-not-allowed group-aria-disabled:border-[var(--file-input-dropzone-border-disabled,color-mix(in_oklab,var(--contrast-200)_70%,transparent))] group-aria-disabled:bg-[var(--file-input-dropzone-background-disabled,var(--background))]',
         'group-aria-disabled:focus-visible:outline-none group-aria-disabled:focus-visible:ring-0 group-aria-disabled:focus-visible:ring-offset-0',

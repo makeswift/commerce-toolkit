@@ -40,7 +40,7 @@ The following CSS variables can be used to customize the Calendar component:
   --calendar-focus: var(--foreground);
   --calendar-text: var(--foreground);
   --calendar-background: var(--background);
-  --calendar-selected-background: var(--primary);
+  --calendar-selected-background: var(--brand);
   --calendar-selected-text: var(--foreground);
   --calendar-text-disabled: var(--contrast-300);
 }

@@ -16,12 +16,12 @@ A badge component for displaying short status text, labels, or notifications. Su
 
 \`\`\`css
 :root {
-  --badge-primary-background: var(--primary-background);
+  --badge-brand-background: var(--brand-background);
   --badge-success-background: var(--success-background);
   --badge-warning-background: var(--warning-background);
   --badge-error-background: var(--error-background);
   --badge-info-background: var(--background);
-  --badge-text: var(--text-primary);
+  --badge-text: var(--text-brand);
   --badge-font-family: var(--font-family-body);
 }
 \`\`\`

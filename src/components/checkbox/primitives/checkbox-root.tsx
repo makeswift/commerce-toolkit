@@ -18,7 +18,7 @@ export function CheckboxRoot({ children, className, ...props }: CheckboxRootProp
         // Transitions
         'transition-colors duration-150',
         // Focus-visible state
-        'focus-visible:outline-0 focus-visible:ring-2 focus-visible:ring-[var(--checkbox-focus,var(--primary))]',
+        'focus-visible:outline-0 focus-visible:ring-2 focus-visible:ring-[var(--checkbox-focus,var(--brand))]',
         // Disabled state
         'disabled:cursor-not-allowed',
         'disabled:border-[var(--checkbox-light-disabled-border,var(--contrast-200))]',

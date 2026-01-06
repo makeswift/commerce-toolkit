@@ -82,10 +82,10 @@ export default {
         },
       },
       colors: {
-        primary: {
-          DEFAULT: 'oklch(var(--primary-lch) / <alpha-value>)',
-          background: 'oklch(var(--primary-background-lch) / <alpha-value>)',
-          foreground: 'oklch(var(--primary-foreground-lch) / <alpha-value>)',
+        brand: {
+          DEFAULT: 'oklch(var(--brand-lch) / <alpha-value>)',
+          background: 'oklch(var(--brand-background-lch) / <alpha-value>)',
+          foreground: 'oklch(var(--brand-foreground-lch) / <alpha-value>)',
         },
         success: {
           DEFAULT: 'oklch(var(--success-lch) / <alpha-value>)',

@@ -17,7 +17,7 @@ import { cn } from '@/lib';
  *   --calendar-focus: var(--foreground);
  *   --calendar-text: var(--foreground);
  *   --calendar-background: var(--background);
- *   --calendar-selected-background: var(--primary);
+ *   --calendar-selected-background: var(--brand);
  *   --calendar-selected-text: var(--foreground);
  *   --calendar-text-disabled: var(--contrast-300);
  * }
@@ -56,11 +56,11 @@ export function Calendar({
           defaultClassNames.nav,
         ),
         button_previous: cn(
-          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus-visible:ring-[var(--calendar-focus,var(--primary))] aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
+          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus-visible:ring-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
           defaultClassNames.button_previous,
         ),
         button_next: cn(
-          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus-visible:ring-[var(--calendar-focus,var(--primary))] aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
+          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus-visible:ring-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
           defaultClassNames.button_next,
         ),
         month_caption: cn(
@@ -100,12 +100,12 @@ export function Calendar({
           defaultClassNames.day,
         ),
         range_start: cn(
-          'rounded-l-full bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--primary)_25%,transparent))]',
+          'rounded-l-full bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--brand)_25%,transparent))]',
           defaultClassNames.range_start,
         ),
         range_middle: cn('rounded-none', defaultClassNames.range_middle),
         range_end: cn(
-          'rounded-r-full bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--primary)_25%,transparent))]',
+          'rounded-r-full bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--brand)_25%,transparent))]',
           defaultClassNames.range_end,
         ),
         today: cn(
@@ -211,16 +211,16 @@ function CalendarDayButton({
         'hover:bg-contrast-100',
         // Range end
         'data-[range-end=true]:rounded-full',
-        'data-[range-end=true]:bg-[var(--calendar-selected-button-background,var(--primary))]',
+        'data-[range-end=true]:bg-[var(--calendar-selected-button-background,var(--brand))]',
         'data-[range-end=true]:text-[var(--calendar-selected-text,var(--foreground))]',
         // Range middle
         'data-[range-middle=true]:rounded-none',
-        'data-[range-middle=true]:bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--primary)_25%,transparent))]',
+        'data-[range-middle=true]:bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--brand)_25%,transparent))]',
         'data-[range-middle=true]:before:content-[""]',
         'data-[range-middle=true]:before:absolute',
         'data-[range-middle=true]:before:-z-10',
         'data-[range-middle=true]:before:inset-0',
-        'data-[range-middle=true]:before:bg-[var(--calendar-selected-background,var(--primary))]',
+        'data-[range-middle=true]:before:bg-[var(--calendar-selected-background,var(--brand))]',
         'data-[range-middle=true]:before:rounded-full',
         'data-[range-middle=true]:before:opacity-0',
         'data-[range-middle=true]:before:transition-opacity',
@@ -229,10 +229,10 @@ function CalendarDayButton({
         'data-[range-middle=true]:hover:before:opacity-100',
         // Range start
         'data-[range-start=true]:rounded-full',
-        'data-[range-start=true]:bg-[var(--calendar-selected-background,var(--primary))]',
+        'data-[range-start=true]:bg-[var(--calendar-selected-background,var(--brand))]',
         'data-[range-start=true]:text-[var(--calendar-selected-text,var(--foreground))]',
         // Selected single
-        'data-[selected-single=true]:bg-[var(--calendar-selected-background,var(--primary))]',
+        'data-[selected-single=true]:bg-[var(--calendar-selected-background,var(--brand))]',
         'data-[selected-single=true]:text-[var(--calendar-selected-text,var(--foreground))]',
         // Focused day (group)
         'group-data-[focused=true]/day:relative',

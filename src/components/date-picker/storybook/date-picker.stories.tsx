@@ -54,7 +54,7 @@ The DatePicker uses the Input and Calendar components internally, which support 
   --calendar-light-text: var(--foreground);
   --calendar-light-background: var(--background);
   --calendar-light-button-border-hover: var(--contrast-200);
-  --calendar-light-selected-button-background: var(--primary);
+  --calendar-light-selected-button-background: var(--brand);
   --calendar-light-selected-button-text: var(--foreground);
   --calendar-light-text-disabled: var(--contrast-300);
 }
@@ -205,7 +205,7 @@ export const Controlled: Story = {
         </div>
         <div className="flex gap-2">
           <button
-            className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+            className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
             onClick={() => setDate(new Date())}
             type="button"
           >

@@ -20,7 +20,7 @@ export function SwatchRadioGroupItem({ children, className, ...props }: SwatchRa
         // Hover state
         'hover:border-[var(--swatch-radio-group-light-unchecked-border-hover,var(--contrast-200))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--swatch-radio-group-focus,var(--primary))]',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--swatch-radio-group-focus,var(--brand))]',
         // Checked state
         'data-[state=checked]:border-[var(--swatch-radio-group-light-checked-border,var(--foreground))]',
         // Invalid state

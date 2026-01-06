@@ -13,7 +13,7 @@ export function BannerRoot({ children, className, ...props }: BannerRootProps) {
   return (
     <div
       className={cn(
-        'overflow-hidden bg-[var(--banner-background,var(--primary))] transition-all duration-300 ease-in @container',
+        'overflow-hidden bg-[var(--banner-background,var(--brand))] transition-all duration-300 ease-in @container',
         isDismissed ? 'pointer-events-none max-h-0' : 'max-h-32',
         className,
       )}

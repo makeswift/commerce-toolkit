@@ -30,7 +30,7 @@ export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
  *
  * ```css
  * :root {
- *   --accordion-focus: var(--primary);
+ *   --accordion-focus: var(--brand);
  *   --acordion-light-offset: var(--background);
  *   --accordion-light-title-text: var(--contrast-400);
  *   --accordion-light-title-text-hover: var(--foreground);

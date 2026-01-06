@@ -14,9 +14,9 @@
 }
 
 :root {
-  --primary-lch: 0.9 0.2 136;
-  --primary-background-lch: 0.95 0.05 136;
-  --primary-foreground-lch: 0.3 0.03 136;
+  --brand-lch: 0.9 0.2 136;
+  --brand-background-lch: 0.95 0.05 136;
+  --brand-foreground-lch: 0.3 0.03 136;
   --background-lch: 1 0 0;
   --foreground-lch: 0.18 0 0;
   --contrast-100-lch: 0.95 0 0;
@@ -34,9 +34,9 @@
   --warning-background-lch: 0.95 0.05 80;
   --warning-foreground-lch: 0.3 0.06 80;
 
-  --primary: oklch(var(--primary-lch));
-  --primary-background: oklch(var(--primary-background-lch));
-  --primary-foreground: oklch(var(--primary-foreground-lch));
+  --brand: oklch(var(--brand-lch));
+  --brand-background: oklch(var(--brand-background-lch));
+  --brand-foreground: oklch(var(--brand-foreground-lch));
   --background: oklch(var(--background-lch));
   --foreground: oklch(var(--foreground-lch));
   --contrast-100: oklch(var(--contrast-100-lch));

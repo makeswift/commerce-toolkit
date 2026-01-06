@@ -31,7 +31,7 @@ export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> & {
  *   --select-light-trigger-border-hover: var(--contrast-300);
  *   --select-light-trigger-border-error: var(--error);
  *   --select-light-trigger-text: var(--foreground);
- *   --select-light-trigger-focus: var(--primary);
+ *   --select-light-trigger-focus: var(--brand);
  *   --select-light-icon: var(--foreground);
  *   --select-light-content-background: var(--background);
  *   --select-light-content-border: color-mix(in oklab, var(--foreground) 10%, transparent);

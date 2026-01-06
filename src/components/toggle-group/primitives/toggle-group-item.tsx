@@ -20,7 +20,7 @@ export function ToggleGroupItem({ children, className, ...props }: ToggleGroupIt
         // Borders & Rounded
         'rounded-full border',
         // Effects
-        'ring-[var(--toggle-group-light-focus,var(--primary))]',
+        'ring-[var(--toggle-group-light-focus,var(--brand))]',
         // Transitions
         'transition-colors',
         // Focus-visible state

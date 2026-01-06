@@ -24,7 +24,7 @@ export function SelectTrigger({ className, children, ...props }: SelectTriggerPr
         // Hover state
         'hover:border-[var(--select-light-trigger-border-hover,var(--contrast-300))] hover:bg-[var(--select-light-trigger-background-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--select-light-trigger-focus,var(--primary))]',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--select-light-trigger-focus,var(--brand))]',
         // Aria-invalid state
         'aria-invalid:border-[var(--select-light-trigger-border-error,var(--error))]',
         // Variant styles

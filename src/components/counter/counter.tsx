@@ -17,7 +17,7 @@ export type CounterProps = ComponentProps<'input'> & {
  *
  * ```css
  * :root {
- *   --counter-focus: var(--primary);
+ *   --counter-focus: var(--brand);
  *   --counter-font-family: var(--font-family-body);
  *   --counter-background: var(--background);
  *   --counter-background-hover: color-mix(in oklab, var(--contrast-100) 50%, transparent);

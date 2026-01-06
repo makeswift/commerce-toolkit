@@ -18,7 +18,7 @@ export function OffsetPaginationLink({
   return (
     <Component
       className={cn(
-        'flex h-12 w-12 items-center justify-center rounded-full border transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--offset-pagination-focus,var(--primary))]',
+        'flex h-12 w-12 items-center justify-center rounded-full border transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--offset-pagination-focus,var(--brand))]',
         'border-[var(--offset-pagination-border,var(--contrast-100))] text-[var(--offset-pagination-text,var(--foreground))] hover:bg-[var(--offset-pagination-background-hover,var(--contrast-100))]',
         'aria-[current=page]:border-[var(--offset-pagination-current-page-border,var(--foreground))] aria-[current=page]:bg-[var(--offset-pagination-current-page-background,var(--foreground))] aria-[current=page]:text-[var(--offset-pagination-current-page-text,var(--background))] aria-[current=page]:hover:bg-[var(--offset-pagination-current-page-background-hover,var(--contrast-500))]',
         className,

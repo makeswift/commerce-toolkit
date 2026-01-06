@@ -57,7 +57,7 @@ The ToggleGroup component supports extensive theming through CSS variables:
 
 \`\`\`css
 :root {
-  --toggle-group-light-focus: var(--primary);
+  --toggle-group-light-focus: var(--brand);
   --toggle-group-light-border: var(--contrast-100);
   --toggle-group-light-on-border: var(--foreground);
   --toggle-group-light-on-background: var(--foreground);
@@ -240,7 +240,7 @@ export const Controlled: Story = {
           <span className="text-foreground">{value !== '' ? value : 'None'}</span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
           onClick={() => setValue('')}
           type="button"
         >
@@ -277,7 +277,7 @@ export const ControlledMultiple: Story = {
           <span className="text-foreground">{values.length > 0 ? values.join(', ') : 'None'}</span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
           onClick={() => setValues([])}
           type="button"
         >
@@ -388,7 +388,7 @@ export const CustomThemed: Story = {
   ),
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--toggle-group-light-off-background-hover:color-mix(in_oklch,var(--primary)_10%,transparent)] [--toggle-group-light-off-border-hover:var(--primary)] [--toggle-group-light-on-background:var(--primary)] [--toggle-group-light-on-border:var(--primary)]">
+      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--toggle-group-light-off-background-hover:color-mix(in_oklch,var(--brand)_10%,transparent)] [--toggle-group-light-off-border-hover:var(--brand)] [--toggle-group-light-on-background:var(--brand)] [--toggle-group-light-on-border:var(--brand)]">
         <Story />
       </div>
     ),

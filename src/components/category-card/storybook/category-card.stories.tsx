@@ -19,7 +19,7 @@ A card component for displaying product categories with an image, title, and lin
 
 \`\`\`css
 :root {
-  --category-card-focus: var(--primary);
+  --category-card-focus: var(--brand);
   --category-card-light-offset: var(--background);
   --category-card-light-text: var(--foreground);
   --category-card-light-icon: var(--foreground);

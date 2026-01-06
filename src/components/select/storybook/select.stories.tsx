@@ -48,7 +48,7 @@ The Select component supports extensive theming through CSS variables:
   --select-light-trigger-border-hover: var(--contrast-300);
   --select-light-trigger-border-error: var(--error);
   --select-light-trigger-text: var(--foreground);
-  --select-light-trigger-focus: var(--primary);
+  --select-light-trigger-focus: var(--brand);
   --select-light-icon: var(--foreground);
   --select-light-content-background: var(--background);
   --select-light-content-border: color-mix(in oklab, var(--foreground) 10%, transparent);
@@ -218,7 +218,7 @@ export const Controlled: Story = {
           <span className="text-foreground">{value !== '' ? value : 'None'}</span>
         </div>
         <button
-          className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-primary/90"
+          className="bg-brand hover:bg-brand/90 rounded-lg px-3 py-2 text-sm font-medium text-background transition-colors"
           onClick={() => setValue('')}
           type="button"
         >
@@ -296,7 +296,7 @@ export const CustomThemed: Story = {
   },
   decorators: [
     (Story: ComponentType) => (
-      <div className="themed-select-wrapper w-64 rounded-xl bg-contrast-100 p-6 [--select-light-icon:var(--background)] [--select-light-trigger-background-hover:color-mix(in_oklch,var(--primary)_90%,transparent)] [--select-light-trigger-background:var(--primary)] [--select-light-trigger-border-hover:color-mix(in_oklch,var(--primary)_80%,transparent)] [--select-light-trigger-border:var(--primary)] [--select-light-trigger-text:var(--background)]">
+      <div className="themed-select-wrapper w-64 rounded-xl bg-contrast-100 p-6 [--select-light-icon:var(--background)] [--select-light-trigger-background-hover:color-mix(in_oklch,var(--brand)_90%,transparent)] [--select-light-trigger-background:var(--brand)] [--select-light-trigger-border-hover:color-mix(in_oklch,var(--brand)_80%,transparent)] [--select-light-trigger-border:var(--brand)] [--select-light-trigger-text:var(--background)]">
         <Story />
       </div>
     ),

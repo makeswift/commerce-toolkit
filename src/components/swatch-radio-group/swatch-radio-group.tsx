@@ -30,7 +30,7 @@ export type SwatchRadioGroupProps = ComponentProps<typeof SwatchRadioGroupPrimit
  *
  * ```css
  *  :root {
- *    --swatch-radio-group-focus: var(--primary);
+ *    --swatch-radio-group-focus: var(--brand);
  *    --swatch-radio-group-light-icon: var(--foreground);
  *    --swatch-radio-group-light-unchecked-border: transparent;
  *    --swatch-radio-group-light-unchecked-border-hover: var(--contrast-200);

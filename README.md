@@ -84,7 +84,7 @@ function App() {
 Once configured, you can use all the custom Tailwind utilities from Commerce Toolkit:
 
 ```tsx
-<div className="bg-primary text-background">
+<div className="bg-brand text-background">
   <h1 className="font-heading text-foreground">Hello World</h1>
   <p className="text-contrast-400">This uses the design system colors!</p>
 </div>
@@ -92,7 +92,7 @@ Once configured, you can use all the custom Tailwind utilities from Commerce Too
 
 **Available color utilities:**
 
-- `bg-primary`, `text-primary`, `border-primary`
+- `bg-brand`, `text-brand`, `border-brand`
 - `bg-accent`, `text-accent`, etc.
 - `bg-success`, `bg-error`, `bg-warning`, `bg-info`
 - `bg-background`, `bg-foreground`
@@ -113,7 +113,7 @@ Override CSS variables to customize the design system:
 @tailwind utilities;
 
 :root {
-  --primary: 220 100% 50%; /* HSL: hue saturation lightness */
+  --brand: 220 100% 50%; /* HSL: hue saturation lightness */
   --foreground: 0 0% 7%;
   --background: 0 0% 100%;
   /* ... override any variables */
@@ -134,7 +134,7 @@ import 'commerce-toolkit/styles';
 @tailwind utilities;
 
 :root {
-  --primary: 220 100% 50%;
+  --brand: 220 100% 50%;
   /* ... your custom values */
 }
 ```

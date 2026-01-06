@@ -21,7 +21,7 @@ A responsive carousel component built on top of Embla Carousel. Supports customi
 :root {
   --carousel-light-scrollbar: var(--foreground);
   --carousel-dark-scrollbar: var(--background);
-  --carousel-focus: var(--primary);
+  --carousel-focus: var(--brand);
   --carousel-light-button: var(--foreground);
   --carousel-dark-button: var(--background);
 }

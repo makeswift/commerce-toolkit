@@ -28,7 +28,7 @@ export interface CompareCardProps {
  *   --compare-card-label: var(--foreground);
  *   --compare-card-description: var(--contrast-400);
  *   --compare-card-field: var(--foreground);
- *   --compare-card-font-family-primary: var(--font-family-body);
+ *   --compare-card-font-family-brand: var(--font-family-body);
  *   --compare-card-font-family-secondary: var(--font-family-body);
  * }
  * ```

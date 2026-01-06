@@ -19,7 +19,7 @@ export function CategoryCardLink({ asChild = false, className, ...props }: Categ
         // Focus state
         'focus:outline-none',
         // Focus-visible state
-        'focus-visible:ring-2 focus-visible:ring-[var(--category-card-focus,var(--primary))] focus-visible:ring-offset-4',
+        'focus-visible:ring-2 focus-visible:ring-[var(--category-card-focus,var(--brand))] focus-visible:ring-offset-4',
         className,
       )}
       data-slot="category-card-link"

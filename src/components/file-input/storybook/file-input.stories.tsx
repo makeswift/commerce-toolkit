@@ -68,7 +68,7 @@ The FileInput component supports extensive theming through CSS variables:
 
   /* Trigger */
   --file-input-trigger-icon: var(--foreground);
-  --file-input-focus: var(--primary);
+  --file-input-focus: var(--brand);
 
   /* Message */
   --file-input-message-font-family: var(--font-family-body);
@@ -83,7 +83,7 @@ The FileInput component supports extensive theming through CSS variables:
   --file-input-item-status-error: var(--error);
   --file-input-item-delete-hover: var(--contrast-100);
   --file-input-item-delete-icon: var(--foreground);
-  --file-input-item-progress: var(--primary);
+  --file-input-item-progress: var(--brand);
 
   /* File Icon */
   --file-input-icon: var(--contrast-400);

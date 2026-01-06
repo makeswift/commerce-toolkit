@@ -13,7 +13,7 @@ export type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root>;
  *
  * ```css
  *  :root {
- *    --checkbox-focus: var(--primary);
+ *    --checkbox-focus: var(--brand);
  *    --checkbox-light-label: var(--foreground);
  *    --checkbox-light-error: var(--error);
  *    --checkbox-light-unchecked-border: var(--contrast-200);

@@ -15,7 +15,7 @@ export function NavigationMenuLink({ className, children, ...props }: Navigation
         // Focus state
         'focus:bg-[var(--nav-link-background-hover,var(--contrast-100))] focus:text-[var(--nav-link-text-hover,var(--foreground))]',
         // Focus-visible state
-        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,var(--primary))]',
+        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,var(--brand))]',
         className,
       )}
       data-slot="navigation-menu-link"

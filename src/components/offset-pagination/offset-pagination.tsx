@@ -19,7 +19,7 @@ export interface OffsetPaginationProps {
  *
  * ```css
  * :root {
- *   --offset-pagination-focus: var(--primary);
+ *   --offset-pagination-focus: var(--brand);
  *   --offset-pagination-font-family: var(--font-family-body);
  *   --offset-pagination-ellipsis: var(--foreground);
  *   --offset-pagination-border: var(--contrast-100);

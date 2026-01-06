@@ -28,7 +28,7 @@ export interface CategoryCardProps extends CategoryCardContent {
  *
  * ```css
  * :root {
- *   --category-card-focus: var(--primary);
+ *   --category-card-focus: var(--brand);
  *   --category-card-light-offset: var(--background);
  *   --category-card-light-text: var(--foreground);
  *   --category-card-light-icon: var(--foreground);
