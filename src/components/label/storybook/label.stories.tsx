@@ -22,9 +22,9 @@ The Label component supports the following CSS variables for theming:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| \`--label-text\` | Text color (default/vertical) | \`hsl(var(--contrast-500))\` |
+| \`--label-text\` | Text color (default/vertical) | \`var(--contrast-500)\` |
 | \`--label-font-family\` | Font family | \`var(--font-family-body)\` |
-| \`--label-horizontal-text\` | Text color in horizontal orientation | \`hsl(var(--foreground))\` |
+| \`--label-horizontal-text\` | Text color in horizontal orientation | \`var(--foreground)\` |
 
 ## Orientation-Aware Styling
 

@@ -13,13 +13,13 @@ export function NavigationMenuTrigger({
   return (
     <NavigationMenuPrimitive.Trigger
       className={cn(
-        'group inline-flex h-9 w-max items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-semibold text-[var(--nav-link-text,hsl(var(--foreground)))] outline-none transition-[color,box-shadow] duration-200 [font-family:var(--nav-link-font-family,var(--font-family-body))]',
+        'group inline-flex h-9 w-max items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-semibold text-[var(--nav-link-text,var(--foreground))] outline-none transition-[color,box-shadow] duration-200 [font-family:var(--nav-link-font-family,var(--font-family-body))]',
         // Hover state
-        'hover:bg-[var(--nav-link-background-hover,hsl(var(--contrast-100)))] hover:text-[var(--nav-link-text-hover,hsl(var(--foreground)))]',
+        'hover:bg-[var(--nav-link-background-hover,var(--contrast-100))] hover:text-[var(--nav-link-text-hover,var(--foreground))]',
         // Focus state
-        'focus:bg-[var(--nav-link-background-hover,hsl(var(--contrast-100)))] focus:text-[var(--nav-link-text-hover,hsl(var(--foreground)))]',
+        'focus:bg-[var(--nav-link-background-hover,var(--contrast-100))] focus:text-[var(--nav-link-text-hover,var(--foreground))]',
         // Focus-visible state
-        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,hsl(var(--primary)))]',
+        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,var(--primary))]',
         // Open state
         'data-[state=open]:bg-contrast-100/50 data-[state=open]:text-foreground',
         'data-[state=open]:hover:bg-contrast-100 data-[state=open]:focus:bg-contrast-100',

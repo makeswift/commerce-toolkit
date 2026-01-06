@@ -13,35 +13,35 @@ export default {
         DEFAULT: {
           css: {
             h1: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-heading)',
             },
             h2: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-heading)',
             },
             h3: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-heading)',
             },
             h4: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-heading)',
             },
             h5: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-heading)',
             },
             h6: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-heading)',
             },
             p: {
-              color: 'hsl(var(--foreground))',
+              color: 'var(--foreground)',
               fontFamily: 'var(--font-family-body)',
             },
             a: {
-              color: 'color-mix(in oklab, hsl(var(--primary)), black 15%)',
+              color: 'color-mix(in oklab, var(--primary), black 15%)',
               textDecoration: 'none',
               '&:hover': {
                 textDecoration: 'underline',
@@ -51,31 +51,31 @@ export default {
               borderRadius: '1rem',
             },
             ul: {
-              color: 'hsl(var(--contrast-500))',
+              color: 'var(--contrast-500)',
               fontFamily: 'var(--font-family-body)',
             },
             ol: {
-              color: 'hsl(var(--contrast-500))',
+              color: 'var(--contrast-500)',
               fontFamily: 'var(--font-family-body)',
             },
             strong: {
               fontWeight: '600',
             },
             blockquote: {
-              borderLeftColor: 'hsl(var(--contrast-300))',
+              borderLeftColor: 'var(--contrast-300)',
               p: {
-                color: 'hsl(var(--contrast-500))',
+                color: 'var(--contrast-500)',
                 fontStyle: 'normal',
                 fontWeight: '400',
               },
             },
             code: {
-              color: 'hsl(var(--contrast-500))',
+              color: 'var(--contrast-500)',
               fontFamily: 'var(--font-family-mono)',
             },
             pre: {
-              color: 'hsl(var(--background))',
-              backgroundColor: 'hsl(var(--foreground))',
+              color: 'var(--background)',
+              backgroundColor: 'var(--foreground)',
               fontFamily: 'var(--font-family-mono)',
             },
           },
@@ -89,7 +89,7 @@ export default {
         },
         success: {
           DEFAULT: 'oklch(var(--success-lch) / <alpha-value>)',
-          background: 'oklch(var(--success-background-lch) / <alpha-value>)',
+          background: 'oklch(from var(--success-lch) 0.97 0.02 h / <alpha-value>)',
           foreground: 'oklch(var(--success-foreground-lch) / <alpha-value>)',
         },
         error: {

@@ -19,9 +19,9 @@ export function FileInputRemove({ className, children, ...props }: FileInputRemo
       className={cn(
         'inline-flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors',
         // Hover state
-        'hover:bg-[var(--file-input-item-delete-hover,hsl(var(--contrast-100)))]',
+        'hover:bg-[var(--file-input-item-delete-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,hsl(var(--primary)))]',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--primary))]',
         className,
       )}
       data-slot="file-input-remove"

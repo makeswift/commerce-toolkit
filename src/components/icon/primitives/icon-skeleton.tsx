@@ -11,7 +11,7 @@ export function IconSkeleton({ className, size = 24 }: IconSkeletonProps) {
       className={cn('overflow-hidden rounded-full', className)}
       icon={
         <div
-          className="bg-[var(--skeleton,hsl(var(--contrast-300)))] opacity-25"
+          className="bg-[var(--skeleton,var(--contrast-300))] opacity-25"
           style={{ width: size, height: size }}
         />
       }

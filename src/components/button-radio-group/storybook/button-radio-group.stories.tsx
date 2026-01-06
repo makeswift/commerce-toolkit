@@ -426,7 +426,7 @@ export const CustomThemed: Story = {
   ),
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--button-radio-group-light-checked-background:hsl(var(--primary))] [--button-radio-group-light-unchecked-background-hover:hsl(var(--primary)/0.1)] [--button-radio-group-light-unchecked-border-hover:hsl(var(--primary))]">
+      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--button-radio-group-light-checked-background:var(--primary)] [--button-radio-group-light-unchecked-background-hover:color-mix(in_oklch,var(--primary)_10%,transparent)] [--button-radio-group-light-unchecked-border-hover:var(--primary)]">
         <Story />
       </div>
     ),

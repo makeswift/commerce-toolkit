@@ -388,7 +388,7 @@ export const CustomThemed: Story = {
   ),
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--toggle-group-light-off-background-hover:hsl(var(--primary)/0.1)] [--toggle-group-light-off-border-hover:hsl(var(--primary))] [--toggle-group-light-on-background:hsl(var(--primary))] [--toggle-group-light-on-border:hsl(var(--primary))]">
+      <div className="flex items-center justify-center rounded-xl bg-contrast-100 p-8 [--toggle-group-light-off-background-hover:color-mix(in_oklch,var(--primary)_10%,transparent)] [--toggle-group-light-off-border-hover:var(--primary)] [--toggle-group-light-on-background:var(--primary)] [--toggle-group-light-on-border:var(--primary)]">
         <Story />
       </div>
     ),

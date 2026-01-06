@@ -11,7 +11,7 @@ export function CategoryCardIcon({ className, children, ...props }: CategoryCard
   return (
     <Slot
       className={cn(
-        'absolute right-5 top-5 z-10 text-[var(--category-card-light-icon,hsl(var(--foreground)))] transition-transform duration-700 ease-out',
+        'absolute right-5 top-5 z-10 text-[var(--category-card-light-icon,var(--foreground))] transition-transform duration-700 ease-out',
         // Group hover state
         'group-hover/category-card:-translate-y-1.5 group-hover/category-card:translate-x-1.5',
         className,

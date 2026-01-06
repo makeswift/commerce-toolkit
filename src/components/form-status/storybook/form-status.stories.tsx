@@ -11,10 +11,10 @@ import { FormStatus, type FormStatusProps } from '@/components/form-status';
  *
  * ```css
  * :root {
- *   --form-status-background-error: color-mix(in oklab, hsl(var(--error)), white 75%);
- *   --form-status-text-error: color-mix(in oklab, hsl(var(--error)), black 75%);
- *   --form-status-background-success: color-mix(in oklab, hsl(var(--success)), white 75%);
- *   --form-status-text-success: color-mix(in oklab, hsl(var(--success)), black 75%);
+ *   --form-status-background-error: color-mix(in oklab, var(--error), white 75%);
+ *   --form-status-text-error: color-mix(in oklab, var(--error), black 75%);
+ *   --form-status-background-success: color-mix(in oklab, var(--success), white 75%);
+ *   --form-status-text-success: color-mix(in oklab, var(--success), black 75%);
  * }
  * ```
  */

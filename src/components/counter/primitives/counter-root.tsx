@@ -10,7 +10,7 @@ export function CounterRoot({ children, className, ...props }: CounterRootProps)
   return (
     <div
       className={cn(
-        'flex items-center justify-between rounded-lg border border-[var(--counter-border,hsl(var(--contrast-100)))] bg-[var(--counter-background,hsl(var(--background)))] font-[var(--counter-font-family,var(--font-family-body))] text-[var(--counter-text,hsl(var(--foreground)))]',
+        'flex items-center justify-between rounded-lg border border-[var(--counter-border,var(--contrast-100))] bg-[var(--counter-background,var(--background))] font-[var(--counter-font-family,var(--font-family-body))] text-[var(--counter-text,var(--foreground))]',
         className,
       )}
       data-slot="counter-root"

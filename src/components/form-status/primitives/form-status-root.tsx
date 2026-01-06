@@ -19,11 +19,11 @@ export function FormStatusRoot({ className, type = 'success', ...props }: FormSt
         // Borders & Rounded
         'rounded-xl',
         // Error state
-        'data-[type=error]:bg-[var(--form-status-background-error,color-mix(in_oklab,_hsl(var(--error)),_white_75%))]',
-        'data-[type=error]:text-[var(--form-status-text-error,color-mix(in_oklab,hsl(var(--error)),black_75%))]',
+        'data-[type=error]:bg-[var(--form-status-background-error,color-mix(in_oklab,_var(--error),_white_75%))]',
+        'data-[type=error]:text-[var(--form-status-text-error,color-mix(in_oklab,var(--error),black_75%))]',
         // Success state
-        'data-[type=success]:bg-[var(--form-status-background-success,color-mix(in_oklab,_hsl(var(--success)),_white_75%))]',
-        'data-[type=success]:text-[var(--form-status-text-success,color-mix(in_oklab,hsl(var(--success)),black_75%))]',
+        'data-[type=success]:bg-[var(--form-status-background-success,color-mix(in_oklab,_var(--success),_white_75%))]',
+        'data-[type=success]:text-[var(--form-status-text-success,color-mix(in_oklab,var(--success),black_75%))]',
         className,
       )}
       data-type={type}

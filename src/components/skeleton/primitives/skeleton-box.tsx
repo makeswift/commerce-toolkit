@@ -8,7 +8,7 @@ export function SkeletonBox({ className, ...props }: SkeletonBoxProps) {
   return (
     <div
       className={cn(
-        'bg-[var(--skeleton,color-mix(in_oklab,hsl(var(--contrast-300))_15%,transparent))]',
+        'bg-[var(--skeleton,color-mix(in_oklab,var(--contrast-300)_15%,transparent))]',
         className,
       )}
       data-slot="skeleton-box"

@@ -17,7 +17,7 @@ export function CardRoot<T extends ElementType = 'div'>({
     <CardRootElement
       className={cn(
         'group/card relative w-full rounded-2xl border p-6 @container',
-        'border-[var(--card-border-color,hsl(var(--contrast-200)))] bg-[var(--card-background,hsl(var(--background)))] has-[a]:hover:bg-[var(--card-hover-background,color-mix(in_oklab,hsl(var(--contrast-100))_50%,transparent))]',
+        'border-[var(--card-border-color,var(--contrast-200))] bg-[var(--card-background,var(--background))] has-[a]:hover:bg-[var(--card-hover-background,color-mix(in_oklab,var(--contrast-100)_50%,transparent))]',
         'transition-colors duration-300 ease-linear',
         className,
       )}

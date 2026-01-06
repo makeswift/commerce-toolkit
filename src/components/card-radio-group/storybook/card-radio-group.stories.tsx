@@ -458,7 +458,7 @@ export const CustomThemed: Story = {
   ),
   decorators: [
     (Story: ComponentType) => (
-      <div className="flex w-80 items-center justify-center rounded-xl bg-contrast-100 p-8 [--card-radio-group-light-checked-background:hsl(var(--primary))] [--card-radio-group-light-unchecked-background-hover:hsl(var(--primary)/0.1)] [--card-radio-group-light-unchecked-border-hover:hsl(var(--primary))]">
+      <div className="flex w-80 items-center justify-center rounded-xl bg-contrast-100 p-8 [--card-radio-group-light-checked-background:var(--primary)] [--card-radio-group-light-unchecked-background-hover:color-mix(in_oklch,var(--primary)_10%,transparent)] [--card-radio-group-light-unchecked-border-hover:var(--primary)]">
         <Story />
       </div>
     ),

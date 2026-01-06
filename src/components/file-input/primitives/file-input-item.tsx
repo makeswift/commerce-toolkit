@@ -58,11 +58,11 @@ export function FileInputItem({ className, children, file, ...props }: FileInput
         aria-invalid={status === 'error'}
         aria-labelledby={`${generatedId}-name`}
         className={cn(
-          'relative flex items-center justify-between gap-2 overflow-hidden rounded-lg border-[1.5px] border-[var(--file-input-item-border,hsl(var(--contrast-200)))] p-4',
+          'relative flex items-center justify-between gap-2 overflow-hidden rounded-lg border-[1.5px] border-[var(--file-input-item-border,var(--contrast-200))] p-4',
           // Start animation state
           'data-[start-animation]:animate-in data-[start-animation]:fade-in-0 data-[start-animation]:slide-in-from-top-2',
           // Invalid state
-          'aria-invalid:border-[var(--file-input-item-border-error,hsl(var(--error)))]',
+          'aria-invalid:border-[var(--file-input-item-border-error,var(--error))]',
           className,
         )}
         data-slot="file-input-item"

@@ -16,23 +16,23 @@ export interface ButtonLinkProps extends ComponentProps<'a'> {
  *
  * ```css
  * :root {
- *   --button-focus: hsl(var(--primary));
+ *   --button-focus: var(--primary);
  *   --button-font-family: var(--font-family-body);
- *   --button-primary-background: hsl(var(--primary));
- *   --button-primary-background-hover: color-mix(in oklab, hsl(var(--primary)), white 75%);
- *   --button-primary-text: hsl(var(--foreground));
- *   --button-primary-border: hsl(var(--primary));
- *   --button-secondary-background: hsl(var(--foreground));
- *   --button-secondary-background-hover: hsl(var(--background));
- *   --button-secondary-text: hsl(var(--background));
- *   --button-secondary-border: hsl(var(--foreground));
- *   --button-tertiary-background: hsl(var(--background));
- *   --button-tertiary-background-hover: hsl(var(--contrast-100));
- *   --button-tertiary-text: hsl(var(--foreground));
- *   --button-tertiary-border: hsl(var(--contrast-200));
+ *   --button-primary-background: var(--primary);
+ *   --button-primary-background-hover: color-mix(in oklab, var(--primary), white 75%);
+ *   --button-primary-text: var(--foreground);
+ *   --button-primary-border: var(--primary);
+ *   --button-secondary-background: var(--foreground);
+ *   --button-secondary-background-hover: var(--background);
+ *   --button-secondary-text: var(--background);
+ *   --button-secondary-border: var(--foreground);
+ *   --button-tertiary-background: var(--background);
+ *   --button-tertiary-background-hover: var(--contrast-100);
+ *   --button-tertiary-text: var(--foreground);
+ *   --button-tertiary-border: var(--contrast-200);
  *   --button-ghost-background: transparent;
- *   --button-ghost-background-hover: color-mix(in oklab, hsl(var(--foreground)) 5%, transparent);
- *   --button-ghost-text: hsl(var(--foreground));
+ *   --button-ghost-background-hover: color-mix(in oklab, var(--foreground) 5%, transparent);
+ *   --button-ghost-text: var(--foreground);
  *   --button-ghost-border: transparent;
  * }
  * ```
@@ -51,18 +51,18 @@ export function ButtonLink({
   return (
     <Comp
       className={cn(
-        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal duration-200 ease-in-out [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,hsl(var(--primary)))] disabled:pointer-events-none disabled:opacity-30',
+        'relative z-0 inline-flex h-fit select-none items-center justify-center overflow-hidden text-center font-semibold leading-normal duration-200 ease-in-out [font-family:var(--button-font-family,var(--font-family-body))] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,var(--primary))] disabled:pointer-events-none disabled:opacity-30',
         {
           brand:
-            'bg-[var(--button-brand-background,hsl(var(--primary)))] text-[var(--button-brand-text,hsl(var(--foreground)))] hover:opacity-70',
+            'bg-[var(--button-brand-background,var(--primary))] text-[var(--button-brand-text,var(--foreground))] hover:opacity-70',
           primary:
-            'bg-[var(--button-primary-background,hsl(var(--foreground)))] text-[var(--button-primary-text,hsl(var(--background)))] hover:opacity-70',
+            'bg-[var(--button-primary-background,var(--foreground))] text-[var(--button-primary-text,var(--background))] hover:opacity-70',
           outline:
-            'border border-[var(--button-outline-border,hsl(var(--contrast-200)))] bg-[var(--button-outline-background,hsl(var(--background)))] text-[var(--button-outline-text,hsl(var(--foreground)))] hover:bg-foreground/5',
+            'border border-[var(--button-outline-border,var(--contrast-200))] bg-[var(--button-outline-background,var(--background))] text-[var(--button-outline-text,var(--foreground))] hover:bg-foreground/5',
           ghost:
-            'bg-transparent text-[var(--button-ghost-text,hsl(var(--foreground)))] hover:bg-foreground/5',
+            'bg-transparent text-[var(--button-ghost-text,var(--foreground))] hover:bg-foreground/5',
           danger:
-            'bg-[var(--button-danger-background,hsl(var(--error)))] text-[var(--button-danger-text,hsl(var(--background)))] hover:opacity-70',
+            'bg-[var(--button-danger-background,var(--error))] text-[var(--button-danger-text,var(--background))] hover:opacity-70',
         }[variant],
         shape === 'rounded'
           ? {

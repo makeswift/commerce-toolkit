@@ -102,24 +102,24 @@ export function FileInputDropzone({ children, className, ...props }: FileInputDr
         // Spacing
         'p-4',
         // Borders & Rounded
-        'rounded-lg border-[1.5px] border-dashed border-[var(--file-input-dropzone-border,hsl(var(--contrast-200)))]',
+        'rounded-lg border-[1.5px] border-dashed border-[var(--file-input-dropzone-border,var(--contrast-200))]',
         // Background
-        'bg-[var(--file-input-dropzone-background,hsl(var(--background)))]',
+        'bg-[var(--file-input-dropzone-background,var(--background))]',
         // Interaction
         'cursor-pointer select-none',
         // Transitions
         'transition-colors duration-300 ease-in-out',
         // Hover state
-        'hover:border-[var(--file-input-dropzone-border-hover,hsl(var(--foreground)))] hover:bg-[var(--file-input-dropzone-background-hover,hsl(var(--contrast-100)))]',
+        'hover:border-[var(--file-input-dropzone-border-hover,var(--foreground))] hover:bg-[var(--file-input-dropzone-background-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,hsl(var(--primary)))] focus-visible:ring-offset-2',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--primary))] focus-visible:ring-offset-2',
         // Disabled state
-        'group-aria-disabled:cursor-not-allowed group-aria-disabled:border-[var(--file-input-dropzone-border-disabled,color-mix(in_oklab,hsl(var(--contrast-200))_70%,transparent))] group-aria-disabled:bg-[var(--file-input-dropzone-background-disabled,hsl(var(--background)))]',
+        'group-aria-disabled:cursor-not-allowed group-aria-disabled:border-[var(--file-input-dropzone-border-disabled,color-mix(in_oklab,var(--contrast-200)_70%,transparent))] group-aria-disabled:bg-[var(--file-input-dropzone-background-disabled,var(--background))]',
         'group-aria-disabled:focus-visible:outline-none group-aria-disabled:focus-visible:ring-0 group-aria-disabled:focus-visible:ring-offset-0',
         // Invalid state
-        'group-aria-invalid:border-[var(--file-input-dropzone-border-error,hsl(var(--error)))]',
+        'group-aria-invalid:border-[var(--file-input-dropzone-border-error,var(--error))]',
         // Dragging state
-        'data-[dragging]:border-[var(--file-input-dropzone-border-dragging,hsl(var(--foreground)))] data-[dragging]:bg-[var(--file-input-dropzone-background-dragging,color-mix(in_oklab,hsl(var(--success)),white_75%))]',
+        'data-[dragging]:border-[var(--file-input-dropzone-border-dragging,var(--foreground))] data-[dragging]:bg-[var(--file-input-dropzone-background-dragging,color-mix(in_oklab,var(--success),white_75%))]',
         // Container queries
         '@sm:flex-row',
         className,

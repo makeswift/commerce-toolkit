@@ -14,12 +14,12 @@ export type BadgeProps = ComponentProps<'span'> & {
  *
  * ```css
  * :root {
- *   --badge-primary-background: color-mix(in oklab, hsl(var(--primary)), white 75%);
- *   --badge-success-background: color-mix(in oklab, hsl(var(--success)), white 75%);
- *   --badge-warning-background: color-mix(in oklab, hsl(var(--warning)), white 75%);
- *   --badge-error-background: color-mix(in oklab, hsl(var(--error)), white 75%);
- *   --badge-info-background: color-mix(in oklab, hsl(var(--info)), white 75%);
- *   --badge-text: hsl(var(--foreground));
+ *   --badge-primary-background: color-mix(in oklab, var(--primary), white 75%);
+ *   --badge-success-background: color-mix(in oklab, var(--success), white 75%);
+ *   --badge-warning-background: color-mix(in oklab, var(--warning), white 75%);
+ *   --badge-error-background: color-mix(in oklab, var(--error), white 75%);
+ *   --badge-info-background: color-mix(in oklab, var(--info), white 75%);
+ *   --badge-text: var(--foreground);
  *   --badge-font-family: var(--font-family-mono);
  * }
  * ```
@@ -34,21 +34,21 @@ export function Badge({
   return (
     <span
       className={cn(
-        'px-2 py-0.5 text-xs uppercase tracking-tighter text-[var(--badge-text,hsl(var(--foreground)))] [font-family:var(--badge-font-family,var(--font-family-mono))]',
+        'px-2 py-0.5 text-xs uppercase tracking-tighter text-[var(--badge-text,var(--foreground))] [font-family:var(--badge-font-family,var(--font-family-mono))]',
         {
           pill: 'rounded-full',
           rounded: 'rounded',
         }[shape],
         {
           primary:
-            'bg-[var(--badge-primary-background,color-mix(in_oklab,hsl(var(--primary)),white_75%))]',
+            'bg-[var(--badge-primary-background,color-mix(in_oklab,var(--primary),white_75%))]',
           warning:
-            'bg-[var(--badge-warning-background,color-mix(in_oklab,hsl(var(--warning)),white_75%))]',
+            'bg-[var(--badge-warning-background,color-mix(in_oklab,var(--warning),white_75%))]',
           error:
-            'bg-[var(--badge-error-background,color-mix(in_oklab,hsl(var(--error)),white_75%))]',
+            'bg-[var(--badge-error-background,color-mix(in_oklab,var(--error),white_75%))]',
           success:
-            'bg-[var(--badge-success-background,color-mix(in_oklab,hsl(var(--success)),white_75%))]',
-          info: 'bg-[var(--badge-info-background,color-mix(in_oklab,hsl(var(--info)),white_75%))]',
+            'bg-[var(--badge-success-background,color-mix(in_oklab,var(--success),white_75%))]',
+          info: 'bg-[var(--badge-info-background,color-mix(in_oklab,var(--info),white_75%))]',
         }[variant],
         className,
       )}

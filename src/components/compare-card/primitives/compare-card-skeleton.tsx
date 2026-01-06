@@ -10,7 +10,7 @@ export function CompareCardSkeleton({ className, ...props }: CompareCardSkeleton
   return (
     <div
       className={cn(
-        'w-full max-w-md divide-y divide-[var(--compare-card-divider,hsl(var(--contrast-100)))] @container',
+        'w-full max-w-md divide-y divide-[var(--compare-card-divider,var(--contrast-100))] @container',
         className,
       )}
       data-slot="compare-card-skeleton"

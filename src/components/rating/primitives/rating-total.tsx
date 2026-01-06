@@ -15,7 +15,7 @@ export function RatingTotal({ className, children, ...props }: RatingTotalProps)
   return (
     <span
       className={cn(
-        'ml-2 whitespace-nowrap border-l border-contrast-200 pl-2 font-normal text-[var(--rating-text,hsl(var(--contrast-500)))]',
+        'ml-2 border-l border-contrast-200 pl-2 font-normal text-[var(--rating-text,var(--contrast-500))]',
         className,
       )}
       data-slot="rating-total"

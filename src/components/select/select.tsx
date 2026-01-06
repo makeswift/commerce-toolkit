@@ -25,22 +25,22 @@ export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> & {
  *
  * ```css
  * :root {
- *   --select-light-trigger-background: hsl(var(--background));
- *   --select-light-trigger-background-hover: hsl(var(--contrast-100));
- *   --select-light-trigger-border: hsl(var(--contrast-100));
- *   --select-light-trigger-border-hover: hsl(var(--contrast-300));
- *   --select-light-trigger-border-error: hsl(var(--error));
- *   --select-light-trigger-text: hsl(var(--foreground));
- *   --select-light-trigger-focus: hsl(var(--primary));
- *   --select-light-icon: hsl(var(--foreground));
- *   --select-light-content-background: hsl(var(--background));
+ *   --select-light-trigger-background: var(--background);
+ *   --select-light-trigger-background-hover: var(--contrast-100);
+ *   --select-light-trigger-border: var(--contrast-100);
+ *   --select-light-trigger-border-hover: var(--contrast-300);
+ *   --select-light-trigger-border-error: var(--error);
+ *   --select-light-trigger-text: var(--foreground);
+ *   --select-light-trigger-focus: var(--primary);
+ *   --select-light-icon: var(--foreground);
+ *   --select-light-content-background: var(--background);
  *   --select-light-content-border: color-mix(in oklab, var(--foreground) 10%, transparent);
- *   --select-light-item-background-hover: hsl(var(--contrast-100));
- *   --select-light-item-background-focus: hsl(var(--contrast-100));
- *   --select-light-item-text: hsl(var(--contrast-400));
- *   --select-light-item-text-hover: hsl(var(--foreground));
- *   --select-light-item-text-focus: hsl(var(--foreground));
- *   --select-light-item-checked-text-focus: hsl(var(--foreground));
+ *   --select-light-item-background-hover: var(--contrast-100);
+ *   --select-light-item-background-focus: var(--contrast-100);
+ *   --select-light-item-text: var(--contrast-400);
+ *   --select-light-item-text-hover: var(--foreground);
+ *   --select-light-item-text-focus: var(--foreground);
+ *   --select-light-item-checked-text-focus: var(--foreground);
  * }
  * ```
  */
@@ -66,7 +66,7 @@ export function Select({
           <ChevronDown
             absoluteStrokeWidth
             className={cn(
-              'w-5 text-[var(--select-light-icon,hsl(var(--foreground)))] transition-transform',
+              'w-5 text-[var(--select-light-icon,var(--foreground))] transition-transform',
             )}
             strokeWidth={1.5}
           />
@@ -77,7 +77,7 @@ export function Select({
           <SelectPrimitive.ScrollUpButton>
             <ChevronUp
               absoluteStrokeWidth
-              className={cn('w-5 text-[var(--select-light-icon,hsl(var(--foreground)))]')}
+              className={cn('w-5 text-[var(--select-light-icon,var(--foreground))]')}
               strokeWidth={1.5}
             />
           </SelectPrimitive.ScrollUpButton>
@@ -97,7 +97,7 @@ export function Select({
           <SelectPrimitive.ScrollDownButton>
             <ChevronDown
               absoluteStrokeWidth
-              className={cn('w-5 text-[var(--select-icon,hsl(var(--foreground)))]')}
+              className={cn('w-5 text-[var(--select-icon,var(--foreground))]')}
               strokeWidth={1.5}
             />
           </SelectPrimitive.ScrollDownButton>

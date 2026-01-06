@@ -15,7 +15,7 @@ export function SkeletonText({ characterCount = 10, className, ...props }: Skele
     >
       <div
         className={cn(
-          `h-[1ex] max-w-full rounded-[inherit] bg-[var(--skeleton,color-mix(in_oklab,hsl(var(--contrast-300))_15%,transparent))]`,
+          `h-[1ex] max-w-full rounded-[inherit] bg-[var(--skeleton,color-mix(in_oklab,var(--contrast-300)_15%,transparent))]`,
         )}
         style={{ width: characterCount === 'full' ? '100%' : `${characterCount}ch` }}
       />

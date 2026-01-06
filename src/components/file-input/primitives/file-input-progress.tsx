@@ -19,7 +19,7 @@ export function FileInputProgress({ className, ...props }: FileInputProgressProp
       aria-valuenow={progress}
       aria-valuetext={`${progress}%`}
       className={cn(
-        'absolute bottom-0 left-0 h-1 w-full bg-[var(--file-input-item-progress,hsl(var(--primary)))] transition-transform duration-300 ease-linear',
+        'absolute bottom-0 left-0 h-1 w-full bg-[var(--file-input-item-progress,var(--primary))] transition-transform duration-300 ease-linear',
         className,
       )}
       role="progressbar"

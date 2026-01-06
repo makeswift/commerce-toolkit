@@ -14,7 +14,7 @@ export function SelectContent({ children, className, ...props }: SelectContentPr
         // Spacing
         'p-2',
         // Colors
-        'bg-[var(--select-light-content-background,hsl(var(--background)))]',
+        'bg-[var(--select-light-content-background,var(--background))]',
         // Borders & Rounded
         'rounded-xl',
         // Effects

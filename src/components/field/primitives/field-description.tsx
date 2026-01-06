@@ -8,7 +8,7 @@ export function FieldDescription({ className, children, ...props }: FieldDescrip
   return (
     <p
       className={cn(
-        'text-sm font-normal text-[var(--field-description,hsl(var(--contrast-500)))] [font-family:var(--field-description-font-family,var(--font-family-body))]',
+        'text-sm font-normal text-[var(--field-description,var(--contrast-500))] [font-family:var(--field-description-font-family,var(--font-family-body))]',
         className,
       )}
       data-slot="field-description"

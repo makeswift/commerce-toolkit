@@ -52,15 +52,12 @@ export function AlertRoot({
     <AlertContext.Provider value={contextValues}>
       <div
         className={cn(
-          'flex max-w-[356px] items-center justify-between gap-2 rounded-xl border border-[var(--alert-border,color-mix(in_oklab,hsl(var(--foreground))_10%,transparent))] py-3 pe-3 ps-4 shadow',
+          'flex max-w-[356px] items-center justify-between gap-2 rounded-xl border border-black/10 py-3 pe-3 ps-4 shadow',
           {
-            success:
-              'bg-[var(--alert-success-background,color-mix(in_oklab,hsl(var(--success)),white_75%))]',
-            warning:
-              'bg-[var(--alert-warning-background,color-mix(in_oklab,hsl(var(--warning)),white_75%))]',
-            error:
-              'bg-[var(--alert-error-background,color-mix(in_oklab,hsl(var(--error)),white_75%))]',
-            info: 'bg-[var(--alert-info-background,hsl(var(--background)))]',
+            success: 'bg-[var(--alert-success-background,var(--success-background))]',
+            warning: 'bg-[var(--alert-warning-background,var(--warning-background))]',
+            error: 'bg-[var(--alert-error-background,var(--error-background))]',
+            info: 'bg-[var(--alert-info-background,var(--background))]',
           }[variant],
           className,
         )}

@@ -52,41 +52,41 @@ The FileInput component supports extensive theming through CSS variables:
 \`\`\`css
 :root {
   /* Dropzone */
-  --file-input-dropzone-border: hsl(var(--contrast-200));
-  --file-input-dropzone-background: hsl(var(--background));
-  --file-input-dropzone-border-hover: hsl(var(--foreground));
-  --file-input-dropzone-background-hover: hsl(var(--contrast-100));
-  --file-input-dropzone-border-disabled: color-mix(in oklab, hsl(var(--contrast-200)) 70%, transparent);
-  --file-input-dropzone-background-disabled: hsl(var(--background));
-  --file-input-dropzone-border-error: hsl(var(--error));
-  --file-input-dropzone-border-dragging: hsl(var(--foreground));
-  --file-input-dropzone-background-dragging: color-mix(in oklab, hsl(var(--success)), white 75%);
+  --file-input-dropzone-border: var(--contrast-200);
+  --file-input-dropzone-background: var(--background);
+  --file-input-dropzone-border-hover: var(--foreground);
+  --file-input-dropzone-background-hover: var(--contrast-100);
+  --file-input-dropzone-border-disabled: color-mix(in oklab, var(--contrast-200) 70%, transparent);
+  --file-input-dropzone-background-disabled: var(--background);
+  --file-input-dropzone-border-error: var(--error);
+  --file-input-dropzone-border-dragging: var(--foreground);
+  --file-input-dropzone-background-dragging: color-mix(in oklab, var(--success), white 75%);
   --file-input-dropzone-message-font-family: var(--font-family-body);
-  --file-input-dropzone-message: hsl(var(--contrast-500));
-  --file-input-dropzone-message-disabled: color-mix(in oklab, hsl(var(--contrast-500)) 70%, transparent);
-  --file-input-dropzone-message-error: hsl(var(--error));
+  --file-input-dropzone-message: var(--contrast-500);
+  --file-input-dropzone-message-disabled: color-mix(in oklab, var(--contrast-500) 70%, transparent);
+  --file-input-dropzone-message-error: var(--error);
 
   /* Trigger */
-  --file-input-trigger-icon: hsl(var(--foreground));
-  --file-input-focus: hsl(var(--primary));
+  --file-input-trigger-icon: var(--foreground);
+  --file-input-focus: var(--primary);
 
   /* Message */
   --file-input-message-font-family: var(--font-family-body);
-  --file-input-message: hsl(var(--contrast-500));
+  --file-input-message: var(--contrast-500);
 
   /* File Item */
-  --file-input-item-border: hsl(var(--contrast-200));
-  --file-input-item-border-error: hsl(var(--error));
+  --file-input-item-border: var(--contrast-200);
+  --file-input-item-border-error: var(--error);
   --file-input-item-name-font-family: var(--font-family-body);
-  --file-input-item-name: hsl(var(--foreground));
-  --file-input-item-status: hsl(var(--contrast-500));
-  --file-input-item-status-error: hsl(var(--error));
-  --file-input-item-delete-hover: hsl(var(--contrast-100));
-  --file-input-item-delete-icon: hsl(var(--foreground));
-  --file-input-item-progress: hsl(var(--primary));
+  --file-input-item-name: var(--foreground);
+  --file-input-item-status: var(--contrast-500);
+  --file-input-item-status-error: var(--error);
+  --file-input-item-delete-hover: var(--contrast-100);
+  --file-input-item-delete-icon: var(--foreground);
+  --file-input-item-progress: var(--primary);
 
   /* File Icon */
-  --file-input-icon: hsl(var(--contrast-400));
+  --file-input-icon: var(--contrast-400);
 }
 \`\`\`
         `,

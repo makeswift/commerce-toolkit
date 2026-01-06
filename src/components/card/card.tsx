@@ -16,10 +16,10 @@ export type CardProps<E extends ElementType = 'article'> = Omit<ComponentProps<E
  *
  * ```css
  * :root {
- *   --card-focus: hsl(var(--primary));
- *   --card-border-color: hsl(var(--contrast-200));
- *   --card-background: hsl(var(--background));
- *   --card-hover-background: color-mix(in oklab, hsl(var(--contrast-100)) 50%,transparent);
+ *   --card-focus: var(--primary);
+ *   --card-border-color: var(--contrast-200);
+ *   --card-background: var(--background);
+ *   --card-hover-background: color-mix(in oklab, var(--contrast-100) 50%,transparent);
  * }
  * ```
  */

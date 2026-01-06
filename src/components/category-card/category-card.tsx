@@ -28,15 +28,15 @@ export interface CategoryCardProps extends CategoryCardContent {
  *
  * ```css
  * :root {
- *   --category-card-focus: hsl(var(--primary));
- *   --category-card-light-offset: hsl(var(--background));
- *   --category-card-light-text: hsl(var(--foreground));
- *   --category-card-light-icon: hsl(var(--foreground));
- *   --category-card-light-background: hsl(var(--contrast-100));
- *   --category-card-dark-offset: hsl(var(--foreground));
- *   --category-card-dark-text: hsl(var(--background));
- *   --category-card-dark-icon: hsl(var(--background));
- *   --category-card-dark-background: hsl(var(--contrast-500));
+ *   --category-card-focus: var(--primary);
+ *   --category-card-light-offset: var(--background);
+ *   --category-card-light-text: var(--foreground);
+ *   --category-card-light-icon: var(--foreground);
+ *   --category-card-light-background: var(--contrast-100);
+ *   --category-card-dark-offset: var(--foreground);
+ *   --category-card-dark-text: var(--background);
+ *   --category-card-dark-icon: var(--background);
+ *   --category-card-dark-background: var(--contrast-500);
  *   --category-card-font-family: var(--font-family-body);
  *   --category-card-border-radius: 1rem;
  * }

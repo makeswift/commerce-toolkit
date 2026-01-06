@@ -18,29 +18,29 @@ export interface ButtonProps extends ComponentProps<'button'> {
  *
  * ```css
  * :root {
- *   --button-focus: hsl(var(--primary));
+ *   --button-focus: var(--primary);
  *   --button-font-family: var(--font-family-body);
- *   --button-brand-background: hsl(var(--primary));
- *   --button-brand-background-hover: color-mix(in oklab, hsl(var(--primary)), white 75%);
- *   --button-brand-text: hsl(var(--foreground));
- *   --button-brand-border: hsl(var(--primary));
- *   --button-primary-background: hsl(var(--foreground));
- *   --button-primary-background-hover: hsl(var(--background));
- *   --button-primary-text: hsl(var(--background));
- *   --button-primary-border: hsl(var(--foreground));
- *   --button-outline-background: hsl(var(--background));
- *   --button-outline-background-hover: hsl(var(--contrast-100));
- *   --button-outline-text: hsl(var(--foreground));
- *   --button-outline-border: hsl(var(--contrast-200));
+ *   --button-brand-background: var(--primary);
+ *   --button-brand-background-hover: color-mix(in oklab, var(--primary), white 75%);
+ *   --button-brand-text: var(--foreground);
+ *   --button-brand-border: var(--primary);
+ *   --button-primary-background: var(--foreground);
+ *   --button-primary-background-hover: var(--background);
+ *   --button-primary-text: var(--background);
+ *   --button-primary-border: var(--foreground);
+ *   --button-outline-background: var(--background);
+ *   --button-outline-background-hover: var(--contrast-100);
+ *   --button-outline-text: var(--foreground);
+ *   --button-outline-border: var(--contrast-200);
  *   --button-ghost-background: transparent;
- *   --button-ghost-background-hover: color-mix(in oklab, hsl(var(--foreground)) 5%, transparent);
- *   --button-ghost-text: hsl(var(--foreground));
+ *   --button-ghost-background-hover: color-mix(in oklab, var(--foreground) 5%, transparent);
+ *   --button-ghost-text: var(--foreground);
  *   --button-ghost-border: transparent;
- *   --button-loader-icon: hsl(var(--foreground));
- *   --button-danger-background: color-mix(in oklab, hsl(var(--error)), white 30%);
- *   --button-danger-background-hover: color-mix(in oklab, hsl(var(--error)), white 75%);
- *   --button-danger-text: hsl(var(--foreground));
- *   --button-danger-border: color-mix(in oklab, hsl(var(--error)), white 30%);
+ *   --button-loader-icon: var(--foreground);
+ *   --button-danger-background: color-mix(in oklab, var(--error), white 30%);
+ *   --button-danger-background-hover: color-mix(in oklab, var(--error), white 75%);
+ *   --button-danger-text: var(--foreground);
+ *   --button-danger-border: color-mix(in oklab, var(--error), white 30%);
  * }
  * ```
  */

@@ -18,13 +18,13 @@ export function SwatchRadioGroupItem({ children, className, ...props }: SwatchRa
         // Transitions
         'transition-colors',
         // Hover state
-        'hover:border-[var(--swatch-radio-group-light-unchecked-border-hover,hsl(var(--contrast-200)))]',
+        'hover:border-[var(--swatch-radio-group-light-unchecked-border-hover,var(--contrast-200))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--swatch-radio-group-focus,hsl(var(--primary)))]',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--swatch-radio-group-focus,var(--primary))]',
         // Checked state
-        'data-[state=checked]:border-[var(--swatch-radio-group-light-checked-border,hsl(var(--foreground)))]',
+        'data-[state=checked]:border-[var(--swatch-radio-group-light-checked-border,var(--foreground))]',
         // Invalid state
-        'aria-invalid:border-[var(--swatch-radio-group-light-border-error,hsl(var(--error)))]',
+        'aria-invalid:border-[var(--swatch-radio-group-light-border-error,var(--error))]',
         // Disabled state
         'disabled:border-[var(--swatch-radio-group-light-disabled-border,transparent)] data-[disabled]:pointer-events-none [&:disabled>.disabled-icon]:grid',
         className,

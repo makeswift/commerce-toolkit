@@ -23,14 +23,14 @@ export interface AlertProps {
  *
  * ```css
  * :root {
- *   --alert-success-background: color-mix(in oklab, hsl(var(--success)), white 75%);
- *   --alert-warning-background: color-mix(in oklab, hsl(var(--warning)), white 75%);
- *   --alert-error-background: color-mix(in oklab, hsl(var(--error)), white 75%);
- *   --alert-info-background: hsl(var(--background));
+ *   --alert-success-background: color-mix(in oklab, var(--success), white 75%);
+ *   --alert-warning-background: color-mix(in oklab, var(--warning), white 75%);
+ *   --alert-error-background: color-mix(in oklab, var(--error), white 75%);
+ *   --alert-info-background: var(--background);
  *   --alert-font-family: var(--font-family-body);
- *   --alert-border: color-mix(in oklab, hsl(var(--foreground)) 10%, transparent);
- *   --alert-message-text: hsl(var(--foreground));
- *   --alert-description-text: color-mix(in oklab, hsl(var(--foreground)) 50%, transparent);
+ *   --alert-border: color-mix(in oklab, var(--foreground) 10%, transparent);
+ *   --alert-message-text: var(--foreground);
+ *   --alert-description-text: color-mix(in oklab, var(--foreground) 50%, transparent);
  * }
  * ```
  */

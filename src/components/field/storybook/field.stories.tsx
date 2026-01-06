@@ -47,17 +47,17 @@ The Field components support the following CSS variables for theming:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| \`--field-legend\` | Legend text color | \`hsl(var(--foreground))\` |
+| \`--field-legend\` | Legend text color | \`var(--foreground)\` |
 | \`--field-legend-font-family\` | Legend font family | \`var(--font-family-heading)\` |
-| \`--field-description\` | Description text color | \`hsl(var(--contrast-500))\` |
+| \`--field-description\` | Description text color | \`var(--contrast-500)\` |
 | \`--field-description-font-family\` | Description font family | \`var(--font-family-body)\` |
-| \`--label-text\` | Label text color (default/vertical) | \`hsl(var(--contrast-500))\` |
+| \`--label-text\` | Label text color (default/vertical) | \`var(--contrast-500)\` |
 | \`--label-font-family\` | Label font family | \`var(--font-family-body)\` |
-| \`--label-horizontal-text\` | Label text color (horizontal orientation) | \`hsl(var(--foreground))\` |
-| \`--field-hint\` | Hint text color | \`hsl(var(--contrast-500))\` |
+| \`--label-horizontal-text\` | Label text color (horizontal orientation) | \`var(--foreground)\` |
+| \`--field-hint\` | Hint text color | \`var(--contrast-500)\` |
 | \`--field-hint-font-family\` | Hint font family | \`var(--font-family-body)\` |
-| \`--field-separator\` | Separator line color | \`hsl(var(--contrast-200))\` |
-| \`--field-error\` | Error text color | \`hsl(var(--error))\` |
+| \`--field-separator\` | Separator line color | \`var(--contrast-200)\` |
+| \`--field-error\` | Error text color | \`var(--error)\` |
 
 ## Composable Anatomy
 

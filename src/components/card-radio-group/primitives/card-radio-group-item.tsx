@@ -14,26 +14,26 @@ export function CardRadioGroupItem({ children, className, ...props }: CardRadioG
         // Typography
         'font-body text-sm font-normal leading-normal',
         // Colors
-        'border-[var(--card-radio-group-light-unchecked-border,hsl(var(--contrast-100)))]',
-        'text-[var(--card-radio-group-light-unchecked-text,hsl(var(--foreground)))]',
+        'border-[var(--card-radio-group-light-unchecked-border,var(--contrast-100))]',
+        'text-[var(--card-radio-group-light-unchecked-text,var(--foreground))]',
         // Borders & Rounded
         'rounded-lg border',
         // Transitions
         'transition-colors',
         // Focus-visible state
         'focus-visible:outline-0 focus-visible:ring-2',
-        'focus-visible:ring-[var(--card-radio-group-focus,hsl(var(--primary)))]',
+        'focus-visible:ring-[var(--card-radio-group-focus,var(--primary))]',
         // Checked state
-        'data-[state=checked]:border-[var(--card-radio-group-light-checked-background,hsl(var(--foreground)))]',
-        'data-[state=checked]:bg-[var(--card-radio-group-light-checked-background,hsl(var(--foreground)))]',
-        'data-[state=checked]:text-[var(--card-radio-group-light-checked-text,hsl(var(--background)))]',
+        'data-[state=checked]:border-[var(--card-radio-group-light-checked-background,var(--foreground))]',
+        'data-[state=checked]:bg-[var(--card-radio-group-light-checked-background,var(--foreground))]',
+        'data-[state=checked]:text-[var(--card-radio-group-light-checked-text,var(--background))]',
         // Unchecked state
-        'data-[state=unchecked]:bg-[var(--card-radio-group-light-unchecked-background,hsl(var(--background)))]',
+        'data-[state=unchecked]:bg-[var(--card-radio-group-light-unchecked-background,var(--background))]',
         // Unchecked hover state
-        'data-[state=unchecked]:hover:border-[var(--card-radio-group-light-unchecked-border-hover,hsl(var(--contrast-200)))]',
-        'data-[state=unchecked]:hover:bg-[var(--card-radio-group-light-unchecked-background-hover,hsl(var(--contrast-100)))]',
+        'data-[state=unchecked]:hover:border-[var(--card-radio-group-light-unchecked-border-hover,var(--contrast-200))]',
+        'data-[state=unchecked]:hover:bg-[var(--card-radio-group-light-unchecked-background-hover,var(--contrast-100))]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--card-radio-group-light-border-error,hsl(var(--error)))]',
+        'aria-invalid:border-[var(--card-radio-group-light-border-error,var(--error))]',
         // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,

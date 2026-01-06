@@ -15,7 +15,7 @@ export function DropdownMenuContent({ className, children, ...props }: DropdownM
     <DropdownMenuPrimitive.Content
       align={align}
       className={cn(
-        'z-50 min-w-32 rounded-2xl border border-[var(--dropdown-menu-border,hsl(var(--contrast-100)))] bg-[var(--dropdown-menu-background,hsl(var(--background)))] shadow-xl',
+        'z-50 min-w-32 rounded-2xl border border-[var(--dropdown-menu-border,var(--contrast-100))] bg-[var(--dropdown-menu-background,var(--background))] shadow-xl',
         // Open styles
         'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
         // Closed styles

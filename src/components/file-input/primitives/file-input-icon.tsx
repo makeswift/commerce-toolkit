@@ -30,7 +30,7 @@ export function FileInputIcon({ asChild = false, className, children }: FileInpu
   if (asChild) {
     return (
       <Slot
-        className={cn('size-4 text-[var(--file-input-icon,hsl(var(--contrast-400)))]', className)}
+        className={cn('size-4 text-[var(--file-input-icon,var(--contrast-400))]', className)}
         data-slot="file-input-icon"
       >
         {children}
@@ -40,7 +40,7 @@ export function FileInputIcon({ asChild = false, className, children }: FileInpu
 
   return (
     <DefaultIcon
-      className={cn('size-4 text-[var(--file-input-icon,hsl(var(--contrast-400)))]', className)}
+      className={cn('size-4 text-[var(--file-input-icon,var(--contrast-400))]', className)}
       data-slot="file-input-icon"
     />
   );

@@ -14,19 +14,19 @@ export function SelectTrigger({ className, children, ...props }: SelectTriggerPr
         // Spacing
         'p-2 px-5 py-3',
         // Typography
-        'text-sm font-normal text-[var(--select-light-trigger-text,hsl(var(--foreground)))]',
+        'text-sm font-normal text-[var(--select-light-trigger-text,var(--foreground))]',
         // Colors
-        'bg-[var(--select-light-trigger-background,hsl(var(--background)))]',
+        'bg-[var(--select-light-trigger-background,var(--background))]',
         // Borders
-        'border border-[var(--select-light-trigger-border,hsl(var(--contrast-100)))]',
+        'border border-[var(--select-light-trigger-border,var(--contrast-100))]',
         // Transitions
         'transition-colors',
         // Hover state
-        'hover:border-[var(--select-light-trigger-border-hover,hsl(var(--contrast-300)))] hover:bg-[var(--select-light-trigger-background-hover,hsl(var(--contrast-100)))]',
+        'hover:border-[var(--select-light-trigger-border-hover,var(--contrast-300))] hover:bg-[var(--select-light-trigger-background-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--select-light-trigger-focus,hsl(var(--primary)))]',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--select-light-trigger-focus,var(--primary))]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--select-light-trigger-border-error,hsl(var(--error)))]',
+        'aria-invalid:border-[var(--select-light-trigger-border-error,var(--error))]',
         // Variant styles
         '[[data-variant=rectangle]_&]:rounded-lg [[data-variant=round]_&]:rounded-full',
         className,

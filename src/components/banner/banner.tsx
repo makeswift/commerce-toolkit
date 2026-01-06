@@ -15,13 +15,13 @@ export interface BannerProps {
  *
  * ```css
  * :root {
- *   --banner-focus: hsl(var(--foreground));
- *   --banner-background: hsl(var(--primary));
- *   --banner-text: hsl(var(--foreground));
- *   --banner-close-icon: color-mix(in oklab, hsl(var(--foreground)) 50%, transparent);
- *   --banner-close-icon-hover: hsl(var(--foreground));
+ *   --banner-focus: var(--foreground);
+ *   --banner-background: var(--primary);
+ *   --banner-text: var(--foreground);
+ *   --banner-close-icon: color-mix(in oklab, var(--foreground) 50%, transparent);
+ *   --banner-close-icon-hover: var(--foreground);
  *   --banner-close-background: transparent;
- *   --banner-close-background-hover: color-mix(in oklab, hsl(var(--background)) 40%, transparent);
+ *   --banner-close-background-hover: color-mix(in oklab, var(--background) 40%, transparent);
  *   --banner-font-family: var(--font-family-body);
  * }
  * ```

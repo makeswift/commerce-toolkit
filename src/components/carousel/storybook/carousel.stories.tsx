@@ -19,11 +19,11 @@ A responsive carousel component built on top of Embla Carousel. Supports customi
 
 \`\`\`css
 :root {
-  --carousel-light-scrollbar: hsl(var(--foreground));
-  --carousel-dark-scrollbar: hsl(var(--background));
-  --carousel-focus: hsl(var(--primary));
-  --carousel-light-button: hsl(var(--foreground));
-  --carousel-dark-button: hsl(var(--background));
+  --carousel-light-scrollbar: var(--foreground);
+  --carousel-dark-scrollbar: var(--background);
+  --carousel-focus: var(--primary);
+  --carousel-light-button: var(--foreground);
+  --carousel-dark-button: var(--background);
 }
 \`\`\`
         `,

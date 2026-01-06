@@ -12,11 +12,11 @@ export interface ChipProps extends ComponentProps<'button'> {
  *
  * ```css
  * :root {
- *   --chip-focus: hsl(var(--foreground));
+ *   --chip-focus: var(--foreground);
  *   --chip-font-family: var(--font-family-body);
- *   --chip-background: hsl(var(--contrast-100));
- *   --chip-background-hover: hsl(var(--contrast-200));
- *   --chip-text: hsl(var(--foreground));
+ *   --chip-background: var(--contrast-100);
+ *   --chip-background-hover: var(--contrast-200);
+ *   --chip-text: var(--foreground);
  * }
  * ```
  */

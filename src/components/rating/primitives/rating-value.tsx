@@ -15,7 +15,7 @@ export function RatingValue({ className, children, ...props }: RatingValueProps)
   return (
     <span
       className={cn(
-        'ml-2 flex items-center text-xs font-bold leading-normal text-[var(--rating-text,hsl(var(--foreground)))]',
+        'ml-2 flex text-xs font-bold leading-normal text-[var(--rating-text,var(--foreground))]',
         className,
       )}
       data-slot="rating-value"

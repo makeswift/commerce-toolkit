@@ -12,9 +12,9 @@ export function CategoryCardThumbnail({
   return (
     <div
       className={cn(
-        'relative overflow-hidden rounded-[inherit] bg-[var(--category-card-light-background,hsl(var(--contrast-100)))]',
+        'relative overflow-hidden rounded-[inherit] bg-[var(--category-card-light-background,var(--contrast-100))]',
         // Group focus state
-        'group-focus/category-card:ring-[var(--category-card-focus,hsl(var(--primary)))]',
+        'group-focus/category-card:ring-[var(--category-card-focus,var(--primary))]',
         // Group focus-visible state
         'group-focus-visible/category-card:ring-2',
         // Aspect ratio variants

@@ -19,10 +19,10 @@ The following CSS variables can be used to customize the Price component:
 
 \`\`\`css
 :root {
-  --price-light-text: hsl(var(--foreground));
-  --price-light-sale-text: hsl(var(--foreground));
-  --price-dark-text: hsl(var(--background));
-  --price-dark-sale-text: hsl(var(--background));
+  --price-light-text: var(--foreground);
+  --price-light-sale-text: var(--foreground);
+  --price-dark-text: var(--background);
+  --price-dark-sale-text: var(--background);
 }
 \`\`\`
 
