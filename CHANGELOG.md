@@ -1,5 +1,11 @@
 # commerce-toolkit
 
+## 0.8.1
+
+### Patch Changes
+
+- 65afe46: Added textColor and iconColor options for CategoryCard
+
 ## 0.8.0
 
 ### Minor Changes
