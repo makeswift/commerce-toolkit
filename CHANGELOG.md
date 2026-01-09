@@ -1,5 +1,12 @@
 # commerce-toolkit
 
+## 0.8.0
+
+### Minor Changes
+
+- f7d653e: Added Breadcrumbs component
+- 86ba13b: feat: apply patterns accross components
+
 ## 0.7.0
 
 ### Minor Changes
