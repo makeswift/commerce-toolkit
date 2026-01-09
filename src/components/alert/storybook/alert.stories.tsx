@@ -1,12 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Alert, type AlertProps } from '@/components/alert';
+import * as AlertPrimitive from '@/components/alert/primitives';
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
   component: Alert,
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+A notification component for displaying important messages to users with support for different severity levels.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --alert-success-background: color-mix(in oklab, var(--success), white 75%);
+  --alert-warning-background: color-mix(in oklab, var(--warning), white 75%);
+  --alert-error-background: color-mix(in oklab, var(--error), white 75%);
+  --alert-info-background: var(--background);
+  --alert-font-family: var(--font-family-body);
+  --alert-border: color-mix(in oklab, var(--foreground) 10%, transparent);
+  --alert-message-text: var(--foreground);
+  --alert-description-text: color-mix(in oklab, var(--foreground) 50%, transparent);
+}
+\`\`\`
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -78,17 +101,6 @@ export const Info: Story = {
   },
 };
 
-export const WithoutDescription: Story = {
-  args: {
-    variant: 'success',
-    message: 'Changes saved',
-    dismiss: {
-      label: 'Dismiss changes saved alert',
-      onClick: () => console.log('Dismissed'),
-    },
-  },
-};
-
 export const WithAction: Story = {
   args: {
     variant: 'info',
@@ -103,44 +115,61 @@ export const WithAction: Story = {
       onClick: () => console.log('Dismissed'),
     },
   },
-};
-
-export const WithActionNoDescription: Story = {
-  args: {
-    variant: 'warning',
-    message: 'Confirm your email',
-    action: {
-      label: 'Resend',
-      onClick: () => console.log('Resend clicked'),
-    },
-    dismiss: {
-      label: 'Dismiss email confirmation alert',
-      onClick: () => console.log('Dismissed'),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Alerts can include an action button for user interaction.',
+      },
     },
   },
 };
 
-export const LongMessage: Story = {
-  args: {
-    variant: 'error',
-    message: 'Unable to process your request at this time',
-    description:
-      'We are experiencing technical difficulties. Please try again later or contact support if the problem persists.',
-    dismiss: {
-      label: 'Dismiss technical difficulties alert',
-      onClick: () => console.log('Dismissed'),
-    },
-  },
-};
+/**
+ * The Alert can be built using composable primitives for full customization.
+ * This example shows the component anatomy using the primitive components.
+ */
+export const ComposableAnatomy: Story = {
+  render: () => (
+    <AlertPrimitive.Root
+      dismiss={{ label: 'Dismiss alert', onClick: () => console.log('Dismissed') }}
+      variant="success"
+    >
+      <AlertPrimitive.Header>
+        <AlertPrimitive.Title>Order confirmed</AlertPrimitive.Title>
+        <AlertPrimitive.Description>
+          Your order #12345 has been placed successfully.
+        </AlertPrimitive.Description>
+      </AlertPrimitive.Header>
+      <AlertPrimitive.Actions>
+        <AlertPrimitive.Dismiss />
+      </AlertPrimitive.Actions>
+    </AlertPrimitive.Root>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the composable primitives to build custom alert layouts:
 
-export const CustomDismissLabel: Story = {
-  args: {
-    variant: 'info',
-    message: 'Cookie consent',
-    description: 'We use cookies to improve your experience.',
-    dismiss: {
-      label: 'Close cookie notice',
-      onClick: () => console.log('Dismissed'),
+\`\`\`tsx
+import * as AlertPrimitive from '@/components/alert/primitives';
+
+<AlertPrimitive.Root
+  variant="success"
+  dismiss={{ label: 'Dismiss', onClick: handleDismiss }}
+>
+  <AlertPrimitive.Header>
+    <AlertPrimitive.Title>Title</AlertPrimitive.Title>
+    <AlertPrimitive.Description>Description text</AlertPrimitive.Description>
+  </AlertPrimitive.Header>
+  <AlertPrimitive.Actions>
+    <AlertPrimitive.Action />
+    <AlertPrimitive.Dismiss />
+  </AlertPrimitive.Actions>
+</AlertPrimitive.Root>
+\`\`\`
+        `,
+      },
     },
   },
 };

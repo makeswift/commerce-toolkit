@@ -1,18 +1,23 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { ChevronRight } from 'lucide-react';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
+import { DropdownMenuSubIndicator } from '@/components/dropdown-menu/primitives/dropdown-menu-sub-indicator';
 import { cn } from '@/lib';
 
 export interface DropdownMenuSubTriggerProps
   extends ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> {
   variant?: 'default' | 'danger';
+  indicator?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 export function DropdownMenuSubTrigger({
   children,
   variant = 'default',
   className,
+  indicator,
   ...props
 }: DropdownMenuSubTriggerProps) {
   return (
@@ -36,7 +41,9 @@ export function DropdownMenuSubTrigger({
       <div className="flex flex-1 items-center justify-between gap-2">
         {children}
         <span className="flex size-6 items-center justify-center">
-          <ChevronRight absoluteStrokeWidth size={16} strokeWidth={1.5} />
+          <DropdownMenuSubIndicator asChild={indicator?.asChild}>
+            {indicator?.children}
+          </DropdownMenuSubIndicator>
         </span>
       </div>
     </DropdownMenuPrimitive.SubTrigger>

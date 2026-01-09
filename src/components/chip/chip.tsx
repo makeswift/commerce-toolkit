@@ -1,9 +1,13 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import * as ChipPrimitive from '@/components/chip';
 
 export interface ChipProps extends ComponentProps<'button'> {
   removeLabel?: string;
+  icon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 /**
@@ -20,11 +24,13 @@ export interface ChipProps extends ComponentProps<'button'> {
  * }
  * ```
  */
-export function Chip({ className, children, removeLabel = 'Remove', ...props }: ChipProps) {
+export function Chip({ className, children, removeLabel = 'Remove', icon, ...props }: ChipProps) {
   return (
     <ChipPrimitive.Root className={className}>
       {children}
-      <ChipPrimitive.Button title={removeLabel} {...props} />
+      <ChipPrimitive.Button title={removeLabel} {...props}>
+        <ChipPrimitive.Icon asChild={icon?.asChild}>{icon?.children}</ChipPrimitive.Icon>
+      </ChipPrimitive.Button>
     </ChipPrimitive.Root>
   );
 }

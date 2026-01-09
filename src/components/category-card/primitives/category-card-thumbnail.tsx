@@ -13,10 +13,8 @@ export function CategoryCardThumbnail({
     <div
       className={cn(
         'relative overflow-hidden rounded-[inherit] bg-[var(--category-card-light-background,var(--contrast-100))]',
-        // Group focus state
-        'group-focus/category-card:ring-[var(--category-card-focus,var(--brand))]',
         // Group focus-visible state
-        'group-focus-visible/category-card:ring-2',
+        'group-focus-visible/category-card:outline-2 group-focus-visible/category-card:outline-offset-4 group-focus-visible/category-card:outline-[var(--category-card-focus,var(--brand))]',
         // Aspect ratio variants
         'group-data-[aspect-ratio=1/1]/category-card:aspect-square',
         'group-data-[aspect-ratio=3/4]/category-card:aspect-[3/4]',

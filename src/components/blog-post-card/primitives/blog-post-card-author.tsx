@@ -6,13 +6,12 @@ export type BlogPostCardAuthorProps = ComponentProps<'span'>;
 
 export function BlogPostCardAuthor({ className, children, ...props }: BlogPostCardAuthorProps) {
   return (
-    <>
-      <span
-        className={cn("after:mx-2 after:content-['•']", className)}
-        data-slot="blog-post-card-author"
-        {...props}
-      />
-      <span>{children}</span>
-    </>
+    <span
+      className={cn("before:mx-2 before:content-['•']", className)}
+      data-slot="blog-post-card-author"
+      {...props}
+    >
+      {children}
+    </span>
   );
 }

@@ -1,15 +1,29 @@
-'use client';
-
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 import * as CursorPaginationPrimitive from '@/components/cursor-pagination';
 
 export interface CursorPaginationProps {
-  previousHref?: string | null;
-  nextHref?: string | null;
+  previousLink?: {
+    href?: string | null;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  previousIcon?: {
+    label?: string;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  nextLink?: {
+    href?: string | null;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  nextIcon?: {
+    label?: string;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
   label?: string;
-  previousLabel?: string;
-  nextLabel?: string;
 }
 
 /**
@@ -28,34 +42,63 @@ export interface CursorPaginationProps {
  * ```
  */
 export function CursorPagination({
-  previousHref,
-  nextHref,
+  previousLink,
+  previousIcon,
+  nextLink,
+  nextIcon,
   label = 'pagination',
-  previousLabel = 'Go to previous page',
-  nextLabel = 'Go to next page',
 }: CursorPaginationProps) {
+  const previousLabel = previousIcon?.label ?? 'Go to previous page';
+  const nextLabel = nextIcon?.label ?? 'Go to next page';
+
+  const previousHref = previousLink?.href;
+  const nextHref = nextLink?.href;
+
+  const previousLinkAsChild = previousLink?.asChild === true;
+  const nextLinkAsChild = nextLink?.asChild === true;
+
+  const previousIconContent = (
+    <CursorPaginationPrimitive.PreviousIcon asChild={previousIcon?.asChild}>
+      {previousIcon?.children}
+    </CursorPaginationPrimitive.PreviousIcon>
+  );
+
+  const nextIconContent = (
+    <CursorPaginationPrimitive.NextIcon asChild={nextIcon?.asChild}>
+      {nextIcon?.children}
+    </CursorPaginationPrimitive.NextIcon>
+  );
+
   return (
     <CursorPaginationPrimitive.Root aria-label={label} role="navigation">
       <CursorPaginationPrimitive.List>
         <CursorPaginationPrimitive.Item>
           {previousHref != null ? (
-            <CursorPaginationPrimitive.Link aria-label={previousLabel} href={previousHref}>
-              <ArrowLeft absoluteStrokeWidth size={24} strokeWidth={1} />
+            <CursorPaginationPrimitive.Link
+              aria-label={previousLabel}
+              asChild={previousLinkAsChild}
+              href={previousHref}
+            >
+              {previousLinkAsChild ? previousLink.children : previousIconContent}
             </CursorPaginationPrimitive.Link>
           ) : (
             <CursorPaginationPrimitive.Link aria-disabled aria-label={previousLabel}>
-              <ArrowLeft absoluteStrokeWidth size={24} strokeWidth={1} />
+              {previousIconContent}
             </CursorPaginationPrimitive.Link>
           )}
         </CursorPaginationPrimitive.Item>
         <CursorPaginationPrimitive.Item>
           {nextHref != null ? (
-            <CursorPaginationPrimitive.Link aria-label={nextLabel} href={nextHref}>
-              <ArrowRight absoluteStrokeWidth size={24} strokeWidth={1} />
+            <CursorPaginationPrimitive.Link
+              aria-label={nextLabel}
+              asChild={nextLinkAsChild}
+              href={nextHref}
+            >
+              {nextLinkAsChild ? nextLink.children : nextIconContent}
             </CursorPaginationPrimitive.Link>
           ) : (
-            <CursorPaginationPrimitive.Link aria-disabled aria-label={previousLabel}>
-              <ArrowRight absoluteStrokeWidth size={24} strokeWidth={1} />
+            <CursorPaginationPrimitive.Link aria-disabled aria-label={nextLabel}>
+              {nextIconContent}
             </CursorPaginationPrimitive.Link>
           )}
         </CursorPaginationPrimitive.Item>

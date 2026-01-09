@@ -14,3 +14,15 @@ export {
   DatePickerContent as Content,
   type DatePickerContentProps as ContentProps,
 } from '@/components/date-picker/primitives/date-picker-content';
+export {
+  DatePickerInput as Input,
+  type DatePickerInputProps as InputProps,
+} from '@/components/date-picker/primitives/date-picker-input';
+export {
+  DatePickerIcon as Icon,
+  type DatePickerIconProps as IconProps,
+} from '@/components/date-picker/primitives/date-picker-icon';
+export {
+  DatePickerCalendar as Calendar,
+  type DatePickerCalendarProps as CalendarProps,
+} from '@/components/date-picker/primitives/date-picker-calendar';

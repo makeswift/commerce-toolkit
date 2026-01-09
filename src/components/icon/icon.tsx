@@ -1,5 +1,5 @@
 import { DynamicIcon } from 'lucide-react/dynamic';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
 export type IconProps = ComponentProps<typeof DynamicIcon>;
 
@@ -7,6 +7,7 @@ export function Icon({ className, name, size = 24, strokeWidth = 1.5, ...props }
   return (
     <DynamicIcon
       className={className}
+      data-slot="icon"
       name={name}
       size={size}
       strokeWidth={strokeWidth}

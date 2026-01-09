@@ -7,7 +7,7 @@ export type CategoryCardSkeletonProps = ComponentProps<'div'>;
 
 export function CategoryCardSkeleton({ className, ...props }: CategoryCardSkeletonProps) {
   return (
-    <div className={cn('@container', className)} {...props} data-slot="category-card-skeleton">
+    <div className={cn('@container', className)} data-slot="category-card-skeleton" {...props}>
       <SkeletonPrimitive.Box
         className={cn(
           'rounded-[var(--category-card-border-radius,1rem)]',

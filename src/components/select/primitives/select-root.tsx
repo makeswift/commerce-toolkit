@@ -20,8 +20,8 @@ export function SelectRoot({
 }: SelectRootProps) {
   return (
     <div
+      aria-busy={pending}
       className={cn('group/select contents', className)}
-      data-pending={pending ? true : undefined}
       data-slot="select-root"
       data-variant={variant}
     >

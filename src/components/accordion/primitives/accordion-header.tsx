@@ -5,7 +5,7 @@ export type AccordionHeaderProps = ComponentProps<typeof AccordionPrimitive.Head
 
 export function AccordionHeader({ children, className, ...props }: AccordionHeaderProps) {
   return (
-    <AccordionPrimitive.Header className={className} {...props}>
+    <AccordionPrimitive.Header className={className} data-slot="accordion-header" {...props}>
       {children}
     </AccordionPrimitive.Header>
   );

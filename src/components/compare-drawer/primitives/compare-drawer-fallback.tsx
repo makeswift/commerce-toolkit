@@ -2,9 +2,9 @@ import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
-export type CompareDrawerFallbackProps = ComponentProps<'span'> & {
+export interface CompareDrawerFallbackProps extends ComponentProps<'span'> {
   children: string;
-};
+}
 
 export function CompareDrawerFallback({
   children,

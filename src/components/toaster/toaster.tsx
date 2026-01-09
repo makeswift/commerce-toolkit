@@ -1,7 +1,6 @@
 'use client';
 
-import { ComponentProps } from 'react';
-import type { ReactNode } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 import { Toaster as Sonner, toast as SonnerToast } from 'sonner';
 
 import { Alert } from '@/components/alert/alert';
@@ -22,20 +21,21 @@ interface ToastOptions {
   position?: ToasterProps['position'];
 }
 
-export const Toaster = ({ className, ...props }: ToasterProps) => {
+export function Toaster({ className, ...props }: ToasterProps) {
   return (
     <Sonner
       className={cn('flex w-full flex-col items-end', className)}
+      data-slot="toaster"
       toastOptions={{
         unstyled: true,
         classNames: {
-          toast: 'group focus-visible:ring-0 w-full',
+          toast: 'group w-full focus:outline-none',
         },
       }}
       {...props}
     />
   );
-};
+}
 
 export const toast = {
   success: (message: ReactNode, options?: ToastOptions) => {
@@ -93,7 +93,7 @@ export const toast = {
       <Alert
         dismiss={{
           label: options?.dismiss?.label ?? 'Dismiss',
-          onClick: () => options?.dismiss?.onClick ?? SonnerToast.dismiss(toastId),
+          onClick: () => SonnerToast.dismiss(toastId),
         }}
         message={message}
         variant="info"

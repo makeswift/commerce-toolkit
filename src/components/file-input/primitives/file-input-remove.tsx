@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentProps } from 'react';
 
 import { useFileInputItem } from '@/components/file-input';
@@ -21,7 +23,7 @@ export function FileInputRemove({ className, children, ...props }: FileInputRemo
         // Hover state
         'hover:bg-[var(--file-input-item-delete-hover,var(--contrast-100))]',
         // Focus-visible state
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--file-input-focus,var(--brand))]',
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--file-input-focus,var(--brand))]',
         className,
       )}
       data-slot="file-input-remove"

@@ -8,7 +8,10 @@ export type NavigationMenuListProps = ComponentProps<typeof NavigationMenuPrimit
 export function NavigationMenuList({ children, className, ...props }: NavigationMenuListProps) {
   return (
     <NavigationMenuPrimitive.List
-      className={cn('group flex w-full flex-1 list-none items-center justify-center', className)}
+      className={cn(
+        'group/navigation-menu-list flex w-full flex-1 list-none items-center justify-center',
+        className,
+      )}
       data-slot="navigation-menu-list"
       {...props}
     >

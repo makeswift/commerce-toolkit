@@ -11,7 +11,11 @@ export function LogoImage({ asChild = false, className, children, ...props }: Lo
   const Component = asChild ? Slot : 'img';
 
   return (
-    <Component className={cn('object-contain object-left', className)} {...props}>
+    <Component
+      className={cn('object-contain object-left', className)}
+      data-slot="logo-image"
+      {...props}
+    >
       {children}
     </Component>
   );

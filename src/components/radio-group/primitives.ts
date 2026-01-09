@@ -14,3 +14,11 @@ export {
   RadioGroupIndicator as Indicator,
   type RadioGroupIndicatorProps as IndicatorProps,
 } from '@/components/radio-group/primitives/radio-group-indicator';
+export {
+  RadioGroupFieldItem as FieldItem,
+  type RadioGroupFieldItemProps as FieldItemProps,
+} from '@/components/radio-group/primitives/radio-group-field-item';
+export {
+  RadioGroupLabel as Label,
+  type RadioGroupLabelProps as LabelProps,
+} from '@/components/radio-group/primitives/radio-group-label';

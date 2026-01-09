@@ -15,7 +15,7 @@ export function AlertAction({ children, ...props }: AlertActionProps) {
   const { label, onClick } = action;
 
   return (
-    <Button data-slot="alert-button" onClick={onClick} size="x-small" variant="ghost" {...props}>
+    <Button data-slot="alert-action" onClick={onClick} size="x-small" variant="ghost" {...props}>
       {label}
     </Button>
   );

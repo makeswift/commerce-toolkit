@@ -1,64 +1,86 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Image as ImageIcon } from 'lucide-react';
 
-import * as SkeletonPrimitive from '@/components/skeleton';
+import * as Skeleton from '@/components/skeleton';
 
-const meta = {
+const meta: Meta = {
   title: 'Components/Skeleton',
   parameters: {
     layout: 'padded',
+    docs: {
+      description: {
+        component: `
+A set of composable skeleton loading primitives for building loading states. Use these to create placeholder UIs while content is loading.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --skeleton: color-mix(in oklab, var(--contrast-300) 15%, transparent);
+}
+\`\`\`
+
+## Composable Anatomy
+
+The Skeleton component is composable-only. Combine the primitives to build custom loading states:
+
+\`\`\`tsx
+import * as Skeleton from '@/components/skeleton';
+import { Image } from 'lucide-react';
+
+<Skeleton.Root pending>
+  <Skeleton.Box className="h-40 w-full rounded" />
+  <Skeleton.Text characterCount={20} />
+  <Skeleton.Text characterCount="full" />
+  <Skeleton.Icon icon={<Image size={24} />} />
+</Skeleton.Root>
+\`\`\`
+
+### Primitives
+
+- \`Skeleton.Root\` - Container with \`pending\` prop for accessibility
+- \`Skeleton.Box\` - Generic rectangular placeholder
+- \`Skeleton.Text\` - Text placeholder with \`characterCount\` prop
+- \`Skeleton.Icon\` - Icon placeholder with \`icon\` prop
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
-  argTypes: {
-    pending: {
-      control: 'boolean',
-      description: 'When true, announces loading to screen readers',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    hideOverflow: {
-      control: 'boolean',
-      description: 'Hides overflow of the root container',
-      table: { defaultValue: { summary: 'false' } },
-    },
-  },
-} satisfies Meta;
+};
 
 export default meta;
+type Story = StoryObj;
 
-type Story = StoryObj<typeof meta>;
-
-export const Basics: Story = {
+// Default composable example
+export const Default: Story = {
   render: () => (
-    <div className="flex flex-col gap-4">
-      <SkeletonPrimitive.Root pending>
-        <SkeletonPrimitive.Box className="h-4 w-40 rounded" />
-      </SkeletonPrimitive.Root>
-      <SkeletonPrimitive.Root>
-        <SkeletonPrimitive.Text />
-        <SkeletonPrimitive.Text characterCount={20} />
-        <SkeletonPrimitive.Text characterCount="full" />
-      </SkeletonPrimitive.Root>
-      <SkeletonPrimitive.Root>
-        <SkeletonPrimitive.Icon icon={<ImageIcon size={24} />} />
-      </SkeletonPrimitive.Root>
-    </div>
+    <Skeleton.Root pending>
+      <Skeleton.Box className="h-40 w-64 rounded" />
+      <div className="mt-3 space-y-2">
+        <Skeleton.Text characterCount={15} />
+        <Skeleton.Text characterCount={10} />
+      </div>
+    </Skeleton.Root>
   ),
 };
 
-export const DarkBackground: Story = {
-  decorators: [
-    (Story) => (
-      <div className="rounded-lg bg-foreground p-8">
-        <Story />
-      </div>
-    ),
-  ],
-  parameters: { backgrounds: { default: 'dark' } },
+// Text variations
+export const TextVariations: Story = {
   render: () => (
-    <SkeletonPrimitive.Root className="w-64 space-y-2" pending>
-      <SkeletonPrimitive.Box className="h-4 w-40 rounded" />
-      <SkeletonPrimitive.Text characterCount={20} className="rounded" />
-      <SkeletonPrimitive.Icon className="h-6 w-6" icon={<ImageIcon size={24} />} />
-    </SkeletonPrimitive.Root>
+    <Skeleton.Root className="space-y-2">
+      <Skeleton.Text characterCount={10} />
+      <Skeleton.Text characterCount={20} />
+      <Skeleton.Text characterCount="full" />
+    </Skeleton.Root>
+  ),
+};
+
+// With icon
+export const WithIcon: Story = {
+  render: () => (
+    <Skeleton.Root>
+      <Skeleton.Icon icon={<ImageIcon size={48} />} />
+    </Skeleton.Root>
   ),
 };

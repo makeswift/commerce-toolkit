@@ -71,3 +71,15 @@ export {
   FileInputIcon as Icon,
   type FileInputIconProps as IconProps,
 } from '@/components/file-input/primitives/file-input-icon';
+export {
+  FileInputUploadIcon as UploadIcon,
+  type FileInputUploadIconProps as UploadIconProps,
+} from '@/components/file-input/primitives/file-input-upload-icon';
+export {
+  FileInputRemoveIcon as RemoveIcon,
+  type FileInputRemoveIconProps as RemoveIconProps,
+} from '@/components/file-input/primitives/file-input-remove-icon';
+export {
+  FileInputLabel as Label,
+  type FileInputLabelProps as LabelProps,
+} from '@/components/file-input/primitives/file-input-label';

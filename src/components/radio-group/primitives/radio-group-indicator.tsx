@@ -1,3 +1,5 @@
+'use client';
+
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import type { ComponentProps } from 'react';
 
@@ -9,11 +11,7 @@ export function RadioGroupIndicator({ className, children, ...props }: RadioGrou
   return (
     <RadioGroupPrimitive.Indicator
       className={cn(
-        // Base layout
-        'relative flex h-full w-full items-center justify-center',
-        // After pseudo-element (indicator dot)
-        'after:block after:h-3 after:w-3 after:rounded-full',
-        'after:bg-[var(--radio-group-light-indicator-background,var(--foreground))]',
+        'relative flex size-full items-center justify-center after:block after:size-3 after:rounded-full after:bg-[var(--radio-group-light-indicator-background,var(--foreground))]',
         className,
       )}
       data-slot="radio-group-indicator"

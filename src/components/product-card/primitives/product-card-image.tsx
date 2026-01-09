@@ -18,7 +18,9 @@ export function ProductCardImage({
   return (
     <Component
       className={cn(
-        'h-full w-full scale-100 select-none bg-[var(--product-card-light-background,var(--contrast-100))] object-cover transition-transform duration-500 ease-out group-hover:scale-110',
+        'size-full scale-100 select-none bg-[var(--product-card-light-background,var(--contrast-100))] object-cover transition-transform duration-500 ease-out',
+        // Group hover state
+        'group-hover/product-card:scale-110',
         className,
       )}
       data-slot="product-card-image"

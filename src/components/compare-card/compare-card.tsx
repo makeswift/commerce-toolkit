@@ -1,15 +1,11 @@
 import { Fragment } from 'react';
 
 import * as CompareCardPrimitive from '@/components/compare-card';
-import { ProductCard } from '@/components/product-card';
 import type { ProductCardProps } from '@/components/product-card';
-import { Reveal } from '@/index';
 
 export interface CompareCardProps {
   className?: string;
-  product: ProductCardProps['product'];
-  cartAction?: ProductCardProps['cartAction'];
-  compareAction?: ProductCardProps['compareAction'];
+  productCard: Omit<ProductCardProps, 'className'>;
   description?: string;
   descriptionLabel?: string;
   emptyDescriptionLabel?: string;
@@ -35,9 +31,7 @@ export interface CompareCardProps {
  */
 export function CompareCard({
   className,
-  product,
-  cartAction,
-  compareAction,
+  productCard,
   description,
   descriptionLabel = 'Description',
   emptyDescriptionLabel = 'There is no description available.',
@@ -48,18 +42,18 @@ export function CompareCard({
   return (
     <CompareCardPrimitive.Root className={className}>
       <CompareCardPrimitive.Product>
-        <ProductCard cartAction={cartAction} compareAction={compareAction} product={product} />
+        <CompareCardPrimitive.ProductCard {...productCard} />
       </CompareCardPrimitive.Product>
       <CompareCardPrimitive.Description>
         <CompareCardPrimitive.DescriptionLabel>
           {descriptionLabel}
         </CompareCardPrimitive.DescriptionLabel>
         {description != null ? (
-          <Reveal>
+          <CompareCardPrimitive.Reveal>
             <CompareCardPrimitive.DescriptionContent>
               {description}
             </CompareCardPrimitive.DescriptionContent>
-          </Reveal>
+          </CompareCardPrimitive.Reveal>
         ) : (
           <CompareCardPrimitive.DescriptionEmpty>
             {emptyDescriptionLabel}
@@ -69,7 +63,7 @@ export function CompareCard({
       <CompareCardPrimitive.Specs>
         <CompareCardPrimitive.SpecsLabel>{specsLabel}</CompareCardPrimitive.SpecsLabel>
         {specs ? (
-          <Reveal>
+          <CompareCardPrimitive.Reveal>
             <CompareCardPrimitive.SpecsList>
               {specs.map(({ name, value }, index) => (
                 <Fragment key={index}>
@@ -80,7 +74,7 @@ export function CompareCard({
                 </Fragment>
               ))}
             </CompareCardPrimitive.SpecsList>
-          </Reveal>
+          </CompareCardPrimitive.Reveal>
         ) : (
           <CompareCardPrimitive.SpecsEmpty>{emptySpecsLabel}</CompareCardPrimitive.SpecsEmpty>
         )}

@@ -8,11 +8,7 @@ export type ButtonRadioGroupRootProps = ComponentProps<typeof RadioGroupPrimitiv
 export function ButtonRadioGroupRoot({ children, className, ...props }: ButtonRadioGroupRootProps) {
   return (
     <RadioGroupPrimitive.Root
-      className={cn(
-        // Base layout
-        'flex flex-wrap gap-2',
-        className,
-      )}
+      className={cn('flex flex-wrap gap-2', className)}
       data-slot="button-radio-group-root"
       {...props}
     >

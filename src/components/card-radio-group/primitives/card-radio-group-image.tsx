@@ -17,5 +17,11 @@ export function CardRadioGroupImage({
 }: CardRadioGroupImageProps) {
   const Component = asChild ? Slot : 'img';
 
-  return <Component className={cn('bg-background object-fill', className)} {...props} />;
+  return (
+    <Component
+      className={cn('bg-background object-fill', className)}
+      data-slot="card-radio-group-image"
+      {...props}
+    />
+  );
 }

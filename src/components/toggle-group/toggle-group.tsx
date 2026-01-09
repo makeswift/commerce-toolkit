@@ -33,7 +33,7 @@ export type ToggleGroupProps = ComponentProps<typeof ToggleGroupPrimitive.Root> 
  * }
  * ```
  */
-export const ToggleGroup = ({ options, ...props }: ToggleGroupProps) => {
+export function ToggleGroup({ options, ...props }: ToggleGroupProps) {
   return (
     <ToggleGroupPrimitive.Root {...props}>
       {options.map(({ label, value, id, disabled }) => (
@@ -49,4 +49,4 @@ export const ToggleGroup = ({ options, ...props }: ToggleGroupProps) => {
       ))}
     </ToggleGroupPrimitive.Root>
   );
-};
+}

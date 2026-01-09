@@ -9,12 +9,11 @@ export function DatePickerContent({ children, className, ...props }: DatePickerC
   return (
     <PopoverPrimitive.Content
       className={cn(
-        // Base layout
         'z-50',
-        // Closed state
-        'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
         // Open state
         'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
+        // Closed state
+        'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
         className,
       )}
       data-slot="date-picker-content"

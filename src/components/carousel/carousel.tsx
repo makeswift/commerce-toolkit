@@ -1,6 +1,5 @@
 'use client';
 
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { ComponentProps, ReactNode } from 'react';
 
 import * as CarouselPrimitive from '@/components/carousel';
@@ -9,6 +8,14 @@ export type CarouselProps = ComponentProps<typeof CarouselPrimitive.Root> & {
   items: ReactNode[];
   showScrollbar?: boolean;
   showNav?: boolean;
+  prevIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  nextIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 };
 
 /**
@@ -30,6 +37,8 @@ export function Carousel({
   items,
   showScrollbar = true,
   showNav = true,
+  prevIcon,
+  nextIcon,
   ...props
 }: CarouselProps) {
   return (
@@ -46,10 +55,14 @@ export function Carousel({
         {showNav && (
           <CarouselPrimitive.Nav>
             <CarouselPrimitive.Prev>
-              <ArrowLeft absoluteStrokeWidth className="h-6 w-6" strokeWidth={1.5} />
+              <CarouselPrimitive.PrevIcon asChild={prevIcon?.asChild}>
+                {prevIcon?.children}
+              </CarouselPrimitive.PrevIcon>
             </CarouselPrimitive.Prev>
             <CarouselPrimitive.Next>
-              <ArrowRight absoluteStrokeWidth className="h-6 w-6" strokeWidth={1.5} />
+              <CarouselPrimitive.NextIcon asChild={nextIcon?.asChild}>
+                {nextIcon?.children}
+              </CarouselPrimitive.NextIcon>
             </CarouselPrimitive.Next>
           </CarouselPrimitive.Nav>
         )}

@@ -13,7 +13,9 @@ export function BlogPostCardLink({ asChild = false, className, ...props }: BlogP
   return (
     <Component
       className={cn(
-        'absolute inset-0 rounded-b-lg rounded-t-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--blog-post-card-focus,var(--brand))] focus-visible:ring-offset-4',
+        'absolute inset-0 rounded-b-lg rounded-t-2xl',
+        // Focus-visible state
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--blog-post-card-focus,var(--brand))]',
         className,
       )}
       data-slot="blog-post-card-link"

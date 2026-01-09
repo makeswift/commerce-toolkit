@@ -1,20 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ComponentType, ReactNode } from 'react';
+import type { ComponentType } from 'react';
 import { useState } from 'react';
 
-import { Checkbox } from '@/components/checkbox';
-import { CheckboxGroup } from '@/components/checkbox-group/checkbox-group';
+import { CheckboxGroup, type CheckboxGroupProps } from '@/components/checkbox-group/checkbox-group';
 import * as CheckboxGroupPrimitive from '@/components/checkbox-group/primitives';
-import * as Field from '@/components/field';
-
-// Wrapper component for stories to avoid complex type issues
-interface CheckboxGroupStoryProps {
-  children?: ReactNode;
-}
-
-function CheckboxGroupStory({ children, ...props }: CheckboxGroupStoryProps) {
-  return <CheckboxGroupPrimitive.Root {...props}>{children}</CheckboxGroupPrimitive.Root>;
-}
 
 const categoryOptions = [
   { value: 'brushes', label: 'Brushes & Scrubbers', id: 'cat-brushes' },
@@ -23,22 +12,9 @@ const categoryOptions = [
   { value: 'towels', label: 'Towels & Linens', id: 'cat-towels' },
 ];
 
-const notificationOptions = [
-  { value: 'email', label: 'Email notifications', id: 'notify-email' },
-  { value: 'sms', label: 'SMS notifications', id: 'notify-sms' },
-  { value: 'push', label: 'Push notifications', id: 'notify-push' },
-];
-
-const featureOptions = [
-  { value: 'eco', label: 'Eco-friendly materials', id: 'feature-eco' },
-  { value: 'reusable', label: 'Reusable', id: 'feature-reusable' },
-  { value: 'biodegradable', label: 'Biodegradable', id: 'feature-biodegradable' },
-  { value: 'plastic-free', label: 'Plastic-free packaging', id: 'feature-plastic-free' },
-];
-
-const meta: Meta<typeof CheckboxGroupStory> = {
+const meta: Meta<typeof CheckboxGroup> = {
   title: 'Components/CheckboxGroup',
-  component: CheckboxGroupStory,
+  component: CheckboxGroup,
   parameters: {
     layout: 'centered',
     docs: {
@@ -76,7 +52,7 @@ The CheckboxGroup uses the Checkbox component internally, which supports theming
 The \`CheckboxGroup\` component provides a controlled API with an \`options\` array:
 
 \`\`\`tsx
-import { CheckboxGroup } from '@/components/checkbox-group/checkbox-group';
+import { CheckboxGroup } from '@/components/checkbox-group';
 import { useState } from 'react';
 
 const options = [
@@ -100,22 +76,20 @@ function MyComponent() {
 
 ### Composable Anatomy
 
-For more control, use the primitive components with \`Field.Item\`:
+For more control, use the primitive components:
 
 \`\`\`tsx
 import * as CheckboxGroup from '@/components/checkbox-group';
-import { Checkbox } from '@/components/checkbox';
-import * as Field from '@/components/field';
 
 <CheckboxGroup.Root>
-  <Field.Item orientation="horizontal">
-    <Checkbox id="email" value="email" checked={selected.includes('email')} />
-    <Field.Label htmlFor="email">Email notifications</Field.Label>
-  </Field.Item>
-  <Field.Item orientation="horizontal">
-    <Checkbox id="sms" value="sms" checked={selected.includes('sms')} />
-    <Field.Label htmlFor="sms">SMS notifications</Field.Label>
-  </Field.Item>
+  <CheckboxGroup.FieldItem>
+    <CheckboxGroup.Checkbox id="email" value="email" checked={selected.includes('email')} />
+    <CheckboxGroup.Label htmlFor="email">Email notifications</CheckboxGroup.Label>
+  </CheckboxGroup.FieldItem>
+  <CheckboxGroup.FieldItem>
+    <CheckboxGroup.Checkbox id="sms" value="sms" checked={selected.includes('sms')} />
+    <CheckboxGroup.Label htmlFor="sms">SMS notifications</CheckboxGroup.Label>
+  </CheckboxGroup.FieldItem>
 </CheckboxGroup.Root>
 \`\`\`
         `,
@@ -123,6 +97,18 @@ import * as Field from '@/components/field';
     },
   },
   tags: ['autodocs'],
+  argTypes: {
+    options: {
+      description:
+        'Array of options with value, label, id, optional disabled flag, and optional icon',
+    },
+    value: {
+      description: 'Array of selected option values (controlled)',
+    },
+    onValueChange: {
+      description: 'Callback when the selected values change',
+    },
+  },
   decorators: [
     (Story: ComponentType) => (
       <div className="flex items-center justify-center p-8">
@@ -133,43 +119,19 @@ import * as Field from '@/components/field';
 };
 
 export default meta;
+type Story = StoryObj<CheckboxGroupProps>;
 
-type Story = StoryObj<typeof meta>;
-
+// Default example
 export const Default: Story = {
-  args: {},
   render: () => {
     const [selected, setSelected] = useState<string[]>(['brushes']);
 
     return <CheckboxGroup onValueChange={setSelected} options={categoryOptions} value={selected} />;
   },
-  parameters: {
-    docs: {
-      description: {
-        story: 'The default CheckboxGroup allowing multiple selections.',
-      },
-    },
-  },
 };
 
-export const WithMultipleSelected: Story = {
-  args: {},
-  render: () => {
-    const [selected, setSelected] = useState<string[]>(['eco', 'reusable', 'biodegradable']);
-
-    return <CheckboxGroup onValueChange={setSelected} options={featureOptions} value={selected} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'CheckboxGroup with multiple options pre-selected.',
-      },
-    },
-  },
-};
-
+// Disabled items
 export const DisabledItems: Story = {
-  args: {},
   render: () => {
     const [selected, setSelected] = useState<string[]>(['email']);
 
@@ -186,63 +148,19 @@ export const DisabledItems: Story = {
 
     return <CheckboxGroup onValueChange={setSelected} options={options} value={selected} />;
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Individual items can be disabled while others remain interactive. Useful for unavailable options.',
-      },
-    },
-  },
 };
 
+// Controlled example
 export const Controlled: Story = {
-  args: {},
   render: () => {
     const [selected, setSelected] = useState<string[]>(['brushes', 'sponges']);
 
-    return (
-      <div className="space-y-4">
-        <CheckboxGroup onValueChange={setSelected} options={categoryOptions} value={selected} />
-        <div className="rounded-lg bg-contrast-100 p-3 text-sm">
-          <span className="font-medium text-contrast-500">Selected:</span>{' '}
-          <span className="text-foreground">
-            {selected.length > 0
-              ? selected.map((v) => categoryOptions.find((o) => o.value === v)?.label).join(', ')
-              : 'None'}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <button
-            className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-background transition-colors hover:bg-brand/90"
-            onClick={() => setSelected(categoryOptions.map((o) => o.value))}
-            type="button"
-          >
-            Select All
-          </button>
-          <button
-            className="rounded-lg bg-contrast-200 px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-contrast-300"
-            onClick={() => setSelected([])}
-            type="button"
-          >
-            Clear All
-          </button>
-        </div>
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use `value` and `onValueChange` for controlled state management. The value is always an array of selected option values.',
-      },
-    },
+    return <CheckboxGroup onValueChange={setSelected} options={categoryOptions} value={selected} />;
   },
 };
 
+// Composable anatomy example
 export const ComposableAnatomy: Story = {
-  args: {},
   render: () => {
     const [selected, setSelected] = useState<string[]>(['email']);
 
@@ -252,84 +170,40 @@ export const ComposableAnatomy: Story = {
 
     return (
       <CheckboxGroupPrimitive.Root>
-        <Field.Item orientation="horizontal">
-          <Checkbox
+        <CheckboxGroupPrimitive.FieldItem>
+          <CheckboxGroupPrimitive.Checkbox
             checked={selected.includes('email')}
             id="email-notif"
             onCheckedChange={(checked) => handleChange('email', Boolean(checked))}
             value="email"
           />
-          <Field.Label htmlFor="email-notif">Email notifications</Field.Label>
-        </Field.Item>
-        <Field.Item orientation="horizontal">
-          <Checkbox
+          <CheckboxGroupPrimitive.Label htmlFor="email-notif">
+            Email notifications
+          </CheckboxGroupPrimitive.Label>
+        </CheckboxGroupPrimitive.FieldItem>
+        <CheckboxGroupPrimitive.FieldItem>
+          <CheckboxGroupPrimitive.Checkbox
             checked={selected.includes('sms')}
             id="sms-notif"
             onCheckedChange={(checked) => handleChange('sms', Boolean(checked))}
             value="sms"
           />
-          <Field.Label htmlFor="sms-notif">SMS notifications</Field.Label>
-        </Field.Item>
-        <Field.Item orientation="horizontal">
-          <Checkbox
+          <CheckboxGroupPrimitive.Label htmlFor="sms-notif">
+            SMS notifications
+          </CheckboxGroupPrimitive.Label>
+        </CheckboxGroupPrimitive.FieldItem>
+        <CheckboxGroupPrimitive.FieldItem>
+          <CheckboxGroupPrimitive.Checkbox
             checked={selected.includes('push')}
             id="push-notif"
             onCheckedChange={(checked) => handleChange('push', Boolean(checked))}
             value="push"
           />
-          <Field.Label htmlFor="push-notif">Push notifications</Field.Label>
-        </Field.Item>
+          <CheckboxGroupPrimitive.Label htmlFor="push-notif">
+            Push notifications
+          </CheckboxGroupPrimitive.Label>
+        </CheckboxGroupPrimitive.FieldItem>
       </CheckboxGroupPrimitive.Root>
     );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Using the primitive components with `Field.Item` for full control over the checkbox group structure.',
-      },
-    },
-  },
-};
-
-export const ProductFilters: Story = {
-  args: {},
-  render: () => {
-    const [selected, setSelected] = useState<string[]>(['eco']);
-
-    return (
-      <div className="space-y-3">
-        <label className="text-sm font-medium text-foreground">Filter by Features</label>
-        <CheckboxGroup onValueChange={setSelected} options={featureOptions} value={selected} />
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'CheckboxGroup works well for product filtering in e-commerce.',
-      },
-    },
-  },
-};
-
-export const NotificationSettings: Story = {
-  args: {},
-  render: () => {
-    const [selected, setSelected] = useState<string[]>(['email', 'push']);
-
-    return (
-      <div className="space-y-3">
-        <label className="text-sm font-medium text-foreground">Notification Preferences</label>
-        <CheckboxGroup onValueChange={setSelected} options={notificationOptions} value={selected} />
-      </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Notification preference selection for user settings.',
-      },
-    },
   },
 };

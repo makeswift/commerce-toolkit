@@ -1,14 +1,16 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
-import { Checkbox } from '@/components/checkbox';
 import * as CheckboxGroupPrimitive from '@/components/checkbox-group';
-import * as Field from '@/components/field';
 
 interface Option {
   value: string;
   label: string;
   disabled?: boolean;
   id: string;
+  icon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 export type CheckboxGroupProps = ComponentProps<typeof CheckboxGroupPrimitive.Root> & {
@@ -17,6 +19,11 @@ export type CheckboxGroupProps = ComponentProps<typeof CheckboxGroupPrimitive.Ro
   onValueChange: (value: string[]) => void;
 };
 
+/**
+ * This component uses the Checkbox component internally, which supports theming through CSS variables:
+ *
+ * @see Checkbox for the full list of CSS variables.
+ */
 export function CheckboxGroup({
   className,
   options,
@@ -26,11 +33,12 @@ export function CheckboxGroup({
 }: CheckboxGroupProps) {
   return (
     <CheckboxGroupPrimitive.Root className={className} {...props}>
-      {options.map(({ value: optionValue, id, disabled, label }) => (
-        <Field.Item key={optionValue} orientation="horizontal">
-          <Checkbox
+      {options.map(({ value: optionValue, id, disabled, label, icon }) => (
+        <CheckboxGroupPrimitive.FieldItem key={optionValue}>
+          <CheckboxGroupPrimitive.Checkbox
             checked={value.includes(optionValue)}
             disabled={disabled}
+            icon={icon}
             id={id}
             onCheckedChange={(checked) =>
               onValueChange(
@@ -39,8 +47,8 @@ export function CheckboxGroup({
             }
             value={optionValue}
           />
-          <Field.Label htmlFor={id}>{label}</Field.Label>
-        </Field.Item>
+          <CheckboxGroupPrimitive.Label htmlFor={id}>{label}</CheckboxGroupPrimitive.Label>
+        </CheckboxGroupPrimitive.FieldItem>
       ))}
     </CheckboxGroupPrimitive.Root>
   );

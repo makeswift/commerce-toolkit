@@ -1,11 +1,7 @@
 export {
-  BannerProvider as Provider,
-  type BannerProviderProps as ProviderProps,
-  useBanner,
-} from '@/components/banner/primitives/banner-provider';
-export {
   BannerRoot as Root,
   type BannerRootProps as RootProps,
+  useBanner,
 } from '@/components/banner/primitives/banner-root';
 export {
   BannerContent as Content,

@@ -1,21 +1,85 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Sliders } from 'lucide-react';
+import { Sliders, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { Button } from '@/components/button';
 import { SidePanel, type SidePanelProps } from '@/components/side-panel';
+import * as SidePanelPrimitive from '@/components/side-panel/primitives';
 
-const meta = {
+const meta: Meta<typeof SidePanel> = {
   title: 'Components/SidePanel',
   component: SidePanel,
   parameters: {
     layout: 'fullscreen',
-  },
-  decorators: [
-    (Story) => {
-      return <Story />;
+    docs: {
+      description: {
+        component: `
+A slide-out panel component for displaying supplementary content like filters, settings, or navigation. Built on Radix UI Dialog primitives.
+
+## CSS Variables
+
+\`\`\`css
+:root {
+  --side-panel-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
+  --side-panel-background: var(--background);
+  --side-panel-title-text: var(--foreground);
+  --side-panel-title-font-family: var(--font-family-heading);
+  --side-panel-content-font-family: var(--font-family-body);
+}
+\`\`\`
+
+## Usage
+
+### High-Level Component
+
+The \`SidePanel\` component provides a simple API with a trigger and content:
+
+\`\`\`tsx
+import { SidePanel } from '@/components/side-panel';
+import { Button } from '@/components/button';
+
+<SidePanel
+  title="Filters"
+  trigger={<Button>Open Filters</Button>}
+>
+  <p>Your filter content here.</p>
+</SidePanel>
+\`\`\`
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as SidePanel from '@/components/side-panel';
+import { Button } from '@/components/button';
+import { X } from 'lucide-react';
+
+<SidePanel.Root>
+  <SidePanel.Trigger asChild>
+    <Button>Open Panel</Button>
+  </SidePanel.Trigger>
+  <SidePanel.Portal>
+    <SidePanel.Overlay>
+      <SidePanel.Content>
+        <SidePanel.Header>
+          <SidePanel.Title>Panel Title</SidePanel.Title>
+          <SidePanel.CloseButton icon={{ children: <X size={20} /> }} />
+        </SidePanel.Header>
+        <SidePanel.ScrollArea>
+          <SidePanel.Body>
+            <p>Panel content goes here.</p>
+          </SidePanel.Body>
+        </SidePanel.ScrollArea>
+      </SidePanel.Content>
+    </SidePanel.Overlay>
+  </SidePanel.Portal>
+</SidePanel.Root>
+\`\`\`
+        `,
+      },
     },
-  ],
+  },
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -24,18 +88,21 @@ const meta = {
     },
     children: {
       control: false,
-      description: 'Content to display in the side panel',
+      description: 'Content to display in the side panel body',
     },
     trigger: {
       control: false,
       description: 'Trigger element that opens the side panel',
     },
+    container: {
+      control: false,
+      description: 'Optional container element for the portal',
+    },
   },
-} satisfies Meta<typeof SidePanel>;
+};
 
 export default meta;
-
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<SidePanelProps>;
 
 function SidePanelWrapper({ ...props }: SidePanelProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,18 +116,16 @@ function SidePanelWrapper({ ...props }: SidePanelProps) {
     <div className="relative flex min-h-[400px] flex-col" ref={containerRef}>
       <div className="flex-1 bg-contrast-100 p-8">
         <SidePanel {...props} container={container} />
-        <p className="mt-4 text-sm text-contrast-400">
-          Page content area - the side panel opens within this container.
-        </p>
       </div>
     </div>
   );
 }
 
+// Default side panel
 export const Default: Story = {
   args: {
     title: 'Filters',
-    children: <p className="text-lg text-contrast-400">This is the side panel content.</p>,
+    children: <p className="text-contrast-400">Side panel content goes here.</p>,
     trigger: (
       <Button size="medium" variant="primary">
         <Sliders size={20} />
@@ -71,94 +136,47 @@ export const Default: Story = {
   render: (args) => <SidePanelWrapper {...args} />,
 };
 
-export const Scrollable: Story = {
-  args: {
-    title: 'Filters',
-    trigger: (
-      <Button size="medium" variant="primary">
-        <Sliders size={20} />
-        Filters
-      </Button>
-    ),
-    children: (
-      <div className="space-y-6">
-        <div>
-          <h3 className="mb-3 font-semibold">Category</h3>
-          <div className="space-y-2">
-            {['Jackets', 'Shirts', 'Pants', 'Shoes', 'Accessories'].map((item) => (
-              <label className="flex items-center gap-2" key={item}>
-                <input className="size-4" type="checkbox" />
-                <span className="text-contrast-500">{item}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="mb-3 font-semibold">Size</h3>
-          <div className="space-y-2">
-            {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map((size) => (
-              <label className="flex items-center gap-2" key={size}>
-                <input className="size-4" type="checkbox" />
-                <span className="text-contrast-500">{size}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="mb-3 font-semibold">Color</h3>
-          <div className="space-y-2">
-            {['Black', 'White', 'Navy', 'Gray', 'Brown', 'Beige', 'Red', 'Blue'].map((color) => (
-              <label className="flex items-center gap-2" key={color}>
-                <input className="size-4" type="checkbox" />
-                <span className="text-contrast-500">{color}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="mb-3 font-semibold">Price Range</h3>
-          <div className="space-y-2">
-            {['Under $50', '$50 - $100', '$100 - $200', '$200 - $500', 'Over $500'].map((range) => (
-              <label className="flex items-center gap-2" key={range}>
-                <input className="size-4" type="checkbox" />
-                <span className="text-contrast-500">{range}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="mb-3 font-semibold">Brand</h3>
-          <div className="space-y-2">
-            {[
-              'Nike',
-              'Adidas',
-              'Puma',
-              'New Balance',
-              'Converse',
-              'Vans',
-              'Reebok',
-              'Under Armour',
-            ].map((brand) => (
-              <label className="flex items-center gap-2" key={brand}>
-                <input className="size-4" type="checkbox" />
-                <span className="text-contrast-500">{brand}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 className="mb-3 font-semibold">Material</h3>
-          <div className="space-y-2">
-            {['Cotton', 'Polyester', 'Wool', 'Leather', 'Denim', 'Silk'].map((material) => (
-              <label className="flex items-center gap-2" key={material}>
-                <input className="size-4" type="checkbox" />
-                <span className="text-contrast-500">{material}</span>
-              </label>
-            ))}
-          </div>
+// Composable anatomy example
+export const ComposableAnatomy: Story = {
+  render: () => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [container, setContainer] = useState<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      setContainer(containerRef.current);
+    }, []);
+
+    return (
+      <div className="relative flex min-h-[400px] flex-col" ref={containerRef}>
+        <div className="flex-1 bg-contrast-100 p-8">
+          <SidePanelPrimitive.Root>
+            <SidePanelPrimitive.Trigger asChild>
+              <Button size="medium" variant="primary">
+                Open Panel
+              </Button>
+            </SidePanelPrimitive.Trigger>
+            <SidePanelPrimitive.Portal container={container}>
+              <SidePanelPrimitive.Overlay>
+                <SidePanelPrimitive.Content>
+                  <SidePanelPrimitive.Header>
+                    <SidePanelPrimitive.Title>Custom Panel</SidePanelPrimitive.Title>
+                    <SidePanelPrimitive.CloseButton
+                      icon={{ children: <X size={20} strokeWidth={1} /> }}
+                    />
+                  </SidePanelPrimitive.Header>
+                  <SidePanelPrimitive.ScrollArea>
+                    <SidePanelPrimitive.Body>
+                      <p className="text-contrast-400">
+                        Using primitives for custom panel layouts.
+                      </p>
+                    </SidePanelPrimitive.Body>
+                  </SidePanelPrimitive.ScrollArea>
+                </SidePanelPrimitive.Content>
+              </SidePanelPrimitive.Overlay>
+            </SidePanelPrimitive.Portal>
+          </SidePanelPrimitive.Root>
         </div>
       </div>
-    ),
+    );
   },
-  render: (args) => <SidePanelWrapper {...args} />,
 };

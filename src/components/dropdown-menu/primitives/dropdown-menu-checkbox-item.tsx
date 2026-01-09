@@ -1,12 +1,16 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { Check } from 'lucide-react';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
+import { DropdownMenuCheckboxIndicator } from '@/components/dropdown-menu/primitives/dropdown-menu-checkbox-indicator';
 import { cn } from '@/lib';
 
 export interface DropdownMenuCheckboxItemProps
   extends ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> {
   variant?: 'default' | 'danger';
+  indicator?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 export function DropdownMenuCheckboxItem({
@@ -14,6 +18,7 @@ export function DropdownMenuCheckboxItem({
   variant = 'default',
   children,
   checked,
+  indicator,
   ...props
 }: DropdownMenuCheckboxItemProps) {
   return (
@@ -39,7 +44,9 @@ export function DropdownMenuCheckboxItem({
         {children}
         <span className="flex size-6 items-center justify-center">
           <DropdownMenuPrimitive.ItemIndicator>
-            <Check absoluteStrokeWidth size={16} strokeWidth={1.5} />
+            <DropdownMenuCheckboxIndicator asChild={indicator?.asChild}>
+              {indicator?.children}
+            </DropdownMenuCheckboxIndicator>
           </DropdownMenuPrimitive.ItemIndicator>
         </span>
       </div>

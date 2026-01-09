@@ -1,10 +1,26 @@
+import { cva, type VariantProps } from 'class-variance-authority';
 import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
 
-export interface SpinnerProps extends ComponentProps<'span'> {
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-}
+const spinnerVariants = cva(
+  'box-border inline-block animate-spin rounded-full border-[var(--spinner-base,var(--contrast-100))] [border-bottom-color:var(--spinner-ring,color-mix(in_oklab,var(--brand),black_75%))]',
+  {
+    variants: {
+      size: {
+        xs: 'size-5 border-2',
+        sm: 'size-6 border-2',
+        md: 'size-10 border-[3px]',
+        lg: 'size-14 border-4',
+      },
+    },
+    defaultVariants: {
+      size: 'sm',
+    },
+  },
+);
+
+export type SpinnerProps = ComponentProps<'span'> & VariantProps<typeof spinnerVariants>;
 
 /**
  * This component supports various CSS variables for theming. Here's a comprehensive list, along
@@ -17,20 +33,12 @@ export interface SpinnerProps extends ComponentProps<'span'> {
  * }
  * ```
  */
-export function Spinner({ className, size = 'sm', ...props }: SpinnerProps) {
+export function Spinner({ className, size, ...props }: SpinnerProps) {
   return (
     <span
       aria-label="Loading..."
-      className={cn(
-        'box-border inline-block animate-spin rounded-full border-[var(--spinner-base,var(--contrast-100))] [border-bottom-color:var(--spinner-ring,color-mix(in_oklab,var(--brand),black_75%))]',
-        {
-          xs: 'h-5 w-5 border-2',
-          sm: 'h-6 w-6 border-2',
-          md: 'h-10 w-10 border-[3px]',
-          lg: 'h-14 w-14 border-4',
-        }[size],
-        className,
-      )}
+      className={cn(spinnerVariants({ size }), className)}
+      data-slot="spinner"
       role="status"
       {...props}
     />

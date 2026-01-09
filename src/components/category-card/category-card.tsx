@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 import * as CategoryCardPrimitive from '@/components/category-card';
 
@@ -7,10 +7,18 @@ export interface CategoryCardContent {
   image?: {
     src: string;
     alt: string;
+    asChild?: boolean;
+    children?: ReactNode;
   };
   link: {
     href: string;
     ariaLabel: string;
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  icon?: {
+    asChild?: boolean;
+    children?: ReactNode;
   };
 }
 
@@ -47,6 +55,7 @@ export function CategoryCard({
   title,
   image,
   link,
+  icon,
   aspectRatio = '5/6',
   textPosition = 'outside',
   textSize = 'small',
@@ -59,12 +68,14 @@ export function CategoryCard({
       showOverlay={showOverlay}
       textSize={textSize}
     >
-      <CategoryCardPrimitive.Icon>
-        <ArrowUpRight absoluteStrokeWidth strokeWidth={1.5} />
+      <CategoryCardPrimitive.Icon asChild={icon?.asChild}>
+        {icon?.children}
       </CategoryCardPrimitive.Icon>
       <CategoryCardPrimitive.Thumbnail>
         {image ? (
-          <CategoryCardPrimitive.Image alt={image.alt} src={image.src} />
+          <CategoryCardPrimitive.Image alt={image.alt} asChild={image.asChild} src={image.src}>
+            {image.children}
+          </CategoryCardPrimitive.Image>
         ) : (
           <CategoryCardPrimitive.Fallback>{title}</CategoryCardPrimitive.Fallback>
         )}
@@ -77,7 +88,13 @@ export function CategoryCard({
       {textPosition === 'outside' && (
         <CategoryCardPrimitive.Title>{title}</CategoryCardPrimitive.Title>
       )}
-      <CategoryCardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />
+      <CategoryCardPrimitive.Link
+        aria-label={link.ariaLabel}
+        asChild={link.asChild}
+        href={link.href}
+      >
+        {link.children}
+      </CategoryCardPrimitive.Link>
     </CategoryCardPrimitive.Root>
   );
 }

@@ -34,3 +34,11 @@ export {
   SidePanelClose as Close,
   type SidePanelCloseProps as CloseProps,
 } from '@/components/side-panel/primitives/side-panel-close';
+export {
+  SidePanelCloseButton as CloseButton,
+  type SidePanelCloseButtonProps as CloseButtonProps,
+} from '@/components/side-panel/primitives/side-panel-close-button';
+export {
+  SidePanelScrollArea as ScrollArea,
+  type SidePanelScrollAreaProps as ScrollAreaProps,
+} from '@/components/side-panel/primitives/side-panel-scroll-area';

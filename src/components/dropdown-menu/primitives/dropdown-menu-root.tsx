@@ -40,9 +40,7 @@ export function DropdownMenuRoot({
 
   return (
     <DropdownMenuContext.Provider value={contextValues}>
-      <DropdownMenuPrimitive.Root data-slot="dropdown-menu-root" {...props}>
-        {children}
-      </DropdownMenuPrimitive.Root>
+      <DropdownMenuPrimitive.Root {...props}>{children}</DropdownMenuPrimitive.Root>
     </DropdownMenuContext.Provider>
   );
 }

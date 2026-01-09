@@ -1,5 +1,4 @@
-import { X } from 'lucide-react';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ReactNode } from 'react';
 
 import * as SwatchRadioGroupPrimitive from '@/components/swatch-radio-group';
 
@@ -15,13 +14,22 @@ type SwatchOption =
       type: 'image';
       value: string;
       label: string;
-      image: { src: string; alt: string };
+      image: {
+        src: string;
+        alt: string;
+        asChild?: boolean;
+        children?: ReactNode;
+      };
       disabled?: boolean;
     };
 
 export type SwatchRadioGroupProps = ComponentProps<typeof SwatchRadioGroupPrimitive.Root> & {
   options: SwatchOption[];
   onOptionMouseEnter?: (value: string) => void;
+  indicatorIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 };
 
 /**
@@ -45,10 +53,11 @@ export function SwatchRadioGroup({
   options,
   className,
   onOptionMouseEnter,
+  indicatorIcon,
   ...props
 }: SwatchRadioGroupProps) {
   return (
-    <SwatchRadioGroupPrimitive.Root {...props}>
+    <SwatchRadioGroupPrimitive.Root className={className} {...props}>
       {options.map((option) => (
         <SwatchRadioGroupPrimitive.Item
           aria-label={option.label}
@@ -65,14 +74,19 @@ export function SwatchRadioGroup({
             <SwatchRadioGroupPrimitive.Thumbnail>
               <SwatchRadioGroupPrimitive.Image
                 alt={option.image.alt}
+                asChild={option.image.asChild}
                 height={40}
                 src={option.image.src}
                 width={40}
-              />
+              >
+                {option.image.children}
+              </SwatchRadioGroupPrimitive.Image>
             </SwatchRadioGroupPrimitive.Thumbnail>
           )}
           <SwatchRadioGroupPrimitive.Indicator>
-            <X absoluteStrokeWidth size={16} strokeWidth={1.5} />
+            <SwatchRadioGroupPrimitive.IndicatorIcon asChild={indicatorIcon?.asChild}>
+              {indicatorIcon?.children}
+            </SwatchRadioGroupPrimitive.IndicatorIcon>
           </SwatchRadioGroupPrimitive.Indicator>
         </SwatchRadioGroupPrimitive.Item>
       ))}

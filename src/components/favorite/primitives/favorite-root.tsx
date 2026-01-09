@@ -9,9 +9,16 @@ export function FavoriteRoot({ children, className, ...props }: FavoriteRootProp
   return (
     <Toggle.Root
       className={cn(
-        'group relative flex h-[50px] w-[50px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-[var(--favorite-border,var(--contrast-100))] text-[var(--favorite-icon,var(--foreground))] ring-[var(--favorite-focus,var(--brand))] transition duration-300 focus-within:outline-none focus-within:ring-2 data-[state=on]:bg-[var(--favorite-on-background,var(--contrast-100))] data-[state=off]:hover:border-[var(--favorite-off-border,var(--contrast-200))]',
+        'group/favorite relative flex h-[50px] w-[50px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-[var(--favorite-border,var(--contrast-100))] text-[var(--favorite-icon,var(--foreground))] transition duration-300',
+        // Hover state (off)
+        'data-[state=off]:hover:border-[var(--favorite-off-border,var(--contrast-200))]',
+        // Focus state
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--favorite-focus,var(--brand))]',
+        // On state
+        'data-[state=on]:bg-[var(--favorite-on-background,var(--contrast-100))]',
         className,
       )}
+      data-slot="favorite-root"
       {...props}
     >
       {children}

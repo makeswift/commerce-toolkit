@@ -32,6 +32,58 @@ A card component for displaying product categories with an image, title, and lin
   --category-card-border-radius: 1rem;
 }
 \`\`\`
+
+## Usage
+
+### High-Level Component
+
+The \`CategoryCard\` component provides a simple API for category display:
+
+\`\`\`tsx
+import { CategoryCard } from '@/components/category-card';
+
+<CategoryCard
+  title="Kitchen Essentials"
+  image={{
+    src: '/images/kitchen.jpg',
+    alt: 'Kitchen products',
+  }}
+  link={{
+    href: '/categories/kitchen',
+    ariaLabel: 'Shop Kitchen Essentials',
+  }}
+  aspectRatio="5/6"
+  textSize="small"
+  textPosition="outside"
+/>
+\`\`\`
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as CategoryCard from '@/components/category-card';
+import { ArrowUpRight } from 'lucide-react';
+
+<CategoryCard.Root aspectRatio="5/6" textSize="small" showOverlay>
+  <CategoryCard.Icon>
+    <ArrowUpRight />
+  </CategoryCard.Icon>
+  <CategoryCard.Thumbnail>
+    <CategoryCard.Image src="..." alt="..." />
+    {/* Or use Fallback when no image is available */}
+    <CategoryCard.Fallback>Title</CategoryCard.Fallback>
+    {/* For text inside the thumbnail */}
+    <CategoryCard.Overlay>
+      <CategoryCard.Title>Title</CategoryCard.Title>
+    </CategoryCard.Overlay>
+  </CategoryCard.Thumbnail>
+  {/* For text outside the thumbnail */}
+  <CategoryCard.Title>Title</CategoryCard.Title>
+  <CategoryCard.Link href="..." aria-label="..." />
+</CategoryCard.Root>
+\`\`\`
         `,
       },
     },
@@ -80,9 +132,9 @@ A card component for displaying product categories with an image, title, and lin
 };
 
 export default meta;
-
 type Story = StoryObj<CategoryCardProps>;
 
+// Default with text outside
 export const Default: Story = {
   args: {
     title: 'Kitchen Essentials',
@@ -97,10 +149,10 @@ export const Default: Story = {
     aspectRatio: '5/6',
     textSize: 'small',
     textPosition: 'outside',
-    showOverlay: true,
   },
 };
 
+// Text inside with overlay
 export const TextInside: Story = {
   args: {
     title: 'Cleaning Supplies',
@@ -117,40 +169,9 @@ export const TextInside: Story = {
     textPosition: 'inside',
     showOverlay: true,
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When `textPosition` is set to `"inside"`, the title appears overlaid on the image with an optional gradient overlay.',
-      },
-    },
-  },
 };
 
-export const SquareAspectRatio: Story = {
-  args: {
-    title: 'Bath & Body',
-    image: {
-      src: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=900',
-      alt: 'Linen hand towel',
-    },
-    link: {
-      href: '/categories/bath',
-      ariaLabel: 'Shop Bath & Body',
-    },
-    aspectRatio: '1/1',
-    textSize: 'small',
-    textPosition: 'outside',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Use `aspectRatio="1/1"` for a square card layout.',
-      },
-    },
-  },
-};
-
+// Without image (fallback)
 export const WithoutImage: Story = {
   args: {
     title: 'New Arrivals',
@@ -162,20 +183,9 @@ export const WithoutImage: Story = {
     textSize: 'large',
     textPosition: 'outside',
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When no image is provided, a fallback displays the title text as a decorative background.',
-      },
-    },
-  },
 };
 
-/**
- * The CategoryCard can be built using composable primitives for full customization.
- * This example shows the component anatomy using the primitive components.
- */
+// Composable anatomy example
 export const ComposableAnatomy: Story = {
   render: () => (
     <CategoryCardPrimitive.Root aspectRatio="5/6" showOverlay textSize="small">
@@ -192,36 +202,13 @@ export const ComposableAnatomy: Story = {
       <CategoryCardPrimitive.Link aria-label="Shop Home Accessories" href="/categories/home" />
     </CategoryCardPrimitive.Root>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: `
-Use the composable primitives to build custom category card layouts:
+};
 
-\`\`\`tsx
-import * as CategoryCardPrimitive from '@/components/category-card/primitives';
-import { ArrowUpRight } from 'lucide-react';
-
-<CategoryCardPrimitive.Root aspectRatio="5/6" textSize="small" showOverlay>
-  <CategoryCardPrimitive.Icon>
-    <ArrowUpRight />
-  </CategoryCardPrimitive.Icon>
-  <CategoryCardPrimitive.Thumbnail>
-    <CategoryCardPrimitive.Image src="..." alt="..." />
-    {/* Or use Fallback when no image is available */}
-    <CategoryCardPrimitive.Fallback>Title</CategoryCardPrimitive.Fallback>
-    {/* For text inside the thumbnail */}
-    <CategoryCardPrimitive.Overlay>
-      <CategoryCardPrimitive.Title>Title</CategoryCardPrimitive.Title>
-    </CategoryCardPrimitive.Overlay>
-  </CategoryCardPrimitive.Thumbnail>
-  {/* For text outside the thumbnail */}
-  <CategoryCardPrimitive.Title>Title</CategoryCardPrimitive.Title>
-  <CategoryCardPrimitive.Link href="..." aria-label="..." />
-</CategoryCardPrimitive.Root>
-\`\`\`
-        `,
-      },
-    },
-  },
+// Skeleton loading state
+export const Skeleton: Story = {
+  render: () => (
+    <div className="group/category-card" data-aspect-ratio="5/6">
+      <CategoryCardPrimitive.Skeleton />
+    </div>
+  ),
 };

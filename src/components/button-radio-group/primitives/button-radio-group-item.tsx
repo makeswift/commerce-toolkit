@@ -9,31 +9,17 @@ export function ButtonRadioGroupItem({ children, className, ...props }: ButtonRa
   return (
     <RadioGroupPrimitive.Item
       className={cn(
-        // Base layout
-        'h-12 px-4',
-        // Typography
-        'whitespace-nowrap font-body text-sm font-normal leading-normal',
-        // Colors
-        'border-[var(--button-radio-group-light-unchecked-border,var(--contrast-100))]',
-        // Borders & Rounded
-        'rounded-full border',
-        // Transitions
-        'transition-colors',
+        'h-12 whitespace-nowrap rounded-full border border-[var(--button-radio-group-unchecked-border,var(--contrast-100))] px-4 font-body text-sm font-normal leading-normal transition-colors',
         // Focus-visible state
-        'focus-visible:outline-0 focus-visible:ring-2',
-        'focus-visible:ring-[var(--button-radio-group-light-focus,var(--brand))]',
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-radio-group-focus,var(--brand))]',
         // Checked state
-        'data-[state=checked]:border-[var(--button-radio-group-light-checked-background,var(--foreground))]',
-        'data-[state=checked]:bg-[var(--button-radio-group-light-checked-background,var(--foreground))]',
-        'data-[state=checked]:text-[var(--button-radio-group-light-checked-text,var(--background))]',
+        'data-[state=checked]:border-[var(--button-radio-group-checked-background,var(--foreground))] data-[state=checked]:bg-[var(--button-radio-group-checked-background,var(--foreground))] data-[state=checked]:text-[var(--button-radio-group-checked-text,var(--background))]',
         // Unchecked state
-        'data-[state=unchecked]:bg-[var(--button-radio-group-light-unchecked-background,var(--background))]',
-        'data-[state=unchecked]:text-[var(--button-radio-group-light-unchecked-text,var(--foreground))]',
+        'data-[state=unchecked]:bg-[var(--button-radio-group-unchecked-background,var(--background))] data-[state=unchecked]:text-[var(--button-radio-group-unchecked-text,var(--foreground))]',
         // Unchecked hover state
-        'data-[state=unchecked]:hover:border-[var(--button-radio-group-light-unchecked-border-hover,var(--contrast-200))]',
-        'data-[state=unchecked]:hover:bg-[var(--button-radio-group-light-unchecked-background-hover,var(--contrast-100))]',
+        'data-[state=unchecked]:hover:border-[var(--button-radio-group-unchecked-border-hover,var(--contrast-200))] data-[state=unchecked]:hover:bg-[var(--button-radio-group-unchecked-background-hover,var(--contrast-100))]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--button-radio-group-light-border-error,var(--error))]',
+        'aria-invalid:border-[var(--button-radio-group-border-error,var(--error))]',
         // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,

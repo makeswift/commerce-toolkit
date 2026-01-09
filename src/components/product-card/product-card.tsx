@@ -1,10 +1,5 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { Button } from '@/components/button';
-import { ButtonLink } from '@/components/button-link';
-import { Checkbox } from '@/components/checkbox';
-import * as FieldPrimitive from '@/components/field/primitives';
-import { Label } from '@/components/label';
 import { type PriceProps } from '@/components/price';
 import * as ProductCardPrimitive from '@/components/product-card';
 import { type RatingProps } from '@/components/rating';
@@ -15,10 +10,14 @@ interface Product {
   link: {
     href: string;
     ariaLabel: string;
+    asChild?: boolean;
+    children?: ReactNode;
   };
   image?: {
     src: string;
     alt: string;
+    asChild?: boolean;
+    children?: ReactNode;
   };
   subtitle?: string;
   badge?: string;
@@ -103,7 +102,9 @@ export function ProductCard({
       <ProductCardPrimitive.Preview>
         <ProductCardPrimitive.Thumbnail>
           {image ? (
-            <ProductCardPrimitive.Image alt={image.alt} src={image.src} />
+            <ProductCardPrimitive.Image alt={image.alt} asChild={image.asChild} src={image.src}>
+              {image.children}
+            </ProductCardPrimitive.Image>
           ) : (
             <ProductCardPrimitive.Fallback>{title}</ProductCardPrimitive.Fallback>
           )}
@@ -111,7 +112,13 @@ export function ProductCard({
             <ProductCardPrimitive.Badge>{badge}</ProductCardPrimitive.Badge>
           )}
         </ProductCardPrimitive.Thumbnail>
-        <ProductCardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />
+        <ProductCardPrimitive.Link
+          aria-label={link.ariaLabel}
+          asChild={link.asChild}
+          href={link.href}
+        >
+          {link.children}
+        </ProductCardPrimitive.Link>
       </ProductCardPrimitive.Preview>
       <ProductCardPrimitive.Details>
         <ProductCardPrimitive.Header>
@@ -121,7 +128,13 @@ export function ProductCard({
           )}
           {price && <ProductCardPrimitive.Price price={price} />}
           {showRating && rating != null && <ProductCardPrimitive.Rating rating={rating} />}
-          <ProductCardPrimitive.Link aria-label={link.ariaLabel} href={link.href} />
+          <ProductCardPrimitive.Link
+            aria-label={link.ariaLabel}
+            asChild={link.asChild}
+            href={link.href}
+          >
+            {link.children}
+          </ProductCardPrimitive.Link>
         </ProductCardPrimitive.Header>
       </ProductCardPrimitive.Details>
       {(cartAction != null || compareAction != null) && (
@@ -129,31 +142,28 @@ export function ProductCard({
           {cartAction?.type === 'form' && (
             <ProductCardPrimitive.Form action={cartAction.action}>
               <ProductCardPrimitive.Input name="id" type="hidden" value={id} />
-              <Button
+              <ProductCardPrimitive.CartButton
                 disabled={cartAction.disabled}
                 loading={cartAction.loading}
-                size="medium"
                 type="submit"
               >
                 {cartAction.label}
-              </Button>
+              </ProductCardPrimitive.CartButton>
             </ProductCardPrimitive.Form>
           )}
           {cartAction?.type === 'link' && (
-            <ButtonLink asChild={cartAction.asChild} href={cartAction.href} size="medium">
+            <ProductCardPrimitive.CartLink asChild={cartAction.asChild} href={cartAction.href}>
               {cartAction.asChild === true ? cartAction.children : cartAction.label}
-            </ButtonLink>
+            </ProductCardPrimitive.CartLink>
           )}
           {compareAction != null && (
-            <FieldPrimitive.Item orientation="horizontal">
-              <Checkbox
-                checked={compareAction.checked}
-                disabled={compareAction.disabled}
-                id={compareAction.id}
-                onCheckedChange={compareAction.onCheckedChange}
-              />
-              <Label htmlFor={compareAction.id}>{compareAction.label}</Label>
-            </FieldPrimitive.Item>
+            <ProductCardPrimitive.Compare
+              checked={compareAction.checked}
+              disabled={compareAction.disabled}
+              id={compareAction.id}
+              label={compareAction.label}
+              onCheckedChange={compareAction.onCheckedChange}
+            />
           )}
         </ProductCardPrimitive.Actions>
       )}

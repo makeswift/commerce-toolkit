@@ -11,8 +11,13 @@ export type ScrollAreaBarProps = ComponentProps<typeof ScrollAreaPrimitive.Scrol
 export function ScrollAreaBar({ className, children, ...props }: ScrollAreaBarProps) {
   const { orientation } = useScrollArea();
 
-  const baseClasses =
-    'flex touch-none select-none bg-transparent p-1 transition-colors data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out-0 data-[state=visible]:fade-in-0';
+  const baseClasses = cn(
+    'flex touch-none select-none bg-transparent p-1 transition-colors',
+    // Visible state
+    'data-[state=visible]:animate-in data-[state=visible]:fade-in-0',
+    // Hidden state
+    'data-[state=hidden]:animate-out data-[state=hidden]:fade-out-0',
+  );
 
   const verticalClasses = 'h-full w-3.5 border-l border-l-transparent';
 

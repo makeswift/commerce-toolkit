@@ -42,3 +42,15 @@ export {
   SelectScrollDownButton as ScrollDownButton,
   type SelectScrollDownButtonProps as ScrollDownButtonProps,
 } from '@/components/select/primitives/select-scroll-down-button';
+export {
+  SelectTriggerIcon as TriggerIcon,
+  type SelectTriggerIconProps as TriggerIconProps,
+} from '@/components/select/primitives/select-trigger-icon';
+export {
+  SelectScrollUpIcon as ScrollUpIcon,
+  type SelectScrollUpIconProps as ScrollUpIconProps,
+} from '@/components/select/primitives/select-scroll-up-icon';
+export {
+  SelectScrollDownIcon as ScrollDownIcon,
+  type SelectScrollDownIconProps as ScrollDownIconProps,
+} from '@/components/select/primitives/select-scroll-down-icon';

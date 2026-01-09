@@ -2,25 +2,26 @@
 
 import type { ComponentProps } from 'react';
 
-export type RevealViewportProps = ComponentProps<'div'>;
-
 import { useReveal } from '@/components/reveal';
 import { cn } from '@/lib';
 
+export type RevealViewportProps = ComponentProps<'div'>;
+
 export function RevealViewport({ children, className, ...props }: RevealViewportProps) {
-  const { hasOverflow, isOpen, maxHeight, contentRef } = useReveal();
+  const { contentRef } = useReveal();
 
   return (
     <div
       className={cn(
-        hasOverflow &&
-          !isOpen &&
-          '[mask-image:linear-gradient(to_top,transparent,black_50px,black_calc(100%-50px))]',
-        'overflow-hidden',
+        'max-h-[var(--reveal-max-height)] overflow-hidden',
+        // Open state
+        'group-data-[open=true]/reveal:max-h-none',
+        // Overflow + Closed state (show gradient mask)
+        'group-data-[overflow=true]/reveal:group-data-[open=false]/reveal:[mask-image:linear-gradient(to_top,transparent,black_50px,black_calc(100%-50px))]',
         className,
       )}
+      data-slot="reveal-viewport"
       ref={contentRef}
-      style={{ maxHeight: isOpen ? 'none' : maxHeight }}
       {...props}
     >
       {children}

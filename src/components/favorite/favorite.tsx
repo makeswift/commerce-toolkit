@@ -1,8 +1,14 @@
+import type { ReactNode } from 'react';
+
 import * as FavoritePrimitive from '@/components/favorite';
 
 export interface FavoriteProps {
   checked?: boolean;
   setChecked: (liked: boolean) => void;
+  icon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 /**
@@ -19,10 +25,10 @@ export interface FavoriteProps {
  * }
  * ```
  */
-export function Favorite({ checked = false, setChecked }: FavoriteProps) {
+export function Favorite({ checked = false, setChecked, icon }: FavoriteProps) {
   return (
     <FavoritePrimitive.Root onPressedChange={setChecked} pressed={checked}>
-      <FavoritePrimitive.Heart filled={checked} />
+      <FavoritePrimitive.Heart asChild={icon?.asChild}>{icon?.children}</FavoritePrimitive.Heart>
     </FavoritePrimitive.Root>
   );
 }

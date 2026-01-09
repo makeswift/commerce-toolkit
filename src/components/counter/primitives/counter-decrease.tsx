@@ -1,5 +1,3 @@
-'use client';
-
 import type { ComponentProps } from 'react';
 
 import { cn } from '@/lib';
@@ -16,7 +14,13 @@ export function CounterDecrease({
   return (
     <button
       className={cn(
-        'group z-[1] rounded-l-lg p-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--counter-focus,var(--brand))] enabled:hover:bg-[var(--counter-background-hover,color-mix(in_oklab,var(--contrast-100)_50%,transparent))] disabled:cursor-not-allowed disabled:opacity-50',
+        'group/counter z-[1] rounded-l-lg p-3',
+        // Hover state
+        'enabled:hover:bg-[var(--counter-background-hover,color-mix(in_oklab,var(--contrast-100)_50%,transparent))]',
+        // Focus-visible state
+        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--counter-focus,var(--brand))]',
+        // Disabled state
+        'disabled:cursor-not-allowed disabled:opacity-50',
         className,
       )}
       data-slot="counter-decrease"

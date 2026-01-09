@@ -1,6 +1,5 @@
 'use client';
 
-import { clsx } from 'clsx';
 import {
   createContext,
   useCallback,
@@ -11,6 +10,8 @@ import {
   useState,
 } from 'react';
 import type { ChangeEvent, ComponentPropsWithoutRef, ReactNode, RefObject } from 'react';
+
+import { cn } from '@/lib';
 
 export interface FileState {
   file: File;
@@ -370,7 +371,8 @@ export function FileInputRoot({
       <div
         aria-disabled={disabled === true ? true : undefined}
         aria-invalid={invalid === true || validationError != null ? true : undefined}
-        className={clsx('group', className, '@container')}
+        className={cn('group/file-input @container', className)}
+        data-slot="file-input-root"
         {...props}
       >
         <input

@@ -14,7 +14,7 @@ const meta: Meta<typeof Label> = {
     docs: {
       description: {
         component: `
-A label component for form controls, built on Radix UI Label primitive.
+A label component for form controls, built on Radix UI Label primitive. Supports orientation-aware styling when used with Field components.
 
 ## CSS Variables
 
@@ -41,21 +41,31 @@ Use \`Field.Item\` with \`orientation="horizontal"\` to get horizontal label sty
 
 \`\`\`tsx
 import { Label } from '@/components/label';
+import { Input } from '@/components/input';
 
 <Label htmlFor="email">Email Address</Label>
-<input id="email" type="email" />
+<Input id="email" type="email" />
 \`\`\`
+
+## Orientation-Aware Styling
+
+The Label component adapts its styling based on the parent \`Field.Item\`'s orientation:
+
+| Orientation | Text Size | Font Weight | Color |
+|-------------|-----------|-------------|-------|
+| Vertical (default) | \`text-xs\` | semibold | \`--label-text\` |
+| Horizontal | \`text-sm\` | normal | \`--label-horizontal-text\` |
 
 ## With Field Components
 
-The Label component is used internally by \`Field.Label\` and automatically responds to the parent \`Field.Item\`'s orientation:
+Use \`Field.Label\` inside \`Field.Item\` for automatic orientation handling:
 
 \`\`\`tsx
 import * as Field from '@/components/field';
 import { Input } from '@/components/input';
 import { Checkbox } from '@/components/checkbox';
 
-// Default vertical orientation
+// Vertical orientation (default)
 <Field.Item>
   <Field.Label htmlFor="name">Name</Field.Label>
   <Input id="name" />
@@ -91,89 +101,28 @@ export default meta;
 
 type Story = StoryObj<LabelProps>;
 
+// Default label with input
 export const Default: Story = {
   render: () => (
-    <div className="grid gap-2">
-      <Label htmlFor="default-input">Email Address</Label>
-      <Input id="default-input" placeholder="you@example.com" type="email" />
-    </div>
+    <Field.Item>
+      <Label htmlFor="email">Email Address</Label>
+      <Input id="email" placeholder="you@example.com" type="email" />
+    </Field.Item>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The default Label styling with `text-xs font-semibold` and muted color. This matches vertical orientation.',
-      },
-    },
-  },
 };
 
-export const WithFieldItem: Story = {
-  render: () => (
-    <Field.Group>
-      <Field.Set>
-        <Field.Group>
-          <Field.Item>
-            <Field.Label htmlFor="field-input">Product Name</Field.Label>
-            <Input id="field-input" placeholder="Natural Fiber Scrub Brush" />
-          </Field.Item>
-          <Field.Item>
-            <Field.Label htmlFor="field-price">Price</Field.Label>
-            <Input id="field-price" placeholder="$8.99" />
-          </Field.Item>
-        </Field.Group>
-      </Field.Set>
-    </Field.Group>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Label used within Field components with default vertical orientation.',
-      },
-    },
-  },
-};
-
+// Horizontal orientation (for checkboxes)
 export const HorizontalOrientation: Story = {
   render: () => (
     <Field.Group>
-      <Field.Set>
-        <Field.Group>
-          <Field.Item orientation="horizontal">
-            <Checkbox id="newsletter" />
-            <Field.Label htmlFor="newsletter">Subscribe to newsletter</Field.Label>
-          </Field.Item>
-          <Field.Item orientation="horizontal">
-            <Checkbox id="terms" />
-            <Field.Label htmlFor="terms">I agree to the terms and conditions</Field.Label>
-          </Field.Item>
-        </Field.Group>
-      </Field.Set>
+      <Field.Item orientation="horizontal">
+        <Checkbox id="newsletter" />
+        <Label htmlFor="newsletter">Subscribe to newsletter</Label>
+      </Field.Item>
+      <Field.Item orientation="horizontal">
+        <Checkbox id="terms" />
+        <Label htmlFor="terms">I agree to the terms and conditions</Label>
+      </Field.Item>
     </Field.Group>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When inside a `Field.Item` with `orientation="horizontal"`, the label uses `text-sm font-normal` with foreground color. Ideal for inline controls like checkboxes.',
-      },
-    },
-  },
-};
-
-export const DisabledState: Story = {
-  render: () => (
-    <div className="grid gap-2">
-      <input className="peer sr-only" disabled id="disabled-input" type="text" />
-      <Label htmlFor="disabled-input">Disabled Label</Label>
-    </div>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When the associated input has `peer` class and is disabled, the label automatically reduces opacity and disables pointer events.',
-      },
-    },
-  },
 };

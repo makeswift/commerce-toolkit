@@ -1,10 +1,12 @@
-'use client';
+import type { ReactNode } from 'react';
 
 import * as OffsetPaginationPrimitive from '@/components/offset-pagination';
 
 export interface PageItem {
   href: string;
   page: number;
+  asChild?: boolean;
+  children?: ReactNode;
 }
 
 export interface OffsetPaginationProps {
@@ -22,9 +24,9 @@ export interface OffsetPaginationProps {
  *   --offset-pagination-focus: var(--brand);
  *   --offset-pagination-font-family: var(--font-family-body);
  *   --offset-pagination-ellipsis: var(--foreground);
- *   --offset-pagination-border: var(--contrast-100);
- *   --offset-pagination-text: var(--foreground);
- *   --offset-pagination-background-hover: var(--contrast-100);
+ *   --offset-pagination-border: var(--contrast-100)  ;
+ *   --offset-pagination-text: var(--foreground)  ;
+ *   --offset-pagination-background-hover: var(--contrast-100)  ;
  *   --offset-pagination-current-page-border: var(--foreground);
  *   --offset-pagination-current-page-background: var(--foreground);
  *   --offset-pagination-current-page-text: var(--background);
@@ -49,9 +51,10 @@ export function OffsetPagination({
             <OffsetPaginationPrimitive.Item key={item.page}>
               <OffsetPaginationPrimitive.Link
                 aria-current={item.page === currentPage ? 'page' : undefined}
+                asChild={item.asChild}
                 href={item.href}
               >
-                {item.page}
+                {item.asChild === true ? item.children : item.page}
               </OffsetPaginationPrimitive.Link>
             </OffsetPaginationPrimitive.Item>
           ),

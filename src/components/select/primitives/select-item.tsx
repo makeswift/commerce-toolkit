@@ -1,3 +1,5 @@
+'use client';
+
 import * as SelectPrimitive from '@radix-ui/react-select';
 import type { ComponentProps } from 'react';
 
@@ -9,18 +11,7 @@ export function SelectItem({ children, className, ...props }: SelectItemProps) {
   return (
     <SelectPrimitive.Item
       className={cn(
-        // Base layout
-        'w-full cursor-default select-none',
-        // Spacing
-        'px-3 py-2',
-        // Typography
-        'text-sm font-normal text-[var(--select-light-item-text,var(--contrast-400))]',
-        // Borders & Rounded
-        'rounded-lg',
-        // Effects
-        'outline-none',
-        // Transitions
-        'transition-colors',
+        'w-full cursor-default select-none rounded-lg px-3 py-2 text-sm font-normal text-[var(--select-light-item-text,var(--contrast-400))] outline-none transition-colors',
         // Hover state
         'hover:bg-[var(--select-light-item-background-hover,var(--contrast-100))] hover:text-[var(--select-light-item-text-hover,var(--foreground))]',
         // Focus-visible state

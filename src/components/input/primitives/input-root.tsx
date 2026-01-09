@@ -10,16 +10,7 @@ export function InputRoot({ className, children, prepend, ...props }: InputRootP
   return (
     <div
       className={cn(
-        // Base layout
-        'group/input relative overflow-hidden',
-        // Colors
-        'border-[var(--input-light-border,var(--contrast-100))] bg-[var(--input-light-background,var(--background))]',
-        // Borders & rounded
-        'rounded-lg border',
-        // Transitions
-        'transition-colors duration-200',
-        // Focus state
-        'focus:outline-none',
+        'group/input relative overflow-hidden rounded-lg border border-[var(--input-light-border,var(--contrast-100))] bg-[var(--input-light-background,var(--background))] transition-colors duration-200',
         // Focus-within state
         'focus-within:border-[var(--input-light-focus,var(--foreground))]',
         // Aria-invalid state
@@ -27,6 +18,7 @@ export function InputRoot({ className, children, prepend, ...props }: InputRootP
         className,
       )}
       data-prepend={prepend != null && prepend !== '' ? '' : undefined}
+      data-slot="input-root"
       {...props}
     >
       {children}

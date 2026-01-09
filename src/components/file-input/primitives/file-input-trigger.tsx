@@ -16,6 +16,7 @@ export function FileInputTrigger({ children, disabled, ...props }: FileInputTrig
     <Button
       aria-controls={`${inputId}-input`}
       className="pointer-events-none"
+      data-slot="file-input-trigger"
       disabled={isDisabled}
       onClick={openFilePicker}
       size="small"

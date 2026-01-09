@@ -3,8 +3,6 @@
 import { X } from 'lucide-react';
 import type { ReactNode } from 'react';
 
-import { Button } from '@/components/button';
-import { ScrollArea } from '@/components/scroll-area';
 import * as SidePanelPrimitive from '@/components/side-panel';
 
 export interface SidePanelProps {
@@ -42,15 +40,13 @@ export function SidePanel({ title, children, trigger, container }: SidePanelProp
           <SidePanelPrimitive.Content forceMount>
             <SidePanelPrimitive.Header>
               <SidePanelPrimitive.Title>{title}</SidePanelPrimitive.Title>
-              <SidePanelPrimitive.Close asChild>
-                <Button shape="circle" size="small" variant="outline">
-                  <X size={20} strokeWidth={1} />
-                </Button>
-              </SidePanelPrimitive.Close>
+              <SidePanelPrimitive.CloseButton
+                icon={{ children: <X size={20} strokeWidth={1} /> }}
+              />
             </SidePanelPrimitive.Header>
-            <ScrollArea>
+            <SidePanelPrimitive.ScrollArea>
               <SidePanelPrimitive.Body>{children}</SidePanelPrimitive.Body>
-            </ScrollArea>
+            </SidePanelPrimitive.ScrollArea>
           </SidePanelPrimitive.Content>
         </SidePanelPrimitive.Overlay>
       </SidePanelPrimitive.Portal>

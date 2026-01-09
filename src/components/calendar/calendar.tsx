@@ -1,10 +1,10 @@
 'use client';
 
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import type { ComponentProps, CSSProperties } from 'react';
+import type { ComponentProps, CSSProperties, ReactNode } from 'react';
 import { useEffect, useRef } from 'react';
 import { type DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
 
+import * as CalendarPrimitive from '@/components/calendar';
 import { cn } from '@/lib';
 
 /**
@@ -14,7 +14,7 @@ import { cn } from '@/lib';
  * ```css
  * :root {
  *   --calendar-font-family: var(--font-family-body);
- *   --calendar-focus: var(--foreground);
+ *   --calendar-focus: var(--brand);
  *   --calendar-text: var(--foreground);
  *   --calendar-background: var(--background);
  *   --calendar-selected-background: var(--brand);
@@ -23,7 +23,20 @@ import { cn } from '@/lib';
  * }
  * ```
  */
-export type CalendarProps = ComponentProps<typeof DayPicker>;
+export type CalendarProps = ComponentProps<typeof DayPicker> & {
+  prevIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  nextIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+  dropdownIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+};
 
 export function Calendar({
   className,
@@ -32,6 +45,9 @@ export function Calendar({
   captionLayout = 'label',
   formatters,
   components,
+  prevIcon,
+  nextIcon,
+  dropdownIcon,
   ...props
 }: CalendarProps) {
   const defaultClassNames = getDefaultClassNames();
@@ -56,11 +72,11 @@ export function Calendar({
           defaultClassNames.nav,
         ),
         button_previous: cn(
-          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus-visible:ring-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
+          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
           defaultClassNames.button_previous,
         ),
         button_next: cn(
-          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus-visible:ring-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
+          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
           defaultClassNames.button_next,
         ),
         month_caption: cn(
@@ -72,7 +88,11 @@ export function Calendar({
           defaultClassNames.dropdowns,
         ),
         dropdown_root: cn(
-          'relative rounded-lg border border-contrast-200 transition-colors duration-75 ease-linear hover:bg-foreground/5 focus:border-foreground',
+          'relative rounded-lg border border-contrast-200 transition-colors duration-75 ease-linear',
+          // Hover state
+          'hover:bg-foreground/5',
+          // Focus-visible state
+          'focus-visible:border-foreground',
           defaultClassNames.dropdown_root,
         ),
         dropdown: cn('absolute inset-0 opacity-0', defaultClassNames.dropdown),
@@ -134,33 +154,30 @@ export function Calendar({
             <div className={cn(rootClassName)} data-slot="calendar" ref={rootRef} {...rootProps} />
           );
         },
-        Chevron: ({ className: chevronClassName, orientation, ...chevronProps }) => {
+        Chevron: ({ className: chevronClassName, orientation }) => {
           if (orientation === 'left') {
             return (
-              <ChevronLeftIcon
-                absoluteStrokeWidth
-                className={cn('size-5 -translate-x-px', chevronClassName)}
-                {...chevronProps}
-              />
+              <CalendarPrimitive.PrevIcon asChild={prevIcon?.asChild} className={chevronClassName}>
+                {prevIcon?.children}
+              </CalendarPrimitive.PrevIcon>
             );
           }
 
           if (orientation === 'right') {
             return (
-              <ChevronRightIcon
-                absoluteStrokeWidth
-                className={cn('size-5 translate-x-px', chevronClassName)}
-                {...chevronProps}
-              />
+              <CalendarPrimitive.NextIcon asChild={nextIcon?.asChild} className={chevronClassName}>
+                {nextIcon?.children}
+              </CalendarPrimitive.NextIcon>
             );
           }
 
           return (
-            <ChevronDownIcon
-              absoluteStrokeWidth
-              className={cn('size-3.5', chevronClassName)}
-              {...chevronProps}
-            />
+            <CalendarPrimitive.DropdownIcon
+              asChild={dropdownIcon?.asChild}
+              className={chevronClassName}
+            >
+              {dropdownIcon?.children}
+            </CalendarPrimitive.DropdownIcon>
           );
         },
         DayButton: CalendarDayButton,
@@ -205,9 +222,8 @@ function CalendarDayButton({
   return (
     <button
       className={cn(
-        // Base styles
-        'size-[var(--cell-size)] rounded-full p-0 text-xs font-normal',
-        'transition-colors duration-75 ease-linear',
+        'size-[var(--cell-size)] rounded-full p-0 text-xs font-normal transition-colors duration-75 ease-linear',
+        // Hover state
         'hover:bg-contrast-100',
         // Range end
         'data-[range-end=true]:rounded-full',
@@ -237,9 +253,9 @@ function CalendarDayButton({
         // Focused day (group)
         'group-data-[focused=true]/day:relative',
         'group-data-[focused=true]/day:z-10',
-        'group-data-[focused=true]/day:outline-1',
+        'group-data-[focused=true]/day:outline-2',
+        'group-data-[focused=true]/day:outline-offset-2',
         'group-data-[focused=true]/day:outline-foreground',
-        'group-data-[focused=true]/day:ring-0',
         // Outside day (group)
         'group-data-[outside=true]/day:text-[var(--calendar-text,color-mix(in_oklch,var(--foreground)_40%,transparent))]',
         'group-data-[outside=true]/day:hover:text-[var(--calendar-text,var(--foreground))]',

@@ -1,11 +1,16 @@
-import { CircleAlert } from 'lucide-react';
-import type { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
+import { FieldErrorIcon } from '@/components/field/primitives/field-error-icon';
 import { cn } from '@/lib';
 
-export type FieldErrorProps = ComponentPropsWithoutRef<'div'>;
+export interface FieldErrorProps extends ComponentPropsWithoutRef<'div'> {
+  icon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
+}
 
-export function FieldError({ className, children, ...props }: FieldErrorProps) {
+export function FieldError({ className, children, icon, ...props }: FieldErrorProps) {
   return (
     <div
       className={cn(
@@ -15,7 +20,7 @@ export function FieldError({ className, children, ...props }: FieldErrorProps) {
       data-slot="field-error"
       {...props}
     >
-      <CircleAlert size={16} strokeWidth={1.5} />
+      <FieldErrorIcon asChild={icon?.asChild}>{icon?.children}</FieldErrorIcon>
       {children}
     </div>
   );

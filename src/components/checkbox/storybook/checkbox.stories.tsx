@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Check, Minus } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { type ComponentType, useState } from 'react';
 
 import { Checkbox, type CheckboxProps } from '@/components/checkbox';
@@ -36,7 +36,61 @@ A checkbox component built on Radix UI for accessible, customizable binary selec
   --checkbox-light-disabled-background: var(--contrast-100);
   --checkbox-light-disabled-icon: var(--contrast-300);
   --checkbox-font-family: var(--font-family-body);
+
+  /* Unchecked state */
+  --checkbox-light-unchecked-border: var(--contrast-200);
+  --checkbox-light-unchecked-border-hover: var(--contrast-300);
+  --checkbox-light-unchecked-background: var(--background);
+  --checkbox-light-unchecked-icon: var(--foreground);
+
+  /* Checked state */
+  --checkbox-light-checked-border: var(--foreground);
+  --checkbox-light-checked-border-hover: var(--foreground);
+  --checkbox-light-checked-background: var(--foreground);
+  --checkbox-light-checked-icon: var(--background);
+
+  /* Disabled state */
+  --checkbox-light-disabled-border: var(--contrast-200);
+  --checkbox-light-disabled-background: var(--contrast-100);
+  --checkbox-light-disabled-icon: var(--contrast-300);
+
+  /* Error state */
+  --checkbox-light-error: var(--error);
 }
+\`\`\`
+
+## Usage
+
+### High-Level Component
+
+The \`Checkbox\` component provides a simple API. Use with \`Field.Item\` and \`Label\` for accessibility:
+
+\`\`\`tsx
+import { Checkbox } from '@/components/checkbox';
+import * as Field from '@/components/field';
+import { Label } from '@/components/label';
+
+<Field.Item orientation="horizontal">
+  <Checkbox id="terms" name="terms" />
+  <Label htmlFor="terms">I agree to the terms</Label>
+</Field.Item>
+\`\`\`
+
+### Composable Anatomy
+
+For more control, use the primitive components directly:
+
+\`\`\`tsx
+import * as Checkbox from '@/components/checkbox';
+import { Check } from 'lucide-react';
+
+<Checkbox.Root id="my-checkbox">
+  <Checkbox.Indicator>
+    <Checkbox.Icon>
+      <Check />
+    </Checkbox.Icon>
+  </Checkbox.Indicator>
+</Checkbox.Root>
 \`\`\`
         `,
       },
@@ -64,17 +118,9 @@ A checkbox component built on Radix UI for accessible, customizable binary selec
       control: 'text',
       description: 'The name of the checkbox for form submission',
     },
-    value: {
-      control: 'text',
-      description: 'The value of the checkbox for form submission',
-    },
     onCheckedChange: {
       control: false,
       description: 'Callback when the checked state changes',
-    },
-    className: {
-      control: false,
-      description: 'Additional CSS classes to apply to the component',
     },
   },
   decorators: [
@@ -87,55 +133,16 @@ A checkbox component built on Radix UI for accessible, customizable binary selec
 };
 
 export default meta;
-
 type Story = StoryObj<CheckboxProps>;
 
+// Default checkbox
 export const Default: Story = {
   args: {
     defaultChecked: false,
   },
 };
 
-export const Checked: Story = {
-  args: {
-    defaultChecked: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Use `defaultChecked` for uncontrolled state or `checked` for controlled state.',
-      },
-    },
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Disabled checkboxes prevent user interaction and display a muted appearance.',
-      },
-    },
-  },
-};
-
-export const DisabledChecked: Story = {
-  args: {
-    defaultChecked: true,
-    disabled: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'A checkbox can be both disabled and checked to show a locked selection.',
-      },
-    },
-  },
-};
-
+// With label (common use case)
 export const WithLabel: Story = {
   render: () => (
     <Field.Item orientation="horizontal">
@@ -143,19 +150,17 @@ export const WithLabel: Story = {
       <Label htmlFor="terms">I agree to the terms and conditions</Label>
     </Field.Item>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use `Field.Item` with `orientation="horizontal"` and `Label` to pair the checkbox with a label for accessibility.',
-      },
-    },
+};
+
+// Disabled state
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    defaultChecked: true,
   },
 };
 
-/**
- * Use the controlled pattern with `checked` and `onCheckedChange` for full control over the checkbox state.
- */
+// Controlled example
 export const Controlled: Story = {
   render: function ControlledCheckbox() {
     const [checked, setChecked] = useState(false);
@@ -172,20 +177,9 @@ export const Controlled: Story = {
       </Field.Item>
     );
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use `checked` and `onCheckedChange` props for controlled state management in React.',
-      },
-    },
-  },
 };
 
-/**
- * The Checkbox can be built using composable primitives for full customization.
- * This example shows the component anatomy using the primitive components.
- */
+// Composable anatomy example
 export const ComposableAnatomy: Story = {
   render: () => (
     <Field.Item orientation="horizontal">
@@ -197,48 +191,4 @@ export const ComposableAnatomy: Story = {
       <Label htmlFor="custom-checkbox">Custom checkbox</Label>
     </Field.Item>
   ),
-  parameters: {
-    docs: {
-      description: {
-        story: `
-Use the composable primitives to build custom checkbox layouts with different icons:
-
-\`\`\`tsx
-import * as CheckboxPrimitive from '@/components/checkbox/primitives';
-import { Check } from 'lucide-react';
-
-<CheckboxPrimitive.Root id="my-checkbox">
-  <CheckboxPrimitive.Indicator>
-    <Check className="h-4 w-4" />
-  </CheckboxPrimitive.Indicator>
-</CheckboxPrimitive.Root>
-\`\`\`
-        `,
-      },
-    },
-  },
-};
-
-/**
- * Use the composable primitives to create a checkbox with a custom indicator icon.
- */
-export const CustomIndicator: Story = {
-  render: () => (
-    <Field.Item orientation="horizontal">
-      <CheckboxPrimitive.Root defaultChecked={true} id="indeterminate-checkbox">
-        <CheckboxPrimitive.Indicator>
-          <Minus absoluteStrokeWidth className="h-4 w-4" color="currentColor" />
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Root>
-      <Label htmlFor="indeterminate-checkbox">Indeterminate state</Label>
-    </Field.Item>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'With composable primitives, you can use any icon for the indicator, such as a minus icon for indeterminate states.',
-      },
-    },
-  },
 };
