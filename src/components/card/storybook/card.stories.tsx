@@ -185,7 +185,7 @@ export const WithIcon: Story = {
   args: {
     children: (
       <div>
-        <div className="bg-brand-background mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-background">
           <Package className="text-brand-shadow" size={24} />
         </div>
         <h3 className="text-lg font-semibold">Free Shipping</h3>
