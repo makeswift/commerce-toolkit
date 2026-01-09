@@ -8,7 +8,7 @@ export function CategoryCardTitle({ children, className, ...props }: CategoryCar
   return (
     <h3
       className={cn(
-        'font-semibold leading-tight text-[var(--category-card-light-text,var(--foreground))]',
+        'font-semibold leading-tight',
         // Text size: small
         'group-data-[text-size=small]/category-card:text-lg group-data-[text-size=small]/category-card:tracking-normal',
         'group-data-[text-size=small]/category-card:@xs:text-xl',
@@ -21,6 +21,10 @@ export function CategoryCardTitle({ children, className, ...props }: CategoryCar
         // Text size: x-large
         'group-data-[text-size=x-large]/category-card:text-3xl group-data-[text-size=x-large]/category-card:tracking-tight',
         'group-data-[text-size=x-large]/category-card:@xs:text-4xl',
+        // Text color: light
+        'group-data-[text-color=light]/category-card:text-[var(--category-card-light-text,var(--background))]',
+        // Text color: dark
+        'group-data-[text-color=dark]/category-card:text-[var(--category-card-dark-text,var(--foreground))]',
         className,
       )}
       data-slot="category-card-title"

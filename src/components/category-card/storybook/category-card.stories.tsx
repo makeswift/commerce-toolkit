@@ -113,6 +113,16 @@ import { ArrowUpRight } from 'lucide-react';
       control: 'boolean',
       description: 'Whether to show the gradient overlay when text is inside',
     },
+    textColor: {
+      control: 'select',
+      options: ['light', 'dark'],
+      description: 'The color scheme for the title text',
+    },
+    iconColor: {
+      control: 'select',
+      options: ['light', 'dark'],
+      description: 'The color scheme for the icon',
+    },
     image: {
       control: false,
       description: 'Image object with src and alt properties',
@@ -168,6 +178,8 @@ export const TextInside: Story = {
     textSize: 'medium',
     textPosition: 'inside',
     showOverlay: true,
+    textColor: 'light',
+    iconColor: 'dark',
   },
 };
 
@@ -182,6 +194,27 @@ export const WithoutImage: Story = {
     aspectRatio: '3/4',
     textSize: 'large',
     textPosition: 'outside',
+  },
+};
+
+// Light text and icon colors (for dark images)
+export const LightTextAndIcon: Story = {
+  args: {
+    title: 'Bathroom Storage',
+    image: {
+      src: 'https://images.unsplash.com/photo-1664815122586-05fe094fb536?w=900',
+      alt: 'Minimal bathroom storage jar',
+    },
+    link: {
+      href: '/categories/storage',
+      ariaLabel: 'Shop Bathroom Storage',
+    },
+    aspectRatio: '3/4',
+    textSize: 'large',
+    textPosition: 'inside',
+    showOverlay: true,
+    textColor: 'light',
+    iconColor: 'light',
   },
 };
 

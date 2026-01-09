@@ -17,6 +17,10 @@ export function CategoryCardIcon({ asChild = false, className, children }: Categ
     'absolute right-5 top-5 z-10 size-6 text-[var(--category-card-light-icon,var(--foreground))] transition-transform duration-700 ease-out',
     // Group hover state
     'group-hover/category-card:-translate-y-1.5 group-hover/category-card:translate-x-1.5',
+    // Icon color: light
+    'group-data-[icon-color=light]/category-card:text-[var(--category-card-light-icon,var(--background))]',
+    // Icon color: dark
+    'group-data-[icon-color=dark]/category-card:text-[var(--category-card-dark-icon,var(--foreground))]',
     className,
   );
 
