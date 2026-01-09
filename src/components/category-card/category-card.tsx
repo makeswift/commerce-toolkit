@@ -28,6 +28,8 @@ export interface CategoryCardProps extends CategoryCardContent {
   textSize?: 'small' | 'medium' | 'large' | 'x-large';
   textPosition?: 'inside' | 'outside';
   showOverlay?: boolean;
+  textColor?: 'light' | 'dark';
+  iconColor?: 'light' | 'dark';
 }
 
 /**
@@ -59,13 +61,17 @@ export function CategoryCard({
   aspectRatio = '5/6',
   textPosition = 'outside',
   textSize = 'small',
+  textColor = 'dark',
+  iconColor = 'dark',
   showOverlay = true,
 }: CategoryCardProps) {
   return (
     <CategoryCardPrimitive.Root
       aspectRatio={aspectRatio}
       className={className}
+      iconColor={iconColor}
       showOverlay={showOverlay}
+      textColor={textColor}
       textSize={textSize}
     >
       <CategoryCardPrimitive.Icon asChild={icon?.asChild}>

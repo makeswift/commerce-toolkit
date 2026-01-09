@@ -11,6 +11,8 @@ export type CategoryCardRootProps<E extends ElementType = 'article'> = Omit<
   as?: E;
   aspectRatio?: '5/6' | '3/4' | '1/1';
   textSize?: 'small' | 'medium' | 'large' | 'x-large';
+  textColor?: 'light' | 'dark';
+  iconColor?: 'light' | 'dark';
   showOverlay?: boolean;
 };
 
@@ -20,6 +22,8 @@ export function CategoryCardRoot<T extends ElementType = 'article'>({
   as,
   aspectRatio = '5/6',
   textSize = 'small',
+  textColor = 'dark',
+  iconColor = 'dark',
   showOverlay = true,
   ...props
 }: CategoryCardRootProps<T>) {
@@ -37,8 +41,10 @@ export function CategoryCardRoot<T extends ElementType = 'article'>({
         className,
       )}
       data-aspect-ratio={aspectRatio}
+      data-icon-color={iconColor}
       data-show-overlay={showOverlay}
       data-slot="category-card-root"
+      data-text-color={textColor}
       data-text-size={textSize}
       {...props}
     >
