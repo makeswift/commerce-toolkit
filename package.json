@@ -47,6 +47,16 @@
         "default": "./dist/banner.cjs"
       }
     },
+    "./breadcrumbs": {
+      "import": {
+        "types": "./dist/components/breadcrumbs/primitives.d.ts",
+        "default": "./dist/breadcrumbs.js"
+      },
+      "require": {
+        "types": "./dist/components/breadcrumbs/primitives.d.ts",
+        "default": "./dist/breadcrumbs.cjs"
+      }
+    },
     "./button-radio-group": {
       "import": {
         "types": "./dist/components/button-radio-group/primitives.d.ts",
