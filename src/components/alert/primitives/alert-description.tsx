@@ -4,11 +4,11 @@ import { cn } from '@/lib';
 
 export type AlertDescriptionProps = ComponentProps<'p'>;
 
-export function AlertDescription({ className, children, ...props }: AlertDescriptionProps) {
+export function AlertDescription({ children, className, ...props }: AlertDescriptionProps) {
   return (
     <p
       className={cn(
-        'text-xs font-medium text-[color:var(--alert-description-text,color-mix(in_oklab,var(--foreground)_50%,transparent))]',
+        'text-xs font-medium text-[--alert-text,var(--text-primary)] opacity-50',
         className,
       )}
       data-slot="alert-description"

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ComponentType } from 'react';
 
 import { Checkbox } from '@/components/checkbox';
 import * as Field from '@/components/field';
@@ -18,65 +17,23 @@ A label component for form controls, built on Radix UI Label primitive. Supports
 
 ## CSS Variables
 
-The Label component supports the following CSS variables for theming:
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| \`--label-text\` | Text color (default/vertical) | \`var(--contrast-500)\` |
-| \`--label-font-family\` | Font family | \`var(--font-family-body)\` |
-| \`--label-horizontal-text\` | Text color in horizontal orientation | \`var(--foreground)\` |
-
-## Orientation-Aware Styling
-
-The default styling matches vertical orientation. When inside a \`Field.Item\` with \`data-label-orientation="horizontal"\`, the label adapts:
-
-| Orientation | Text Size | Font Weight | Color |
-|-------------|-----------|-------------|-------|
-| Default / Vertical | \`text-xs\` | semibold | \`--label-text\` |
-| Horizontal | \`text-sm\` | normal | \`--label-horizontal-text\` |
-
-Use \`Field.Item\` with \`orientation="horizontal"\` to get horizontal label styling. This is used by RadioGroup and CheckboxGroup internally.
-
-## Usage
-
-\`\`\`tsx
-import { Label } from '@/components/label';
-import { Input } from '@/components/input';
-
-<Label htmlFor="email">Email Address</Label>
-<Input id="email" type="email" />
+\`\`\`css
+:root {
+  --label-text: var(--form-text-primary);
+  --label-font: var(--font-body);
+}
 \`\`\`
 
 ## Orientation-Aware Styling
 
-The Label component adapts its styling based on the parent \`Field.Item\`'s orientation:
+The Label component adapts its styling based on the parent \`Field.Item\`'s orientation via the \`data-label-orientation\` attribute:
 
-| Orientation | Text Size | Font Weight | Color |
-|-------------|-----------|-------------|-------|
-| Vertical (default) | \`text-xs\` | semibold | \`--label-text\` |
-| Horizontal | \`text-sm\` | normal | \`--label-horizontal-text\` |
+| Orientation          | Text Size | Font Weight |
+|----------------------|-----------|-------------|
+| Vertical (default)   | text-xs   | semibold    |
+| Horizontal           | text-sm   | normal      |
 
-## With Field Components
-
-Use \`Field.Label\` inside \`Field.Item\` for automatic orientation handling:
-
-\`\`\`tsx
-import * as Field from '@/components/field';
-import { Input } from '@/components/input';
-import { Checkbox } from '@/components/checkbox';
-
-// Vertical orientation (default)
-<Field.Item>
-  <Field.Label htmlFor="name">Name</Field.Label>
-  <Input id="name" />
-</Field.Item>
-
-// Horizontal orientation for inline controls
-<Field.Item orientation="horizontal">
-  <Checkbox id="terms" />
-  <Field.Label htmlFor="terms">Accept terms</Field.Label>
-</Field.Item>
-\`\`\`
+Use \`Field.Item\` with \`orientation="horizontal"\` to get horizontal label styling. This is commonly used for checkboxes and radio buttons.
         `,
       },
     },
@@ -88,21 +45,29 @@ import { Checkbox } from '@/components/checkbox';
       description: 'The ID of the form element this label is associated with',
     },
   },
-  decorators: [
-    (Story: ComponentType) => (
-      <div className="mx-auto max-w-md">
-        <Story />
-      </div>
-    ),
-  ],
+  decorators: [(Story) => <div className="mx-auto max-w-md">{Story()}</div>],
 };
 
 export default meta;
 
 type Story = StoryObj<LabelProps>;
 
-// Default label with input
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A label paired with an input inside a `Field.Item` container.',
+      },
+      source: {
+        code: `
+<Field.Item>
+  <Label htmlFor="email">Email Address</Label>
+  <Input id="email" type="email" placeholder="you@example.com" />
+</Field.Item>
+        `,
+      },
+    },
+  },
   render: () => (
     <Field.Item>
       <Label htmlFor="email">Email Address</Label>
@@ -111,8 +76,29 @@ export const Default: Story = {
   ),
 };
 
-// Horizontal orientation (for checkboxes)
 export const HorizontalOrientation: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When placed inside a `Field.Item` with `orientation="horizontal"`, the label switches to a lighter weight and larger size, suitable for inline controls like checkboxes.',
+      },
+      source: {
+        code: `
+<Field.Group>
+  <Field.Item orientation="horizontal">
+    <Checkbox id="newsletter" />
+    <Label htmlFor="newsletter">Subscribe to newsletter</Label>
+  </Field.Item>
+  <Field.Item orientation="horizontal">
+    <Checkbox id="terms" />
+    <Label htmlFor="terms">I agree to the terms and conditions</Label>
+  </Field.Item>
+</Field.Group>
+        `,
+      },
+    },
+  },
   render: () => (
     <Field.Group>
       <Field.Item orientation="horizontal">

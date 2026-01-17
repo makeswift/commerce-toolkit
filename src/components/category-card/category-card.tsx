@@ -38,17 +38,12 @@ export interface CategoryCardProps extends CategoryCardContent {
  *
  * ```css
  * :root {
- *   --category-card-focus: var(--brand);
- *   --category-card-light-offset: var(--background);
- *   --category-card-light-text: var(--foreground);
- *   --category-card-light-icon: var(--foreground);
- *   --category-card-light-background: var(--contrast-100);
- *   --category-card-dark-offset: var(--foreground);
- *   --category-card-dark-text: var(--background);
- *   --category-card-dark-icon: var(--background);
- *   --category-card-dark-background: var(--contrast-500);
- *   --category-card-font-family: var(--font-family-body);
- *   --category-card-border-radius: 1rem;
+ *   --category-card-radius: 1rem;
+ *   --category-card-font: var(--font-body);
+ *   --category-card-text-light: var(--background);
+ *   --category-card-text-dark:  var(--foreground);
+ *   --category-card-icon-light: var(--background);
+ *   --category-card-icon-dark:  var(--foreground);
  * }
  * ```
  */

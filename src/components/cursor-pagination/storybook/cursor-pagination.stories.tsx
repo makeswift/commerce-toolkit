@@ -11,80 +11,17 @@ const meta: Meta<typeof CursorPagination> = {
     docs: {
       description: {
         component: `
-A cursor-based pagination component for navigating through paginated content. Uses cursor tokens instead of page numbers, ideal for infinite-scroll or real-time data.
+A cursor-based pagination component for navigating through paginated content. Uses cursor tokens instead of page numbers, ideal for real-time data.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --cursor-pagination-focus: var(--brand);
-  --cursor-pagination-border: var(--contrast-100);
-  --cursor-pagination-border-hover: var(--contrast-200);
-  --cursor-pagination-icon: var(--foreground);
-  --cursor-pagination-background: var(--background);
-  --cursor-pagination-background-hover: var(--contrast-100);
+  --cursor-pagination-fill: var(--background);
+  --cursor-pagination-fill-hover: var(--contrast-100);
+  --cursor-pagination-fill-icon: var(--foreground);
 }
 \`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`CursorPagination\` component provides a simple API for cursor-based navigation:
-
-\`\`\`tsx
-import { CursorPagination } from '@/components/cursor-pagination';
-
-<CursorPagination
-  previousLink={{ href: '?before=cursor-123' }}
-  nextLink={{ href: '?after=cursor-456' }}
-/>
-\`\`\`
-
-### With Router Integration
-
-Use the \`asChild\` pattern for Next.js Link or React Router:
-
-\`\`\`tsx
-import { CursorPagination } from '@/components/cursor-pagination';
-import Link from 'next/link';
-
-<CursorPagination
-  previousLink={{
-    asChild: true,
-    children: <Link href="?before=cursor-123"><PreviousIcon /></Link>,
-  }}
-  nextLink={{
-    asChild: true,
-    children: <Link href="?after=cursor-456"><NextIcon /></Link>,
-  }}
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as CursorPagination from '@/components/cursor-pagination';
-
-<CursorPagination.Root aria-label="pagination" role="navigation">
-  <CursorPagination.List>
-    <CursorPagination.Item>
-      <CursorPagination.Link href="?before=cursor-123" aria-label="Previous page">
-        <CursorPagination.PreviousIcon />
-      </CursorPagination.Link>
-    </CursorPagination.Item>
-    <CursorPagination.Item>
-      <CursorPagination.Link href="?after=cursor-456" aria-label="Next page">
-        <CursorPagination.NextIcon />
-      </CursorPagination.Link>
-    </CursorPagination.Item>
-  </CursorPagination.List>
-</CursorPagination.Root>
-\`\`\`
-
-The \`Link\` component supports \`asChild\` for router integration. Use \`aria-disabled\` for disabled states.
         `,
       },
     },
@@ -97,19 +34,19 @@ The \`Link\` component supports \`asChild\` for router integration. Use \`aria-d
     },
     previousLink: {
       control: false,
-      description: 'Configuration for the previous page link with href and optional asChild',
+      description: 'Previous link config with `href` and optional `asChild`',
     },
     nextLink: {
       control: false,
-      description: 'Configuration for the next page link with href and optional asChild',
+      description: 'Next link config with `href` and optional `asChild`',
     },
     previousIcon: {
       control: false,
-      description: 'Custom previous icon configuration with asChild support',
+      description: 'Custom previous icon with `asChild` support',
     },
     nextIcon: {
       control: false,
-      description: 'Custom next icon configuration with asChild support',
+      description: 'Custom next icon with `asChild` support',
     },
   },
 };
@@ -117,24 +54,60 @@ The \`Link\` component supports \`asChild\` for router integration. Use \`aria-d
 export default meta;
 type Story = StoryObj<CursorPaginationProps>;
 
-// Default with both directions enabled
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Both directions enabled with cursor-based hrefs.',
+      },
+    },
+  },
   args: {
     previousLink: { href: '?before=prev-cursor-123' },
     nextLink: { href: '?after=next-cursor-456' },
   },
 };
 
-// First page (no previous link - disabled state)
 export const FirstPage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'First page state with previous link disabled (href is null).',
+      },
+    },
+  },
   args: {
     previousLink: { href: null },
     nextLink: { href: '?after=next-cursor-456' },
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitive components for custom layouts.',
+      },
+      source: {
+        code: `
+<CursorPaginationPrimitive.Root aria-label="Product pagination" role="navigation">
+  <CursorPaginationPrimitive.List>
+    <CursorPaginationPrimitive.Item>
+      <CursorPaginationPrimitive.Link href="?before=cursor-123" aria-label="Go to previous page">
+        <CursorPaginationPrimitive.PreviousIcon />
+      </CursorPaginationPrimitive.Link>
+    </CursorPaginationPrimitive.Item>
+    <CursorPaginationPrimitive.Item>
+      <CursorPaginationPrimitive.Link href="?after=cursor-456" aria-label="Go to next page">
+        <CursorPaginationPrimitive.NextIcon />
+      </CursorPaginationPrimitive.Link>
+    </CursorPaginationPrimitive.Item>
+  </CursorPaginationPrimitive.List>
+</CursorPaginationPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <CursorPaginationPrimitive.Root aria-label="Product pagination" role="navigation">
       <CursorPaginationPrimitive.List>
@@ -156,7 +129,16 @@ export const ComposableAnatomy: Story = {
   ),
 };
 
-// Skeleton loading state
 export const Skeleton: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Loading state placeholder.',
+      },
+      source: {
+        code: `<CursorPaginationPrimitive.Skeleton />`,
+      },
+    },
+  },
   render: () => <CursorPaginationPrimitive.Skeleton />,
 };

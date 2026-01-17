@@ -34,22 +34,14 @@ export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> & {
  *
  * ```css
  * :root {
- *   --select-light-trigger-background: var(--background);
- *   --select-light-trigger-background-hover: var(--contrast-100);
- *   --select-light-trigger-border: var(--contrast-100);
- *   --select-light-trigger-border-hover: var(--contrast-300);
- *   --select-light-trigger-border-error: var(--error);
- *   --select-light-trigger-text: var(--foreground);
- *   --select-light-trigger-focus: var(--brand);
- *   --select-light-icon: var(--foreground);
- *   --select-light-content-background: var(--background);
- *   --select-light-content-border: color-mix(in oklab, var(--foreground) 10%, transparent);
- *   --select-light-item-background-hover: var(--contrast-100);
- *   --select-light-item-background-focus: var(--contrast-100);
- *   --select-light-item-text: var(--contrast-400);
- *   --select-light-item-text-hover: var(--foreground);
- *   --select-light-item-text-focus: var(--foreground);
- *   --select-light-item-checked-text-focus: var(--foreground);
+ *   --select-fill: var(--form-fill);
+ *   --select-fill-hover: var(--form-fill-hover);
+ *   --select-fill-focus: var(--form-fill-hover);
+ *   --select-fill-icon: var(--form-fill-icon);
+ *   --select-text-primary: var(--form-text-primary);
+ *   --select-text-secondary: var(--form-text-secondary);
+ *   --select-text-hover: var(--form-text-hover);
+ *   --select-text-focus: var(--form-text-hover);
  * }
  * ```
  */

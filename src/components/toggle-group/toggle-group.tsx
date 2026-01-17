@@ -20,16 +20,12 @@ export type ToggleGroupProps = ComponentProps<typeof ToggleGroupPrimitive.Root> 
  * with their default values:
  *
  * ```css
- *  :root {
- *   --toggle-group-light-focus: var(--brand);
- *   --toggle-group-light-border: var(--contrast-100);
- *   --toggle-group-light-on-border: var(--foreground);
- *   --toggle-group-light-on-background: var(--foreground);
- *   --toggle-group-light-off-background: var(--background);
- *   --toggle-group-light-off-text: var(--foreground);
- *   --toggle-group-light-on-text: var(--background);
- *   --toggle-group-light-off-border-hover: var(--contrast-200);
- *   --toggle-group-light-off-background-hover: var(--contrast-100);
+ * :root {
+ *   --toggle-group-fill-unchecked: var(--form-fill-unchecked);
+ *   --toggle-group-fill-checked: var(--form-fill-checked);
+ *   --toggle-group-fill-hover: var(--form-fill-hover);
+ *   --toggle-group-text-unchecked: var(--form-text-unchecked);
+ *   --toggle-group-text-checked: var(--form-text-checked);
  * }
  * ```
  */

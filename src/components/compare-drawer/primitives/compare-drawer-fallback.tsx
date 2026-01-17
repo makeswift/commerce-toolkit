@@ -14,7 +14,7 @@ export function CompareDrawerFallback({
   return (
     <span
       className={cn(
-        'flex h-full w-full items-center justify-center break-all p-1 text-xs text-[var(--compare-drawer-empty-image-text,var(--brand-shadow))] opacity-20',
+        'flex h-full w-full items-center justify-center break-all p-1 text-xs text-[var(--compare-drawer-text-secondary,var(--text-secondary))]',
         className,
       )}
       data-slot="compare-drawer-fallback"

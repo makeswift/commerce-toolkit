@@ -1,25 +1,25 @@
 import * as DropdownMenuPrimitive from '@/components/dropdown-menu';
 import { cn } from '@/lib';
 
-type MenuNode =
+export type DropdownMenuNode =
   | { type: 'item'; props?: DropdownMenuPrimitive.ItemProps }
   | { type: 'checkbox'; props?: DropdownMenuPrimitive.CheckboxItemProps }
   | { type: 'separator'; props?: DropdownMenuPrimitive.SeparatorProps }
-  | { type: 'group'; props?: DropdownMenuPrimitive.GroupProps; items: MenuNode[] }
+  | { type: 'group'; props?: DropdownMenuPrimitive.GroupProps; items: DropdownMenuNode[] }
   | {
       type: 'sub';
       props?: DropdownMenuPrimitive.SubProps;
       trigger: { props?: DropdownMenuPrimitive.SubTriggerProps };
-      content?: { props?: DropdownMenuPrimitive.SubContentProps; items: MenuNode[] };
+      content?: { props?: DropdownMenuPrimitive.SubContentProps; items: DropdownMenuNode[] };
     };
 
 export interface DropdownMenuNodeProps {
-  menuNode: MenuNode;
-  menuKey: string | number;
+  dropdownMenuNode: DropdownMenuNode;
+  dropdownMenuKey: string | number;
 }
 
-export function DropdownMenuNode({ menuNode, menuKey }: DropdownMenuNodeProps) {
-  function renderMenuNode(node: MenuNode, key: string | number) {
+export function DropdownMenuNode({ dropdownMenuNode, dropdownMenuKey }: DropdownMenuNodeProps) {
+  function renderDrodownMenuNode(node: DropdownMenuNode, key: string | number) {
     switch (node.type) {
       case 'item': {
         return <DropdownMenuPrimitive.Item key={key} {...node.props} />;
@@ -32,7 +32,7 @@ export function DropdownMenuNode({ menuNode, menuKey }: DropdownMenuNodeProps) {
       case 'group':
         return (
           <DropdownMenuPrimitive.Group key={key} {...node.props}>
-            {node.items.map((child, index) => renderMenuNode(child, String(index)))}
+            {node.items.map((child, index) => renderDrodownMenuNode(child, String(index)))}
           </DropdownMenuPrimitive.Group>
         );
       case 'sub':
@@ -47,7 +47,9 @@ export function DropdownMenuNode({ menuNode, menuKey }: DropdownMenuNodeProps) {
                   {...node.content.props}
                 >
                   <DropdownMenuPrimitive.ScrollArea>
-                    {node.content.items.map((child, index) => renderMenuNode(child, String(index)))}
+                    {node.content.items.map((child, index) =>
+                      renderDrodownMenuNode(child, String(index)),
+                    )}
                   </DropdownMenuPrimitive.ScrollArea>
                 </DropdownMenuPrimitive.SubContent>
               </DropdownMenuPrimitive.Portal>
@@ -57,5 +59,5 @@ export function DropdownMenuNode({ menuNode, menuKey }: DropdownMenuNodeProps) {
     }
   }
 
-  return renderMenuNode(menuNode, menuKey);
+  return renderDrodownMenuNode(dropdownMenuNode, dropdownMenuKey);
 }

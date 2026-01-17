@@ -15,46 +15,39 @@ export {
   type CompareCardSkeletonProps as SkeletonProps,
 } from '@/components/compare-card/primitives/compare-card-skeleton';
 export {
-  CompareCardDescription as Description,
-  type CompareCardDescriptionProps as DescriptionProps,
-} from '@/components/compare-card/primitives/compare-card-description';
+  CompareCardSection as Section,
+  type CompareCardSectionProps as SectionProps,
+} from '@/components/compare-card/primitives/compare-card-section';
 export {
-  CompareCardDescriptionLabel as DescriptionLabel,
-  type CompareCardDescriptionLabelProps as DescriptionLabelProps,
-} from '@/components/compare-card/primitives/compare-card-description-label';
+  CompareCardLabel as Label,
+  type CompareCardLabelProps as LabelProps,
+} from '@/components/compare-card/primitives/compare-card-label';
 export {
-  CompareCardDescriptionContent as DescriptionContent,
-  type CompareCardDescriptionContentProps as DescriptionContentProps,
-} from '@/components/compare-card/primitives/compare-card-description-content';
+  CompareCardContent as Content,
+  type CompareCardContentProps as ContentProps,
+} from '@/components/compare-card/primitives/compare-card-content';
 export {
-  CompareCardDescriptionEmpty as DescriptionEmpty,
-  type CompareCardDescriptionEmptyProps as DescriptionEmptyProps,
-} from '@/components/compare-card/primitives/compare-card-description-empty';
+  CompareCardEmpty as Empty,
+  type CompareCardEmptyProps as EmptyProps,
+} from '@/components/compare-card/primitives/compare-card-empty';
 export {
-  CompareCardSpecs as Specs,
-  type CompareCardSpecsProps as SpecsProps,
-} from '@/components/compare-card/primitives/compare-card-specs';
+  CompareCardList as List,
+  type CompareCardListProps as ListProps,
+} from '@/components/compare-card/primitives/compare-card-list';
 export {
-  CompareCardSpecsLabel as SpecsLabel,
-  type CompareCardSpecsLabelProps as SpecsLabelProps,
-} from '@/components/compare-card/primitives/compare-card-specs-label';
+  CompareCardTerm as Term,
+  type CompareCardTermProps as TermProps,
+} from '@/components/compare-card/primitives/compare-card-term';
 export {
-  CompareCardSpecsList as SpecsList,
-  type CompareCardSpecsListProps as SpecsListProps,
-} from '@/components/compare-card/primitives/compare-card-specs-list';
-export {
-  CompareCardSpecsTerm as SpecsTerm,
-  type CompareCardSpecsTermProps as SpecsTermProps,
-} from '@/components/compare-card/primitives/compare-card-specs-term';
-export {
-  CompareCardSpecsDefinition as SpecsDefinition,
-  type CompareCardSpecsDefinitionProps as SpecsDefinitionProps,
-} from '@/components/compare-card/primitives/compare-card-specs-definition';
-export {
-  CompareCardSpecsEmpty as SpecsEmpty,
-  type CompareCardSpecsEmptyProps as SpecsEmptyProps,
-} from '@/components/compare-card/primitives/compare-card-specs-empty';
+  CompareCardDefinition as Definition,
+  type CompareCardDefinitionProps as DefinitionProps,
+} from '@/components/compare-card/primitives/compare-card-definition';
 export {
   CompareCardReveal as Reveal,
   type CompareCardRevealProps as RevealProps,
 } from '@/components/compare-card/primitives/compare-card-reveal';
+export {
+  CompareCardNode as Node,
+  type CompareCardNodeProps as NodeProps,
+  type CompareCardNode,
+} from '@/components/compare-card/primitives/compare-card-node';

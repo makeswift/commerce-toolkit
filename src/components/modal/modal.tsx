@@ -17,8 +17,8 @@ export interface ModalProps {
  *
  * ```css
  * :root {
- *   --modal-background: var(--background);
- *   --modal-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
+ *   --modal-fill: var(--background);
+ *   --modal-fill-overlay: color-mix(in oklab, var(--foreground) 50%, transparent);
  * }
  * ```
  */

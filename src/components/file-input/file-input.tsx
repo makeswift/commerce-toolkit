@@ -46,6 +46,26 @@ function formatBytes(bytes: number) {
   return `${(bytes / 1024 ** i).toFixed(i ? 1 : 0)} ${sizes[i]}`;
 }
 
+/**
+ * This component supports various CSS variables for theming. Here's a comprehensive list, along
+ * with their default values:
+ *
+ * ```css
+ * :root {
+ *   --file-input-fill: var(--form-fill);
+ *   --file-input-fill-hover: var(--form-fill-hover);
+ *   --file-input-fill-disabled: var(--form-fill);
+ *   --file-input-fill-dragging: var(--success-background);
+ *   --file-input-fill-progress: var(--brand);
+ *   --file-input-fill-icon: var(--form-fill-icon);
+ *   --file-input-text-primary: var(--form-text-primary);
+ *   --file-input-text-secondary: var(--form-text-secondary);
+ *   --file-input-text-error: var(--error);
+ *   --file-input-font-message: var(--font-body);
+ *   --file-input-font-header: var(--font-body);
+ * }
+ * ```
+ */
 export function FileInput({
   id,
   className,

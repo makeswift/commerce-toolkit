@@ -24,14 +24,12 @@ export type CounterProps = ComponentProps<'input'> & {
  *
  * ```css
  * :root {
- *   --counter-focus: var(--brand);
- *   --counter-font-family: var(--font-family-body);
- *   --counter-background: var(--background);
- *   --counter-background-hover: color-mix(in oklab, var(--contrast-100) 50%, transparent);
- *   --counter-border: var(--contrast-100);
- *   --counter-text: var(--foreground);
- *   --counter-icon-hover: var(--foreground);
- *   --counter-icon: var(--contrast-300);
+ *   --counter-fill: var(--form-fill);
+ *   --counter-fill-hover: var(--form-fill-hover);
+ *   --counter-fill-icon: var(--form-fill-icon);
+ *   --counter-fill-icon-hover: var(--form-fill-icon-hover);
+ *   --counter-text: var(--form-text-primary);
+ *   --counter-font: var(--font-body);
  * }
  * ```
  */

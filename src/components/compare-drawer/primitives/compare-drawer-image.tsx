@@ -17,12 +17,7 @@ export function CompareDrawerImage({
 
   return (
     <Component
-      className={cn(
-        'size-full object-cover transition-transform duration-500 ease-out',
-        // Group hover state
-        'group-hover/compare-drawer-link:scale-110',
-        className,
-      )}
+      className={cn('size-full object-cover transition-transform duration-500 ease-out', className)}
       data-slot="compare-drawer-image"
       {...props}
     />

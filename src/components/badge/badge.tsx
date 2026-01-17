@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 import { cn } from '@/lib';
 
 export const badgeVariants = cva(
-  'border border-black/10 px-2 py-1 text-xs font-semibold text-[var(--badge-text,var(--text-brand))] antialiased [font-family:var(--badge-font-family,var(--font-family-body))]',
+  'border border-black/10 px-2 py-1 text-xs font-semibold text-[--badge-text,var(--text-primary)] antialiased [font-family:--badge-font,var(--font-body)]',
   {
     variants: {
       shape: {
@@ -12,16 +12,16 @@ export const badgeVariants = cva(
         rounded: 'rounded',
       },
       variant: {
-        primary: 'bg-[var(--badge-brand-background,var(--brand-background))]',
-        warning: 'bg-[var(--badge-warning-background,var(--warning-background))]',
-        error: 'bg-[var(--badge-error-background,var(--error-background))]',
-        success: 'bg-[var(--badge-success-background,var(--success-background))]',
-        info: 'bg-[var(--badge-info-background,var(--background))]',
+        brand: 'bg-[--badge-brand-fill,var(--brand-background)]',
+        warning: 'bg-[--badge-warning-fill,var(--warning-background)]',
+        error: 'bg-[--badge-error-fill,var(--error-background)]',
+        success: 'bg-[--badge-success-fill,var(--success-background)]',
+        info: 'bg-[--badge-info-fill,var(--background)]',
       },
     },
     defaultVariants: {
       shape: 'rounded',
-      variant: 'primary',
+      variant: 'brand',
     },
   },
 );
@@ -37,13 +37,13 @@ export type BadgeProps = ComponentProps<'span'> &
  *
  * ```css
  * :root {
- *   --badge-brand-background: color-mix(in oklab, var(--brand), white 75%);
- *   --badge-success-background: color-mix(in oklab, var(--success), white 75%);
- *   --badge-warning-background: color-mix(in oklab, var(--warning), white 75%);
- *   --badge-error-background: color-mix(in oklab, var(--error), white 75%);
- *   --badge-info-background: color-mix(in oklab, var(--info), white 75%);
+ *   --badge-fill-brand: color-mix(in oklab, var(--brand), white 75%);
+ *   --badge-fill-success: color-mix(in oklab, var(--success), white 75%);
+ *   --badge-fill-warning: color-mix(in oklab, var(--warning), white 75%);
+ *   --badge-fill-error: color-mix(in oklab, var(--error), white 75%);
+ *   --badge-fill-info: color-mix(in oklab, var(--info), white 75%);
  *   --badge-text: var(--foreground);
- *   --badge-font-family: var(--font-family-body);
+ *   --badge-font: var(--font-body);
  * }
  * ```
  */

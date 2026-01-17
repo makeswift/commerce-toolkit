@@ -19,7 +19,6 @@ export function AccordionContent({ className, children, ...props }: AccordionCon
     <AccordionPrimitive.Content
       className={cn(
         'overflow-hidden',
-        // We need to delay the animation until the component is mounted to avoid the animation from being triggered when the component is first rendered.
         isMounted && 'data-[state=closed]:animate-collapse data-[state=open]:animate-expand',
       )}
       data-slot="accordion-content"

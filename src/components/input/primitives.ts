@@ -1,6 +1,7 @@
 export {
   InputRoot as Root,
   type InputRootProps as RootProps,
+  inputVariants,
 } from '@/components/input/primitives/input-root';
 export {
   InputField as Field,

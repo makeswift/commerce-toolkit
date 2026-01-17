@@ -16,13 +16,13 @@ A small status indicator component for displaying labels, tags, and statuses.
 
 \`\`\`css
 :root {
-  --badge-brand-background: var(--brand-background);
-  --badge-success-background: var(--success-background);
-  --badge-warning-background: var(--warning-background);
-  --badge-error-background: var(--error-background);
-  --badge-info-background: var(--background);
+  --badge-fill-brand: var(--brand-background);
+  --badge-fill-success: var(--success-background);
+  --badge-fill-warning: var(--warning-background);
+  --badge-fill-error: var(--error-background);
+  --badge-fill-info: var(--background);
   --badge-text: var(--text-brand);
-  --badge-font-family: var(--font-family-body);
+  --badge-font: var(--font-body);
 }
 \`\`\`
         `,
@@ -37,7 +37,7 @@ A small status indicator component for displaying labels, tags, and statuses.
     },
     variant: {
       control: 'select',
-      options: ['primary', 'success', 'warning', 'error', 'info'],
+      options: ['brand', 'success', 'warning', 'error', 'info'],
       description: 'The semantic variant of the badge',
     },
     shape: {
@@ -54,14 +54,14 @@ type Story = StoryObj<BadgeProps>;
 export const Default: Story = {
   args: {
     children: 'New',
-    variant: 'primary',
+    variant: 'brand',
   },
 };
 
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-3">
-      <Badge variant="primary">Primary</Badge>
+      <Badge variant="brand">Brand</Badge>
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
       <Badge variant="error">Error</Badge>
@@ -80,10 +80,10 @@ export const AllVariants: Story = {
 export const Shapes: Story = {
   render: () => (
     <div className="flex flex-wrap gap-3">
-      <Badge shape="rounded" variant="primary">
+      <Badge shape="rounded" variant="brand">
         Rounded
       </Badge>
-      <Badge shape="pill" variant="primary">
+      <Badge shape="pill" variant="brand">
         Pill
       </Badge>
     </div>

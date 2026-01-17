@@ -21,7 +21,7 @@ export function FileInputDropzoneError({
   return (
     <p
       className={cn(
-        'font-[family-name:var(--file-input-dropzone-message-font-family,var(--font-family-body))] text-sm font-normal text-[var(--file-input-dropzone-message-error,var(--error))]',
+        'text-sm font-normal text-[--file-input-text-error,var(--error)] [font-family:var(--file-input-font-message,var(--font-body))]',
         className,
       )}
       data-slot="file-input-dropzone-error"

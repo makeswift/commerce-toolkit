@@ -11,19 +11,17 @@ export interface CalendarNextIconProps {
 }
 
 export function CalendarNextIcon({ asChild = false, className, children }: CalendarNextIconProps) {
+  const iconStyles = cn('size-5 translate-x-px', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-5 translate-x-px', className)} data-slot="calendar-next-icon">
+      <Slot className={iconStyles} data-slot="calendar-next-icon">
         {children}
       </Slot>
     );
   }
 
   return (
-    <ChevronRightIcon
-      absoluteStrokeWidth
-      className={cn('size-5 translate-x-px', className)}
-      data-slot="calendar-next-icon"
-    />
+    <ChevronRightIcon absoluteStrokeWidth className={iconStyles} data-slot="calendar-next-icon" />
   );
 }

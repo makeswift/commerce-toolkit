@@ -9,17 +9,17 @@ export type CursorPaginationSkeletonProps = ComponentProps<'div'>;
 export function CursorPaginationSkeleton({ className, ...props }: CursorPaginationSkeletonProps) {
   return (
     <div
-      className={cn('py-10 text-[var(--cursor-pagination-icon,var(--foreground))]', className)}
+      className={cn('py-10 text-[--cursor-pagination-fill-icon,var(--foreground)]', className)}
       data-slot="cursor-pagination-skeleton"
       {...props}
     >
       <div className="flex items-center justify-center gap-3">
         <SkeletonPrimitive.Icon
-          className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-full border border-[var(--cursor-pagination-border,var(--contrast-100))]"
+          className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-full border border-[--border-subtle]"
           icon={<ArrowLeft absoluteStrokeWidth size={24} strokeWidth={1} />}
         />
         <SkeletonPrimitive.Icon
-          className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-full border border-[var(--cursor-pagination-border,var(--contrast-100))]"
+          className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-full border border-[--border-subtle]"
           icon={<ArrowRight absoluteStrokeWidth size={24} strokeWidth={1} />}
         />
       </div>

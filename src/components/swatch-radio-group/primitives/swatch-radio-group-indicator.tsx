@@ -12,10 +12,7 @@ export function SwatchRadioGroupIndicator({
   return (
     <div
       className={cn(
-        // Base layout
-        'disabled-icon absolute inset-0 hidden place-content-center',
-        // Colors
-        'text-[var(--swatch-radio-group-light-icon,var(--foreground))]',
+        'disabled-icon absolute inset-0 hidden place-content-center text-[--swatch-radio-group-icon,var(--form-fill-icon)]',
         className,
       )}
       data-slot="swatch-radio-group-indicator"

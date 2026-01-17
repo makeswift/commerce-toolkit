@@ -15,9 +15,11 @@ export function CursorPaginationNextIcon({
   className,
   children,
 }: CursorPaginationNextIconProps) {
+  const iconStyles = cn('size-6', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-6', className)} data-slot="cursor-pagination-next-icon">
+      <Slot className={iconStyles} data-slot="cursor-pagination-next-icon">
         {children}
       </Slot>
     );
@@ -26,7 +28,7 @@ export function CursorPaginationNextIcon({
   return (
     <ArrowRight
       absoluteStrokeWidth
-      className={cn('size-6', className)}
+      className={iconStyles}
       color="currentColor"
       data-slot="cursor-pagination-next-icon"
       strokeWidth={1}

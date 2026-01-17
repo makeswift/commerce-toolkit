@@ -9,7 +9,7 @@ export function ModalContent({ children, className, ...props }: ModalContentProp
   return (
     <Dialog.Content
       className={cn(
-        'mx-3 my-10 max-h-[90%] max-w-3xl overflow-y-auto rounded-xl bg-[var(--modal-background,var(--background))] px-3 py-5 transition ease-out @sm:px-6 @sm:py-8 @5xl:px-20 @5xl:py-10',
+        'mx-3 my-10 max-h-[90%] max-w-3xl overflow-y-auto rounded-xl bg-[--modal-fill,var(--background)] px-3 py-5 transition ease-out @sm:px-6 @sm:py-8 @5xl:px-20 @5xl:py-10',
         // Focus styles
         'focus:outline-none',
         // Open styles

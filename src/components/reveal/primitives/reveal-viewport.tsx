@@ -13,7 +13,7 @@ export function RevealViewport({ children, className, ...props }: RevealViewport
   return (
     <div
       className={cn(
-        'max-h-[var(--reveal-max-height)] overflow-hidden',
+        'max-h-[--reveal-max-height] overflow-hidden',
         // Open state
         'group-data-[open=true]/reveal:max-h-none',
         // Overflow + Closed state (show gradient mask)

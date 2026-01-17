@@ -32,13 +32,8 @@ A radio group component for selecting a single option from a set of choices. Bui
 
 \`\`\`css
 :root {
-  --radio-group-light-background: var(--background);
-  --radio-group-light-border: var(--contrast-200);
-  --radio-group-light-border-hover: var(--contrast-300);
-  --radio-group-light-border-error: var(--error);
-  --radio-group-light-disabled-border-error: color-mix(in oklab, var(--error) 50%, transparent);
-  --radio-group-light-focus: var(--brand);
-  --radio-group-light-indicator-background: var(--foreground);
+  --radio-group-fill: var(--form-fill);
+  --radio-group-fill-checked: var(--form-fill-checked);
 }
 \`\`\`
 

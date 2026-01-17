@@ -11,7 +11,10 @@ export interface InputPrependIconProps {
 }
 
 export function InputPrependIcon({ asChild = false, className, children }: InputPrependIconProps) {
-  const iconStyles = cn('size-5 text-[var(--input-light-icon,var(--contrast-400))]', className);
+  const iconStyles = cn(
+    'text-[--input-fill-icon,var(--form-fill-icon)] group-data-[size=large]/input:size-5 group-data-[size=medium]/input:size-5 group-data-[size=small]/input:size-4',
+    className,
+  );
 
   if (asChild) {
     return (

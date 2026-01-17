@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react';
 import { cn } from '@/lib';
 
 const spinnerVariants = cva(
-  'box-border inline-block animate-spin rounded-full border-[var(--spinner-base,var(--contrast-100))] [border-bottom-color:var(--spinner-ring,color-mix(in_oklab,var(--brand),black_75%))]',
+  'box-border inline-block animate-spin rounded-full border-[var(--spinner-fill-base,var(--contrast-100))] [border-bottom-color:var(--spinner-fill-ring,color-mix(in_oklab,var(--brand),black_75%))]',
   {
     variants: {
       size: {
@@ -28,8 +28,8 @@ export type SpinnerProps = ComponentProps<'span'> & VariantProps<typeof spinnerV
  *
  * ```css
  * :root {
- *   --spinner-base: var(--contrast-100);
- *   --spinner-ring: color-mix(in oklab, var(--brand), black 75%);
+ *   --spinner-fill-base: var(--contrast-100);
+ *   --spinner-fill-ring: color-mix(in oklab, var(--brand), black 75%);
  * }
  * ```
  */

@@ -17,9 +17,11 @@ export function SwatchRadioGroupIndicatorIcon({
   className,
   children,
 }: SwatchRadioGroupIndicatorIconProps) {
+  const iconStyles = cn('size-4', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-4', className)} data-slot="swatch-radio-group-indicator-icon">
+      <Slot className={iconStyles} data-slot="swatch-radio-group-indicator-icon">
         {children}
       </Slot>
     );
@@ -28,7 +30,7 @@ export function SwatchRadioGroupIndicatorIcon({
   return (
     <X
       absoluteStrokeWidth
-      className={cn('size-4', className)}
+      className={iconStyles}
       data-slot="swatch-radio-group-indicator-icon"
       strokeWidth={1.5}
     />

@@ -13,8 +13,8 @@ export { Badge, type BadgeProps } from '@/components/badge';
 // Banner
 export { Banner, type BannerProps } from '@/components/banner';
 
-// BlogPostCard
-export { BlogPostCard, type BlogPostCardProps } from '@/components/blog-post-card';
+// BlogCard
+export { BlogCard, type BlogCardProps } from '@/components/blog-card';
 
 // Button
 export { Button, type ButtonProps } from '@/components/button';

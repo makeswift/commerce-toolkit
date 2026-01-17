@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { ComponentType } from 'react';
 
 import { Carousel, type CarouselProps } from '@/components/carousel';
@@ -13,19 +12,23 @@ const meta: Meta<typeof Carousel> = {
     docs: {
       description: {
         component: `
-A responsive carousel component built on top of Embla Carousel. Supports customizable navigation, scrollbar, and flexible item layouts.
+A responsive carousel component built on [Embla Carousel](https://www.embla-carousel.com/). Supports customizable navigation, scrollbar, and flexible item layouts.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --carousel-light-scrollbar: var(--foreground);
-  --carousel-dark-scrollbar: var(--background);
-  --carousel-focus: var(--brand);
-  --carousel-light-button: var(--foreground);
-  --carousel-dark-button: var(--background);
+  --carousel-fill-scrollbar: var(--foreground);
 }
 \`\`\`
+
+## Container Queries
+
+The carousel uses container queries to adjust item spacing at the \`@2xl\` breakpoint (42rem / 672px):
+
+| Element | Below @2xl | @2xl and above |
+|---------|------------|----------------|
+| Item gap | pl-4 (-ml-4) | pl-5 (-ml-5) |
         `,
       },
     },
@@ -47,6 +50,14 @@ A responsive carousel component built on top of Embla Carousel. Supports customi
     opts: {
       control: false,
       description: 'Embla Carousel options for customizing behavior',
+    },
+    prevIcon: {
+      control: false,
+      description: 'Custom previous icon configuration with `asChild` support',
+    },
+    nextIcon: {
+      control: false,
+      description: 'Custom next icon configuration with `asChild` support',
     },
   },
   decorators: [
@@ -115,39 +126,8 @@ export const Default: Story = {
   },
 };
 
-export const WithoutScrollbar: Story = {
-  args: {
-    items: productItems,
-    showScrollbar: false,
-    showNav: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Hide the scrollbar by setting `showScrollbar` to `false`.',
-      },
-    },
-  },
-};
-
-export const WithoutNav: Story = {
-  args: {
-    items: productItems,
-    showScrollbar: true,
-    showNav: false,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Hide the navigation arrows by setting `showNav` to `false`.',
-      },
-    },
-  },
-};
-
 /**
- * The Carousel can be built using composable primitives for full customization.
- * This example shows the component anatomy using the primitive components.
+ * Use the composable primitives to build custom carousel layouts.
  */
 export const ComposableAnatomy: Story = {
   render: () => (
@@ -177,10 +157,10 @@ export const ComposableAnatomy: Story = {
         <CarouselPrimitive.Scrollbar />
         <CarouselPrimitive.Nav>
           <CarouselPrimitive.Prev>
-            <ArrowLeft className="h-6 w-6" strokeWidth={1.5} />
+            <CarouselPrimitive.PrevIcon />
           </CarouselPrimitive.Prev>
           <CarouselPrimitive.Next>
-            <ArrowRight className="h-6 w-6" strokeWidth={1.5} />
+            <CarouselPrimitive.NextIcon />
           </CarouselPrimitive.Next>
         </CarouselPrimitive.Nav>
       </CarouselPrimitive.Controls>
@@ -194,24 +174,21 @@ Use the composable primitives to build custom carousel layouts:
 
 \`\`\`tsx
 import * as CarouselPrimitive from '@/components/carousel/primitives';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 <CarouselPrimitive.Root>
   <CarouselPrimitive.Viewport>
     <CarouselPrimitive.Content>
-      <CarouselPrimitive.Item>
-        {/* Your content */}
-      </CarouselPrimitive.Item>
+      <CarouselPrimitive.Item>{/* Your content */}</CarouselPrimitive.Item>
     </CarouselPrimitive.Content>
   </CarouselPrimitive.Viewport>
   <CarouselPrimitive.Controls>
     <CarouselPrimitive.Scrollbar />
     <CarouselPrimitive.Nav>
       <CarouselPrimitive.Prev>
-        <ArrowLeft />
+        <CarouselPrimitive.PrevIcon />
       </CarouselPrimitive.Prev>
       <CarouselPrimitive.Next>
-        <ArrowRight />
+        <CarouselPrimitive.NextIcon />
       </CarouselPrimitive.Next>
     </CarouselPrimitive.Nav>
   </CarouselPrimitive.Controls>

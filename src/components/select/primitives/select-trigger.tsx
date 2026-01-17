@@ -11,13 +11,11 @@ export function SelectTrigger({ className, children, ...props }: SelectTriggerPr
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        'flex h-fit w-full select-none items-center justify-between gap-3 border border-[var(--select-light-trigger-border,var(--contrast-100))] bg-[var(--select-light-trigger-background,var(--background))] px-5 py-3 text-sm font-normal text-[var(--select-light-trigger-text,var(--foreground))] transition-colors',
+        'focus-primary flex h-fit w-full select-none items-center justify-between gap-3 border border-[--border-subtle] bg-[--select-fill,var(--form-fill)] px-5 py-3 text-sm font-normal text-[--select-text-primary,var(--form-text-primary)] transition-colors',
         // Hover state
-        'hover:border-[var(--select-light-trigger-border-hover,var(--contrast-300))] hover:bg-[var(--select-light-trigger-background-hover,var(--contrast-100))]',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--select-light-trigger-focus,var(--brand))]',
+        'hover:border-[--border-hover] hover:bg-[--select-fill-hover,var(--form-fill-hover)]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--select-light-trigger-border-error,var(--error))]',
+        'aria-invalid:border-[--border-error]',
         // Variant styles
         '[[data-variant=rectangle]_&]:rounded-lg [[data-variant=round]_&]:rounded-full',
         className,

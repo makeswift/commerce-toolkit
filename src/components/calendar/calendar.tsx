@@ -13,13 +13,11 @@ import { cn } from '@/lib';
  *
  * ```css
  * :root {
- *   --calendar-font-family: var(--font-family-body);
- *   --calendar-focus: var(--brand);
- *   --calendar-text: var(--foreground);
- *   --calendar-background: var(--background);
- *   --calendar-selected-background: var(--brand);
- *   --calendar-selected-text: var(--foreground);
- *   --calendar-text-disabled: var(--contrast-300);
+ *   --calendar-font: var(--font-body);
+ *   --calendar-fill: var(--background);
+ *   --calendar-text-primary:  var(--text-primary);
+ *   --calendar-fill-selected: var(--brand);
+ *   --calendar-text-selected: var(--text-primary);
  * }
  * ```
  */
@@ -60,7 +58,7 @@ export function Calendar({
     <DayPicker
       captionLayout={captionLayout}
       className={cn(
-        'group/calendar rounded-2xl bg-[var(--calendar-background,var(--background))] p-3 font-[var(--calendar-font-family,var(--font-family-body))] text-[var(--calendar-text,var(--foreground))] shadow-lg shadow-black/10 ring-1 ring-black/5',
+        'group/calendar rounded-2xl bg-[--calendar-fill,var(--background)] p-3 font-[--calendar-font,var(--font-body)] text-[--calendar-text-primary,var(--text-primary)] shadow-lg shadow-black/10 ring-1 ring-black/5',
         className,
       )}
       classNames={{
@@ -72,27 +70,27 @@ export function Calendar({
           defaultClassNames.nav,
         ),
         button_previous: cn(
-          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
+          'focus-primary inline-flex size-[--cell-size] cursor-default items-center justify-center rounded-full text-[--calendar-text-primary,var(--text-primary)] transition-colors duration-75 ease-linear hover:bg-[--fill-hover] aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
           defaultClassNames.button_previous,
         ),
         button_next: cn(
-          'inline-flex size-[var(--cell-size)] cursor-default items-center justify-center rounded-full transition-colors duration-75 ease-linear hover:bg-contrast-100 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--calendar-focus,var(--brand))] aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
+          'focus-primary inline-flex size-[--cell-size] cursor-default items-center justify-center rounded-full text-[--calendar-text-primary,var(--text-primary)] transition-colors duration-75 ease-linear hover:bg-[--fill-hover] aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
           defaultClassNames.button_next,
         ),
         month_caption: cn(
-          'flex h-[var(--cell-size)] w-full items-center justify-center px-[var(--cell-size)]',
+          'flex h-[--cell-size] w-full items-center justify-center px-[--cell-size]',
           defaultClassNames.month_caption,
         ),
         dropdowns: cn(
-          'flex h-[var(--cell-size)] w-full items-center justify-center gap-1.5 text-sm font-medium',
+          'flex h-[--cell-size] w-full items-center justify-center gap-1.5 text-sm font-medium',
           defaultClassNames.dropdowns,
         ),
         dropdown_root: cn(
-          'relative rounded-lg border border-contrast-200 transition-colors duration-75 ease-linear',
+          'relative rounded-lg border border-[--border] transition-colors duration-75 ease-linear',
           // Hover state
-          'hover:bg-foreground/5',
+          'hover:bg-[--fill-hover]',
           // Focus-visible state
-          'focus-visible:border-foreground',
+          'focus-visible:border-[--border-focus-secondary]',
           defaultClassNames.dropdown_root,
         ),
         dropdown: cn('absolute inset-0 opacity-0', defaultClassNames.dropdown),
@@ -103,29 +101,29 @@ export function Calendar({
         table: 'w-full border-collapse',
         weekdays: cn('flex', defaultClassNames.weekdays),
         weekday: cn(
-          'inline-flex size-[var(--cell-size)] flex-1 select-none items-center justify-center text-xs font-semibold',
+          'inline-flex size-[--cell-size] flex-1 select-none items-center justify-center text-xs font-semibold',
           defaultClassNames.weekday,
         ),
         week: cn('mt-1 flex w-full', defaultClassNames.week),
         week_number_header: cn(
-          'size-[var(--cell-size)] select-none',
+          'size-[--cell-size] select-none',
           defaultClassNames.week_number_header,
         ),
         week_number: cn('select-none text-xs', defaultClassNames.week_number),
         day: cn(
-          'group/day relative z-0 size-[var(--cell-size)] select-none p-0 text-center [&:last-child[data-selected=true]_button]:rounded-r-full',
+          'group/day relative z-0 size-[--cell-size] select-none p-0 text-center [&:last-child[data-selected=true]_button]:rounded-r-full',
           props.showWeekNumber === true
             ? '[&:nth-child(2)[data-selected=true]_button]:rounded-l-full'
             : '[&:first-child[data-selected=true]_button]:rounded-l-full',
           defaultClassNames.day,
         ),
         range_start: cn(
-          'rounded-l-full bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--brand)_25%,transparent))]',
+          'rounded-l-full bg-[color-mix(in_oklch,var(--calendar-fill-selected,var(--brand))_25%,transparent)]',
           defaultClassNames.range_start,
         ),
         range_middle: cn('rounded-none', defaultClassNames.range_middle),
         range_end: cn(
-          'rounded-r-full bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--brand)_25%,transparent))]',
+          'rounded-r-full bg-[color-mix(in_oklch,var(--calendar-fill-selected,var(--brand))_25%,transparent)]',
           defaultClassNames.range_end,
         ),
         today: cn(
@@ -184,7 +182,7 @@ export function Calendar({
         WeekNumber: ({ children, ...weekNumberProps }) => {
           return (
             <td {...weekNumberProps}>
-              <div className="flex size-[var(--cell-size)] items-center justify-center text-center">
+              <div className="flex size-[--cell-size] items-center justify-center text-center">
                 {children}
               </div>
             </td>
@@ -222,21 +220,21 @@ function CalendarDayButton({
   return (
     <button
       className={cn(
-        'size-[var(--cell-size)] rounded-full p-0 text-xs font-normal transition-colors duration-75 ease-linear',
+        'size-[--cell-size] rounded-full p-0 text-xs font-normal transition-colors duration-75 ease-linear',
         // Hover state
-        'hover:bg-contrast-100',
+        'hover:bg-[--fill-hover]',
         // Range end
         'data-[range-end=true]:rounded-full',
-        'data-[range-end=true]:bg-[var(--calendar-selected-button-background,var(--brand))]',
-        'data-[range-end=true]:text-[var(--calendar-selected-text,var(--foreground))]',
+        'data-[range-end=true]:bg-[--calendar-fill-selected,var(--brand)]',
+        'data-[range-end=true]:text-[--calendar-text-selected,var(--text-primary)]',
         // Range middle
         'data-[range-middle=true]:rounded-none',
-        'data-[range-middle=true]:bg-[var(--calendar-selected-background,color-mix(in_oklch,var(--brand)_25%,transparent))]',
+        'data-[range-middle=true]:bg-[color-mix(in_oklch,var(--calendar-fill-selected,var(--brand))_25%,transparent)]',
         'data-[range-middle=true]:before:content-[""]',
         'data-[range-middle=true]:before:absolute',
         'data-[range-middle=true]:before:-z-10',
         'data-[range-middle=true]:before:inset-0',
-        'data-[range-middle=true]:before:bg-[var(--calendar-selected-background,var(--brand))]',
+        'data-[range-middle=true]:before:bg-[--calendar-fill-selected,var(--brand)]',
         'data-[range-middle=true]:before:rounded-full',
         'data-[range-middle=true]:before:opacity-0',
         'data-[range-middle=true]:before:transition-opacity',
@@ -245,23 +243,23 @@ function CalendarDayButton({
         'data-[range-middle=true]:hover:before:opacity-100',
         // Range start
         'data-[range-start=true]:rounded-full',
-        'data-[range-start=true]:bg-[var(--calendar-selected-background,var(--brand))]',
-        'data-[range-start=true]:text-[var(--calendar-selected-text,var(--foreground))]',
+        'data-[range-start=true]:bg-[--calendar-fill-selected,var(--brand)]',
+        'data-[range-start=true]:text-[--calendar-text-selected,var(--text-primary)]',
         // Selected single
-        'data-[selected-single=true]:bg-[var(--calendar-selected-background,var(--brand))]',
-        'data-[selected-single=true]:text-[var(--calendar-selected-text,var(--foreground))]',
+        'data-[selected-single=true]:bg-[--calendar-fill-selected,var(--brand)]',
+        'data-[selected-single=true]:text-[--calendar-text-selected,var(--text-primary)]',
         // Focused day (group)
         'group-data-[focused=true]/day:relative',
         'group-data-[focused=true]/day:z-10',
         'group-data-[focused=true]/day:outline-2',
         'group-data-[focused=true]/day:outline-offset-2',
-        'group-data-[focused=true]/day:outline-foreground',
+        'group-data-[focused=true]/day:outline-[--border-focus-primary]',
         // Outside day (group)
-        'group-data-[outside=true]/day:text-[var(--calendar-text,color-mix(in_oklch,var(--foreground)_40%,transparent))]',
-        'group-data-[outside=true]/day:hover:text-[var(--calendar-text,var(--foreground))]',
+        'group-data-[outside=true]/day:text-[color-mix(in_oklch,var(--calendar-text-primary,var(--text-primary))_40%,transparent))]',
+        'group-data-[outside=true]/day:hover:text-[--calendar-text-primary,var(--foreground)]',
         // Selected day (group)
-        'group-data-[selected=true]/day:text-foreground',
-        'group-data-[selected=true]/day:hover:text-foreground',
+        'group-data-[selected=true]/day:text-[--calendar-text-selected,var(--text-primary)]',
+        'group-data-[selected=true]/day:hover:text-[--calendar-text-selected,var(--text-primary)]',
         // Disabled day (group)
         'group-data-[disabled=true]/day:opacity-40',
         'group-data-[disabled=true]/day:pointer-events-none',

@@ -11,7 +11,7 @@ export function AccordionTrigger({ className, children, ...props }: AccordionTri
   return (
     <AccordionPrimitive.Trigger
       className={cn(
-        'group/accordion flex w-full cursor-pointer items-start gap-8 border-none py-3 text-start focus:outline-none @md:py-4',
+        'group/accordion focus-primary flex w-full cursor-pointer items-start gap-8 rounded-lg border-none py-3 text-start @md:py-4',
         className,
       )}
       data-slot="accordion-trigger"

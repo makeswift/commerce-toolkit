@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DollarSign } from 'lucide-react';
+import { DollarSign, Search } from 'lucide-react';
 
 import { Input, type InputProps } from '@/components/input';
 import * as InputPrimitive from '@/components/input/primitives';
@@ -12,67 +12,18 @@ const meta: Meta<typeof Input> = {
     docs: {
       description: {
         component: `
-A text input component with support for prepended icons. Built for forms and user input scenarios.
+A text input with support for prepended icons.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --input-light-background: var(--background);
-  --input-light-border: var(--contrast-100);
-  --input-light-focus: var(--foreground);
-  --input-light-border-error: var(--error);
-  --input-light-text: var(--foreground);
-  --input-light-placeholder: var(--contrast-500);
-  --input-light-icon: var(--contrast-400);
+  --input-fill: var(--form-fill);
+  --input-fill-icon: var(--form-fill-icon);
+  --input-fill-disabled: var(--form-fill-disabled);
+  --input-text: var(--form-text-primary);
+  --input-text-placeholder: var(--form-text-placeholder);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`Input\` component provides a simple API with an optional \`prependIcon\` prop:
-
-\`\`\`tsx
-import { Input } from '@/components/input';
-import { DollarSign } from 'lucide-react';
-
-// Basic input
-<Input placeholder="Enter text..." />
-
-// With default search icon
-<Input prependIcon={{}} placeholder="Search..." />
-
-// With custom icon using asChild
-<Input prependIcon={{ asChild: true, children: <DollarSign /> }} type="number" placeholder="0.00" />
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Input from '@/components/input';
-import { DollarSign } from 'lucide-react';
-
-// Default search icon
-<Input.Root prepend>
-  <Input.Prepend>
-    <Input.PrependIcon />
-  </Input.Prepend>
-  <Input.Field placeholder="Search products..." />
-</Input.Root>
-
-// Custom icon with asChild
-<Input.Root prepend>
-  <Input.Prepend>
-    <Input.PrependIcon asChild>
-      <DollarSign />
-    </Input.PrependIcon>
-  </Input.Prepend>
-  <Input.Field type="number" placeholder="0.00" />
-</Input.Root>
 \`\`\`
         `,
       },
@@ -80,22 +31,28 @@ import { DollarSign } from 'lucide-react';
   },
   tags: ['autodocs'],
   argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large'],
+      description: 'The size of the input',
+    },
     type: {
       control: 'select',
       options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
-      description: 'The input type',
+      description: 'The HTML input type',
     },
     placeholder: {
       control: 'text',
-      description: 'Placeholder text displayed when empty',
+      description: 'Placeholder text when empty',
     },
     disabled: {
       control: 'boolean',
-      description: 'Whether the input is disabled',
+      description: 'Disables the input',
     },
     prependIcon: {
       control: false,
-      description: 'Icon configuration to prepend before the input',
+      description:
+        'Icon configuration object with `asChild` and `children` props. Use `asChild: true` to render a custom icon.',
     },
   },
   args: {
@@ -107,18 +64,62 @@ import { DollarSign } from 'lucide-react';
 export default meta;
 type Story = StoryObj<InputProps>;
 
-// Default input
 export const Default: Story = {
   args: {
     placeholder: 'Enter text...',
   },
 };
 
-// With prepended icons
-export const WithPrependIcon: Story = {
+export const AllSizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Three size options are available: `small`, `medium` (default), and `large`.',
+      },
+      source: {
+        code: `
+<Input size="small" placeholder="Small input" />
+<Input size="medium" placeholder="Medium input" />
+<Input size="large" placeholder="Large input" />
+        `,
+      },
+    },
+  },
   render: () => (
     <div className="flex flex-col gap-4">
-      <Input placeholder="Search..." prependIcon={{}} />
+      <Input placeholder="Small input" size="small" />
+      <Input placeholder="Medium input" size="medium" />
+      <Input placeholder="Large input" size="large" />
+    </div>
+  ),
+};
+
+export const WithPrependIcon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Add a prepended icon using the `prependIcon` prop. Pass `asChild: true` to use a custom icon component.',
+      },
+      source: {
+        code: `
+<Input
+  placeholder="Search..."
+  prependIcon={{ asChild: true, children: <Search /> }}
+/>
+
+<Input
+  placeholder="0.00"
+  prependIcon={{ asChild: true, children: <DollarSign /> }}
+  type="number"
+/>
+        `,
+      },
+    },
+  },
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <Input placeholder="Search..." prependIcon={{ asChild: true, children: <Search /> }} />
       <Input
         placeholder="0.00"
         prependIcon={{ asChild: true, children: <DollarSign /> }}
@@ -128,18 +129,51 @@ export const WithPrependIcon: Story = {
   ),
 };
 
-// Disabled state
 export const Disabled: Story = {
   args: {
     disabled: true,
     defaultValue: 'Cannot edit this',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'The `disabled` prop prevents user interaction and applies reduced opacity styling.',
+      },
+    },
+  },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the primitive components to build custom input layouts.
+
+| Primitive                      | Description                                           |
+|--------------------------------|-------------------------------------------------------|
+| \`InputPrimitive.Root\`        | Container with border, background, and focus states.  |
+| \`InputPrimitive.Prepend\`     | Positioned wrapper for prepend content.               |
+| \`InputPrimitive.PrependIcon\` | Icon with \`asChild\` support; defaults to search.    |
+| \`InputPrimitive.Field\`       | The actual input element with styling.                |
+        `,
+      },
+      source: {
+        code: `
+import * as InputPrimitive from '@/components/input/primitives';
+
+<InputPrimitive.Root prepend size="medium">
+  <InputPrimitive.Prepend>
+    <InputPrimitive.PrependIcon />
+  </InputPrimitive.Prepend>
+  <InputPrimitive.Field placeholder="Search products..." />
+</InputPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
-    <InputPrimitive.Root prepend>
+    <InputPrimitive.Root prepend size="medium">
       <InputPrimitive.Prepend>
         <InputPrimitive.PrependIcon />
       </InputPrimitive.Prepend>

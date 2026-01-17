@@ -17,10 +17,7 @@ export function FileInputUploadIcon({
   className,
   children,
 }: FileInputUploadIconProps) {
-  const iconStyles = cn(
-    'size-5 text-[var(--file-input-trigger-icon,var(--foreground))]',
-    className,
-  );
+  const iconStyles = cn('size-5', className);
 
   if (asChild) {
     return (

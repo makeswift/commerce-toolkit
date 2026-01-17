@@ -13,95 +13,27 @@ const meta: Meta<typeof ProductCard> = {
     docs: {
       description: {
         component: `
-A versatile product card component for displaying product information with optional actions. Supports product images, badges, ratings, pricing, and both cart and compare actions.
+A product card for displaying product information with optional actions like add-to-cart and compare.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --product-card-focus: var(--brand);
-  --product-card-empty-text: color-mix(in oklab, var(--foreground) 15%, transparent);
-  --product-card-light-offset: var(--background);
-  --product-card-light-background: var(--contrast-100);
-  --product-card-light-title: var(--foreground);
-  --product-card-light-subtitle: color-mix(in oklab, var(--foreground) 75%, transparent);
-  --product-card-dark-offset: var(--foreground);
-  --product-card-dark-background: var(--contrast-500);
-  --product-card-dark-title: var(--background);
-  --product-card-dark-subtitle: color-mix(in oklab, var(--background) 75%, transparent);
-  --product-card-font-family: var(--font-family-body);
-  --product-card-border-radius: 1rem;
+  --product-card-text-primary: var(--text-primary);
+  --product-card-text-secondary: var(--text-secondary);
+  --product-card-font-title: var(--font-body);
+  --product-card-font-subtitle: var(--font-body);
+  --product-card-radius: 1rem;
 }
 \`\`\`
 
-## Usage
-
-### High-Level Component
-
-The \`ProductCard\` component provides a comprehensive API for displaying products:
-
-\`\`\`tsx
-import { ProductCard } from '@/components/product-card';
-
-<ProductCard
-  aspectRatio="5/6"
-  product={{
-    id: 'product-id',
-    title: 'Product Name',
-    subtitle: 'Category',
-    badge: 'Sale',
-    link: { href: '/products/id', ariaLabel: 'View Product' },
-    image: { src: '...', alt: '...' },
-    showRating: true,
-    rating: 4.5,
-    price: { type: 'default', value: '$19.99' },
-  }}
-  cartAction={{
-    type: 'form',
-    action: (formData) => console.log('Add to cart:', formData.get('id')),
-    label: 'Add to Cart',
-  }}
-/>
-\`\`\`
-
-### Price Types
+## Price Types
 
 The \`price\` prop supports three formats:
 
-- \`{ type: 'default', value: '$19.99' }\` - Standard price
-- \`{ type: 'sale', previousValue: '$29.99', currentValue: '$19.99' }\` - Sale price
-- \`{ type: 'range', minValue: '$19.99', maxValue: '$29.99' }\` - Price range
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as ProductCard from '@/components/product-card';
-
-<ProductCard.Root aspectRatio="5/6">
-  <ProductCard.Preview>
-    <ProductCard.Thumbnail>
-      <ProductCard.Image src="..." alt="..." />
-      <ProductCard.Badge>Sale</ProductCard.Badge>
-    </ProductCard.Thumbnail>
-    <ProductCard.Link href="..." aria-label="..." />
-  </ProductCard.Preview>
-  <ProductCard.Details>
-    <ProductCard.Header>
-      <ProductCard.Title>Product Name</ProductCard.Title>
-      <ProductCard.Subtitle>Category</ProductCard.Subtitle>
-      <ProductCard.Price price={{ type: 'default', value: '$19.99' }} />
-      <ProductCard.Rating rating={4.5} />
-      <ProductCard.Link href="..." aria-label="..." />
-    </ProductCard.Header>
-  </ProductCard.Details>
-  <ProductCard.Actions>
-    <ProductCard.CartButton>Add to Cart</ProductCard.CartButton>
-    <ProductCard.Compare id="compare-id" label="Compare" />
-  </ProductCard.Actions>
-</ProductCard.Root>
-\`\`\`
+- \`{ type: 'default', value: '$19.99' }\` — Standard price
+- \`{ type: 'sale', previousValue: '$29.99', currentValue: '$19.99' }\` — Sale price
+- \`{ type: 'range', minValue: '$19.99', maxValue: '$29.99' }\` — Price range
         `,
       },
     },
@@ -111,19 +43,19 @@ import * as ProductCard from '@/components/product-card';
     aspectRatio: {
       control: 'select',
       options: ['5/6', '3/4', '1/1'],
-      description: 'The aspect ratio of the product thumbnail',
+      description: 'Thumbnail aspect ratio',
     },
     product: {
       control: false,
-      description: 'Product data object including title, image, price, rating, and link',
+      description: 'Product data (title, image, price, rating, link, badge)',
     },
     compareAction: {
       control: false,
-      description: 'Configuration for the compare checkbox action',
+      description: 'Compare checkbox configuration',
     },
     cartAction: {
       control: false,
-      description: 'Configuration for the cart action (form submission or link)',
+      description: 'Cart action (form submission or link)',
     },
   },
   decorators: [
@@ -138,31 +70,14 @@ import * as ProductCard from '@/components/product-card';
 export default meta;
 type Story = StoryObj<ProductCardProps>;
 
-// Default product card
 export const Default: Story = {
-  args: {
-    product: {
-      id: 'natural-fiber-scrub-brush',
-      title: 'Natural Fiber Scrub Brush',
-      subtitle: 'Kitchen Essentials',
-      link: {
-        href: '/products/natural-fiber-scrub-brush',
-        ariaLabel: 'View Natural Fiber Scrub Brush',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Product card with badge, rating, and standard price.',
       },
-      image: {
-        src: 'https://images.unsplash.com/photo-1685052392951-4eb54985d3ae?w=900',
-        alt: 'Natural fiber scrub brush with wooden handle',
-      },
-      showRating: true,
-      rating: 4.5,
-      price: { type: 'default', value: '$8.99' },
     },
-    aspectRatio: '5/6',
   },
-};
-
-// With badge overlay
-export const WithBadge: Story = {
   args: {
     product: {
       id: 'eco-cleaning-starter-kit',
@@ -185,8 +100,14 @@ export const WithBadge: Story = {
   },
 };
 
-// With sale price
 export const WithSalePrice: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `{ type: "sale" }` price to show original and discounted prices.',
+      },
+    },
+  },
   args: {
     product: {
       id: 'glass-soap-pump-bottle',
@@ -209,8 +130,14 @@ export const WithSalePrice: Story = {
   },
 };
 
-// With cart action
 export const WithCartAction: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `cartAction` with `type: "form"` for server action integration.',
+      },
+    },
+  },
   args: {
     product: {
       id: 'minimal-ceramic-soap-dispenser',
@@ -239,8 +166,39 @@ export const WithCartAction: Story = {
   },
 };
 
-// With compare action (controlled)
 export const WithCompareAction: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `compareAction` for a controlled compare checkbox.',
+      },
+      source: {
+        code: `
+const [checked, setChecked] = useState(false);
+
+<ProductCard
+  aspectRatio="5/6"
+  compareAction={{
+    id: 'compare-product',
+    checked,
+    onCheckedChange: (value) => setChecked(value === true),
+    label: 'Compare',
+  }}
+  product={{
+    id: 'product-id',
+    title: 'Product Name',
+    subtitle: 'Category',
+    link: { href: '/products/id', ariaLabel: 'View Product' },
+    image: { src: '...', alt: '...' },
+    showRating: true,
+    rating: 4.3,
+    price: { type: 'default', value: '$10.50' },
+  }}
+/>
+        `,
+      },
+    },
+  },
   render: () => {
     const [checked, setChecked] = useState(false);
 
@@ -274,8 +232,42 @@ export const WithCompareAction: Story = {
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitives to build custom product card layouts.',
+      },
+      source: {
+        code: `
+import * as ProductCardPrimitive from '@/components/product-card/primitives';
+
+<ProductCardPrimitive.Root aspectRatio="5/6">
+  <ProductCardPrimitive.Preview>
+    <ProductCardPrimitive.Thumbnail>
+      <ProductCardPrimitive.Image src="..." alt="..." />
+      <ProductCardPrimitive.Badge>Popular</ProductCardPrimitive.Badge>
+    </ProductCardPrimitive.Thumbnail>
+    <ProductCardPrimitive.Link href="..." aria-label="..." />
+  </ProductCardPrimitive.Preview>
+  <ProductCardPrimitive.Details>
+    <ProductCardPrimitive.Header>
+      <ProductCardPrimitive.Title>Product Name</ProductCardPrimitive.Title>
+      <ProductCardPrimitive.Subtitle>Category</ProductCardPrimitive.Subtitle>
+      <ProductCardPrimitive.Price price={{ type: 'default', value: '$9.99' }} />
+      <ProductCardPrimitive.Rating rating={4.5} />
+      <ProductCardPrimitive.Link href="..." aria-label="..." />
+    </ProductCardPrimitive.Header>
+  </ProductCardPrimitive.Details>
+  <ProductCardPrimitive.Actions>
+    <ProductCardPrimitive.CartButton>Add to Cart</ProductCardPrimitive.CartButton>
+    <ProductCardPrimitive.Compare id="compare-id" label="Compare" />
+  </ProductCardPrimitive.Actions>
+</ProductCardPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <ProductCardPrimitive.Root aspectRatio="5/6">
       <ProductCardPrimitive.Preview>
@@ -311,8 +303,21 @@ export const ComposableAnatomy: Story = {
   ),
 };
 
-// Skeleton loading state
 export const Skeleton: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Loading state while product data loads.',
+      },
+      source: {
+        code: `
+<ProductCardPrimitive.Root aspectRatio="5/6">
+  <ProductCardPrimitive.Skeleton />
+</ProductCardPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <ProductCardPrimitive.Root aspectRatio="5/6">
       <ProductCardPrimitive.Skeleton />

@@ -13,7 +13,7 @@ export interface DatePickerIconProps {
 }
 
 export function DatePickerIcon({ asChild = false, className, children }: DatePickerIconProps) {
-  const iconStyles = cn('size-5 text-[var(--input-light-icon,var(--contrast-400))]', className);
+  const iconStyles = cn('size-5', className);
 
   if (asChild) {
     return (

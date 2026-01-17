@@ -19,17 +19,14 @@ export type ButtonRadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Ro
  * with their default values:
  *
  * ```css
- *  :root {
- *   --button-radio-group-focus: var(--brand);
- *   --button-radio-group-light-unchecked-border: var(--contrast-100);
- *   --button-radio-group-light-unchecked-background: var(--background);
- *   --button-radio-group-light-unchecked-text: var(--foreground);
- *   --button-radio-group-light-unchecked-border-hover: var(--contrast-200);
- *   --button-radio-group-light-unchecked-background-hover: var(--contrast-100);
- *   --button-radio-group-light-checked-background: var(--foreground);
- *   --button-radio-group-light-checked-text: var(--background);
- *   --button-radio-group-light-border-error: var(--error);
- *  }
+ * :root {
+ *   --button-radio-group-font: var(--font-body);
+ *   --button-radio-group-fill-unchecked: var(--form-fill-unchecked);
+ *   --button-radio-group-fill-checked: var(--form-fill-checked);
+ *   --button-radio-group-fill-hover: var(--form-fill-hover);
+ *   --button-radio-group-text-unchecked: var(--form-text-unchecked);
+ *   --button-radio-group-text-checked: var(--form-text-checked);
+ * }
  * ```
  */
 export function ButtonRadioGroup({

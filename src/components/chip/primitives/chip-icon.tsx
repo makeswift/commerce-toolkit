@@ -13,13 +13,15 @@ export interface ChipIconProps {
 }
 
 export function ChipIcon({ asChild = false, className, children }: ChipIconProps) {
+  const iconStyles = cn('size-3', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-3', className)} data-slot="chip-icon">
+      <Slot className={iconStyles} data-slot="chip-icon">
         {children}
       </Slot>
     );
   }
 
-  return <X className={cn('size-3', className)} data-slot="chip-icon" />;
+  return <X className={iconStyles} data-slot="chip-icon" />;
 }

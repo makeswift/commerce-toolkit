@@ -9,17 +9,15 @@ export function ButtonRadioGroupItem({ children, className, ...props }: ButtonRa
   return (
     <RadioGroupPrimitive.Item
       className={cn(
-        'h-12 whitespace-nowrap rounded-full border border-[var(--button-radio-group-unchecked-border,var(--contrast-100))] px-4 font-body text-sm font-normal leading-normal transition-colors',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-radio-group-focus,var(--brand))]',
+        'focus-primary h-12 min-w-12 whitespace-nowrap rounded-full border border-[--border-subtle] px-4 text-sm leading-normal transition-colors [font-family:var(--button-radio-group-font,var(--font-body))]',
         // Checked state
-        'data-[state=checked]:border-[var(--button-radio-group-checked-background,var(--foreground))] data-[state=checked]:bg-[var(--button-radio-group-checked-background,var(--foreground))] data-[state=checked]:text-[var(--button-radio-group-checked-text,var(--background))]',
+        'data-[state=checked]:border-[--border-checked] data-[state=checked]:bg-[--button-radio-group-fill-checked,var(--form-fill-checked)] data-[state=checked]:text-[--button-radio-group-text-checked,var(--form-text-checked)]',
         // Unchecked state
-        'data-[state=unchecked]:bg-[var(--button-radio-group-unchecked-background,var(--background))] data-[state=unchecked]:text-[var(--button-radio-group-unchecked-text,var(--foreground))]',
+        'data-[state=unchecked]:bg-[--button-radio-group-fill-unchecked,var(--form-fill-unchecked)] data-[state=unchecked]:text-[--button-radio-group-text-unchecked,var(--form-text-unchecked)]',
         // Unchecked hover state
-        'data-[state=unchecked]:hover:border-[var(--button-radio-group-unchecked-border-hover,var(--contrast-200))] data-[state=unchecked]:hover:bg-[var(--button-radio-group-unchecked-background-hover,var(--contrast-100))]',
+        'data-[state=unchecked]:hover:border-[--border] data-[state=unchecked]:hover:bg-[--button-radio-group-fill-hover,var(--form-fill-hover)]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--button-radio-group-border-error,var(--error))]',
+        'aria-invalid:border-[--error]',
         // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,

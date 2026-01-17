@@ -11,7 +11,7 @@ export function SelectContent({ children, className, ...props }: SelectContentPr
   return (
     <SelectPrimitive.Content
       className={cn(
-        'z-50 max-h-80 w-full overflow-y-auto rounded-xl bg-[var(--select-light-content-background,var(--background))] p-2 shadow-xl ring-1 ring-[var(--select-light-content-border,color-mix(in_oklab,var(--foreground)_10%,transparent))]',
+        'z-50 max-h-80 w-full overflow-y-auto rounded-xl bg-[--select-fill,var(--form-fill)] p-2 shadow-xl ring-1 ring-[color-mix(in_oklab,var(--foreground)_10%,transparent)]',
         // Open state
         'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
         // Closed state

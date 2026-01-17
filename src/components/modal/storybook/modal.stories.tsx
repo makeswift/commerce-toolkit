@@ -13,78 +13,24 @@ const meta: Meta<typeof Modal> = {
     docs: {
       description: {
         component: `
-A modal dialog component for displaying content that requires user attention. Built on Radix UI Dialog primitives with overlay and focus management.
+A modal dialog for content requiring user attention. Built on Radix UI Dialog with overlay and focus management.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --modal-background: var(--background);
-  --modal-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
+  --modal-fill: var(--background);
+  --modal-fill-overlay: color-mix(in oklab, var(--foreground) 50%, transparent);
 }
 \`\`\`
 
-## Usage
+## Container Queries
 
-### High-Level Component
+The modal content adapts its padding based on overlay width.
 
-The \`Modal\` component is controlled via \`isOpen\` and \`setOpen\`:
-
-\`\`\`tsx
-import { Modal } from '@/components/modal';
-import { Button } from '@/components/button';
-import { useState } from 'react';
-
-function Example() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <Modal
-      isOpen={open}
-      setOpen={setOpen}
-      title="Confirm Action"
-      trigger={<Button>Open Modal</Button>}
-    >
-      <p>Are you sure you want to continue?</p>
-      <Button onClick={() => setOpen(false)}>Close</Button>
-    </Modal>
-  );
-}
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Modal from '@/components/modal';
-import { Button } from '@/components/button';
-
-<Modal.Root open={open} onOpenChange={setOpen}>
-  <Modal.Trigger asChild>
-    <Button>Open</Button>
-  </Modal.Trigger>
-  <Modal.Portal>
-    <Modal.Overlay>
-      <Modal.Content>
-        <Modal.Title>Dialog Title</Modal.Title>
-        <p>Your content here.</p>
-      </Modal.Content>
-    </Modal.Overlay>
-  </Modal.Portal>
-</Modal.Root>
-\`\`\`
-
-## Primitives
-
-| Primitive | Description |
-|-----------|-------------|
-| \`Modal.Root\` | Container with \`open\` and \`onOpenChange\` props. |
-| \`Modal.Trigger\` | Element that opens the modal. Supports \`asChild\`. |
-| \`Modal.Portal\` | Renders content in a portal. |
-| \`Modal.Overlay\` | Background overlay with animation. |
-| \`Modal.Content\` | Modal content container with focus trap. |
-| \`Modal.Title\` | Accessible title (visually hidden by default). |
+| Element | Below @sm | @sm – @5xl | @5xl and above |
+|---------|-----------|------------|----------------|
+| Content | px-3 py-5 | px-6 py-8  | px-20 py-10    |
         `,
       },
     },
@@ -93,7 +39,7 @@ import { Button } from '@/components/button';
   argTypes: {
     title: {
       control: 'text',
-      description: 'Accessible title for the dialog (visually hidden)',
+      description: 'Accessible title (visually hidden)',
     },
     isOpen: {
       control: 'boolean',
@@ -105,7 +51,7 @@ import { Button } from '@/components/button';
     },
     trigger: {
       control: false,
-      description: 'Trigger element that opens the modal',
+      description: 'Element that opens the modal',
     },
     children: {
       control: false,
@@ -118,8 +64,32 @@ export default meta;
 
 type Story = StoryObj<ModalProps>;
 
-// Default modal
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A controlled modal with overlay and focus trap.',
+      },
+      source: {
+        code: `
+const [open, setOpen] = useState(false);
+
+<Modal
+  isOpen={open}
+  setOpen={setOpen}
+  title="Example Modal"
+  trigger={<Button variant="primary">Open Modal</Button>}
+>
+  <div>
+    <h2>Welcome</h2>
+    <p>Modal content here.</p>
+    <Button onClick={() => setOpen(false)}>Close</Button>
+  </div>
+</Modal>
+        `,
+      },
+    },
+  },
   render: () => {
     const [open, setOpen] = useState(false);
 
@@ -149,8 +119,33 @@ export const Default: Story = {
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitive components for custom layouts.',
+      },
+      source: {
+        code: `
+const [open, setOpen] = useState(false);
+
+<ModalPrimitive.Root open={open} onOpenChange={setOpen}>
+  <ModalPrimitive.Trigger asChild>
+    <Button>Open Modal</Button>
+  </ModalPrimitive.Trigger>
+  <ModalPrimitive.Portal>
+    <ModalPrimitive.Overlay>
+      <ModalPrimitive.Content>
+        <ModalPrimitive.Title>Dialog Title</ModalPrimitive.Title>
+        <p>Your content here.</p>
+      </ModalPrimitive.Content>
+    </ModalPrimitive.Overlay>
+  </ModalPrimitive.Portal>
+</ModalPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => {
     const [open, setOpen] = useState(false);
 

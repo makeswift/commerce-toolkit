@@ -13,9 +13,11 @@ export interface CarouselNextIconProps {
 }
 
 export function CarouselNextIcon({ asChild = false, className, children }: CarouselNextIconProps) {
+  const iconStyles = cn('size-6', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-6', className)} data-slot="carousel-next-icon">
+      <Slot className={cn(iconStyles, className)} data-slot="carousel-next-icon">
         {children}
       </Slot>
     );
@@ -24,7 +26,7 @@ export function CarouselNextIcon({ asChild = false, className, children }: Carou
   return (
     <ArrowRight
       absoluteStrokeWidth
-      className={cn('size-6', className)}
+      className={iconStyles}
       data-slot="carousel-next-icon"
       strokeWidth={1.5}
     />

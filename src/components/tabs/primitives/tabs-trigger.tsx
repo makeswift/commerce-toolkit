@@ -9,17 +9,17 @@ export function TabsTrigger({ className, children, ...props }: TabsTriggerProps)
   return (
     <TabsPrimitive.Trigger
       className={cn(
-        'relative shrink-0 p-4 text-sm font-semibold text-[var(--tabs-text,var(--contrast-500))] transition-colors duration-200 ease-linear [font-family:var(--tabs-font-family,var(--font-family-body))] after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-bottom after:scale-y-0 after:bg-[var(--tabs-underline-default,var(--contrast-200))] after:transition-all after:duration-200 after:ease-linear after:content-[""]',
+        'relative shrink-0 p-4 text-sm font-semibold text-[--tabs-text,var(--text-secondary)] transition-colors duration-200 ease-linear [font-family:var(--tabs-font,var(--font-body))] after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-bottom after:scale-y-0 after:bg-[--tabs-underline,var(--contrast-200)] after:transition-all after:duration-200 after:ease-linear after:content-[""]',
         // Hover state
-        'hover:text-[var(--tabs-text-hover,var(--foreground))] hover:after:scale-y-100',
+        'hover:text-[--tabs-text-hover,var(--text-primary)] hover:after:scale-y-100',
         // Focus-visible state
-        'focus:outline-none focus-visible:text-[var(--tabs-text-active,var(--foreground))] focus-visible:after:scale-y-100 focus-visible:after:bg-[var(--tabs-underline-active,var(--brand))]',
+        'focus:outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[--border-focus-primary]',
         // Disabled state
-        'disabled:pointer-events-none disabled:text-[var(--tabs-text,var(--contrast-500))]',
+        'disabled:pointer-events-none disabled:text-[--tabs-text,var(--text-secondary)]',
         // Active state
-        'data-[state=active]:text-[var(--tabs-text-active,var(--foreground))] data-[state=active]:after:scale-y-100 data-[state=active]:after:bg-[var(--tabs-underline-active,var(--brand))]',
+        'data-[state=active]:text-[--tabs-text-active,var(--text-primary)] data-[state=active]:after:scale-y-100 data-[state=active]:after:bg-[--tabs-underline-active,var(--brand)]',
         // Inactive hover state
-        'data-[state=inactive]:hover:after:bg-[var(--tabs-underline-hover,var(--contrast-200)))',
+        'data-[state=inactive]:hover:after:bg-[--tabs-underline,var(--contrast-200)]',
         className,
       )}
       data-slot="tabs-trigger"

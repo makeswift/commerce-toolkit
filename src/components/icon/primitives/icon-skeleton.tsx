@@ -10,12 +10,7 @@ export function IconSkeleton({ className, size = 24 }: IconSkeletonProps) {
     <SkeletonPrimitive.Icon
       className={cn('overflow-hidden rounded-full', className)}
       data-slot="icon-skeleton"
-      icon={
-        <div
-          className="bg-[var(--skeleton,var(--contrast-300))] opacity-25"
-          style={{ width: size, height: size }}
-        />
-      }
+      icon={<div className="bg-[--fill-pending]" style={{ width: size, height: size }} />}
     />
   );
 }

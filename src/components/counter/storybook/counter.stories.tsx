@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Minus, Plus } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 import { Counter, type CounterProps } from '@/components/counter';
@@ -19,70 +18,13 @@ A numeric counter input component for selecting quantities. Features increment/d
 
 \`\`\`css
 :root {
-  --counter-focus: var(--brand);
-  --counter-font-family: var(--font-family-body);
-  --counter-background: var(--background);
-  --counter-background-hover: color-mix(in oklab, var(--contrast-100) 50%, transparent);
-  --counter-border: var(--contrast-100);
-  --counter-text: var(--foreground);
-  --counter-icon: var(--contrast-300);
-  --counter-icon-hover: var(--foreground);
+  --counter-fill: var(--form-fill);
+  --counter-fill-hover: var(--form-fill-hover);
+  --counter-fill-icon: var(--form-fill-icon);
+  --counter-fill-icon-hover: var(--form-fill-icon-hover);
+  --counter-text: var(--form-text-primary);
+  --counter-font: var(--font-body);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`Counter\` component provides a simple API for quantity selection:
-
-\`\`\`tsx
-import { Counter } from '@/components/counter';
-
-<Counter
-  defaultValue={1}
-  min={0}
-  max={10}
-/>
-\`\`\`
-
-### With Custom Icons
-
-Use the \`decrementIcon\` and \`incrementIcon\` props with \`asChild\` for custom icons:
-
-\`\`\`tsx
-import { Counter } from '@/components/counter';
-import { Minus, Plus } from 'lucide-react';
-
-<Counter
-  defaultValue={1}
-  decrementIcon={{ asChild: true, children: <Minus size={16} /> }}
-  incrementIcon={{ asChild: true, children: <Plus size={16} /> }}
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Counter from '@/components/counter';
-
-<Counter.Root>
-  <Counter.Decrease aria-label="Decrease" onClick={handleDecrement}>
-    <Counter.DecreaseIcon />
-  </Counter.Decrease>
-  <Counter.Input
-    type="number"
-    min={0}
-    max={10}
-    value={count}
-    onChange={handleChange}
-  />
-  <Counter.Increase aria-label="Increase" onClick={handleIncrement}>
-    <Counter.IncreaseIcon />
-  </Counter.Increase>
-</Counter.Root>
 \`\`\`
         `,
       },
@@ -112,11 +54,11 @@ import * as Counter from '@/components/counter';
     },
     decrementIcon: {
       control: false,
-      description: 'Custom decrement icon configuration with asChild support',
+      description: 'Custom decrement icon configuration with `asChild` support',
     },
     incrementIcon: {
       control: false,
-      description: 'Custom increment icon configuration with asChild support',
+      description: 'Custom increment icon configuration with `asChild` support',
     },
   },
   args: {
@@ -129,39 +71,86 @@ import * as Counter from '@/components/counter';
 export default meta;
 type Story = StoryObj<CounterProps>;
 
-// Default counter
 export const Default: Story = {
   args: {
     defaultValue: 1,
   },
 };
 
-// Controlled example
-export const Controlled: Story = {
-  render: () => {
-    const [count, setCount] = useState(3);
-
-    return (
-      <Counter
-        max={10}
-        min={0}
-        onChange={(e) => setCount(Number(e.currentTarget.value))}
-        value={count}
-      />
-    );
-  },
-};
-
-// Disabled state
 export const Disabled: Story = {
   args: {
     defaultValue: 5,
     disabled: true,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'The `disabled` prop prevents all interaction with the counter.',
+      },
+    },
+  },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the primitive components for full control over the structure.
+
+| Primitive                      | Description                                 |
+|--------------------------------|---------------------------------------------|
+| \`CounterPrimitive.Root\`         | Container with border and background.       |
+| \`CounterPrimitive.Decrease\`     | Decrement button.                           |
+| \`CounterPrimitive.DecreaseIcon\` | Minus icon with \`asChild\` support.        |
+| \`CounterPrimitive.Input\`        | Number input field.                         |
+| \`CounterPrimitive.Increase\`     | Increment button.                           |
+| \`CounterPrimitive.IncreaseIcon\` | Plus icon with \`asChild\` support.         |
+        `,
+      },
+      source: {
+        code: `
+import * as CounterPrimitive from '@/components/counter/primitives';
+
+const inputRef = useRef<HTMLInputElement>(null);
+const [count, setCount] = useState(2);
+
+const handleDecrement = () => {
+  if (count > 0) setCount(count - 1);
+};
+
+const handleIncrement = () => {
+  if (count < 10) setCount(count + 1);
+};
+
+<CounterPrimitive.Root>
+  <CounterPrimitive.Decrease
+    aria-label="Decrease quantity"
+    disabled={count <= 0}
+    onClick={handleDecrement}
+  >
+    <CounterPrimitive.DecreaseIcon />
+  </CounterPrimitive.Decrease>
+  <CounterPrimitive.Input
+    ref={inputRef}
+    type="number"
+    min={0}
+    max={10}
+    value={count}
+    onChange={(e) => setCount(Number(e.target.value))}
+  />
+  <CounterPrimitive.Increase
+    aria-label="Increase quantity"
+    disabled={count >= 10}
+    onClick={handleIncrement}
+  >
+    <CounterPrimitive.IncreaseIcon />
+  </CounterPrimitive.Increase>
+</CounterPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [count, setCount] = useState(2);
@@ -185,9 +174,7 @@ export const ComposableAnatomy: Story = {
           disabled={count <= 0}
           onClick={handleDecrement}
         >
-          <CounterPrimitive.DecreaseIcon asChild>
-            <Minus absoluteStrokeWidth size={18} strokeWidth={1.5} />
-          </CounterPrimitive.DecreaseIcon>
+          <CounterPrimitive.DecreaseIcon />
         </CounterPrimitive.Decrease>
         <CounterPrimitive.Input
           max={10}
@@ -202,9 +189,7 @@ export const ComposableAnatomy: Story = {
           disabled={count >= 10}
           onClick={handleIncrement}
         >
-          <CounterPrimitive.IncreaseIcon asChild>
-            <Plus absoluteStrokeWidth size={18} strokeWidth={1.5} />
-          </CounterPrimitive.IncreaseIcon>
+          <CounterPrimitive.IncreaseIcon />
         </CounterPrimitive.Increase>
       </CounterPrimitive.Root>
     );

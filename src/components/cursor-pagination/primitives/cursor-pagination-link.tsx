@@ -18,11 +18,9 @@ export function CursorPaginationLink({
   return (
     <Component
       className={cn(
-        'flex h-12 w-12 items-center justify-center rounded-full border border-[var(--cursor-pagination-border,var(--contrast-100))] bg-[var(--cursor-pagination-background,var(--background))] transition-colors duration-300',
+        'focus-primary flex h-12 w-12 items-center justify-center rounded-full border border-[--border-subtle] bg-[--cursor-pagination-fill,var(--background)] transition-colors duration-300',
         // Hover state
-        'hover:border-[var(--cursor-pagination-border-hover,var(--contrast-200))] hover:bg-[var(--cursor-pagination-background-hover,var(--contrast-100))]',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cursor-pagination-focus,var(--brand))]',
+        'hover:border-[--border-hover] hover:bg-[--cursor-pagination-fill-hover,var(--contrast-100)]',
         // Disabled state (aria-disabled)
         'aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:opacity-25',
         className,

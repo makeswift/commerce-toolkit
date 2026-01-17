@@ -92,14 +92,14 @@ export function CarouselScrollbar({ className, ...props }: CarouselScrollbarProp
       {/* Track */}
       <div
         className={cn(
-          'pointer-events-none absolute h-1 w-full rounded-full bg-[var(--carousel-light-scrollbar,var(--foreground))] opacity-10',
+          'pointer-events-none absolute h-1 w-full rounded-full bg-[--carousel-fill-scrollbar,var(--foreground)] opacity-10',
         )}
         data-slot="carousel-track"
       />
       {/* Bar */}
       <div
         className={cn(
-          'pointer-events-none absolute h-1 rounded-full bg-[var(--carousel-light-scrollbar,var(--foreground))] transition-all ease-out',
+          'pointer-events-none absolute h-1 rounded-full bg-[--carousel-fill-scrollbar,var(--foreground)] transition-all ease-out',
         )}
         data-slot="carousel-bar"
         style={{

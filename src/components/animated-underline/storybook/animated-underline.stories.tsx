@@ -16,9 +16,7 @@ An animated underline component that creates a smooth expanding underline effect
 
 \`\`\`css
 :root {
-  --animated-underline-hover: var(--brand);
-  --animated-underline-text: var(--foreground);
-  --animated-underline-font-family: var(--font-family-body);
+  --animated-underline: var(--brand);
 }
 \`\`\`
         `,

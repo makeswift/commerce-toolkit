@@ -15,9 +15,7 @@ export function CategoryCardLink({ asChild = false, className, ...props }: Categ
   return (
     <Component
       className={cn(
-        'absolute inset-0 rounded-[var(--category-card-border-radius,1rem)]',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--category-card-focus,var(--brand))]',
+        'focus-primary absolute inset-0 rounded-[var(--category-card-radius,1rem)]',
         className,
       )}
       data-slot="category-card-link"

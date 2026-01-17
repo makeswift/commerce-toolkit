@@ -1,6 +1,23 @@
 # Organize Tailwind Classes
 
-You are helping to organize long Tailwind CSS class strings into readable, grouped lines. Take a single long className string and break it into multiple lines within a `cn()` function call, with comments indicating the purpose of each group.
+You are helping to organize Tailwind CSS class strings into readable, maintainable code. The level of organization depends on the complexity of the component.
+
+## When to Use Which Approach
+
+### Simple Format (1-2 lines)
+Use when the className has:
+- **Fewer than ~15 total classes**, OR
+- **Minimal state variants** (0-1 state variants with just 1-2 classes each)
+
+Keep all classes on one line, or split into two lines (base + states) if it improves readability.
+
+### Detailed Grouping (multiple commented sections)
+Use when the className has:
+- **3+ state variants**, OR
+- **Any state variant with 3+ classes**, OR
+- **Complex modifiers** (e.g., `group-data-[*]`, multiple breakpoints per variant)
+
+Break into multiple commented sections for better maintainability.
 
 ## Grouping Strategy
 
@@ -25,7 +42,31 @@ Organize classes into logical groups in this order (skip groups that don't apply
 10. **Responsive** - breakpoint prefixes (`sm:*`, `md:*`, `lg:*`, `xl:*`, `2xl:*`)
 11. **Container queries** - `@*:` classes
 
-## Output Format
+## Simple Format Examples
+
+For simple components, keep classes concise:
+
+### Single line (very simple)
+
+```tsx
+className={cn('truncate text-sm font-semibold text-foreground', className)}
+```
+
+### Two lines (simple with minimal states)
+
+```tsx
+className={cn(
+  'flex items-center gap-1 rounded-md px-2 py-1 text-sm transition-colors',
+  'hover:bg-accent disabled:opacity-50',
+  className,
+)}
+```
+
+## Detailed Format Examples
+
+For complex components with many interactive states, use commented groupings:
+
+### Standard detailed format
 
 Use the `cn()` function with base styles on an uncommented first line, then state variants with comments:
 
@@ -44,9 +85,23 @@ className={cn(
 )}
 ```
 
-## Example Reference
+## Real-World Examples
 
-Here's a well-organized component to use as a reference:
+### Simple component (FileInputHeader)
+
+```tsx
+<div
+  className={cn(
+    'flex items-center gap-1 [font-family:var(--file-input-font-header,var(--font-body))]',
+    className,
+  )}
+  data-slot="file-input-header"
+>
+  {children}
+</div>
+```
+
+### Complex component (NavigationMenuTrigger)
 
 ```tsx
 <NavigationMenuPrimitive.Trigger
@@ -70,13 +125,15 @@ Here's a well-organized component to use as a reference:
 
 ## Rules
 
-1. **Preserve all classes** - Don't remove or modify any classes, just reorganize them
-2. **No comment for base styles** - The first line containing all base styles (layout, spacing, typography, colors, borders, effects, transitions) should have no comment
+1. **Assess complexity first** - Count total classes and state variants to determine whether to use simple or detailed format
+2. **Preserve all classes** - Don't remove or modify any classes, just reorganize them
 3. **Keep related classes together** - If there are multiple classes for the same state (e.g., `hover:bg-*` and `hover:text-*`), keep them on the same line
-4. **Use consistent comment style** - Use `// Comment` format for state variant group labels
-5. **End with className prop** - Always end with `className,` to allow external overrides
-6. **Split long state groups** - If a state group has many classes, split into multiple lines under the same comment section
-7. **Alphabetize within variants** - When multiple data attributes or modifiers exist, prefer alphabetical order (e.g., `data-[state=closed]` before `data-[state=open]`)
+4. **End with className prop** - Always end with `className,` to allow external overrides
+5. **For detailed format only:**
+   - No comment for base styles - The first line with base styles should have no comment
+   - Use consistent comment style - Use `// Comment` format for state variant group labels
+   - Split long state groups - If a state group has many classes, split into multiple lines under the same comment section
+   - Alphabetize within variants - When multiple data attributes or modifiers exist, prefer alphabetical order (e.g., `data-[state=closed]` before `data-[state=open]`)
 
 ## Handling Complex Modifiers
 
@@ -91,3 +148,11 @@ For complex modifiers like `group-data-[viewport=false]/navigation-menu:*`, crea
 // Container styling
 'group-data-[viewport=false]/navigation-menu:rounded-md group-data-[viewport=false]/navigation-menu:border',
 ```
+
+## Quick Decision Guide
+
+Ask yourself:
+1. Are there **15+ total classes**? → Likely needs detailed format
+2. Are there **3+ different state variants** (hover, focus, disabled, etc.)? → Use detailed format
+3. Does any single state variant have **3+ classes**? → Use detailed format
+4. Otherwise → Use simple format (1-2 lines)

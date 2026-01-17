@@ -9,15 +9,13 @@ export function ToggleGroupItem({ children, className, ...props }: ToggleGroupIt
   return (
     <ToggleGroupPrimitive.Item
       className={cn(
-        'h-12 whitespace-nowrap rounded-full border border-[var(--toggle-group-light-border,var(--contrast-100))] px-4 font-body text-sm font-normal leading-normal transition-colors',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--toggle-group-light-focus,var(--brand))]',
+        'focus-primary h-12 min-w-12 whitespace-nowrap rounded-full border border-[--border-subtle] px-4 font-body text-sm font-normal leading-normal transition-colors',
         // Off state
-        'data-[state=off]:bg-[var(--toggle-group-light-off-background,var(--background))] data-[state=off]:text-[var(--toggle-group-light-off-text,var(--foreground))]',
+        'data-[state=off]:bg-[--toggle-group-fill-unchecked,var(--form-fill-unchecked)] data-[state=off]:text-[--toggle-group-text-unchecked,var(--form-text-unchecked)]',
         // Off + Hover state
-        'data-[state=off]:hover:border-[var(--toggle-group-light-off-border-hover,var(--contrast-200))] data-[state=off]:hover:bg-[var(--toggle-group-light-off-background-hover,var(--contrast-100))]',
+        'data-[state=off]:hover:border-[--border] data-[state=off]:hover:bg-[--toggle-group-fill-hover,var(--form-fill-hover)]',
         // On state
-        'data-[state=on]:border-[var(--toggle-group-light-on-border,var(--foreground))] data-[state=on]:bg-[var(--toggle-group-light-on-background,var(--foreground))] data-[state=on]:text-[var(--toggle-group-light-on-text,var(--background))]',
+        'data-[state=on]:border-[--border-checked] data-[state=on]:bg-[--toggle-group-fill-checked,var(--form-fill-checked)] data-[state=on]:text-[--toggle-group-text-checked,var(--form-text-checked)]',
         // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,

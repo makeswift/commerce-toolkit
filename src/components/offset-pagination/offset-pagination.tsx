@@ -21,16 +21,13 @@ export interface OffsetPaginationProps {
  *
  * ```css
  * :root {
- *   --offset-pagination-focus: var(--brand);
- *   --offset-pagination-font-family: var(--font-family-body);
+ *   --offset-pagination-font: var(--font-body);
  *   --offset-pagination-ellipsis: var(--foreground);
- *   --offset-pagination-border: var(--contrast-100)  ;
- *   --offset-pagination-text: var(--foreground)  ;
- *   --offset-pagination-background-hover: var(--contrast-100)  ;
- *   --offset-pagination-current-page-border: var(--foreground);
- *   --offset-pagination-current-page-background: var(--foreground);
- *   --offset-pagination-current-page-text: var(--background);
- *   --offset-pagination-current-page-background-hover: var(--contrast-500);
+ *   --offset-pagination-text-primary: var(--text-primary);
+ *   --offset-pagination-fill-hover: var(--contrast-100);
+ *   --offset-pagination-fill-current: var(--foreground);
+ *   --offset-pagination-text-current: var(--text-inverse);
+ *   --offset-pagination-fill-current-hover: var(--contrast-500);
  * }
  * ```
  */

@@ -11,13 +11,15 @@ export interface ButtonLoaderIconProps {
 }
 
 export function ButtonLoaderIcon({ asChild = false, className, children }: ButtonLoaderIconProps) {
+  const iconStyles = cn('animate-spin', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('animate-spin', className)} data-slot="button-loader-icon">
+      <Slot className={iconStyles} data-slot="button-loader-icon">
         {children}
       </Slot>
     );
   }
 
-  return <Loader2 className={cn('animate-spin', className)} data-slot="button-loader-icon" />;
+  return <Loader2 className={iconStyles} data-slot="button-loader-icon" />;
 }

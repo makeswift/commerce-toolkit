@@ -32,7 +32,7 @@ export function CategoryCardRoot<T extends ElementType = 'article'>({
   return (
     <CategoryCardRootElement
       className={cn(
-        'group/category-card relative flex w-full max-w-md cursor-pointer flex-col rounded-[var(--category-card-border-radius,1rem)] font-[var(--category-card-font-family,var(--font-family-body))] @container',
+        'group/category-card relative flex w-full max-w-md cursor-pointer flex-col rounded-[var(--category-card-radius,1rem)] @container [font-family:var(--category-card-font,var(--font-body))]',
         // Text size gap variants
         'data-[text-size=small]:gap-2',
         'data-[text-size=medium]:gap-3',

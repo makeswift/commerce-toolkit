@@ -8,7 +8,7 @@ export function OffsetPaginationRoot({ className, children, ...props }: OffsetPa
   return (
     <nav
       className={cn(
-        'py-10 text-xs font-[var(--offset-pagination-font-family,var(--font-family-body))]',
+        'py-10 text-xs [font-family:var(--offset-pagination-font,var(--font-body))]',
         className,
       )}
       data-slot="offset-pagination-root"

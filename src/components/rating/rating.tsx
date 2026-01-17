@@ -14,9 +14,8 @@ export interface RatingProps {
  *
  * ```css
  * :root {
- *   --rating-icon: var(--foreground);
- *   --rating-border: var(--contrast-100);
- *   --rating-text: var(--contrast-400);
+ *   --rating-fill: var(--foreground);
+ *   --rating-text: var(--text-secondary);
  * }
  * ```
  */

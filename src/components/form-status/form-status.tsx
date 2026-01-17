@@ -20,10 +20,10 @@ export interface FormStatusProps extends ComponentProps<'div'> {
  *
  * ```css
  *  :root {
- *    --form-status-background-error: var(--error-highlight);
- *    --form-status-text-error: var(--error-shadow);
- *    --form-status-background-success: var(--success-highlight);
- *    --form-status-text-success: var(--success-shadow);
+ *    --form-status-fill-error: var(--error-foreground);
+ *    --form-status-text-error: var(--error-background);
+ *    --form-status-fill-success: var(--success-foreground);
+ *    --form-status-text-success: var(--success-background);
  *  }
  * ```
  */

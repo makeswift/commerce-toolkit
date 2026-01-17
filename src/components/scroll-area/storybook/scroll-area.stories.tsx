@@ -17,8 +17,7 @@ A custom scroll area component with styled scrollbars built on Radix UI primitiv
 
 \`\`\`css
 :root {
-  --scroll-area-focus: var(--brand);
-  --scroll-area-thumb: var(--contrast-200);
+  --scroll-area-fill: var(--contrast-200);
 }
 \`\`\`
 

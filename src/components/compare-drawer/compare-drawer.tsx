@@ -44,21 +44,11 @@ export interface CompareDrawerProps {
  *
  * ```css
  * :root {
- *   --compare-drawer-background: var(--background);
- *   --compare-drawer-font-family: var(--font-family-body);
- *   --compare-drawer-card-focus: var(--brand);
- *   --compare-drawer-card-border: var(--contrast-100);
- *   --compare-drawer-card-background: var(--background);
- *   --compare-drawer-card-background-hover: var(--contrast-100);
- *   --compare-drawer-card-image-background: var(--contrast-100);
- *   --compare-drawer-empty-image-text: var(--brand-shadow);
- *   --compare-drawer-card-text: var(--foreground);
- *   --compare-drawer-dismiss-border: var(--contast-100);
- *   --compare-drawer-dismiss-border-hover: var(--contast-200);
- *   --compare-drawer-dismiss-background: var(--background);
- *   --compare-drawer-dismiss-background-hover: var(--contrast-100);
- *   --compare-drawer-dismiss-icon: var(--contrast-400);
- *   --compare-drawer-dismiss-icon-hover: var(--foreground);
+ *   --compare-drawer-fill-primary: var(--background);
+ *   --compare-drawer-fill-secondary: var(--contrast-100);
+ *   --compare-drawer-fill-hover: var(--contrast-100);
+ *   --compare-drawer-text-primary: var(--text-primary);
+ *   --compare-drawer-text-secondary: var(--text-secondary);
  * }
  * ```
  */

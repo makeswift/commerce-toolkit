@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tag } from 'lucide-react';
-import { useState } from 'react';
 
 import { Chip, type ChipProps } from '@/components/chip';
 import * as ChipPrimitive from '@/components/chip/primitives';
@@ -19,49 +17,10 @@ A dismissible chip component for displaying selected filters, tags, or removable
 
 \`\`\`css
 :root {
-  --chip-focus: var(--foreground);
-  --chip-font-family: var(--font-family-body);
-  --chip-background: var(--contrast-100);
-  --chip-background-hover: var(--contrast-200);
-  --chip-text: var(--foreground);
+  --chip-fill: var(--contrast-100);
+  --chip-text: var(--text-primary);
+  --chip-font: var(--font-body);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`Chip\` component provides a dismissible chip with a remove button:
-
-\`\`\`tsx
-import { Chip } from '@/components/chip';
-
-<Chip onClick={handleRemove} removeLabel="Remove filter">
-  Electronics
-</Chip>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Chip from '@/components/chip';
-
-<Chip.Root>
-  Electronics
-  <Chip.Button title="Remove" onClick={handleRemove}>
-    <Chip.Icon />
-  </Chip.Button>
-</Chip.Root>
-\`\`\`
-
-The \`Chip.Icon\` supports \`asChild\` for custom icons:
-
-\`\`\`tsx
-<Chip.Icon asChild>
-  <MyCustomIcon />
-</Chip.Icon>
 \`\`\`
         `,
       },
@@ -75,22 +34,14 @@ The \`Chip.Icon\` supports \`asChild\` for custom icons:
     },
     removeLabel: {
       control: 'text',
-      description: 'Accessible label for remove button',
-    },
-    name: {
-      control: 'text',
-      description: 'Input name for form integration',
-    },
-    value: {
-      control: 'text',
-      description: 'Input value for form integration',
-    },
-    onClick: {
-      description: 'Handler for remove button click',
+      description: 'Accessible label for the remove button',
     },
     icon: {
       control: false,
-      description: 'Custom icon configuration with asChild support',
+      description: 'Custom icon configuration with `asChild` support',
+    },
+    onClick: {
+      description: 'Handler called when the remove button is clicked',
     },
   },
   args: {
@@ -102,59 +53,66 @@ The \`Chip.Icon\` supports \`asChild\` for custom icons:
 export default meta;
 type Story = StoryObj<ChipProps>;
 
-const noop = () => {
-  // no-op for storybook
-};
-
-// Default chip
 export const Default: Story = {
   args: {
     children: 'Electronics',
-    onClick: noop,
+    onClick: () => console.log('Removed'),
   },
 };
 
-// With custom icon
-export const WithIcon: Story = {
-  args: {
-    children: 'Tagged',
-    onClick: noop,
-    icon: {
-      asChild: true,
-      children: <Tag className="size-3" />,
+export const MultipleChips: Story = {
+  render: () => (
+    <div className="flex flex-wrap gap-2">
+      <Chip onClick={() => console.log('Removed')} removeLabel="Remove Electronics">
+        Electronics
+      </Chip>
+      <Chip onClick={() => console.log('Removed')} removeLabel="Remove Under $50">
+        Under $50
+      </Chip>
+      <Chip onClick={() => console.log('Removed')} removeLabel="Remove In Stock">
+        In Stock
+      </Chip>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Chips are commonly used to display active filters that can be removed.',
+      },
     },
   },
 };
 
-// Interactive filter chips
-export const Interactive: Story = {
-  render: () => {
-    const [filters, setFilters] = useState(['Electronics', 'Under $50', 'In Stock']);
-
-    const removeFilter = (index: number) => {
-      setFilters(filters.filter((_, i) => i !== index));
-    };
-
-    return (
-      <div className="flex flex-wrap gap-2">
-        {filters.map((filter, index) => (
-          <Chip key={filter} onClick={() => removeFilter(index)} removeLabel={`Remove ${filter}`}>
-            {filter}
-          </Chip>
-        ))}
-      </div>
-    );
-  },
-};
-
-// Composable anatomy example
+/**
+ * Use the composable primitives to build custom chip layouts.
+ */
 export const ComposableAnatomy: Story = {
   render: () => (
     <ChipPrimitive.Root>
       Custom Chip
-      <ChipPrimitive.Button onClick={noop} title="Remove">
+      <ChipPrimitive.Button onClick={() => console.log('Removed')} title="Remove">
         <ChipPrimitive.Icon />
       </ChipPrimitive.Button>
     </ChipPrimitive.Root>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the composable primitives to build custom chip layouts:
+
+\`\`\`tsx
+import * as ChipPrimitive from '@/components/chip/primitives';
+
+<ChipPrimitive.Root>
+  Chip Label
+  <ChipPrimitive.Button onClick={handleRemove} title="Remove">
+    <ChipPrimitive.Icon />
+  </ChipPrimitive.Button>
+</ChipPrimitive.Root>
+\`\`\`
+        `,
+      },
+    },
+  },
 };

@@ -75,18 +75,11 @@ export interface ProductCardProps {
  *
  * ```css
  * :root {
- *   --product-card-focus: var(--brand);
- *   --product-card-empty-text: color-mix(in oklab, var(--foreground) 15%, transparent);
- *   --product-card-light-offset: var(--background);
- *   --product-card-light-background: var(--contrast-100);
- *   --product-card-light-title: var(--foreground);
- *   --product-card-light-subtitle: color-mix(in oklab, var(--foreground) 75%, transparent);
- *   --product-card-dark-offset: var(--foreground);
- *   --product-card-dark-background: var(--contrast-500);
- *   --product-card-dark-title: var(--background);
- *   --product-card-dark-subtitle: color-mix(in oklab, var(--background) 75%, transparent);
- *   --product-card-font-family: var(--font-family-body);
- *   --product-card-border-radius: 1rem;
+ *   --product-card-text-primary: var(--text-primary);
+ *   --product-card-text-secondary: var(--text-secondary);
+ *   --product-card-font-title: var(--font-body);
+ *   --product-card-font-subtitle: var(--font-body);
+ *   --product-card-radius: 1rem;
  * }
  * ```
  */

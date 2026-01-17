@@ -11,9 +11,7 @@ export function ScrollAreaViewport({ className, children, ...props }: ScrollArea
   return (
     <ScrollAreaPrimitive.Viewport
       className={cn(
-        'size-full rounded-[inherit] transition-[color,box-shadow]',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--scroll-area-focus,var(--brand))]',
+        'focus-primary transition-[color,box-shadow size-full rounded-[inherit]',
         className,
       )}
       data-slot="scroll-area-viewport"

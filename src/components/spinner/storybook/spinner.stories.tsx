@@ -10,23 +10,15 @@ const meta: Meta<typeof Spinner> = {
     docs: {
       description: {
         component: `
-A loading spinner component for indicating pending operations. Supports multiple sizes and theming via CSS variables.
+A loading spinner for indicating pending operations.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --spinner-base: var(--contrast-100);
-  --spinner-ring: color-mix(in oklab, var(--brand), black 75%);
+  --spinner-fill-base: var(--contrast-100);
+  --spinner-fill-ring: color-mix(in oklab, var(--brand), black 75%);
 }
-\`\`\`
-
-## Usage
-
-\`\`\`tsx
-import { Spinner } from '@/components/spinner';
-
-<Spinner size="sm" />
 \`\`\`
         `,
       },
@@ -37,7 +29,7 @@ import { Spinner } from '@/components/spinner';
     size: {
       control: 'select',
       options: ['xs', 'sm', 'md', 'lg'],
-      description: 'The size of the spinner',
+      description: 'Spinner size: xs (20px), sm (24px), md (40px), lg (56px)',
     },
   },
   args: {
@@ -48,15 +40,35 @@ import { Spinner } from '@/components/spinner';
 export default meta;
 type Story = StoryObj<SpinnerProps>;
 
-// Default spinner
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Default spinner at small size.',
+      },
+    },
+  },
   args: {
     size: 'sm',
   },
 };
 
-// All sizes
 export const AllSizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'All available spinner sizes.',
+      },
+      source: {
+        code: `
+<Spinner size="xs" />
+<Spinner size="sm" />
+<Spinner size="md" />
+<Spinner size="lg" />
+        `,
+      },
+    },
+  },
   render: () => (
     <div className="flex items-center gap-6">
       <Spinner size="xs" />

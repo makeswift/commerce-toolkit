@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ArrowRight, LoaderCircle, X } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 
 import { Button } from '@/components/button';
 
-const meta = {
+const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   parameters: {
@@ -17,46 +17,18 @@ A versatile button component with multiple variants, sizes, and shapes.
 
 \`\`\`css
 :root {
-  --button-focus: var(--brand);
-  --button-font-family: var(--font-family-body);
-  --button-brand-background: var(--brand);
-  --button-brand-text: var(--foreground);
-  --button-primary-background: var(--foreground);
-  --button-primary-text: var(--background);
-  --button-outline-background: var(--background);
-  --button-outline-text: var(--foreground);
-  --button-outline-border: var(--contrast-200);
-  --button-ghost-text: var(--foreground);
-  --button-danger-background: var(--error);
-  --button-danger-text: var(--background);
-  --button-loader-icon: var(--foreground);
+  --button-font: var(--font-body);
+  --button-fill-primary: var(--foreground);
+  --button-text-primary: var(--text-inverse);
+  --button-fill-brand: var(--brand);
+  --button-text-brand: var(--text-primary);
+  --button-fill-outline: var(--background);
+  --button-text-outline: var(--text-primary);
+  --button-stroke-outline: var(--border);
+  --button-text-ghost: var(--text-primary);
+  --button-fill-danger: var(--error);
+  --button-danger-text: var(--text-inverse);
 }
-\`\`\`
-
-## Custom Loader Icon
-
-The loading spinner can be customized using the \`loaderIcon\` prop with \`asChild\`:
-
-\`\`\`tsx
-<Button
-  loading
-  loaderIcon={{
-    asChild: true,
-    children: <LoaderCircle />,
-  }}
->
-  Loading...
-</Button>
-\`\`\`
-
-The \`LoaderIcon\` primitive is also available:
-
-\`\`\`tsx
-import * as ButtonPrimitive from '@/components/button';
-
-<ButtonPrimitive.LoaderIcon asChild>
-  <MyCustomSpinner />
-</ButtonPrimitive.LoaderIcon>
 \`\`\`
         `,
       },
@@ -81,11 +53,11 @@ import * as ButtonPrimitive from '@/components/button';
     },
     loading: {
       control: 'boolean',
-      description: 'Shows a loading spinner',
+      description: 'Shows a loading spinner and disables interaction',
     },
     loaderIcon: {
       control: false,
-      description: 'Custom loader icon with asChild support',
+      description: 'Custom loader icon configuration with `asChild` and `children` props',
     },
     disabled: {
       control: 'boolean',
@@ -95,151 +67,78 @@ import * as ButtonPrimitive from '@/components/button';
   args: {
     children: 'Button',
   },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Variant stories
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     variant: 'primary',
-    children: 'Primary Button',
+    children: 'Add to Cart',
   },
 };
 
-export const Brand: Story = {
-  args: {
-    variant: 'brand',
-    children: 'Brand Button',
-  },
-};
-
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-    children: 'Outline Button',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    children: 'Ghost Button',
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    variant: 'danger',
-    children: 'Danger Button',
-  },
-};
-
-// Size stories
-export const Large: Story = {
-  args: {
-    size: 'large',
-    children: 'Large Button',
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    size: 'medium',
-    children: 'Medium Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    children: 'Small Button',
-  },
-};
-
-export const ExtraSmall: Story = {
-  args: {
-    size: 'x-small',
-    children: 'Extra Small',
-  },
-};
-
-// Shape stories
-export const Pill: Story = {
-  args: {
-    shape: 'pill',
-    children: 'Pill Shape',
-  },
-};
-
-export const Rounded: Story = {
-  args: {
-    shape: 'rounded',
-    children: 'Rounded Shape',
-  },
-};
-
-export const Square: Story = {
-  args: {
-    shape: 'square',
-    children: 'Square Shape',
-  },
-};
-
-export const Circle: Story = {
-  args: {
-    shape: 'circle',
-    children: <X absoluteStrokeWidth size={20} strokeWidth={1.5} />,
-  },
-};
-
-// State stories
-export const Loading: Story = {
-  args: {
-    loading: true,
-    children: 'Loading Button',
-  },
-};
-
-export const CustomLoaderIcon: Story = {
-  args: {
-    loading: true,
-    loaderIcon: {
-      asChild: true,
-      children: <LoaderCircle />,
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button variant="primary">Primary</Button>
+      <Button variant="brand">Brand</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="danger">Danger</Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The button supports five variants: `primary`, `brand`, `outline`, `ghost`, and `danger`.',
+      },
     },
-    children: 'Custom Loader',
   },
 };
 
-export const Disabled: Story = {
-  args: {
-    disabled: true,
-    children: 'Disabled Button',
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button size="large">Large</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="small">Small</Button>
+      <Button size="x-small">X-Small</Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Four size options are available: `large` (default), `medium`, `small`, and `x-small`.',
+      },
+    },
   },
 };
 
-// Combination examples
-export const DangerSmallPill: Story = {
-  args: {
-    variant: 'danger',
-    size: 'small',
-    shape: 'pill',
-    children: 'Delete',
+export const AllShapes: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button shape="pill">Pill</Button>
+      <Button shape="rounded">Rounded</Button>
+      <Button shape="square">Square</Button>
+      <Button shape="circle">
+        <X absoluteStrokeWidth size={20} strokeWidth={1.5} />
+      </Button>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Shape options include `pill` (default), `rounded`, `square`, and `circle` (for icon-only buttons).',
+      },
+    },
   },
 };
 
-export const PrimaryMediumRounded: Story = {
-  args: {
-    variant: 'primary',
-    size: 'medium',
-    shape: 'rounded',
-    children: 'Cancel',
-  },
-};
-
-// With icon examples
 export const WithIcon: Story = {
   args: {
     variant: 'primary',
@@ -250,39 +149,33 @@ export const WithIcon: Story = {
       </>
     ),
   },
-};
-
-export const IconOnly: Story = {
-  args: {
-    variant: 'primary',
-    shape: 'circle',
-    size: 'medium',
-    children: <ArrowRight size={20} />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Icons can be added as children alongside text.',
+      },
+    },
   },
 };
 
-// Use case examples
-export const CallToAction: Story = {
+export const Loading: Story = {
   args: {
-    variant: 'primary',
-    size: 'large',
-    children: (
-      <>
-        Get Started <ArrowRight size={20} />
-      </>
-    ),
+    loading: true,
+    children: 'Processing...',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `loading` prop shows a spinner and disables interaction. Use the `loaderIcon` prop to customize the spinner.',
+      },
+    },
   },
 };
 
-export const DangerWithIcon: Story = {
+export const Disabled: Story = {
   args: {
-    variant: 'danger',
-    size: 'medium',
-    children: (
-      <>
-        <X size={20} />
-        Delete Item
-      </>
-    ),
+    disabled: true,
+    children: 'Disabled',
   },
 };

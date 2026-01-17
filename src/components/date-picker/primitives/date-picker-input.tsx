@@ -1,13 +1,14 @@
-import type { ComponentProps, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 
 import { Input } from '@/components/input';
 
-export interface DatePickerInputProps extends ComponentProps<'input'> {
+export type DatePickerInputProps = ComponentProps<typeof Input> & {
   prependIcon?: {
     asChild?: boolean;
     children?: ReactNode;
   };
-}
+};
 
 export function DatePickerInput({ className, prependIcon, ...props }: DatePickerInputProps) {
   return (

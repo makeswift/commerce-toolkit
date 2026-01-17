@@ -13,7 +13,7 @@ export function OffsetPaginationEllipsis({
     <span
       aria-hidden
       className={cn(
-        'flex h-12 w-12 items-center justify-center text-[var(--offset-pagination-ellipsis,var(--foreground))]',
+        'flex h-12 w-12 items-center justify-center text-[--offset-pagination-ellipsis,var(--foreground)]',
         className,
       )}
       data-slot="offset-pagination-ellipsis"

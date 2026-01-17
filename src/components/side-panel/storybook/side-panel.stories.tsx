@@ -20,11 +20,12 @@ A slide-out panel component for displaying supplementary content like filters, s
 
 \`\`\`css
 :root {
-  --side-panel-overlay-background: color-mix(in oklab, var(--foreground) 50%, transparent);
-  --side-panel-background: var(--background);
-  --side-panel-title-text: var(--foreground);
-  --side-panel-title-font-family: var(--font-family-heading);
-  --side-panel-content-font-family: var(--font-family-body);
+  --side-panel-fill-overlay: color-mix(in oklab, var(--foreground) 50%, transparent);
+  --side-panel-fill: var(--background);
+  --side-panel-text-primary: var(--text-primary);
+  --side-panel-text-secondary: var(--text-secondary);
+  --side-panel-font-title: var(--font-heading);
+  --side-panel-font-content: var(--font-body);
 }
 \`\`\`
 

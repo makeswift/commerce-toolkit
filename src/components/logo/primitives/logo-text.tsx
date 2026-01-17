@@ -10,7 +10,7 @@ export function LogoText({ children, className, ...props }: LogoTextProps) {
   return (
     <span
       className={cn(
-        'text-lg font-semibold leading-none text-[var(--logo-text,var(--foreground))] [font-family:var(--logo-font-family,var(--font-family-heading))] @xl:text-2xl',
+        'text-lg font-semibold text-[--logo-text,var(--foreground)] [font-family:var(--logo-font,var(--font-heading))] @xl:text-2xl',
         className,
       )}
       data-slot="logo-text"

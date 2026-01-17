@@ -8,7 +8,7 @@ import { Banner, type BannerProps } from '@/components/banner';
 import * as BannerPrimitive from '@/components/banner/primitives';
 import { Button } from '@/components/button';
 
-// Wrapper component to handle banner reset functionality
+// Wrapper component to handle banner reset functionality for Storybook demos
 const BannerWithReset = ({
   id,
   children,
@@ -23,7 +23,6 @@ const BannerWithReset = ({
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    // Clear localStorage on mount
     localStorage.removeItem(`${id}-hidden-banner`);
   }, [id]);
 
@@ -54,20 +53,16 @@ const meta: Meta<typeof Banner> = {
     docs: {
       description: {
         component: `
-A dismissible banner component for displaying promotional messages, announcements, and notifications at the top of a page.
+A dismissible banner component for displaying promotional messages, announcements, and notifications at the top of a page. The banner persists its dismissed state in localStorage.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --banner-focus: var(--foreground);
-  --banner-background: var(--brand);
-  --banner-text: var(--foreground);
-  --banner-close-icon: color-mix(in oklab, var(--foreground) 50%, transparent);
-  --banner-close-icon-hover: var(--foreground);
-  --banner-close-background: transparent;
-  --banner-close-background-hover: color-mix(in oklab, var(--background) 40%, transparent);
-  --banner-font-family: var(--font-family-body);
+  --banner-text: var(--text-primary);
+  --banner-fill: var(--brand);
+  --banner-fill-icon: var(--foreground);
+  --banner-font: var(--font-body);
 }
 \`\`\`
         `,
@@ -78,7 +73,7 @@ A dismissible banner component for displaying promotional messages, announcement
   argTypes: {
     id: {
       control: 'text',
-      description: 'Unique identifier for localStorage persistence',
+      description: 'Unique identifier used for localStorage persistence of dismissed state',
     },
     children: {
       control: 'text',
@@ -87,6 +82,12 @@ A dismissible banner component for displaying promotional messages, announcement
     hideDismiss: {
       control: 'boolean',
       description: 'Whether to hide the dismiss button',
+    },
+    onDismiss: {
+      description: 'Callback function called when the banner is dismissed',
+    },
+    dismissIcon: {
+      description: 'Configuration for a custom dismiss icon with `asChild` and `children` props',
     },
   },
 };
@@ -118,21 +119,6 @@ export const WithoutDismiss: Story = {
   },
 };
 
-export const ShippingPromotion: Story = {
-  render: () => (
-    <BannerWithReset id="shipping-promo-banner">
-      🚚 <strong>Free shipping</strong> on all orders over $50
-    </BannerWithReset>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Banners support rich content including emojis and HTML elements like `<strong>`.',
-      },
-    },
-  },
-};
-
 /**
  * The Banner can be built using composable primitives for full customization.
  * This example shows the component anatomy using the primitive components.
@@ -158,7 +144,9 @@ export const ComposableAnatomy: Story = {
             <BannerPrimitive.Text>
               ✨ <strong>Summer Sale:</strong> Up to 50% off select items. Shop now!
             </BannerPrimitive.Text>
-            <BannerPrimitive.Dismiss />
+            <BannerPrimitive.Dismiss>
+              <BannerPrimitive.DismissIcon />
+            </BannerPrimitive.Dismiss>
           </BannerPrimitive.Content>
         </BannerPrimitive.Root>
         <div className="mt-8 flex justify-center">
@@ -181,7 +169,9 @@ import * as BannerPrimitive from '@/components/banner/primitives';
 <BannerPrimitive.Root id="unique-id">
   <BannerPrimitive.Content>
     <BannerPrimitive.Text>Banner message</BannerPrimitive.Text>
-    <BannerPrimitive.Dismiss />
+    <BannerPrimitive.Dismiss>
+      <BannerPrimitive.DismissIcon />
+    </BannerPrimitive.Dismiss>
   </BannerPrimitive.Content>
 </BannerPrimitive.Root>
 \`\`\`
