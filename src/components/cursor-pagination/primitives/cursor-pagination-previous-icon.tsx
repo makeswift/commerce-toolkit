@@ -15,9 +15,11 @@ export function CursorPaginationPreviousIcon({
   className,
   children,
 }: CursorPaginationPreviousIconProps) {
+  const iconStyles = cn('size-6', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-6', className)} data-slot="cursor-pagination-previous-icon">
+      <Slot className={iconStyles} data-slot="cursor-pagination-previous-icon">
         {children}
       </Slot>
     );
@@ -26,7 +28,7 @@ export function CursorPaginationPreviousIcon({
   return (
     <ArrowLeft
       absoluteStrokeWidth
-      className={cn('size-6', className)}
+      className={iconStyles}
       color="currentColor"
       data-slot="cursor-pagination-previous-icon"
       strokeWidth={1}

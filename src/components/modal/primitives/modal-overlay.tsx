@@ -9,7 +9,7 @@ export function ModalOverlay({ children, className, ...props }: ModalOverlayProp
   return (
     <Dialog.Overlay
       className={cn(
-        'fixed inset-0 z-30 flex items-center justify-center bg-[var(--modal-overlay-background,color-mix(in_oklab,var(--foreground)_50%,transparent))] @container',
+        'fixed inset-0 z-30 flex items-center justify-center bg-[var(--modal-fill-overlay,color-mix(in_oklab,var(--foreground)_50%,transparent))] @container',
         // Open state
         'data-[state=open]:duration-200 data-[state=open]:animate-in data-[state=open]:fade-in-0',
         // Closed state

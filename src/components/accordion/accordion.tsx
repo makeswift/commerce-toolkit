@@ -30,20 +30,11 @@ export type AccordionProps = AccordionSingleProps | AccordionMultipleProps;
  *
  * ```css
  * :root {
- *   --accordion-focus: var(--brand);
- *   --accordion-offset: var(--background);
- *   --accordion-light-title-text: var(--contrast-400);
- *   --accordion-light-title-text-hover: var(--foreground);
- *   --accordion-light-title-icon: var(--contrast-500);
- *   --accordion-light-title-icon-hover: var(--foreground);
- *   --accordion-light-content-text: var(--foreground);
- *   --accordion-dark-title-text: var(--contrast-200);
- *   --accordion-dark-title-text-hover: var(--background);
- *   --accordion-dark-title-icon: var(--contrast-200);
- *   --accordion-dark-title-icon-hover: var(--background);
- *   --accordion-dark-content-text: var(--background);
- *   --accordion-title-font-family: var(--font-family-body);
- *   --accordion-content-font-family: var(--font-family-body);
+ *   --accordion-text-primary: var(--text-primary);
+ *   --accordion-text-secondary: var(--text-secondary);
+ *   --accordion-fill-icon: var(--contrast-400);
+ *   --accordion-font-title: var(--font-heading);
+ *   --accordion-font-body: var(--font-body);
  * }
  * ```
  */
@@ -59,7 +50,7 @@ export function Accordion({ className, items, ...props }: AccordionProps) {
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
           <AccordionPrimitive.Content>
-            <AccordionPrimitive.ContentArea>{content}</AccordionPrimitive.ContentArea>
+            <AccordionPrimitive.Body>{content}</AccordionPrimitive.Body>
           </AccordionPrimitive.Content>
         </AccordionPrimitive.Item>
       ))}

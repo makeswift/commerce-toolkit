@@ -27,23 +27,17 @@ export function FileInputIcon({ asChild = false, className, children }: FileInpu
 
   const DefaultIcon = getIconForFile(fileState.file);
 
+  const iconStyles = cn('size-4 text-[--file-input-fill-icon,var(--form-fill-icon)]', className);
+
   if (asChild) {
     return (
-      <Slot
-        className={cn('size-4 text-[var(--file-input-icon,var(--contrast-400))]', className)}
-        data-slot="file-input-icon"
-      >
+      <Slot className={iconStyles} data-slot="file-input-icon">
         {children}
       </Slot>
     );
   }
 
-  return (
-    <DefaultIcon
-      className={cn('size-4 text-[var(--file-input-icon,var(--contrast-400))]', className)}
-      data-slot="file-input-icon"
-    />
-  );
+  return <DefaultIcon className={iconStyles} data-slot="file-input-icon" />;
 }
 
 function getIconForFile(file: File): ElementType {

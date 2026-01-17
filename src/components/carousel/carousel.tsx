@@ -24,11 +24,7 @@ export type CarouselProps = ComponentProps<typeof CarouselPrimitive.Root> & {
  *
  * ```css
  * :root {
-    --carousel-light-scrollbar: var(--foreground);
-    --carousel-dark-scrollbar: var(--background);
-    --carousel-focus: var(--brand);
-    --carousel-light-button: var(--foreground);
-    --carousel-dark-button: var(--background);
+ *   --carousel-fill-scrollbar:    var(--foreground);
  * }
  * ```
  */

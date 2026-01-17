@@ -14,31 +14,31 @@ export default {
           css: {
             h1: {
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-heading)',
+              fontFamily: 'var(--font-heading)',
             },
             h2: {
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-heading)',
+              fontFamily: 'var(--font-heading)',
             },
             h3: {
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-heading)',
+              fontFamily: 'var(--font-heading)',
             },
             h4: {
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-heading)',
+              fontFamily: 'var(--font-heading)',
             },
             h5: {
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-heading)',
+              fontFamily: 'var(--font-heading)',
             },
             h6: {
               color: 'var(--text-primary)',
-              fontFamily: 'var(--font-family-heading)',
+              fontFamily: 'var(--font-heading)',
             },
             p: {
               color: 'var(--text-secondary)',
-              fontFamily: 'var(--font-family-body)',
+              fontFamily: 'var(--font-body)',
             },
             a: {
               color: 'var(--text-secondary)',
@@ -52,11 +52,11 @@ export default {
             },
             ul: {
               color: 'var(--text-secondary)',
-              fontFamily: 'var(--font-family-body)',
+              fontFamily: 'var(--font-body)',
             },
             ol: {
               color: 'var(--text-secondary)',
-              fontFamily: 'var(--font-family-body)',
+              fontFamily: 'var(--font-body)',
             },
             strong: {
               fontWeight: '600',
@@ -71,12 +71,12 @@ export default {
             },
             code: {
               color: 'var(--contrast-500)',
-              fontFamily: 'var(--font-family-body)',
+              fontFamily: 'var(--font-body)',
             },
             pre: {
               color: 'var(--background)',
               backgroundColor: 'var(--foreground)',
-              fontFamily: 'var(--font-family-body)',
+              fontFamily: 'var(--font-body)',
             },
           },
         },
@@ -113,8 +113,89 @@ export default {
         },
       },
       fontFamily: {
-        heading: 'var(--font-family-heading)',
-        body: 'var(--font-family-body)',
+        heading: 'var(--font-heading)',
+        body: 'var(--font-body)',
+      },
+      fontSize: {
+        xs: [
+          '0.75rem',
+          {
+            lineHeight: '1.125rem',
+          },
+        ],
+        sm: [
+          '0.875rem',
+          {
+            lineHeight: '1.25rem',
+          },
+        ],
+        base: [
+          '1rem',
+          {
+            lineHeight: '1.5rem',
+          },
+        ],
+        lg: [
+          '1.125rem',
+          {
+            lineHeight: '1.75rem',
+            letterSpacing: '-0.01em',
+          },
+        ],
+        xl: [
+          '1.25rem',
+          {
+            lineHeight: '2.25rem',
+            letterSpacing: '-0.01em',
+          },
+        ],
+        '2xl': [
+          '1.5rem',
+          {
+            lineHeight: '1.75rem',
+          },
+        ],
+        '3xl': [
+          '1.875rem',
+          {
+            lineHeight: '2rem',
+          },
+        ],
+        '4xl': [
+          '2.5rem',
+          {
+            lineHeight: '2.75rem',
+            letterSpacing: '-0.01em',
+          },
+        ],
+        '5xl': [
+          '3rem',
+          {
+            lineHeight: '3.25rem',
+            letterSpacing: '-0.01em',
+          },
+        ],
+        '6xl': [
+          '3.75rem',
+          {
+            lineHeight: '4rem',
+            letterSpacing: '-0.01em',
+          },
+        ],
+        '7xl': [
+          '4.5rem',
+          {
+            lineHeight: '1',
+            letterSpacing: '-0.02em',
+          },
+        ],
+        '8xl': [
+          '6rem',
+          {
+            lineHeight: '1',
+            letterSpacing: '-0.02em',
+          },
+        ],
       },
       keyframes: {
         collapse: {
@@ -125,10 +206,16 @@ export default {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
         },
+        'heart-pulse': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.3)' },
+          '100%': { transform: 'scale(1)' },
+        },
       },
       animation: {
         collapse: 'collapse 400ms cubic-bezier(1, 0, 0.25, 1)',
         expand: 'expand 400ms cubic-bezier(1, 0, 0.25, 1)',
+        'heart-pulse': 'heart-pulse 0.75s forwards',
       },
     },
   },

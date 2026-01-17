@@ -8,7 +8,7 @@ export function ProductCardThumbnail({ className, children, ...props }: ProductC
   return (
     <div
       className={cn(
-        'relative overflow-hidden rounded-[var(--product-card-border-radius,1rem)] bg-[var(--product-card-light-background,var(--contrast-100))]',
+        'relative overflow-hidden rounded-[var(--product-card-radius,1rem)] bg-[--fill-image]',
         'group-data-[aspect-ratio=5/6]/product-card:aspect-[5/6]',
         'group-data-[aspect-ratio=3/4]/product-card:aspect-[3/4]',
         'group-data-[aspect-ratio=1/1]/product-card:aspect-square',

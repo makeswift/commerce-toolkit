@@ -9,7 +9,7 @@ export function BreadcrumbsCurrent({ className, children, ...props }: Breadcrumb
     <span
       aria-current="page"
       aria-disabled="true"
-      className={cn('text-[var(--breadcrumbs-secondary-text,var(--contrast-500))]', className)}
+      className={cn('text-[--breadcrumbs-text-secondary,var(--text-secondary)]', className)}
       data-slot="breadcrumbs-current"
       role="link"
       {...props}

@@ -8,11 +8,7 @@ export type SkeletonIconProps = ComponentProps<'div'> & {
 
 export function SkeletonIcon({ className, icon, ...props }: SkeletonIconProps) {
   return (
-    <div
-      className={cn('text-[var(--skeleton,var(--contrast-300))] opacity-25', className)}
-      data-slot="skeleton-icon"
-      {...props}
-    >
+    <div className={cn('text-[--fill-pending]', className)} data-slot="skeleton-icon" {...props}>
       {icon}
     </div>
   );

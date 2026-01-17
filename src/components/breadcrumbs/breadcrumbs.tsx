@@ -27,10 +27,10 @@ export interface BreadcrumbsProps {
  *
  * ```css
  * :root {
- *   --breadcrumbs-font-family: var(--font-family-body);
- *   --breadcrumbs-primary-text: var(--foreground);
- *   --breadcrumbs-secondary-text: var(--contrast-500);
- *   --breadcrumbs-icon: var(--contrast-500);
+ *   --breadcrumbs-font:           var(--font-body);
+ *   --breadcrumbs-text-primary:   var(--primary-text);
+ *   --breadcrumbs-text-secondary: var(--text-secondary);
+ *   --breadcrumbs-fill-icon:      var(--contrast-400);
  * }
  * ```
  */

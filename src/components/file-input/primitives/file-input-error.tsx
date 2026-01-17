@@ -12,10 +12,7 @@ export function FileInputError({ className, children, ...props }: FileInputError
 
   return (
     <p
-      className={cn(
-        'text-xs font-normal text-[var(--file-input-item-status-error,var(--error))]',
-        className,
-      )}
+      className={cn('text-xs text-[--file-input-text-error,var(--error)]', className)}
       data-slot="file-input-error"
       id={`${generatedId}-error`}
       {...props}

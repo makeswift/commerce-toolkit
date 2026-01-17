@@ -13,9 +13,11 @@ export interface RangeInputIconProps {
 }
 
 export function RangeInputIcon({ asChild = false, className, children }: RangeInputIconProps) {
+  const iconStyles = cn('size-5', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-5', className)} data-slot="range-input-icon">
+      <Slot className={iconStyles} data-slot="range-input-icon">
         {children}
       </Slot>
     );
@@ -24,7 +26,7 @@ export function RangeInputIcon({ asChild = false, className, children }: RangeIn
   return (
     <ArrowRight
       absoluteStrokeWidth
-      className={cn('size-5', className)}
+      className={iconStyles}
       data-slot="range-input-icon"
       strokeWidth={1}
     />

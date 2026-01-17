@@ -17,14 +17,13 @@ A notification component for displaying important messages to users with support
 
 \`\`\`css
 :root {
-  --alert-success-background: color-mix(in oklab, var(--success), white 75%);
-  --alert-warning-background: color-mix(in oklab, var(--warning), white 75%);
-  --alert-error-background: color-mix(in oklab, var(--error), white 75%);
-  --alert-info-background: var(--background);
-  --alert-font-family: var(--font-family-body);
-  --alert-border: color-mix(in oklab, var(--foreground) 10%, transparent);
-  --alert-message-text: var(--foreground);
-  --alert-description-text: color-mix(in oklab, var(--foreground) 50%, transparent);
+  --alert-text: var(--text-primary);
+  --alert-fill-info: var(--background);
+  --alert-fill-success: var(--success-background);
+  --alert-fill-warning: var(--warning-background);
+  --alert-fill-error: var(--error-background);
+  --alert-font-title: var(--font-body);
+  --alert-font-description: var(--font-body);
 }
 \`\`\`
         `,
@@ -46,6 +45,13 @@ A notification component for displaying important messages to users with support
       control: 'text',
       description: 'Optional description text',
     },
+    action: {
+      description: 'Optional action button configuration with label and onClick handler',
+    },
+    dismiss: {
+      description:
+        'Dismiss button configuration with label (for accessibility) and onClick handler',
+    },
   },
 };
 
@@ -53,50 +59,53 @@ export default meta;
 
 type Story = StoryObj<AlertProps>;
 
-export const Success: Story = {
-  args: {
-    variant: 'success',
-    message: 'Payment successful',
-    description: 'Your payment has been processed successfully.',
-    dismiss: {
-      label: 'Dismiss payment alert',
-      onClick: () => console.log('Dismissed'),
-    },
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    variant: 'warning',
-    message: 'Low inventory',
-    description: 'Only 3 items left in stock.',
-    dismiss: {
-      label: 'Dismiss inventory alert',
-      onClick: () => console.log('Dismissed'),
-    },
-  },
-};
-
-export const Error: Story = {
-  args: {
-    variant: 'error',
-    message: 'Payment failed',
-    description: 'There was an error processing your payment. Please try again.',
-    dismiss: {
-      label: 'Dismiss payment failure alert',
-      onClick: () => console.log('Dismissed'),
-    },
-  },
-};
-
-export const Info: Story = {
+export const Default: Story = {
   args: {
     variant: 'info',
     message: 'New feature available',
     description: 'Check out our new shopping experience.',
     dismiss: {
-      label: 'Dismiss new feature alert',
+      label: 'Dismiss alert',
       onClick: () => console.log('Dismissed'),
+    },
+  },
+};
+
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <Alert
+        description="Your order has been placed successfully."
+        dismiss={{ label: 'Dismiss success alert', onClick: () => console.log('Dismissed') }}
+        message="Order confirmed"
+        variant="success"
+      />
+      <Alert
+        description="Only 3 items left in stock."
+        dismiss={{ label: 'Dismiss warning alert', onClick: () => console.log('Dismissed') }}
+        message="Low inventory"
+        variant="warning"
+      />
+      <Alert
+        description="There was an error processing your payment."
+        dismiss={{ label: 'Dismiss error alert', onClick: () => console.log('Dismissed') }}
+        message="Payment failed"
+        variant="error"
+      />
+      <Alert
+        description="Check out our new shopping experience."
+        dismiss={{ label: 'Dismiss info alert', onClick: () => console.log('Dismissed') }}
+        message="New feature available"
+        variant="info"
+      />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The alert supports four semantic variants: `success`, `warning`, `error`, and `info`.',
+      },
     },
   },
 };
@@ -130,10 +139,7 @@ export const WithAction: Story = {
  */
 export const ComposableAnatomy: Story = {
   render: () => (
-    <AlertPrimitive.Root
-      dismiss={{ label: 'Dismiss alert', onClick: () => console.log('Dismissed') }}
-      variant="success"
-    >
+    <AlertPrimitive.Root variant="success">
       <AlertPrimitive.Header>
         <AlertPrimitive.Title>Order confirmed</AlertPrimitive.Title>
         <AlertPrimitive.Description>
@@ -141,7 +147,12 @@ export const ComposableAnatomy: Story = {
         </AlertPrimitive.Description>
       </AlertPrimitive.Header>
       <AlertPrimitive.Actions>
-        <AlertPrimitive.Dismiss />
+        <AlertPrimitive.Action onClick={() => console.log('View order')}>
+          View Order
+        </AlertPrimitive.Action>
+        <AlertPrimitive.Dismiss onClick={() => console.log('Dismissed')}>
+          Dismiss alert
+        </AlertPrimitive.Dismiss>
       </AlertPrimitive.Actions>
     </AlertPrimitive.Root>
   ),
@@ -154,17 +165,14 @@ Use the composable primitives to build custom alert layouts:
 \`\`\`tsx
 import * as AlertPrimitive from '@/components/alert/primitives';
 
-<AlertPrimitive.Root
-  variant="success"
-  dismiss={{ label: 'Dismiss', onClick: handleDismiss }}
->
+<AlertPrimitive.Root variant="success">
   <AlertPrimitive.Header>
     <AlertPrimitive.Title>Title</AlertPrimitive.Title>
     <AlertPrimitive.Description>Description text</AlertPrimitive.Description>
   </AlertPrimitive.Header>
   <AlertPrimitive.Actions>
-    <AlertPrimitive.Action />
-    <AlertPrimitive.Dismiss />
+    <AlertPrimitive.Action onClick={handleAction}>Action</AlertPrimitive.Action>
+    <AlertPrimitive.Dismiss onClick={handleDismiss}>Dismiss</AlertPrimitive.Dismiss>
   </AlertPrimitive.Actions>
 </AlertPrimitive.Root>
 \`\`\`

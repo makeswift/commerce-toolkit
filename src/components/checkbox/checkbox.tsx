@@ -16,23 +16,14 @@ export type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root> & {
  * with their default values:
  *
  * ```css
- *  :root {
- *    --checkbox-focus: var(--brand);
- *    --checkbox-light-label: var(--foreground);
- *    --checkbox-light-error: var(--error);
- *    --checkbox-light-unchecked-border: var(--contrast-200);
- *    --checkbox-light-unchecked-border-hover: var(--contrast-300);
- *    --checkbox-light-unchecked-background: var(--background);
- *    --checkbox-light-unchecked-icon: var(--foreground);
- *    --checkbox-light-checked-border: var(--foreground);
- *    --checkbox-light-checked-border-hover: var(--foreground);
- *    --checkbox-light-checked-background: var(--foreground);
- *    --checkbox-light-checked-icon: var(--background);
- *    --checkbox-light-disabled-border: var(--contrast-200);
- *    --checkbox-light-disabled-background: var(--contrast-100);
- *    --checkbox-light-disabled-icon: var(--contrast-300);
- *    --checkbox-font-family: var(--font-family-body);
- *  }
+ * :root {
+ *   --checkbox-fill-unchecked: var(--form-fill-unchecked);
+ *   --checkbox-fill-checked: var(--form-fill-checked);
+ *   --checkbox-fill-disabled: var(--form-fill-disabled);
+ *   --checkbox-text-unchecked: var(--form-text-unchecked);
+ *   --checkbox-text-checked: var(--form-text-checked);
+ *   --checkbox-text-disabled: var(--form-text-disabled);
+ * }
  * ```
  */
 export function Checkbox({ className, icon, ...props }: CheckboxProps) {

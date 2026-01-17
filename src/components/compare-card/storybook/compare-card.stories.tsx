@@ -12,26 +12,21 @@ const meta: Meta<typeof CompareCard> = {
     docs: {
       description: {
         component: `
-A product comparison card that extends the ProductCard with additional description and specification sections. Ideal for side-by-side product comparisons.
+A product comparison card that extends the ProductCard with additional content nodes. Ideal for side-by-side product comparisons.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --compare-card-divider: var(--contrast-100);
-  --compare-card-label: var(--foreground);
-  --compare-card-description: var(--contrast-400);
-  --compare-card-field: var(--foreground);
-  --compare-card-font-family-brand: var(--font-family-body);
-  --compare-card-font-family-secondary: var(--font-family-body);
+  --compare-card-font: var(--font-body);
+  --compare-card-text-primary: var(--text-primary);
+  --compare-card-text-secondary: var(--text-secondary);
 }
 \`\`\`
 
 ## Usage
 
-### High-Level Component
-
-The \`CompareCard\` component wraps a ProductCard with description and specs sections:
+The \`CompareCard\` component wraps a ProductCard with configurable content nodes:
 
 \`\`\`tsx
 import { CompareCard } from '@/components/compare-card';
@@ -44,50 +39,70 @@ import { CompareCard } from '@/components/compare-card';
       subtitle: 'Category',
       link: { href: '/products/id', ariaLabel: 'View Product' },
       image: { src: '...', alt: '...' },
-      showRating: true,
-      rating: 4.5,
       price: { type: 'default', value: '$19.99' },
     },
-    cartAction: {
-      type: 'form',
-      action: (formData) => console.log('Add to cart:', formData.get('id')),
-      label: 'Add to Cart',
-    },
   }}
-  description="Product description text..."
-  specs={[
-    { name: 'Material', value: 'Bamboo' },
-    { name: 'Dimensions', value: '6" x 2"' },
+  nodes={[
+    {
+      type: 'content',
+      label: 'Description',
+      content: 'Product description text...',
+      emptyLabel: 'No description available.',
+    },
+    {
+      type: 'list',
+      label: 'Specifications',
+      items: [
+        { name: 'Material', value: 'Bamboo' },
+        { name: 'Dimensions', value: '6" x 2"' },
+      ],
+    },
   ]}
 />
 \`\`\`
 
-### Composable Anatomy
+## Node Types
+
+| Type | Description |
+|------|-------------|
+| \`content\` | Prose/rich text content with optional reveal animation |
+| \`list\` | Key-value definition list for specifications |
+
+## Node Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| \`type\` | \`'content' \\| 'list'\` | The type of node to render |
+| \`label\` | \`string\` | Section heading |
+| \`content\` | \`ReactNode\` | Content for \`content\` type nodes |
+| \`items\` | \`Array<{ name: string; value: string }>\` | Items for \`list\` type nodes |
+| \`emptyLabel\` | \`string\` | Message shown when content/items are empty |
+| \`showReveal\` | \`boolean\` | Whether to show reveal animation (default: \`true\`) |
+
+## Composable Anatomy
 
 For more control, use the primitive components directly:
 
 \`\`\`tsx
-import * as CompareCard from '@/components/compare-card';
+import * as CompareCard from '@/components/compare-card/primitives';
 
 <CompareCard.Root>
   <CompareCard.Product>
     <CompareCard.ProductCard product={...} />
   </CompareCard.Product>
-  <CompareCard.Description>
-    <CompareCard.DescriptionLabel>Description</CompareCard.DescriptionLabel>
+  <CompareCard.Section>
+    <CompareCard.Label>Description</CompareCard.Label>
     <CompareCard.Reveal>
-      <CompareCard.DescriptionContent>...</CompareCard.DescriptionContent>
+      <CompareCard.Content>...</CompareCard.Content>
     </CompareCard.Reveal>
-  </CompareCard.Description>
-  <CompareCard.Specs>
-    <CompareCard.SpecsLabel>Specifications</CompareCard.SpecsLabel>
-    <CompareCard.Reveal>
-      <CompareCard.SpecsList>
-        <CompareCard.SpecsTerm>Material: </CompareCard.SpecsTerm>
-        <CompareCard.SpecsDefinition>Bamboo</CompareCard.SpecsDefinition>
-      </CompareCard.SpecsList>
-    </CompareCard.Reveal>
-  </CompareCard.Specs>
+  </CompareCard.Section>
+  <CompareCard.Section>
+    <CompareCard.Label>Specifications</CompareCard.Label>
+    <CompareCard.List>
+      <CompareCard.Term>Material: </CompareCard.Term>
+      <CompareCard.Definition>Bamboo</CompareCard.Definition>
+    </CompareCard.List>
+  </CompareCard.Section>
 </CompareCard.Root>
 \`\`\`
         `,
@@ -98,32 +113,11 @@ import * as CompareCard from '@/components/compare-card';
   argTypes: {
     productCard: {
       control: false,
-      description:
-        'Props passed to the embedded ProductCard (product, cartAction, compareAction, aspectRatio)',
+      description: 'Props passed to the embedded ProductCard',
     },
-    description: {
-      control: 'text',
-      description: 'Product description text',
-    },
-    descriptionLabel: {
-      control: 'text',
-      description: 'Label for the description section (default: "Description")',
-    },
-    emptyDescriptionLabel: {
-      control: 'text',
-      description: 'Message shown when no description is available',
-    },
-    specs: {
+    nodes: {
       control: false,
-      description: 'Array of specification objects with name and value',
-    },
-    specsLabel: {
-      control: 'text',
-      description: 'Label for the specifications section (default: "Other details")',
-    },
-    emptySpecsLabel: {
-      control: 'text',
-      description: 'Message shown when no specs are available',
+      description: 'Array of content nodes to render below the product card',
     },
   },
   decorators: [
@@ -138,7 +132,6 @@ import * as CompareCard from '@/components/compare-card';
 export default meta;
 type Story = StoryObj<CompareCardProps>;
 
-// Default with description and specs
 export const Default: Story = {
   args: {
     productCard: {
@@ -159,18 +152,27 @@ export const Default: Story = {
         price: { type: 'default', value: '$8.99' },
       },
     },
-    description:
-      'A sturdy, eco-friendly scrub brush made from natural plant fibers and a sustainably sourced wooden handle. Perfect for pots, pans, and tough kitchen messes.',
-    specs: [
-      { name: 'Material', value: 'Natural plant fiber, beechwood' },
-      { name: 'Dimensions', value: '6" x 2.5"' },
-      { name: 'Care', value: 'Rinse and air dry' },
+    nodes: [
+      {
+        type: 'content',
+        label: 'Description',
+        content:
+          'A sturdy, eco-friendly scrub brush made from natural plant fibers and a sustainably sourced wooden handle. Perfect for pots, pans, and tough kitchen messes.',
+      },
+      {
+        type: 'list',
+        label: 'Other details',
+        items: [
+          { name: 'Material', value: 'Natural plant fiber, beechwood' },
+          { name: 'Dimensions', value: '6" x 2.5"' },
+          { name: 'Care', value: 'Rinse and air dry' },
+        ],
+      },
     ],
   },
 };
 
-// With cart action
-export const WithCartAction: Story = {
+export const MultipleNodes: Story = {
   args: {
     productCard: {
       product: {
@@ -189,24 +191,32 @@ export const WithCartAction: Story = {
         rating: 4.6,
         price: { type: 'default', value: '$14.50' },
       },
-      cartAction: {
-        type: 'form',
-        action: (formData) => {
-          console.log('Added to cart:', formData.get('id'));
-        },
-        label: 'Add to Cart',
-      },
     },
-    description:
-      'A sleek glass pump bottle with a brushed metal pump mechanism. Perfect for hand soap, dish soap, or lotion.',
-    specs: [
-      { name: 'Capacity', value: '16 oz' },
-      { name: 'Material', value: 'Recycled glass, stainless steel' },
+    nodes: [
+      {
+        type: 'content',
+        label: 'Description',
+        content:
+          'A sleek glass pump bottle with a brushed metal pump mechanism. Perfect for hand soap, dish soap, or lotion.',
+      },
+      {
+        type: 'list',
+        label: 'Specifications',
+        items: [
+          { name: 'Capacity', value: '16 oz' },
+          { name: 'Material', value: 'Recycled glass, stainless steel' },
+          { name: 'Dimensions', value: '7.5" x 3"' },
+        ],
+      },
+      {
+        type: 'content',
+        label: 'Care instructions',
+        content: 'Hand wash only. Do not microwave. Refill with your favorite soap or lotion.',
+      },
     ],
   },
 };
 
-// Empty states (no description or specs)
 export const EmptyStates: Story = {
   args: {
     productCard: {
@@ -227,10 +237,21 @@ export const EmptyStates: Story = {
         price: { type: 'default', value: '$6.49' },
       },
     },
+    nodes: [
+      {
+        type: 'content',
+        label: 'Description',
+        emptyLabel: 'There is no description available.',
+      },
+      {
+        type: 'list',
+        label: 'Other details',
+        emptyLabel: 'There are no other details.',
+      },
+    ],
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
   render: () => (
     <CompareCardPrimitive.Root>
@@ -254,37 +275,36 @@ export const ComposableAnatomy: Story = {
           }}
         />
       </CompareCardPrimitive.Product>
-      <CompareCardPrimitive.Description>
-        <CompareCardPrimitive.DescriptionLabel>Description</CompareCardPrimitive.DescriptionLabel>
+      <CompareCardPrimitive.Section>
+        <CompareCardPrimitive.Label>Description</CompareCardPrimitive.Label>
         <CompareCardPrimitive.Reveal>
-          <CompareCardPrimitive.DescriptionContent>
+          <CompareCardPrimitive.Content>
             A versatile cleaning brush with an ergonomic wooden handle and durable bristles. Great
             for dishes, vegetables, and general cleaning tasks.
-          </CompareCardPrimitive.DescriptionContent>
+          </CompareCardPrimitive.Content>
         </CompareCardPrimitive.Reveal>
-      </CompareCardPrimitive.Description>
-      <CompareCardPrimitive.Specs>
-        <CompareCardPrimitive.SpecsLabel>Specifications</CompareCardPrimitive.SpecsLabel>
+      </CompareCardPrimitive.Section>
+      <CompareCardPrimitive.Section>
+        <CompareCardPrimitive.Label>Specifications</CompareCardPrimitive.Label>
         <CompareCardPrimitive.Reveal>
-          <CompareCardPrimitive.SpecsList>
+          <CompareCardPrimitive.List>
             <Fragment>
-              <CompareCardPrimitive.SpecsTerm>Material: </CompareCardPrimitive.SpecsTerm>
-              <CompareCardPrimitive.SpecsDefinition>
+              <CompareCardPrimitive.Term>Material: </CompareCardPrimitive.Term>
+              <CompareCardPrimitive.Definition>
                 Beechwood, natural bristle
-              </CompareCardPrimitive.SpecsDefinition>
+              </CompareCardPrimitive.Definition>
             </Fragment>
             <Fragment>
-              <CompareCardPrimitive.SpecsTerm>Dimensions: </CompareCardPrimitive.SpecsTerm>
-              <CompareCardPrimitive.SpecsDefinition>7" x 2"</CompareCardPrimitive.SpecsDefinition>
+              <CompareCardPrimitive.Term>Dimensions: </CompareCardPrimitive.Term>
+              <CompareCardPrimitive.Definition>7" x 2"</CompareCardPrimitive.Definition>
             </Fragment>
-          </CompareCardPrimitive.SpecsList>
+          </CompareCardPrimitive.List>
         </CompareCardPrimitive.Reveal>
-      </CompareCardPrimitive.Specs>
+      </CompareCardPrimitive.Section>
     </CompareCardPrimitive.Root>
   ),
 };
 
-// Skeleton loading state
 export const Skeleton: Story = {
   render: () => (
     <CompareCardPrimitive.Root>

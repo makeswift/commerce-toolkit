@@ -12,7 +12,7 @@ export function CompareDrawerThumbnail({
   return (
     <div
       className={cn(
-        'relative aspect-square w-12 shrink-0 bg-[var(--compare-drawer-card-image-background,var(--contrast-100))]',
+        'relative aspect-square w-12 shrink-0 bg-[--compare-drawer-fill-secondary,var(--contrast-100)]',
         className,
       )}
       data-slot="compare-drawer-thumbnail"

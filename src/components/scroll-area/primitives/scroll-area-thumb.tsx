@@ -11,7 +11,7 @@ export function ScrollAreaThumb({ className, ...props }: ScrollAreaThumbProps) {
   return (
     <ScrollAreaPrimitive.ScrollAreaThumb
       className={cn(
-        'relative flex-1 rounded-full bg-[var(--scroll-area-thumb,var(--contrast-200))]',
+        'relative flex-1 rounded-full bg-[--scroll-area-fill,var(--contrast-200)]',
         className,
       )}
       data-slot="scroll-area-thumb"

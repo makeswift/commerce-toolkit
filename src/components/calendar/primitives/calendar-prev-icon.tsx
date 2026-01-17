@@ -11,19 +11,17 @@ export interface CalendarPrevIconProps {
 }
 
 export function CalendarPrevIcon({ asChild = false, className, children }: CalendarPrevIconProps) {
+  const iconStyles = cn('size-5 -translate-x-px', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-5 -translate-x-px', className)} data-slot="calendar-prev-icon">
+      <Slot className={iconStyles} data-slot="calendar-prev-icon">
         {children}
       </Slot>
     );
   }
 
   return (
-    <ChevronLeftIcon
-      absoluteStrokeWidth
-      className={cn('size-5 -translate-x-px', className)}
-      data-slot="calendar-prev-icon"
-    />
+    <ChevronLeftIcon absoluteStrokeWidth className={iconStyles} data-slot="calendar-prev-icon" />
   );
 }

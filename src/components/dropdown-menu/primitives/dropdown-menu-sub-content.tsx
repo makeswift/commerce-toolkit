@@ -13,7 +13,7 @@ export function DropdownMenuSubContent({
   return (
     <DropdownMenuPrimitive.SubContent
       className={cn(
-        'z-50 min-w-32 origin-top-left rounded-2xl border border-[var(--dropdown-menu-border,var(--contrast-100))] bg-[var(--dropdown-menu-background,var(--background))] shadow-xl',
+        'z-50 min-w-32 origin-top-left rounded-2xl border border-[--border-subtle] bg-[--dropdown-menu-fill,var(--background)] shadow-xl',
         // Open styles
         'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
         // Closed styles

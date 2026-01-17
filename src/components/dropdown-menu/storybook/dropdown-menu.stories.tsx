@@ -17,117 +17,30 @@ const meta: Meta<typeof DropdownMenu> = {
     docs: {
       description: {
         component: `
-A dropdown menu component for displaying a list of actions or options. Built on Radix UI primitives with support for items, checkboxes, submenus, and groups.
+A dropdown menu for displaying actions or options. Built on Radix UI with support for items, checkboxes, submenus, and groups.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --dropdown-menu-background: var(--background);
-  --dropdown-menu-border: var(--contrast-100);
-  --dropdown-menu-focus: var(--brand);
-  --dropdown-menu-item-focus: var(--brand);
-  --dropdown-menu-item-text: var(--contrast-400);
-  --dropdown-menu-item-text-hover: var(--foreground);
-  --dropdown-menu-item-danger-text: var(--error);
-  --dropdown-menu-item-danger-text-hover: color-mix(in oklab, var(--error), black 75%);
-  --dropdown-menu-item-background: transparent;
-  --dropdown-menu-item-background-hover: var(--contrast-100);
-  --dropdown-menu-item-danger-background: var(--error);
-  --dropdown-menu-item-danger-background-hover: color-mix(in oklab, var(--error), white 75%);
-  --dropdown-menu-item-font-family: var(--font-family-body);
-  --dropdown-menu-seperator: var(--contrast-200);
+  --dropdown-menu-fill: var(--background);
+  --dropdown-menu-font: var(--font-body);
+  --dropdown-menu-text: var(--text-secondary);
+  --dropdown-menu-fill-hover: var(--contrast-100);
+  --dropdown-menu-text-hover: var(--text-primary);
+  --dropdown-menu-text-error: var(--error);
+  --dropdown-menu-fill-error: var(--error-background);
+  --dropdown-menu-text-error-hover: var(--error-foreground);
 }
 \`\`\`
 
-## Usage
+## Node Types
 
-### High-Level Component
-
-The \`DropdownMenu\` component uses a data-driven \`items\` array:
-
-\`\`\`tsx
-import { DropdownMenu } from '@/components/dropdown-menu';
-
-<DropdownMenu
-  label="Actions"
-  items={[
-    { type: 'item', props: { children: 'Edit', onClick: handleEdit } },
-    { type: 'item', props: { children: 'Duplicate', onClick: handleDuplicate } },
-    { type: 'separator' },
-    { type: 'item', props: { children: 'Delete', variant: 'danger' } },
-  ]}
-/>
-\`\`\`
-
-### Item Types
-
-- \`{ type: 'item', props: { ... } }\` - Standard menu item
-- \`{ type: 'checkbox', props: { checked, onCheckedChange, ... } }\` - Checkbox item
-- \`{ type: 'separator' }\` - Visual separator
-- \`{ type: 'group', items: [...] }\` - Group of related items
-- \`{ type: 'sub', trigger: { props }, content: { items } }\` - Submenu
-
-### Custom Trigger
-
-Pass a custom \`trigger\` element. Default is an ellipsis icon button:
-
-\`\`\`tsx
-<DropdownMenu
-  label="Account"
-  trigger={<Button>Open Menu</Button>}
-  items={[...]}
-/>
-\`\`\`
-
-### Custom Trigger Icon
-
-Customize the default trigger icon using the \`triggerIcon\` prop with \`asChild\`:
-
-\`\`\`tsx
-<DropdownMenu
-  label="Actions"
-  triggerIcon={{
-    asChild: true,
-    children: <MoreVerticalIcon size={20} />,
-  }}
-  items={[...]}
-/>
-\`\`\`
-
-The \`TriggerIcon\` primitive is also available for composable usage:
-
-\`\`\`tsx
-<DropdownMenuPrimitive.TriggerIcon asChild>
-  <MyCustomIcon />
-</DropdownMenuPrimitive.TriggerIcon>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as DropdownMenu from '@/components/dropdown-menu';
-import { Button } from '@/components/button';
-
-<DropdownMenu.Root>
-  <DropdownMenu.Trigger asChild>
-    <Button>Open</Button>
-  </DropdownMenu.Trigger>
-  <DropdownMenu.Portal>
-    <DropdownMenu.Content>
-      <DropdownMenu.ScrollArea>
-        <DropdownMenu.Label>Actions</DropdownMenu.Label>
-        <DropdownMenu.Item>Edit</DropdownMenu.Item>
-        <DropdownMenu.Item>Duplicate</DropdownMenu.Item>
-        <DropdownMenu.Separator />
-        <DropdownMenu.Item variant="danger">Delete</DropdownMenu.Item>
-      </DropdownMenu.ScrollArea>
-    </DropdownMenu.Content>
-  </DropdownMenu.Portal>
-</DropdownMenu.Root>
-\`\`\`
+- \`{ type: 'item', props: { ... } }\` — Standard menu item
+- \`{ type: 'checkbox', props: { checked, onCheckedChange, ... } }\` — Checkbox item
+- \`{ type: 'separator' }\` — Visual separator
+- \`{ type: 'group', items: [...] }\` — Group of related items
+- \`{ type: 'sub', trigger: { props }, content: { items } }\` — Submenu
         `,
       },
     },
@@ -141,27 +54,27 @@ import { Button } from '@/components/button';
     align: {
       control: 'select',
       options: ['start', 'center', 'end'],
-      description: 'Alignment of the dropdown relative to the trigger',
+      description: 'Dropdown alignment relative to trigger',
     },
     sideOffset: {
       control: 'number',
-      description: 'Offset from the trigger in pixels',
+      description: 'Offset from trigger in pixels',
     },
     showScrollArea: {
       control: 'boolean',
-      description: 'Whether to enable scroll area for long menus',
+      description: 'Enable scroll area for long menus',
     },
     trigger: {
       control: false,
-      description: 'Custom trigger element (default: ellipsis icon button)',
+      description: 'Custom trigger element (default: ellipsis icon)',
     },
     triggerIcon: {
       control: false,
-      description: 'Custom trigger icon with asChild support',
+      description: 'Custom trigger icon with `asChild` support',
     },
-    items: {
+    nodes: {
       control: false,
-      description: 'Array of menu items (item, checkbox, separator, group, sub)',
+      description: 'Array of menu nodes (item, checkbox, separator, group, sub)',
     },
   },
 };
@@ -169,11 +82,17 @@ import { Button } from '@/components/button';
 export default meta;
 type Story = StoryObj<DropdownMenuProps>;
 
-// Default dropdown menu
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Dropdown with items and a danger action.',
+      },
+    },
+  },
   args: {
     label: 'Actions',
-    items: [
+    nodes: [
       {
         type: 'item',
         props: {
@@ -218,11 +137,17 @@ export const Default: Story = {
   },
 };
 
-// With submenu
 export const WithSubmenu: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `type: "sub"` for nested menus.',
+      },
+    },
+  },
   args: {
     label: 'More Options',
-    items: [
+    nodes: [
       {
         type: 'item',
         props: {
@@ -292,12 +217,18 @@ export const WithSubmenu: Story = {
   },
 };
 
-// With checkbox items
 export const WithCheckboxItems: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `type: "checkbox"` for toggleable options with a custom trigger.',
+      },
+    },
+  },
   args: {
     label: 'View Options',
     trigger: <Button size="small">View Options</Button>,
-    items: [
+    nodes: [
       {
         type: 'checkbox',
         props: {
@@ -326,15 +257,21 @@ export const WithCheckboxItems: Story = {
   },
 };
 
-// Custom trigger icon
 export const CustomTriggerIcon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `triggerIcon` with `asChild` to customize the default trigger icon.',
+      },
+    },
+  },
   args: {
     label: 'Actions',
     triggerIcon: {
       asChild: true,
       children: <MoreVerticalIcon size={20} />,
     },
-    items: [
+    nodes: [
       {
         type: 'item',
         props: {
@@ -379,8 +316,36 @@ export const CustomTriggerIcon: Story = {
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitives to build custom dropdown menus.',
+      },
+      source: {
+        code: `
+import * as DropdownMenuPrimitive from '@/components/dropdown-menu/primitives';
+
+<DropdownMenuPrimitive.Root>
+  <DropdownMenuPrimitive.Trigger asChild>
+    <Button size="small">Open Menu</Button>
+  </DropdownMenuPrimitive.Trigger>
+  <DropdownMenuPrimitive.Portal>
+    <DropdownMenuPrimitive.Content>
+      <DropdownMenuPrimitive.ScrollArea>
+        <DropdownMenuPrimitive.Label>Actions</DropdownMenuPrimitive.Label>
+        <DropdownMenuPrimitive.Item>Edit</DropdownMenuPrimitive.Item>
+        <DropdownMenuPrimitive.Item>Duplicate</DropdownMenuPrimitive.Item>
+        <DropdownMenuPrimitive.Separator />
+        <DropdownMenuPrimitive.Item variant="danger">Delete</DropdownMenuPrimitive.Item>
+      </DropdownMenuPrimitive.ScrollArea>
+    </DropdownMenuPrimitive.Content>
+  </DropdownMenuPrimitive.Portal>
+</DropdownMenuPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <DropdownMenuPrimitive.Root>
       <DropdownMenuPrimitive.Trigger asChild>

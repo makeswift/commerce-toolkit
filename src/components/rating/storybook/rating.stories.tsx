@@ -11,48 +11,15 @@ const meta: Meta<typeof Rating> = {
     docs: {
       description: {
         component: `
-A star rating component for displaying product reviews and ratings. Shows filled, half-filled, and empty stars based on the rating value.
+A star rating component for displaying product reviews. Shows filled, half-filled, and empty stars based on the rating value.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --rating-icon: var(--foreground);
-  --rating-border: var(--contrast-100);
-  --rating-text: var(--contrast-400);
+  --rating-fill: var(--foreground);
+  --rating-text: var(--text-secondary);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`Rating\` component provides a simple API for displaying ratings:
-
-\`\`\`tsx
-import { Rating } from '@/components/rating';
-
-<Rating
-  rating={4.5}
-  totalReviews={128}
-  showRating
-  showTotalReviews
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Rating from '@/components/rating';
-
-<Rating.Root rating={4.5} totalReviews={128} showRating showTotalReviews>
-  <Rating.Stars />
-  <Rating.Value>
-    <Rating.Total />
-  </Rating.Value>
-</Rating.Root>
 \`\`\`
         `,
       },
@@ -62,19 +29,19 @@ import * as Rating from '@/components/rating';
   argTypes: {
     rating: {
       control: { type: 'number', min: 0, max: 5, step: 0.5 },
-      description: 'The rating value (0-5)',
+      description: 'Rating value from 0 to 5 (supports half stars)',
     },
     totalReviews: {
       control: 'number',
-      description: 'Total number of reviews',
+      description: 'Total number of reviews to display',
     },
     showRating: {
       control: 'boolean',
-      description: 'Whether to show the numeric rating value',
+      description: 'Show the numeric rating value',
     },
     showTotalReviews: {
       control: 'boolean',
-      description: 'Whether to show the total reviews count',
+      description: 'Show the total reviews count',
     },
   },
 };
@@ -82,8 +49,14 @@ import * as Rating from '@/components/rating';
 export default meta;
 type Story = StoryObj<RatingProps>;
 
-// Default rating
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Rating with stars, numeric value, and review count.',
+      },
+    },
+  },
   args: {
     rating: 4.5,
     totalReviews: 128,
@@ -92,23 +65,14 @@ export const Default: Story = {
   },
 };
 
-// Various ratings
-export const AllRatings: Story = {
-  render: () => (
-    <div className="space-y-4">
-      <Rating rating={5} showRating showTotalReviews={false} />
-      <Rating rating={4.5} showRating showTotalReviews={false} />
-      <Rating rating={4} showRating showTotalReviews={false} />
-      <Rating rating={3.5} showRating showTotalReviews={false} />
-      <Rating rating={3} showRating showTotalReviews={false} />
-      <Rating rating={2} showRating showTotalReviews={false} />
-      <Rating rating={1} showRating showTotalReviews={false} />
-    </div>
-  ),
-};
-
-// Stars only
 export const StarsOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Stars without numeric value or review count.',
+      },
+    },
+  },
   args: {
     rating: 4,
     showRating: false,
@@ -116,8 +80,24 @@ export const StarsOnly: Story = {
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitive components for custom layouts.',
+      },
+      source: {
+        code: `
+<RatingPrimitive.Root rating={4.5} totalReviews={256} showRating showTotalReviews>
+  <RatingPrimitive.Stars />
+  <RatingPrimitive.Value>
+    <RatingPrimitive.Total />
+  </RatingPrimitive.Value>
+</RatingPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <RatingPrimitive.Root rating={4.5} showRating showTotalReviews totalReviews={256}>
       <RatingPrimitive.Stars />

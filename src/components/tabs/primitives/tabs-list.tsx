@@ -37,7 +37,7 @@ export function TabsList({ className, ...props }: TabsListProps) {
   return (
     <TabsPrimitive.List
       className={cn(
-        'scrollbar-none flex overflow-x-auto border-b border-[var(--tabs-border,var(--contrast-100))]',
+        'scrollbar-none flex overflow-x-auto border-b border-[--border-subtle]',
         className,
       )}
       data-slot="tabs-list"

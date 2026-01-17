@@ -18,58 +18,11 @@ A status message component for displaying success or error feedback in forms. Sh
 
 \`\`\`css
 :root {
-  --form-status-background-error: var(--error-highlight);
-  --form-status-text-error: var(--error-shadow);
-  --form-status-background-success: var(--success-highlight);
-  --form-status-text-success: var(--success-shadow);
+  --form-status-fill-error: var(--error-background);
+  --form-status-text-error: var(--error-foreground);
+  --form-status-fill-success: var(--success-background);
+  --form-status-text-success: var(--success-foreground);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`FormStatus\` component provides a simple API for displaying form feedback:
-
-\`\`\`tsx
-import { FormStatus } from '@/components/form-status';
-
-<FormStatus type="success">Your changes have been saved.</FormStatus>
-<FormStatus type="error">Something went wrong. Please try again.</FormStatus>
-\`\`\`
-
-### Custom Icons
-
-Use the \`successIcon\` or \`errorIcon\` props with \`asChild\` to provide custom icons:
-
-\`\`\`tsx
-import { FormStatus } from '@/components/form-status';
-import { CheckCircle } from 'lucide-react';
-
-<FormStatus
-  type="success"
-  successIcon={{ asChild: true, children: <CheckCircle size={20} /> }}
->
-  Custom icon success message
-</FormStatus>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as FormStatus from '@/components/form-status';
-
-<FormStatus.Root type="success">
-  <FormStatus.SuccessIcon />
-  Your changes have been saved.
-</FormStatus.Root>
-
-<FormStatus.Root type="error">
-  <FormStatus.ErrorIcon />
-  Something went wrong.
-</FormStatus.Root>
 \`\`\`
         `,
       },
@@ -88,21 +41,33 @@ import * as FormStatus from '@/components/form-status';
     },
     successIcon: {
       control: false,
-      description: 'Custom success icon configuration with asChild support',
+      description: 'Custom success icon configuration with `asChild` support',
     },
     errorIcon: {
       control: false,
-      description: 'Custom error icon configuration with asChild support',
+      description: 'Custom error icon configuration with `asChild` support',
     },
   },
+  decorators: [(Story) => <div className="w-80">{Story()}</div>],
 };
 
 export default meta;
 type Story = StoryObj<FormStatusProps>;
 
-// All variants
 export const Default: Story = {
-  name: 'All Variants',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Success and error status messages with default icons.',
+      },
+      source: {
+        code: `
+<FormStatus type="success">Your changes have been saved successfully.</FormStatus>
+<FormStatus type="error">Something went wrong. Please try again.</FormStatus>
+        `,
+      },
+    },
+  },
   render: () => (
     <div className="flex flex-col gap-4">
       <FormStatus type="success">Your changes have been saved successfully.</FormStatus>
@@ -111,8 +76,32 @@ export const Default: Story = {
   ),
 };
 
-// With custom icons
 export const WithCustomIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the `successIcon` or `errorIcon` props with `asChild: true` to provide custom icons.',
+      },
+      source: {
+        code: `
+<FormStatus
+  type="success"
+  successIcon={{ asChild: true, children: <CheckCircle size={20} /> }}
+>
+  Custom success icon
+</FormStatus>
+
+<FormStatus
+  type="error"
+  errorIcon={{ asChild: true, children: <AlertCircle size={20} /> }}
+>
+  Custom error icon
+</FormStatus>
+        `,
+      },
+    },
+  },
   render: () => (
     <div className="flex flex-col gap-4">
       <FormStatus
@@ -128,8 +117,37 @@ export const WithCustomIcons: Story = {
   ),
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the primitive components for full control over the structure.
+
+| Primitive                       | Description                                         |
+|---------------------------------|-----------------------------------------------------|
+| \`FormStatusPrimitive.Root\`       | Container with background/text color based on type. |
+| \`FormStatusPrimitive.SuccessIcon\` | Success icon with \`asChild\` support.                |
+| \`FormStatusPrimitive.ErrorIcon\`   | Error icon with \`asChild\` support.                  |
+        `,
+      },
+      source: {
+        code: `
+import * as FormStatusPrimitive from '@/components/form-status/primitives';
+
+<FormStatusPrimitive.Root type="success">
+  <FormStatusPrimitive.SuccessIcon />
+  Using primitives for success messages.
+</FormStatusPrimitive.Root>
+
+<FormStatusPrimitive.Root type="error">
+  <FormStatusPrimitive.ErrorIcon />
+  Using primitives for error messages.
+</FormStatusPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <div className="flex flex-col gap-4">
       <FormStatusPrimitive.Root type="success">

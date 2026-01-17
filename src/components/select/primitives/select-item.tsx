@@ -11,13 +11,13 @@ export function SelectItem({ children, className, ...props }: SelectItemProps) {
   return (
     <SelectPrimitive.Item
       className={cn(
-        'w-full cursor-default select-none rounded-lg px-3 py-2 text-sm font-normal text-[var(--select-light-item-text,var(--contrast-400))] outline-none transition-colors',
+        'w-full cursor-default select-none rounded-lg px-3 py-2 text-sm text-[--select-text-secondary,var(--form-text-secondary)] outline-none transition-colors',
         // Hover state
-        'hover:bg-[var(--select-light-item-background-hover,var(--contrast-100))] hover:text-[var(--select-light-item-text-hover,var(--foreground))]',
+        'hover:bg-[--select-fill-hover,var(--form-fill-hover)] hover:text-[--select-text-hover,var(--form-text-hover)]',
         // Focus-visible state
-        'focus-visible:bg-[var(--select-light-item-background-focus,var(--contrast-100))] focus-visible:text-[var(--select-light-item-text-focus,var(--foreground))]',
+        'focus-visible:bg-[--select-fill-focus,var(--form-fill-hover)] focus-visible:text-[--select-text-focus,var(--form-text-hover)]',
         // Checked state
-        'data-[state=checked]:text-[var(--select-light-item-checked-text-focus,var(--foreground))]',
+        'data-[state=checked]:text-[--select-text-focus,var(--form-text-hover)]',
         // Container queries
         '@4xl:text-base',
         className,

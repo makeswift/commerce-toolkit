@@ -12,11 +12,7 @@ export function CardLink({ asChild = false, className, children, ...props }: Car
 
   return (
     <Component
-      className={cn(
-        'absolute inset-0 rounded-2xl',
-        'focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--card-focus,var(--brand))]',
-        className,
-      )}
+      className={cn('focus-primary absolute inset-0 rounded-2xl', className)}
       data-slot="card-link"
       {...props}
     />

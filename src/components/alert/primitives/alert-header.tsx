@@ -7,7 +7,7 @@ export type AlertHeaderProps = ComponentProps<'div'>;
 export function AlertHeader({ children, className, ...props }: AlertHeaderProps) {
   return (
     <div
-      className={cn('[font-family:var(--alert-font-family,var(--font-family-body))]', className)}
+      className={cn('flex-initial [font-family:--alert-font,var(--font-body)]', className)}
       data-slot="alert-header"
       {...props}
     >

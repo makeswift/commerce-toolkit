@@ -17,10 +17,7 @@ export function FileInputRemoveIcon({
   className,
   children,
 }: FileInputRemoveIconProps) {
-  const iconStyles = cn(
-    'size-5 text-[var(--file-input-item-delete-icon,var(--foreground))]',
-    className,
-  );
+  const iconStyles = cn('size-5', className);
 
   if (asChild) {
     return (

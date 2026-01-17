@@ -13,7 +13,7 @@ export function FileInputStatus({ className, children, ...props }: FileInputStat
   return (
     <p
       className={cn(
-        'text-xs font-normal text-[var(--file-input-item-status,var(--contrast-500))]',
+        'text-xs text-[--file-input-text-secondary,var(--form-text-secondary)]',
         className,
       )}
       data-slot="file-input-status"

@@ -19,56 +19,9 @@ A toggle button for marking items as favorites. Features an animated heart icon 
 
 \`\`\`css
 :root {
-  --favorite-focus: var(--brand);
-  --favorite-border: var(--contrast-100);
-  --favorite-icon: var(--foreground);
-  --favorite-on-background: var(--contrast-100);
-  --favorite-off-border: var(--contrast-200);
+  --favorite-fill-icon: var(--foreground);
+  --favorite-fill: var(--contrast-100);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`Favorite\` component is controlled via \`checked\` and \`setChecked\`:
-
-\`\`\`tsx
-import { Favorite } from '@/components/favorite';
-import { useState } from 'react';
-
-function Example() {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  return <Favorite checked={isFavorite} setChecked={setIsFavorite} />;
-}
-\`\`\`
-
-### Custom Icon
-
-Use the \`icon\` prop with \`asChild\` to provide a custom icon:
-
-\`\`\`tsx
-import { Favorite } from '@/components/favorite';
-import { Heart } from 'lucide-react';
-
-<Favorite
-  checked={checked}
-  setChecked={setChecked}
-  icon={{ asChild: true, children: <Heart size={20} /> }}
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Favorite from '@/components/favorite';
-
-<Favorite.Root pressed={checked} onPressedChange={setChecked}>
-  <Favorite.Heart />
-</Favorite.Root>
 \`\`\`
         `,
       },
@@ -86,7 +39,7 @@ import * as Favorite from '@/components/favorite';
     },
     icon: {
       control: false,
-      description: 'Custom icon configuration with asChild support',
+      description: 'Custom icon with `asChild` support for rendering custom icons',
     },
   },
 };
@@ -95,8 +48,21 @@ export default meta;
 
 type Story = StoryObj<FavoriteProps>;
 
-// Default controlled favorite
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'A controlled favorite toggle. Click to see the heart fill animation.',
+      },
+      source: {
+        code: `
+const [checked, setChecked] = useState(false);
+
+<Favorite checked={checked} setChecked={setChecked} />
+        `,
+      },
+    },
+  },
   render: () => {
     const [checked, setChecked] = useState(false);
 
@@ -104,8 +70,25 @@ export const Default: Story = {
   },
 };
 
-// With custom icon
 export const WithCustomIcon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use the `icon` prop with `asChild` to provide a custom icon.',
+      },
+      source: {
+        code: `
+const [checked, setChecked] = useState(false);
+
+<Favorite
+  checked={checked}
+  setChecked={setChecked}
+  icon={{ asChild: true, children: <Heart size={20} /> }}
+/>
+        `,
+      },
+    },
+  },
   render: () => {
     const [checked, setChecked] = useState(false);
 
@@ -119,8 +102,23 @@ export const WithCustomIcon: Story = {
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitive components for custom layouts.',
+      },
+      source: {
+        code: `
+const [checked, setChecked] = useState(false);
+
+<FavoritePrimitive.Root onPressedChange={setChecked} pressed={checked}>
+  <FavoritePrimitive.Heart />
+</FavoritePrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => {
     const [checked, setChecked] = useState(false);
 

@@ -10,7 +10,7 @@ export function ProductCardSkeleton({ className, ...props }: ProductCardSkeleton
     <SkeletonPrimitive.Root className={cn(className)} data-slot="product-card-skeleton" {...props}>
       <SkeletonPrimitive.Box
         className={cn(
-          'rounded-[var(--product-card-border-radius,1rem)]',
+          'rounded-[var(--product-card-radius,1rem)]',
           'group-data-[aspect-ratio=5/6]/product-card:aspect-[5/6]',
           'group-data-[aspect-ratio=3/4]/product-card:aspect-[3/4]',
           'group-data-[aspect-ratio=1/1]/product-card:aspect-square',

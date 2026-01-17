@@ -13,13 +13,11 @@ export interface BreadcrumbsIconProps {
 }
 
 export function BreadcrumbsIcon({ asChild = false, className, children }: BreadcrumbsIconProps) {
+  const iconStyles = cn('size-5 text-[--breadcrumbs-fill-icon,var(--contrast-400)]', className);
+
   if (asChild) {
     return (
-      <Slot
-        aria-hidden="true"
-        className={cn('size-5 text-[var(--breadcrumbs-icon,var(--contrast-500))]', className)}
-        data-slot="breadcrumbs-icon"
-      >
+      <Slot aria-hidden="true" className={iconStyles} data-slot="breadcrumbs-icon">
         {children}
       </Slot>
     );
@@ -29,7 +27,7 @@ export function BreadcrumbsIcon({ asChild = false, className, children }: Breadc
     <ChevronRight
       absoluteStrokeWidth
       aria-hidden="true"
-      className={cn('size-5 text-[var(--breadcrumbs-icon,var(--contrast-500))]', className)}
+      className={iconStyles}
       data-slot="breadcrumbs-icon"
       strokeWidth={1.5}
     />

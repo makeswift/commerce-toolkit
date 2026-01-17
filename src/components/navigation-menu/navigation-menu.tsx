@@ -37,23 +37,12 @@ export interface NavigationMenuProps {
  *
  * ```css
  * :root {
- *   --nav-focus: var(--brand);
- *   --nav-text: var(--foreground);
- *   --nav-viewport-background: var(--background);
- *   --nav-viewport-border: color-mix(in oklab, var(--foreground) 15%, transparent);
- *   --nav-link-text: var(--foreground);
- *   --nav-link-text-hover: var(--foreground);
- *   --nav-link-background: transparent;
- *   --nav-link-background-hover: var(--contrast-100);
- *   --nav-link-font-family: var(--font-family-body);
- *   --nav-grid-label-text: var(--foreground);
- *   --nav-grid-label-text-hover: var(--foreground);
- *   --nav-grid-label-background: transparent;
- *   --nav-grid-label-background-hover: var(--contrast-100);
- *   --nav-grid-label-font-family: var(--font-family-body);
- *   --nav-grid-link-text: var(--contrast-500);
- *   --nav-grid-link-background: transparent;
- *   --nav-grid-link-font-family: var(--font-family-body);
+ *   --navigation-menu-fill: var(--background);
+ *   --navigation-menu-text-primary: var(--text-primary);
+ *   --navigation-menu-text-secondary: var(--text-secondary);
+ *   --navigation-menu-font: var(--font-body);
+ *   --navigation-menu-fill-hover: var(--contrast-100);
+ *   --navigation-menu-text-hover: var(--text-primary);
  * }
  * ```
  */

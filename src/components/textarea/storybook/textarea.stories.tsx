@@ -10,28 +10,17 @@ const meta: Meta<typeof Textarea> = {
     docs: {
       description: {
         component: `
-A multi-line text input component for collecting longer form text content.
+A multi-line text input for collecting longer form text content.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --textarea-focus: var(--brand);
-  --textarea-light-background: var(--background);
-  --textarea-light-text: var(--foreground);
-  --textarea-light-placeholder: var(--contrast-300);
-  --textarea-light-border: var(--contrast-100);
-  --textarea-light-border-focus: var(--foreground);
-  --textarea-light-border-error: var(--error);
+  --textarea-fill: var(--form-fill);
+  --textarea-fill-disabled: var(--form-fill-disabled);
+  --textarea-text: var(--form-text-primary);
+  --textarea-text-placeholder: var(--form-text-placeholder);
 }
-\`\`\`
-
-## Usage
-
-\`\`\`tsx
-import { Textarea } from '@/components/textarea';
-
-<Textarea placeholder="Enter your message..." rows={4} />
 \`\`\`
         `,
       },
@@ -41,11 +30,11 @@ import { Textarea } from '@/components/textarea';
   argTypes: {
     placeholder: {
       control: 'text',
-      description: 'Placeholder text displayed when the textarea is empty',
+      description: 'Placeholder text when empty',
     },
     disabled: {
       control: 'boolean',
-      description: 'Whether the textarea is disabled',
+      description: 'Disable the textarea',
     },
     rows: {
       control: 'number',
@@ -53,11 +42,11 @@ import { Textarea } from '@/components/textarea';
     },
     maxLength: {
       control: 'number',
-      description: 'Maximum number of characters allowed',
+      description: 'Maximum character count',
     },
     readOnly: {
       control: 'boolean',
-      description: 'Whether the textarea is read-only',
+      description: 'Make the textarea read-only',
     },
   },
   args: {
@@ -68,27 +57,52 @@ import { Textarea } from '@/components/textarea';
 export default meta;
 type Story = StoryObj<TextareaProps>;
 
-// Default textarea
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Basic textarea with placeholder text.',
+      },
+    },
+  },
+};
 
-// With default value
 export const WithValue: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Textarea with pre-filled content.',
+      },
+    },
+  },
   args: {
     defaultValue:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
 };
 
-// Disabled state
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Disabled state prevents user interaction.',
+      },
+    },
+  },
   args: {
     disabled: true,
     defaultValue: 'This content cannot be edited',
   },
 };
 
-// Error state
 export const ErrorState: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `aria-invalid` to indicate validation errors.',
+      },
+    },
+  },
   args: {
     'aria-invalid': true,
     defaultValue: 'This field has an error',

@@ -1,18 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CalendarDays } from 'lucide-react';
-import type { ComponentType } from 'react';
 import { useState } from 'react';
 
 import { DatePicker, type DatePickerProps } from '@/components/date-picker';
 import * as DatePickerPrimitive from '@/components/date-picker/primitives';
-
-function addDays(date: Date, days: number): Date {
-  const result = new Date(date);
-
-  result.setDate(result.getDate() + days);
-
-  return result;
-}
 
 const meta: Meta<typeof DatePicker> = {
   title: 'Components/DatePicker',
@@ -22,86 +12,33 @@ const meta: Meta<typeof DatePicker> = {
     docs: {
       description: {
         component: `
-A date picker component that combines an input field with a calendar popover. Built on top of Radix UI Popover and react-day-picker.
+A date picker component that combines an input field with a calendar popover. Built on Radix UI Popover and react-day-picker.
 
 ## CSS Variables
 
 The DatePicker uses CSS variables from the Input and Calendar components:
 
+### Input Variables
+
 \`\`\`css
 :root {
-  /* Input styling */
-  --input-light-background: var(--background);
-  --input-light-border: var(--contrast-100);
-  --input-light-focus: var(--foreground);
-  --input-light-border-error: var(--error);
-  --input-light-text: var(--foreground);
-  --input-light-placeholder: var(--contrast-500);
-  --input-light-icon: var(--contrast-400);
-
-  /* Calendar styling */
-  --calendar-font-family: var(--font-family-body);
-  --calendar-light-focus: var(--foreground);
-  --calendar-light-border: var(--contrast-100);
-  --calendar-light-text: var(--foreground);
-  --calendar-light-background: var(--background);
-  --calendar-light-button-border-hover: var(--contrast-200);
-  --calendar-light-selected-button-background: var(--brand);
-  --calendar-light-selected-button-text: var(--foreground);
-  --calendar-light-text-disabled: var(--contrast-300);
+  --input-fill: var(--form-fill);
+  --input-fill-icon: var(--form-fill-icon);
+  --input-text: var(--form-text-primary);
+  --input-text-placeholder: var(--form-text-placeholder);
 }
 \`\`\`
 
-## Usage
+### Calendar Variables
 
-### High-Level Component
-
-The \`DatePicker\` component provides a simple API for single date selection:
-
-\`\`\`tsx
-import { DatePicker } from '@/components/date-picker';
-
-const [date, setDate] = useState<Date | undefined>();
-
-<DatePicker
-  id="date-field"
-  name="date"
-  selected={date}
-  onCalendarSelect={setDate}
-  placeholder="Select a date"
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as DatePicker from '@/components/date-picker';
-
-<DatePicker.Root>
-  <DatePicker.Trigger asChild>
-    <DatePicker.Input
-      id="date-field"
-      name="date"
-      placeholder="MM/DD/YYYY"
-      prependIcon={{
-        asChild: true,
-        children: <DatePicker.Icon />,
-      }}
-      readOnly
-    />
-  </DatePicker.Trigger>
-  <DatePicker.Portal>
-    <DatePicker.Content align="start" sideOffset={8}>
-      <DatePicker.Calendar
-        mode="single"
-        selected={date}
-        onSelect={setDate}
-      />
-    </DatePicker.Content>
-  </DatePicker.Portal>
-</DatePicker.Root>
+\`\`\`css
+:root {
+  --calendar-font: var(--font-body);
+  --calendar-fill: var(--background);
+  --calendar-text-primary: var(--text-primary);
+  --calendar-fill-selected: var(--brand);
+  --calendar-text-selected: var(--text-primary);
+}
 \`\`\`
         `,
       },
@@ -139,19 +76,36 @@ import * as DatePicker from '@/components/date-picker';
     },
     icon: {
       control: false,
-      description: 'Custom icon configuration with asChild and children props',
+      description: 'Custom icon configuration with `asChild` support',
     },
   },
-  decorators: [(Story: ComponentType) => <Story />],
 };
 
 export default meta;
 type Story = StoryObj<DatePickerProps>;
 
-/**
- * The default DatePicker displays an input with a calendar icon that opens a calendar popover.
- */
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'A controlled date picker with a calendar icon that opens a calendar popover on click.',
+      },
+      source: {
+        code: `
+const [selected, setSelected] = useState<Date | undefined>(new Date());
+
+<DatePicker
+  id="date-default"
+  name="date"
+  selected={selected}
+  onCalendarSelect={setSelected}
+  placeholder="Select a date"
+/>
+        `,
+      },
+    },
+  },
   render: () => {
     const [selected, setSelected] = useState<Date | undefined>(new Date());
 
@@ -167,53 +121,36 @@ export const Default: Story = {
   },
 };
 
-/**
- * A DatePicker with no initial value shows the placeholder text.
- */
-export const WithPlaceholder: Story = {
-  render: () => {
-    const [selected, setSelected] = useState<Date | undefined>();
-
-    return (
-      <DatePicker
-        id="date-placeholder"
-        name="date"
-        onCalendarSelect={setSelected}
-        placeholder="Choose your date"
-        selected={selected}
-      />
-    );
-  },
-};
-
-/**
- * Customize the icon using the `icon` prop with `asChild` to render your own icon component.
- */
-export const CustomIcon: Story = {
-  render: () => {
-    const [selected, setSelected] = useState<Date | undefined>(new Date());
-
-    return (
-      <DatePicker
-        icon={{ asChild: true, children: <CalendarDays /> }}
-        id="date-custom-icon"
-        name="date"
-        onCalendarSelect={setSelected}
-        placeholder="Select a date"
-        selected={selected}
-      />
-    );
-  },
-};
-
-/**
- * Disable specific dates to prevent selection, such as past dates or weekends.
- */
 export const DisabledDates: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `disabledDays` to prevent selection of specific dates. This example disables past dates and weekends.',
+      },
+      source: {
+        code: `
+const [selected, setSelected] = useState<Date | undefined>();
+
+const disabledDays = [
+  { before: new Date() },
+  { dayOfWeek: [0, 6] }
+];
+
+<DatePicker
+  id="date-disabled"
+  name="date"
+  selected={selected}
+  onCalendarSelect={setSelected}
+  placeholder="Select a weekday"
+  disabledDays={disabledDays}
+/>
+        `,
+      },
+    },
+  },
   render: () => {
     const [selected, setSelected] = useState<Date | undefined>();
-
-    // Disable past dates and weekends
     const disabledDays = [{ before: new Date() }, { dayOfWeek: [0, 6] }];
 
     return (
@@ -229,33 +166,59 @@ export const DisabledDates: Story = {
   },
 };
 
-/**
- * Limit date selection to a specific range by disabling dates outside the range.
- */
-export const DateRange: Story = {
-  render: () => {
-    const [selected, setSelected] = useState<Date | undefined>();
-
-    // Only allow dates within the next 30 days
-    const disabledDays = [{ before: new Date() }, { after: addDays(new Date(), 30) }];
-
-    return (
-      <DatePicker
-        disabledDays={disabledDays}
-        id="date-range"
-        name="date"
-        onCalendarSelect={setSelected}
-        placeholder="Next 30 days only"
-        selected={selected}
-      />
-    );
-  },
-};
-
-/**
- * Use the primitive components directly for full customization control.
- */
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the primitive components for full control over the structure.
+
+| Primitive                      | Description                                   |
+|--------------------------------|-----------------------------------------------|
+| \`DatePickerPrimitive.Root\`      | Popover root provider.                        |
+| \`DatePickerPrimitive.Trigger\`   | Element that opens the popover.               |
+| \`DatePickerPrimitive.Input\`     | Input field (wraps the Input component).      |
+| \`DatePickerPrimitive.Icon\`      | Calendar icon with \`asChild\` support.       |
+| \`DatePickerPrimitive.Portal\`    | Portals content to document body.             |
+| \`DatePickerPrimitive.Content\`   | Popover content container with animations.    |
+| \`DatePickerPrimitive.Calendar\`  | Calendar component for date selection.        |
+        `,
+      },
+      source: {
+        code: `
+import * as DatePickerPrimitive from '@/components/date-picker/primitives';
+
+const [selected, setSelected] = useState<Date | undefined>(new Date());
+const formattedDate = selected ? Intl.DateTimeFormat().format(selected) : '';
+
+<DatePickerPrimitive.Root>
+  <DatePickerPrimitive.Trigger asChild>
+    <DatePickerPrimitive.Input
+      id="date-composable"
+      name="date"
+      placeholder="MM/DD/YYYY"
+      prependIcon={{
+        asChild: true,
+        children: <DatePickerPrimitive.Icon />,
+      }}
+      readOnly
+      value={formattedDate}
+    />
+  </DatePickerPrimitive.Trigger>
+  <DatePickerPrimitive.Portal>
+    <DatePickerPrimitive.Content align="start" sideOffset={8}>
+      <DatePickerPrimitive.Calendar
+        mode="single"
+        selected={selected}
+        onSelect={setSelected}
+      />
+    </DatePickerPrimitive.Content>
+  </DatePickerPrimitive.Portal>
+</DatePickerPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => {
     const [selected, setSelected] = useState<Date | undefined>(new Date());
     const formattedDate = selected ? Intl.DateTimeFormat().format(selected) : '';

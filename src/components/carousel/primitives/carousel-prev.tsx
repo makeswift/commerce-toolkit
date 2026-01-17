@@ -2,32 +2,27 @@
 
 import type { ComponentProps } from 'react';
 
+import { Button } from '@/components/button';
 import { useCarousel } from '@/components/carousel';
-import { cn } from '@/lib';
 
-export type CarouselPrevProps = ComponentProps<'button'>;
+export type CarouselPrevProps = ComponentProps<typeof Button>;
 
 export function CarouselPrev({ children, className, ...props }: CarouselPrevProps) {
   const { canScrollPrev, scrollPrev } = useCarousel();
 
   return (
-    <button
-      className={cn(
-        'rounded-lg transition-colors duration-300',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--carousel-focus,var(--brand))]',
-        // Disabled state
-        'disabled:pointer-events-none disabled:opacity-25',
-        className,
-      )}
-      data-slot="carousel-prev"
+    <Button
+      className={className}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
+      shape="circle"
+      size="small"
       title="Previous"
       type="button"
+      variant="ghost"
       {...props}
     >
       {children}
-    </button>
+    </Button>
   );
 }

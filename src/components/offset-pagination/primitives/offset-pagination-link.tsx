@@ -18,13 +18,9 @@ export function OffsetPaginationLink({
   return (
     <Component
       className={cn(
-        'flex size-12 items-center justify-center rounded-full border border-[var(--offset-pagination-border,var(--contrast-100))] text-[var(--offset-pagination-text,var(--foreground))] transition-colors duration-300',
-        // Hover state
-        'hover:bg-[var(--offset-pagination-background-hover,var(--contrast-100))]',
-        // Focus state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--offset-pagination-focus,var(--brand))]',
+        'focus-primary flex size-12 items-center justify-center rounded-full border border-[--border-subtle] text-[--offset-pagination-text-primary,var(--text-primary)] transition-colors duration-300 hover:bg-[--offset-pagination-fill-hover,var(--contrast-100)]',
         // Current page state
-        'aria-[current=page]:border-[var(--offset-pagination-current-page-border,var(--foreground))] aria-[current=page]:bg-[var(--offset-pagination-current-page-background,var(--foreground))] aria-[current=page]:text-[var(--offset-pagination-current-page-text,var(--background))] aria-[current=page]:hover:bg-[var(--offset-pagination-current-page-background-hover,var(--contrast-500))]',
+        'aria-[current=page]:border-[--border-inverse] aria-[current=page]:bg-[--offset-pagination-fill-current,var(--foreground)] aria-[current=page]:text-[--offset-pagination-text-current,var(--text-inverse)] aria-[current=page]:hover:bg-[--offset-pagination-fill-current-hover,var(--contrast-500)]',
         className,
       )}
       data-slot="offset-pagination-link"

@@ -20,7 +20,7 @@ export function SelectScrollDownIcon({
   if (asChild) {
     return (
       <Slot
-        className={cn('w-5 text-[var(--select-light-icon,var(--foreground))]', className)}
+        className={cn('w-5 text-[--select-fill-icon,var(--form-fill-icon)]', className)}
         data-slot="select-scroll-down-icon"
       >
         {children}
@@ -31,7 +31,7 @@ export function SelectScrollDownIcon({
   return (
     <ChevronDown
       absoluteStrokeWidth
-      className={cn('w-5 text-[var(--select-light-icon,var(--foreground))]', className)}
+      className={cn('w-5 text-[--select-fill-icon,var(--form-fill-icon)]', className)}
       data-slot="select-scroll-down-icon"
       strokeWidth={1.5}
     />

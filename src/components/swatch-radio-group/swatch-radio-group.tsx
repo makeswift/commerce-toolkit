@@ -37,16 +37,9 @@ export type SwatchRadioGroupProps = ComponentProps<typeof SwatchRadioGroupPrimit
  * with their default values:
  *
  * ```css
- *  :root {
- *    --swatch-radio-group-focus: var(--brand);
- *    --swatch-radio-group-light-icon: var(--foreground);
- *    --swatch-radio-group-light-unchecked-border: transparent;
- *    --swatch-radio-group-light-unchecked-border-hover: var(--contrast-200);
- *    --swatch-radio-group-light-disabled-border: transparent;
- *    --swatch-radio-group-light-border-error: var(--error);
- *    --swatch-radio-group-light-checked-border: var(--foreground);
- *    --swatch-radio-group-light-option-border: color-mix(in oklab, var(--foreground) 10%, transparent);
- *  }
+ * :root {
+ *   --swatch-radio-group-icon: var(--form-fill-icon);
+ * }
  * ```
  */
 export function SwatchRadioGroup({

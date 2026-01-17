@@ -11,6 +11,28 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  .focus-primary {
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--border-focus-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  .focus-secondary {
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--border-focus-secondary);
+      outline-offset: 2px;
+    }
+  }
 }
 
 :root {
@@ -56,17 +78,35 @@
 
   --text-primary: oklch(var(--foreground-lch));
   --text-secondary: oklch(var(--contrast-500-lch));
-  --text-disabled: oklch(var(--contrast-400-lch));
   --text-inverse: oklch(var(--background-lch));
 
   --fill-pending: oklch(var(--contrast-100-lch));
+  --fill-image: oklch(var(--contrast-100-lch));
 
-  --border-subtle: oklch(var(--contrast-100-lch));
   --border: oklch(var(--contrast-200-lch));
+  --border-subtle: oklch(var(--contrast-100-lch));
+  --border-inverse: oklch(var(--background-lch));
   --border-hover: oklch(var(--contrast-300-lch));
+  --border-checked: oklch(var(--foreground-lch));
   --border-error: oklch(var(--error-lch));
-  --border-focus: oklch(var(--primary-lch));
+  --border-focus-primary: oklch(var(--brand-lch));
+  --border-focus-secondary: oklch(var(--foreground-lch));
 
-  --font-family-heading: 'DM Serif Text', serif;
-  --font-family-body: 'Inter', sans-serif;
+  --font-heading: 'General Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --form-fill: oklch(var(--background-lch));
+  --form-fill-hover: oklch(var(--contrast-100-lch));
+  --form-fill-disabled: oklch(var(--contrast-100-lch));
+  --form-fill-checked: oklch(var(--foreground-lch));
+  --form-fill-unchecked: oklch(var(--background-lch));
+  --form-fill-icon: oklch(var(--contrast-400-lch));
+  --form-fill-icon-hover: oklch(var(--foreground-lch));
+  --form-text-primary: oklch(var(--foreground-lch));
+  --form-text-secondary: oklch(var(--contrast-500-lch));
+  --form-text-disabled: oklch(var(--contrast-300-lch));
+  --form-text-hover: oklch(var(--foreground-lch));
+  --form-text-placeholder: oklch(var(--contrast-400-lch));
+  --form-text-checked: oklch(var(--background-lch));
+  --form-text-unchecked: oklch(var(--foreground-lch));
 }

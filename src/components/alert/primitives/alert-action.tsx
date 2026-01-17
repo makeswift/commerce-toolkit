@@ -2,21 +2,21 @@
 
 import type { ComponentProps } from 'react';
 
-import { useAlert } from '@/components/alert';
 import { Button } from '@/components/button';
+import { cn } from '@/lib';
 
 export type AlertActionProps = ComponentProps<typeof Button>;
 
-export function AlertAction({ children, ...props }: AlertActionProps) {
-  const { action } = useAlert();
-
-  if (!action) return null;
-
-  const { label, onClick } = action;
-
+export function AlertAction({ children, className, ...props }: AlertActionProps) {
   return (
-    <Button data-slot="alert-action" onClick={onClick} size="x-small" variant="ghost" {...props}>
-      {label}
+    <Button
+      className={cn('shrink-0', className)}
+      data-slot="alert-action"
+      size="x-small"
+      variant="ghost"
+      {...props}
+    >
+      {children}
     </Button>
   );
 }

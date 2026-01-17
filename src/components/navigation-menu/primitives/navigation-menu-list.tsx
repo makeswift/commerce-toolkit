@@ -9,7 +9,7 @@ export function NavigationMenuList({ children, className, ...props }: Navigation
   return (
     <NavigationMenuPrimitive.List
       className={cn(
-        'group/navigation-menu-list flex w-full flex-1 list-none items-center justify-center',
+        'group/navigation-menu-list flex w-full flex-1 list-none items-center justify-center gap-1',
         className,
       )}
       data-slot="navigation-menu-list"

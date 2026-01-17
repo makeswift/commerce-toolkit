@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 
 import { ButtonLink, type ButtonLinkProps } from '@/components/button-link';
 
@@ -15,42 +15,20 @@ A link styled as a button. Shares the same visual styles and CSS variables as th
 
 ## CSS Variables
 
-The ButtonLink component supports extensive theming through the shared Button CSS variables:
-
 \`\`\`css
 :root {
-  --button-focus: var(--brand);
-  --button-font-family: var(--font-family-body);
-
-  /* Primary variant */
-  --button-primary-background: var(--foreground);
-  --button-primary-text: var(--background);
-
-  /* Brand variant */
-  --button-brand-background: var(--brand);
-  --button-brand-text: var(--foreground);
-
-  /* Outline variant */
-  --button-outline-background: var(--background);
-  --button-outline-text: var(--foreground);
-  --button-outline-border: var(--contrast-200);
-
-  /* Ghost variant */
-  --button-ghost-text: var(--foreground);
+  --button-font: var(--font-body);
+  --button-fill-primary: var(--foreground);
+  --button-text-primary: var(--text-inverse);
+  --button-fill-brand: var(--brand);
+  --button-text-brand: var(--text-primary);
+  --button-fill-outline: var(--background);
+  --button-text-outline: var(--text-primary);
+  --button-stroke-outline: var(--border);
+  --button-text-ghost: var(--text-primary);
+  --button-fill-danger: var(--error);
+  --button-danger-text: var(--text-inverse);
 }
-\`\`\`
-
-## Usage with Routing Libraries
-
-The \`asChild\` prop allows ButtonLink to integrate seamlessly with routing libraries like Next.js Link or React Router:
-
-\`\`\`tsx
-import { ButtonLink } from '@/components/button-link';
-import Link from 'next/link';
-
-<ButtonLink asChild variant="primary">
-  <Link href="/products">View Products</Link>
-</ButtonLink>
 \`\`\`
         `,
       },
@@ -60,7 +38,7 @@ import Link from 'next/link';
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'brand', 'outline', 'ghost'],
+      options: ['primary', 'brand', 'outline', 'ghost', 'danger'],
       description: 'The visual style variant of the button link',
     },
     size: {
@@ -80,7 +58,7 @@ import Link from 'next/link';
     asChild: {
       control: 'boolean',
       description:
-        'When true, the component will render its child element instead of an anchor tag, merging props and behavior',
+        'When true, renders the child element instead of an anchor tag, merging props. Useful for routing libraries like Next.js Link.',
     },
   },
   args: {
@@ -92,7 +70,6 @@ import Link from 'next/link';
 export default meta;
 type Story = StoryObj<ButtonLinkProps>;
 
-// Default story
 export const Default: Story = {
   args: {
     variant: 'primary',
@@ -100,15 +77,14 @@ export const Default: Story = {
   },
 };
 
-// Variants
 export const AllVariants: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-3">
-      <ButtonLink href="#" variant="brand">
-        Brand
-      </ButtonLink>
+    <div className="flex flex-wrap items-center gap-4">
       <ButtonLink href="#" variant="primary">
         Primary
+      </ButtonLink>
+      <ButtonLink href="#" variant="brand">
+        Brand
       </ButtonLink>
       <ButtonLink href="#" variant="outline">
         Outline
@@ -116,14 +92,24 @@ export const AllVariants: Story = {
       <ButtonLink href="#" variant="ghost">
         Ghost
       </ButtonLink>
+      <ButtonLink href="#" variant="danger">
+        Danger
+      </ButtonLink>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The button link supports five variants: `primary`, `brand`, `outline`, `ghost`, and `danger`.',
+      },
+    },
+  },
 };
 
-// Sizes
 export const AllSizes: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center gap-4">
       <ButtonLink href="#" size="large">
         Large
       </ButtonLink>
@@ -138,12 +124,19 @@ export const AllSizes: Story = {
       </ButtonLink>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Four size options are available: `large` (default), `medium`, `small`, and `x-small`.',
+      },
+    },
+  },
 };
 
-// Shapes
 export const AllShapes: Story = {
   render: () => (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center gap-4">
       <ButtonLink href="#" shape="pill">
         Pill
       </ButtonLink>
@@ -154,17 +147,23 @@ export const AllShapes: Story = {
         Square
       </ButtonLink>
       <ButtonLink href="#" shape="circle">
-        <ArrowRight size={20} />
+        <X absoluteStrokeWidth size={20} strokeWidth={1.5} />
       </ButtonLink>
     </div>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Shape options include `pill` (default), `rounded`, `square`, and `circle` (for icon-only links).',
+      },
+    },
+  },
 };
 
-// With Icon
 export const WithIcon: Story = {
   args: {
     variant: 'primary',
-    size: 'large',
     children: (
       <>
         Shop Now
@@ -172,33 +171,11 @@ export const WithIcon: Story = {
       </>
     ),
   },
-};
-
-// Icon Only
-export const IconOnly: Story = {
-  args: {
-    variant: 'primary',
-    shape: 'circle',
-    size: 'medium',
-    children: <ArrowRight size={20} />,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Icons can be added as children alongside text.',
+      },
+    },
   },
-};
-
-// asChild usage with custom link
-export const WithAsChild: Story = {
-  name: 'With asChild (Router Integration)',
-  render: () => (
-    <ButtonLink asChild variant="primary">
-      <a
-        href="/products"
-        onClick={(e) => {
-          e.preventDefault();
-          alert('This would navigate using your routing library (e.g., Next.js Link)');
-        }}
-      >
-        View Products
-      </a>
-      <ArrowRight size={20} />
-    </ButtonLink>
-  ),
 };

@@ -8,9 +8,7 @@ export function AccordionChevron({ className, ...props }: AccordionChevronProps)
   return (
     <svg
       className={cn(
-        'mt-1 shrink-0 stroke-[var(--accordion-light-title-icon,var(--contrast-500))] [&>line]:origin-center [&>line]:transition [&>line]:duration-300 [&>line]:ease-out',
-        // Hover state
-        'group-hover/accordion:stroke-[var(--accordion-light-title-icon-hover,var(--foreground))]',
+        'mt-1 shrink-0 stroke-[--accordion-fill-icon,var(--contrast-400)] [&>line]:origin-center [&>line]:transition [&>line]:duration-300 [&>line]:ease-out',
         className,
       )}
       data-slot="accordion-chevron"

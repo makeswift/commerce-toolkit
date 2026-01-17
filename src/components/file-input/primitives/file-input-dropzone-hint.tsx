@@ -21,9 +21,9 @@ export function FileInputDropzoneHint({
   return (
     <p
       className={cn(
-        'font-[family-name:var(--file-input-dropzone-message-font-family,var(--font-family-body))] text-sm font-normal text-[var(--file-input-dropzone-message,var(--contrast-500))]',
+        'text-sm font-normal text-[--file-input-text-secondary,var(--form-text-secondary)] [font-family:var(--file-input-font-message,var(--font-body))]',
         // Disabled state
-        'group-aria-disabled/file-input:text-[var(--file-input-dropzone-message-disabled,color-mix(in_oklab,var(--contrast-500)_70%,transparent))]',
+        'group-aria-disabled/file-input:text-[color-mix(in_oklab,var(--file-input-text-secondary,var(--form-text-secondary))_70%,transparent)]',
         className,
       )}
       data-slot="file-input-dropzone-hint"

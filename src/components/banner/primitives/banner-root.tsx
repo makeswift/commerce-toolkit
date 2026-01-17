@@ -60,7 +60,7 @@ export function BannerRoot({
     <BannerContext.Provider value={contextValues}>
       <div
         className={cn(
-          'group/banner overflow-hidden bg-[var(--banner-background,var(--brand))] transition-all duration-300 ease-in @container',
+          'group/banner overflow-hidden bg-[--banner-fill,var(--brand)] transition-all duration-300 ease-in @container',
           isDismissed ? 'pointer-events-none max-h-0' : 'max-h-32',
           className,
         )}

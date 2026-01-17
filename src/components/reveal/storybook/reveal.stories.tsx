@@ -36,56 +36,19 @@ const meta: Meta<typeof Reveal> = {
     docs: {
       description: {
         component: `
-A component for revealing long content with a show more/less toggle. Useful for product descriptions, FAQ sections, and other collapsible content areas.
+A component for revealing long content with a show more/less toggle. Useful for product descriptions, FAQ sections, and collapsible content.
 
 ## CSS Variables
 
+The underline variant inherits styling from the AnimatedUnderline component:
+
 \`\`\`css
 :root {
-  --reveal-focus: var(--brand);
+  --animated-underline: var(--brand);
 }
 \`\`\`
 
-## Usage
-
-### High-Level Component
-
-The \`Reveal\` component provides a simple API for collapsible content:
-
-\`\`\`tsx
-import { Reveal } from '@/components/reveal';
-
-<Reveal
-  variant="underline"
-  showLabel="Show more"
-  hideLabel="Show less"
-  maxHeight={160}
->
-  <p>Your long content here...</p>
-</Reveal>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Reveal from '@/components/reveal';
-
-<Reveal.Root
-  variant="underline"
-  showLabel="Show more"
-  hideLabel="Show less"
-  maxHeight={160}
->
-  <Reveal.Viewport>
-    <p>Your content here...</p>
-  </Reveal.Viewport>
-  <Reveal.Controls>
-    <Reveal.Trigger />
-  </Reveal.Controls>
-</Reveal.Root>
-\`\`\`
+The button variant uses the Button component's theming.
         `,
       },
     },
@@ -95,15 +58,15 @@ import * as Reveal from '@/components/reveal';
     variant: {
       control: 'select',
       options: ['underline', 'button'],
-      description: 'The visual variant of the toggle button',
+      description: 'Toggle style: "underline" for text link, "button" for outlined button',
     },
     showLabel: {
       control: 'text',
-      description: 'Label for the show more button',
+      description: 'Label when content is collapsed',
     },
     hideLabel: {
       control: 'text',
-      description: 'Label for the show less button',
+      description: 'Label when content is expanded',
     },
     defaultOpen: {
       control: 'boolean',
@@ -126,15 +89,38 @@ import * as Reveal from '@/components/reveal';
 export default meta;
 type Story = StoryObj<RevealProps>;
 
-// Default with underline variant
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Collapsible content with underline toggle.',
+      },
+    },
+  },
   args: {
     children: longContent,
   },
 };
 
-// All variants
 export const AllVariants: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Both toggle variants: underline (text link) and button (outlined).',
+      },
+      source: {
+        code: `
+<Reveal variant="underline">
+  {content}
+</Reveal>
+
+<Reveal variant="button">
+  {content}
+</Reveal>
+        `,
+      },
+    },
+  },
   render: () => (
     <div className="space-y-8">
       <div>
@@ -149,8 +135,31 @@ export const AllVariants: Story = {
   ),
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitive components for custom layouts.',
+      },
+      source: {
+        code: `
+<RevealPrimitive.Root
+  variant="underline"
+  showLabel="Show more"
+  hideLabel="Show less"
+  maxHeight={160}
+>
+  <RevealPrimitive.Viewport>
+    {content}
+  </RevealPrimitive.Viewport>
+  <RevealPrimitive.Controls>
+    <RevealPrimitive.Trigger />
+  </RevealPrimitive.Controls>
+</RevealPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <RevealPrimitive.Root
       hideLabel="Show less"

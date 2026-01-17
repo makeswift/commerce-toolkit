@@ -60,76 +60,21 @@ const meta: Meta<typeof OffsetPagination> = {
     docs: {
       description: {
         component: `
-A pagination component for navigating through pages of content with ellipsis support for large page counts.
+A pagination component for navigating through pages with ellipsis support for large page counts.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --offset-pagination-focus: var(--brand);
-  --offset-pagination-font-family: var(--font-family-body);
+  --offset-pagination-font: var(--font-body);
   --offset-pagination-ellipsis: var(--foreground);
-  --offset-pagination-border: var(--contrast-100);
-  --offset-pagination-text: var(--foreground);
-  --offset-pagination-background-hover: var(--contrast-100);
-  --offset-pagination-current-page-border: var(--foreground);
-  --offset-pagination-current-page-background: var(--foreground);
-  --offset-pagination-current-page-text: var(--background);
-  --offset-pagination-current-page-background-hover: var(--contrast-500);
+  --offset-pagination-text-primary: var(--text-primary);
+  --offset-pagination-fill-hover: var(--contrast-100);
+  --offset-pagination-fill-current: var(--foreground);
+  --offset-pagination-text-current: var(--text-inverse);
+  --offset-pagination-fill-current-hover: var(--contrast-500);
 }
 \`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`OffsetPagination\` component takes a \`pages\` array and \`currentPage\`:
-
-\`\`\`tsx
-import { OffsetPagination, type PageItem } from '@/components/offset-pagination';
-
-const pages: Array<PageItem | 'ellipsis'> = [
-  { href: '/products?page=1', page: 1 },
-  'ellipsis',
-  { href: '/products?page=4', page: 4 },
-  { href: '/products?page=5', page: 5 },
-  { href: '/products?page=6', page: 6 },
-  'ellipsis',
-  { href: '/products?page=10', page: 10 },
-];
-
-<OffsetPagination
-  pages={pages}
-  currentPage={5}
-  label="Product pagination"
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as OffsetPagination from '@/components/offset-pagination';
-
-<OffsetPagination.Root aria-label="pagination" role="navigation">
-  <OffsetPagination.List>
-    <OffsetPagination.Item>
-      <OffsetPagination.Link href="/products?page=1">1</OffsetPagination.Link>
-    </OffsetPagination.Item>
-    <OffsetPagination.Item>
-      <OffsetPagination.Ellipsis />
-    </OffsetPagination.Item>
-    <OffsetPagination.Item>
-      <OffsetPagination.Link href="/products?page=5" aria-current="page">
-        5
-      </OffsetPagination.Link>
-    </OffsetPagination.Item>
-  </OffsetPagination.List>
-</OffsetPagination.Root>
-\`\`\`
-
-The \`Link\` component supports \`asChild\` for router integration with Next.js Link or React Router.
         `,
       },
     },
@@ -138,7 +83,7 @@ The \`Link\` component supports \`asChild\` for router integration with Next.js 
   argTypes: {
     pages: {
       control: false,
-      description: 'Array of page items or ellipsis markers',
+      description: 'Array of `PageItem` objects or `"ellipsis"` strings',
     },
     currentPage: {
       control: 'number',
@@ -154,24 +99,67 @@ The \`Link\` component supports \`asChild\` for router integration with Next.js 
 export default meta;
 type Story = StoryObj<OffsetPaginationProps>;
 
-// Default pagination (middle of range with ellipsis)
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Pagination in the middle of a range with ellipsis on both sides.',
+      },
+    },
+  },
   args: {
     pages: generatePages(10, 5),
     currentPage: 5,
   },
 };
 
-// Few pages (no ellipsis needed)
 export const FewPages: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'When there are few pages, no ellipsis is needed.',
+      },
+    },
+  },
   args: {
     pages: generatePages(4, 2),
     currentPage: 2,
   },
 };
 
-// Composable anatomy example
 export const ComposableAnatomy: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use primitive components for custom layouts.',
+      },
+      source: {
+        code: `
+<OffsetPaginationPrimitive.Root aria-label="pagination" role="navigation">
+  <OffsetPaginationPrimitive.List>
+    <OffsetPaginationPrimitive.Item>
+      <OffsetPaginationPrimitive.Link href="/products?page=1">1</OffsetPaginationPrimitive.Link>
+    </OffsetPaginationPrimitive.Item>
+    <OffsetPaginationPrimitive.Item>
+      <OffsetPaginationPrimitive.Ellipsis />
+    </OffsetPaginationPrimitive.Item>
+    <OffsetPaginationPrimitive.Item>
+      <OffsetPaginationPrimitive.Link href="/products?page=5" aria-current="page">
+        5
+      </OffsetPaginationPrimitive.Link>
+    </OffsetPaginationPrimitive.Item>
+    <OffsetPaginationPrimitive.Item>
+      <OffsetPaginationPrimitive.Ellipsis />
+    </OffsetPaginationPrimitive.Item>
+    <OffsetPaginationPrimitive.Item>
+      <OffsetPaginationPrimitive.Link href="/products?page=10">10</OffsetPaginationPrimitive.Link>
+    </OffsetPaginationPrimitive.Item>
+  </OffsetPaginationPrimitive.List>
+</OffsetPaginationPrimitive.Root>
+        `,
+      },
+    },
+  },
   render: () => (
     <OffsetPaginationPrimitive.Root aria-label="pagination" role="navigation">
       <OffsetPaginationPrimitive.List>

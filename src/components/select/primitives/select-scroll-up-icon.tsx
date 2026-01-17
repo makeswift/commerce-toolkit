@@ -20,7 +20,7 @@ export function SelectScrollUpIcon({
   if (asChild) {
     return (
       <Slot
-        className={cn('w-5 text-[var(--select-light-icon,var(--foreground))]', className)}
+        className={cn('w-5 text-[--select-fill-icon,var(--form-fill-icon)]', className)}
         data-slot="select-scroll-up-icon"
       >
         {children}
@@ -31,7 +31,7 @@ export function SelectScrollUpIcon({
   return (
     <ChevronUp
       absoluteStrokeWidth
-      className={cn('w-5 text-[var(--select-light-icon,var(--foreground))]', className)}
+      className={cn('w-5 text-[var(--select-fill-icon,var(--form-fill-icon))]', className)}
       data-slot="select-scroll-up-icon"
       strokeWidth={1.5}
     />

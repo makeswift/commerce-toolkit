@@ -15,3 +15,7 @@ export {
   BannerDismiss as Dismiss,
   type BannerDismissProps as DismissProps,
 } from '@/components/banner/primitives/banner-dismiss';
+export {
+  BannerDismissIcon as DismissIcon,
+  type BannerDismissIconProps as DismissIconProps,
+} from '@/components/banner/primitives/banner-dismiss-icon';

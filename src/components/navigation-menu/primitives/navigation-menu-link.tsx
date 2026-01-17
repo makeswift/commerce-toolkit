@@ -9,13 +9,11 @@ export function NavigationMenuLink({ className, children, ...props }: Navigation
   return (
     <NavigationMenuPrimitive.Link
       className={cn(
-        'group/navigation-menu-link inline-flex h-9 w-max items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-semibold text-[var(--nav-link-text,var(--foreground))] outline-none transition-[color,box-shadow] duration-200 [font-family:var(--nav-link-font-family,var(--font-family-body))]',
+        'group/navigation-menu-link focus-primary inline-flex h-9 w-max items-center justify-center rounded-full bg-background px-4 py-2 text-sm font-semibold text-[--navigation-menu-text-primary,var(--text-primary)] outline-none transition-[color,box-shadow] duration-200 [font-family:var(--navigation-menu-font,var(--font-body))]',
         // Hover state
-        'hover:bg-[var(--nav-link-background-hover,var(--contrast-100))] hover:text-[var(--nav-link-text-hover,var(--foreground))]',
+        'hover:bg-[--navigation-menu-fill-hover,var(--contrast-100)] hover:text-[--navigation-menu-text-hover,var(--text-primary)]',
         // Focus state
-        'focus:bg-[var(--nav-link-background-hover,var(--contrast-100))] focus:text-[var(--nav-link-text-hover,var(--foreground))]',
-        // Focus-visible state
-        'focus-visible:outline-2 focus-visible:outline-[var(--nav-focus,var(--brand))]',
+        'focus:bg-[--navigation-menu-fill-hover,var(--contrast-100)] focus:text-[--navigation-menu-text-hover,var(--text-primary)]',
         className,
       )}
       data-slot="navigation-menu-link"

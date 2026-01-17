@@ -2,8 +2,8 @@
 
 import type { ComponentProps } from 'react';
 
+import { Button } from '@/components/button';
 import { useFileInputItem } from '@/components/file-input';
-import { cn } from '@/lib';
 
 export type FileInputRemoveProps = ComponentProps<'button'>;
 
@@ -16,22 +16,17 @@ export function FileInputRemove({ className, children, ...props }: FileInputRemo
   } = useFileInputItem();
 
   return (
-    <button
+    <Button
       aria-label={`Remove ${name}`}
-      className={cn(
-        'inline-flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors',
-        // Hover state
-        'hover:bg-[var(--file-input-item-delete-hover,var(--contrast-100))]',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--file-input-focus,var(--brand))]',
-        className,
-      )}
       data-slot="file-input-remove"
       onClick={removeFile}
+      shape="circle"
+      size="x-small"
       type="button"
+      variant="ghost"
       {...props}
     >
       {children}
-    </button>
+    </Button>
   );
 }

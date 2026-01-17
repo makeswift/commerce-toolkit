@@ -15,46 +15,22 @@ const meta: Meta<typeof Toaster> = {
     docs: {
       description: {
         component: `
-A toast notification system built on Sonner with Alert component styling. Displays temporary messages for user feedback.
+A toast notification system built on Sonner. Uses the Alert component internally for consistent styling across variants.
 
 ## CSS Variables
 
-The Toaster uses the Alert component internally, which supports theming through CSS variables:
+The Toaster inherits theming from the Alert component:
 
 \`\`\`css
 :root {
-  --alert-success-background: color-mix(in oklab, var(--success), white 75%);
-  --alert-warning-background: color-mix(in oklab, var(--warning), white 75%);
-  --alert-error-background: color-mix(in oklab, var(--error), white 75%);
-  --alert-info-background: var(--background);
-  --alert-font-family: var(--font-family-body);
-  --alert-border: color-mix(in oklab, var(--foreground) 10%, transparent);
-  --alert-message-text: var(--foreground);
-  --alert-description-text: color-mix(in oklab, var(--foreground) 50%, transparent);
+  --alert-text: var(--text-primary);
+  --alert-fill-info: var(--background);
+  --alert-fill-success: var(--success-background);
+  --alert-fill-warning: var(--warning-background);
+  --alert-fill-error: var(--error-background);
+  --alert-font-title: var(--font-body);
+  --alert-font-description: var(--font-body);
 }
-\`\`\`
-
-## Usage
-
-Add the \`Toaster\` component to your app layout, then use the \`toast\` object to trigger notifications:
-
-\`\`\`tsx
-import { toast, Toaster } from '@/components/toaster';
-
-// In your layout
-<Toaster position="top-right" />
-
-// Trigger toasts from anywhere
-toast.success('Settings saved');
-toast.error('Something went wrong');
-toast.warning('Low disk space');
-toast.info('New update available');
-
-// With options
-toast.success('Item added to cart', {
-  description: 'You can view your cart anytime',
-  action: { label: 'View Cart', onClick: () => navigateToCart() },
-});
 \`\`\`
         `,
       },
@@ -83,8 +59,14 @@ toast.success('Item added to cart', {
 export default meta;
 type Story = StoryObj<ToasterProps>;
 
-// All toast variants
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'All toast variants: success, error, warning, and info.',
+      },
+    },
+  },
   render: (args) => (
     <div className="space-y-4">
       <Toaster position={args.position} />
@@ -106,8 +88,14 @@ export const Default: Story = {
   ),
 };
 
-// With action button
 export const WithAction: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Toast with an action button for user interaction.',
+      },
+    },
+  },
   render: (args) => (
     <div className="space-y-4">
       <Toaster position={args.position} />
@@ -125,8 +113,14 @@ export const WithAction: Story = {
   ),
 };
 
-// With description
 export const WithDescription: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Toast with additional description text.',
+      },
+    },
+  },
   render: (args) => (
     <div className="space-y-4">
       <Toaster position={args.position} />

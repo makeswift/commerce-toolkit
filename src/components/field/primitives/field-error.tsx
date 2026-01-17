@@ -14,7 +14,7 @@ export function FieldError({ className, children, icon, ...props }: FieldErrorPr
   return (
     <div
       className={cn(
-        'flex items-center gap-1 text-xs text-[var(--field-error,var(--error))]',
+        'flex items-center gap-1 text-xs text-[--field-text-error,var(--error)]',
         className,
       )}
       data-slot="field-error"

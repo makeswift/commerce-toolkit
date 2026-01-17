@@ -1,7 +1,6 @@
 export {
   AlertRoot as Root,
   type AlertRootProps as RootProps,
-  useAlert,
 } from '@/components/alert/primitives/alert-root';
 export {
   AlertHeader as Header,

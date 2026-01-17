@@ -1,4 +1,5 @@
 import '../src/globals.css';
+import './preview.css';
 
 const preview = {
   parameters: {

@@ -8,6 +8,10 @@ export interface BannerProps {
   hideDismiss?: boolean;
   children: ReactNode;
   onDismiss?: () => void;
+  dismissIcon?: {
+    asChild?: boolean;
+    children?: ReactNode;
+  };
 }
 
 /**
@@ -16,18 +20,21 @@ export interface BannerProps {
  *
  * ```css
  * :root {
- *   --banner-focus: var(--foreground);
- *   --banner-background: var(--brand);
- *   --banner-text: var(--foreground);
- *   --banner-close-icon: color-mix(in oklab, var(--foreground) 50%, transparent);
- *   --banner-close-icon-hover: var(--foreground);
- *   --banner-close-background: transparent;
- *   --banner-close-background-hover: color-mix(in oklab, var(--background) 40%, transparent);
- *   --banner-font-family: var(--font-family-body);
+ *   --banner-text: var(--text-primary);
+ *   --banner-fill: var(--brand);
+ *   --banner-fill-icon: var(--contrast-400);
+ *   --banner-font: var(--font-body);
  * }
  * ```
  */
-export function Banner({ id, children, hideDismiss = false, className, onDismiss }: BannerProps) {
+export function Banner({
+  id,
+  children,
+  hideDismiss = false,
+  className,
+  onDismiss,
+  dismissIcon,
+}: BannerProps) {
   return (
     <BannerPrimitive.Root
       className={className}
@@ -37,7 +44,11 @@ export function Banner({ id, children, hideDismiss = false, className, onDismiss
     >
       <BannerPrimitive.Content>
         <BannerPrimitive.Text>{children}</BannerPrimitive.Text>
-        <BannerPrimitive.Dismiss />
+        <BannerPrimitive.Dismiss>
+          <BannerPrimitive.DismissIcon asChild={dismissIcon?.asChild}>
+            {dismissIcon?.children}
+          </BannerPrimitive.DismissIcon>
+        </BannerPrimitive.Dismiss>
       </BannerPrimitive.Content>
     </BannerPrimitive.Root>
   );

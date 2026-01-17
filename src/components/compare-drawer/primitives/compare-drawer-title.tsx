@@ -8,7 +8,7 @@ export function CompareDrawerTitle({ children, className, ...props }: CompareDra
   return (
     <span
       className={cn(
-        'hidden truncate pl-3 pr-5 text-[var(--compare-drawer-card-text,var(--foreground))] @4xl:block',
+        'hidden truncate pl-3 pr-5 text-[--compare-drawer-text-primary,var(--text-primary)] @4xl:block',
         className,
       )}
       data-slot="compare-drawer-title"

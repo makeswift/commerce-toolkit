@@ -15,19 +15,15 @@ export function CalendarDropdownIcon({
   className,
   children,
 }: CalendarDropdownIconProps) {
+  const iconStyles = cn('size-3.5', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-3.5', className)} data-slot="calendar-dropdown-icon">
+      <Slot className={iconStyles} data-slot="calendar-dropdown-icon">
         {children}
       </Slot>
     );
   }
 
-  return (
-    <ChevronDownIcon
-      absoluteStrokeWidth
-      className={cn('size-3.5', className)}
-      data-slot="calendar-dropdown-icon"
-    />
-  );
+  return <ChevronDownIcon absoluteStrokeWidth className={iconStyles} />;
 }

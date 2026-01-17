@@ -48,42 +48,17 @@ A file upload component with drag-and-drop support, progress tracking, and file 
 
 \`\`\`css
 :root {
-  /* Dropzone */
-  --file-input-dropzone-border: var(--contrast-200);
-  --file-input-dropzone-background: var(--background);
-  --file-input-dropzone-border-hover: var(--foreground);
-  --file-input-dropzone-background-hover: var(--contrast-100);
-  --file-input-dropzone-border-disabled: color-mix(in oklab, var(--contrast-200) 70%, transparent);
-  --file-input-dropzone-background-disabled: var(--background);
-  --file-input-dropzone-border-error: var(--error);
-  --file-input-dropzone-border-dragging: var(--foreground);
-  --file-input-dropzone-background-dragging: color-mix(in oklab, var(--success), white 75%);
-  --file-input-dropzone-message-font-family: var(--font-family-body);
-  --file-input-dropzone-message: var(--contrast-500);
-  --file-input-dropzone-message-disabled: color-mix(in oklab, var(--contrast-500) 70%, transparent);
-  --file-input-dropzone-message-error: var(--error);
-
-  /* Trigger */
-  --file-input-trigger-icon: var(--foreground);
-  --file-input-focus: var(--brand);
-
-  /* Message */
-  --file-input-message-font-family: var(--font-family-body);
-  --file-input-message: var(--contrast-500);
-
-  /* File Item */
-  --file-input-item-border: var(--contrast-200);
-  --file-input-item-border-error: var(--error);
-  --file-input-item-name-font-family: var(--font-family-body);
-  --file-input-item-name: var(--foreground);
-  --file-input-item-status: var(--contrast-500);
-  --file-input-item-status-error: var(--error);
-  --file-input-item-delete-hover: var(--contrast-100);
-  --file-input-item-delete-icon: var(--foreground);
-  --file-input-item-progress: var(--brand);
-
-  /* File Icon */
-  --file-input-icon: var(--contrast-400);
+  --file-input-fill: var(--form-fill);
+  --file-input-fill-hover: var(--form-fill-hover);
+  --file-input-fill-disabled: var(--form-fill);
+  --file-input-fill-dragging: var(--success-background);
+  --file-input-fill-progress: var(--brand);
+  --file-input-fill-icon: var(--form-fill-icon);
+  --file-input-text-primary: var(--form-text-primary);
+  --file-input-text-secondary: var(--form-text-secondary);
+  --file-input-text-error: var(--error);
+  --file-input-font-message: var(--font-body);
+  --file-input-font-header: var(--font-body);
 }
 \`\`\`
 

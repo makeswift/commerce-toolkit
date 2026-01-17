@@ -54,6 +54,7 @@ export {
 export {
   DropdownMenuNode as Node,
   type DropdownMenuNodeProps as NodeProps,
+  type DropdownMenuNode,
 } from '@/components/dropdown-menu/primitives/dropdown-menu-node';
 export {
   DropdownMenuCheckboxIndicator as CheckboxIndicator,
@@ -67,3 +68,7 @@ export {
   DropdownMenuTriggerIcon as TriggerIcon,
   type DropdownMenuTriggerIconProps as TriggerIconProps,
 } from '@/components/dropdown-menu/primitives/dropdown-menu-trigger-icon';
+export {
+  DropdownMenuButton as Button,
+  type DropdownMenuButtonProps as ButtonProps,
+} from '@/components/dropdown-menu/primitives/dropdown-menu-button';

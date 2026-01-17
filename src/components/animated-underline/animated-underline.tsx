@@ -12,9 +12,7 @@ export type AnimatedUnderlineProps = ComponentProps<'span'> & {
  *
  * ```css
  * :root {
- *   --animated-underline-hover: var(--brand);
- *   --animated-underline-text: var(--foreground);
- *   --animated-underline-font-family: var(--font-family-body);
+ *   --animated-underline: var(--brand);
  * }
  * ```
  */
@@ -22,7 +20,7 @@ export function AnimatedUnderline({ className, children, ...props }: AnimatedUnd
   return (
     <span
       className={cn(
-        'origin-left font-semibold leading-normal text-[var(--animated-underline-text,var(--foreground))] transition-[background-size] duration-300 [background:linear-gradient(0deg,var(--animated-underline-hover,var(--brand)),var(--animated-underline-hover,var(--brand)))_no-repeat_left_bottom_/_0_2px] [font-family:var(--animated-underline-font-family,var(--font-family-body))]',
+        'origin-left font-semibold text-inherit transition-[background-size] duration-300 [background:linear-gradient(0deg,var(--animated-underline,var(--brand)),var(--animated-underline,var(--brand)))_no-repeat_left_bottom_/_0_2px] [font-family:inherit]',
         // Hover state
         'hover:bg-[size:100%_2px]',
         // Group focus state

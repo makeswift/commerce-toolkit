@@ -9,17 +9,15 @@ export function CardRadioGroupItem({ children, className, ...props }: CardRadioG
   return (
     <RadioGroupPrimitive.Item
       className={cn(
-        'relative flex h-12 w-full items-center overflow-hidden rounded-lg border border-[var(--card-radio-group-unchecked-border,var(--contrast-100))] font-body text-sm font-normal leading-normal text-[var(--card-radio-group-unchecked-text,var(--foreground))] transition-colors',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--card-radio-group-focus,var(--brand))]',
+        'focus-primary relative flex h-12 w-full items-center overflow-hidden rounded-lg border border-[--border-subtle] text-sm text-[--card-radio-group-text-unchecked,var(--form-text-unchecked)] transition-colors [font-family:var(--card-radio-group-font,var(--font-body))]',
         // Checked state
-        'data-[state=checked]:border-[var(--card-radio-group-checked-background,var(--foreground))] data-[state=checked]:bg-[var(--card-radio-group-checked-background,var(--foreground))] data-[state=checked]:text-[var(--card-radio-group-checked-text,var(--background))]',
+        'data-[state=checked]:border-[--border-checked] data-[state=checked]:bg-[--card-radio-group-fill-checked,var(--form-fill-checked)] data-[state=checked]:text-[--card-radio-group-text-checked,var(--form-text-checked)]',
         // Unchecked state
-        'data-[state=unchecked]:bg-[var(--card-radio-group-unchecked-background,var(--background))]',
+        'data-[state=unchecked]:bg-[--card-radio-group-fill-unchecked,var(--form-fill-unchecked)]',
         // Unchecked hover state
-        'data-[state=unchecked]:hover:border-[var(--card-radio-group-unchecked-border-hover,var(--contrast-200))] data-[state=unchecked]:hover:bg-[var(--card-radio-group-unchecked-background-hover,var(--contrast-100))]',
+        'data-[state=unchecked]:hover:border-[--border] data-[state=unchecked]:hover:bg-[--card-radio-group-fill-hover,var(--form-fill-hover)]',
         // Aria-invalid state
-        'aria-invalid:border-[var(--card-radio-group-border-error,var(--error))]',
+        'aria-invalid:border-[--error]',
         // Disabled state
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         className,

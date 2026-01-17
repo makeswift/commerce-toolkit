@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react';
 
-import { Button } from '@/components/button';
 import * as DropdownMenuPrimitive from '@/components/dropdown-menu';
+import type { DropdownMenuNode } from '@/components/dropdown-menu';
 import { cn } from '@/lib';
 
 /**
@@ -12,39 +12,21 @@ import { cn } from '@/lib';
  *
  * ```css
  * :root {
- *   --dropdown-menu-background: var(--background);
- *   --dropdown-menu-border: var(--contrast-100);
- *   --dropdown-menu-focus: var(--brand);
- *   --dropdown-menu-item-focus: var(--brand);
- *   --dropdown-menu-item-text: var(--contrast-400);
- *   --dropdown-menu-item-text-hover: var(--foreground);
- *   --dropdown-menu-item-danger-text: var(--error);
- *   --dropdown-menu-item-danger-text-hover: color-mix(in oklab, var(--error), black 75%);
- *   --dropdown-menu-item-background: transparent;
- *   --dropdown-menu-item-background-hover: var(--contrast-100);
- *   --dropdown-menu-item-danger-background: var(--error);
- *   --dropdown-menu-item-danger-background-hover: color-mix(in oklab, var(--error), white 75%);
- *   --dropdown-menu-item-font-family: var(--font-family-body);
- *   --dropdown-menu-seperator: var(--contrast-200);
+ *   --dropdown-menu-fill: var(--background);
+ *   --dropdown-menu-font: var(--font-body);
+ *   --dropdown-menu-text: var(--text-secondary);
+ *   --dropdown-menu-fill-hover: var(--contrast-100);
+ *   --dropdown-menu-text-hover: var(--text-primary);
+ *   --dropdown-menu-text-error: var(--error);
+ *   --dropdown-menu-fill-error: var(--error-background);
+ *   --dropdown-menu-text-error-hover: var(--error-foreground);
  * }
  * ```
  */
 
-type MenuNode =
-  | { type: 'item'; props?: DropdownMenuPrimitive.ItemProps }
-  | { type: 'checkbox'; props?: DropdownMenuPrimitive.CheckboxItemProps }
-  | { type: 'separator'; props?: DropdownMenuPrimitive.SeparatorProps }
-  | { type: 'group'; props?: DropdownMenuPrimitive.GroupProps; items: MenuNode[] }
-  | {
-      type: 'sub';
-      props?: DropdownMenuPrimitive.SubProps;
-      trigger: { props?: DropdownMenuPrimitive.SubTriggerProps };
-      content?: { props?: DropdownMenuPrimitive.SubContentProps; items: MenuNode[] };
-    };
-
 export interface DropdownMenuProps {
   className?: string;
-  items: MenuNode[];
+  nodes: DropdownMenuNode[];
   trigger?: ReactNode;
   triggerIcon?: {
     asChild?: boolean;
@@ -59,7 +41,7 @@ export interface DropdownMenuProps {
 
 export function DropdownMenu({
   className,
-  items,
+  nodes,
   trigger,
   triggerIcon,
   align,
@@ -79,19 +61,23 @@ export function DropdownMenu({
         {trigger !== undefined ? (
           trigger
         ) : (
-          <Button shape="circle" size="small" variant="ghost">
+          <DropdownMenuPrimitive.Button>
             <DropdownMenuPrimitive.TriggerIcon asChild={triggerIcon?.asChild}>
               {triggerIcon?.children}
             </DropdownMenuPrimitive.TriggerIcon>
-          </Button>
+          </DropdownMenuPrimitive.Button>
         )}
       </DropdownMenuPrimitive.Trigger>
       <DropdownMenuPrimitive.Portal>
         <DropdownMenuPrimitive.Content className={cn(className)}>
           <DropdownMenuPrimitive.ScrollArea>
             <DropdownMenuPrimitive.Label>{label}</DropdownMenuPrimitive.Label>
-            {items.map((item, index) => (
-              <DropdownMenuPrimitive.Node key={index} menuKey={index} menuNode={item} />
+            {nodes.map((node, index) => (
+              <DropdownMenuPrimitive.Node
+                dropdownMenuKey={index}
+                dropdownMenuNode={node}
+                key={index}
+              />
             ))}
           </DropdownMenuPrimitive.ScrollArea>
         </DropdownMenuPrimitive.Content>

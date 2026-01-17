@@ -13,9 +13,11 @@ export interface CheckboxIconProps {
 }
 
 export function CheckboxIcon({ asChild = false, className, children }: CheckboxIconProps) {
+  const iconStyles = cn('size-4', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-4', className)} data-slot="checkbox-icon">
+      <Slot className={iconStyles} data-slot="checkbox-icon">
         {children}
       </Slot>
     );
@@ -24,7 +26,7 @@ export function CheckboxIcon({ asChild = false, className, children }: CheckboxI
   return (
     <Check
       absoluteStrokeWidth
-      className={cn('size-4', className)}
+      className={iconStyles}
       color="currentColor"
       data-slot="checkbox-icon"
     />

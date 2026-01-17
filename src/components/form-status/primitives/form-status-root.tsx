@@ -7,9 +7,9 @@ const formStatusVariants = cva('flex items-center gap-3 rounded-xl px-4 py-3 tex
   variants: {
     type: {
       error:
-        'bg-[var(--form-status-background-error,color-mix(in_oklab,_var(--error),_white_75%))] [color:var(--form-status-text-error,color-mix(in_oklab,var(--error),black_75%))]',
+        'bg-[--form-status-fill-error,var(--error-background)] text-[--form-status-text-error,var(--error-foreground)]',
       success:
-        'bg-[var(--form-status-background-success,color-mix(in_oklab,_var(--success),_white_75%))] [color:var(--form-status-text-success,color-mix(in_oklab,var(--success),black_75%))]',
+        'bg-[--form-status-fill-success,var(--success-background)] text-[--form-status-text-success,var(--success-foreground)]',
     },
   },
   defaultVariants: {

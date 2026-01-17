@@ -15,9 +15,7 @@ export function BreadcrumbsLink({ asChild = false, className, ...props }: Breadc
   return (
     <Component
       className={cn(
-        'group/underline text-[var(--breadcrumbs-primary-text,var(--foreground))]',
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
+        'focus-primary group/underline text-[--breadcrumbs-text-primary,var(--primary-text)]',
         className,
       )}
       data-slot="breadcrumbs-link"

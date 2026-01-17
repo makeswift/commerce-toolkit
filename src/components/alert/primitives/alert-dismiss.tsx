@@ -3,27 +3,23 @@
 import { X } from 'lucide-react';
 import type { ComponentProps } from 'react';
 
-import { useAlert } from '@/components/alert';
 import { Button } from '@/components/button';
+import { cn } from '@/lib';
 
 export type AlertDismissProps = ComponentProps<typeof Button>;
 
-export function AlertDismiss({ ...props }: AlertDismissProps) {
-  const { dismiss } = useAlert();
-
-  const { label, onClick } = dismiss;
-
+export function AlertDismiss({ children, className, ...props }: AlertDismissProps) {
   return (
     <Button
-      aria-label={label}
+      className={cn('shrink-0', className)}
       data-slot="alert-dismiss"
-      onClick={onClick}
       shape="circle"
       size="x-small"
       variant="ghost"
       {...props}
     >
       <X absoluteStrokeWidth size={20} strokeWidth={1} />
+      <span className="sr-only">{children ?? 'Dismiss'}</span>
     </Button>
   );
 }

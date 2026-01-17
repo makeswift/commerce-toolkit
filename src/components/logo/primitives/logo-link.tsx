@@ -11,14 +11,7 @@ export function LogoLink({ asChild = false, className, children, ...props }: Log
   const Component = asChild ? Slot : 'a';
 
   return (
-    <Component
-      className={cn(
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--logo-focus,var(--brand))]',
-        className,
-      )}
-      data-slot="logo-link"
-      {...props}
-    >
+    <Component className={cn('focus-primary', className)} data-slot="logo-link" {...props}>
       {children}
     </Component>
   );

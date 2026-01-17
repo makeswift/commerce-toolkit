@@ -20,10 +20,8 @@ export interface CardProps {
  *
  * ```css
  * :root {
- *   --card-focus: var(--brand);
- *   --card-border-color: var(--contrast-200);
- *   --card-background: var(--background);
- *   --card-hover-background: color-mix(in oklab, var(--contrast-100) 50%,transparent);
+ *   --card-fill: var(--background);
+ *   --card-fill-hover: color-mix(in oklch,var(--contrast-100) 50%,transparent);
  * }
  * ```
  */

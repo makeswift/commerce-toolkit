@@ -25,17 +25,14 @@ export type CardRadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root
  * with their default values:
  *
  * ```css
- *  :root {
- *   --card-radio-group-focus: var(--brand);
- *   --card-radio-group-light-unchecked-border: var(--contrast-100);
- *   --card-radio-group-light-unchecked-border-hover: var(--contrast-200);
- *   --card-radio-group-light-unchecked-background: var(--background);
- *   --card-radio-group-light-unchecked-text: var(--foreground);
- *   --card-radio-group-light-unchecked-background-hover: var(--contrast-100);
- *   --card-radio-group-light-checked-background: var(--foreground);
- *   --card-radio-group-light-checked-text: var(--background);
- *   --card-radio-group-light-border-error: var(--error);
- *  }
+ * :root {
+ *   --card-radio-group-font: var(--font-body);
+ *   --card-radio-group-fill-unchecked: var(--form-fill-unchecked);
+ *   --card-radio-group-fill-checked: var(--form-fill-checked);
+ *   --card-radio-group-fill-hover: var(--form-fill-hover);
+ *   --card-radio-group-text-unchecked: var(--form-text-unchecked);
+ *   --card-radio-group-text-checked: var(--form-text-checked);
+ * }
  * ```
  */
 export function CardRadioGroup({

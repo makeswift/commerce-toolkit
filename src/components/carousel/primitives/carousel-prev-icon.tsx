@@ -13,9 +13,11 @@ export interface CarouselPrevIconProps {
 }
 
 export function CarouselPrevIcon({ asChild = false, className, children }: CarouselPrevIconProps) {
+  const iconStyles = cn('size-6', className);
+
   if (asChild) {
     return (
-      <Slot className={cn('size-6', className)} data-slot="carousel-prev-icon">
+      <Slot className={iconStyles} data-slot="carousel-prev-icon">
         {children}
       </Slot>
     );
@@ -24,7 +26,7 @@ export function CarouselPrevIcon({ asChild = false, className, children }: Carou
   return (
     <ArrowLeft
       absoluteStrokeWidth
-      className={cn('size-6', className)}
+      className={iconStyles}
       data-slot="carousel-prev-icon"
       strokeWidth={1.5}
     />

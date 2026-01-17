@@ -21,7 +21,7 @@ export function SelectTriggerIcon({
     return (
       <Slot
         className={cn(
-          'w-5 text-[var(--select-light-icon,var(--foreground))] transition-transform',
+          'w-5 text-[--select-fill-icon,var(--form-fill-icon)] transition-transform',
           className,
         )}
         data-slot="select-trigger-icon"
@@ -35,7 +35,7 @@ export function SelectTriggerIcon({
     <ChevronDown
       absoluteStrokeWidth
       className={cn(
-        'w-5 text-[var(--select-light-icon,var(--foreground))] transition-transform',
+        'w-5 text-[--select-fill-icon,var(--form-fill-icon)] transition-transform',
         className,
       )}
       data-slot="select-trigger-icon"

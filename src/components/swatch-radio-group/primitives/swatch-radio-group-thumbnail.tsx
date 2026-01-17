@@ -12,7 +12,7 @@ export function SwatchRadioGroupThumbnail({
   return (
     <span
       className={cn(
-        'relative block size-full overflow-hidden rounded-full border border-[var(--swatch-radio-group-light-option-border,color-mix(in_oklab,var(--foreground)_10%,transparent))] bg-clip-padding shadow',
+        'relative block size-full overflow-hidden rounded-full border bg-clip-padding shadow [border-color:color-mix(in_oklab,var(--foreground)_10%,transparent)]',
         className,
       )}
       data-slot="swatch-radio-group-thumbnail"

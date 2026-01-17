@@ -28,12 +28,7 @@ export function ButtonLink({
 
   return (
     <Comp
-      className={cn(
-        buttonVariants({ variant, size, shape }),
-        // Focus-visible state
-        'focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-focus,var(--brand))]',
-        className,
-      )}
+      className={cn(buttonVariants({ variant, size, shape }), 'focus-primary', className)}
       data-slot="button-link"
       {...props}
     >

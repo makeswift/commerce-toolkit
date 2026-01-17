@@ -9,10 +9,7 @@ export type CompareCardSkeletonProps = ComponentProps<'div'>;
 export function CompareCardSkeleton({ className, ...props }: CompareCardSkeletonProps) {
   return (
     <div
-      className={cn(
-        'w-full max-w-md divide-y divide-[var(--compare-card-divider,var(--contrast-100))] @container',
-        className,
-      )}
+      className={cn('w-full max-w-md divide-y divide-[--border-subtle] @container', className)}
       data-slot="compare-card-skeleton"
       {...props}
     >

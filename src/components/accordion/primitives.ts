@@ -11,9 +11,9 @@ export {
   type AccordionContentProps as ContentProps,
 } from '@/components/accordion/primitives/accordion-content';
 export {
-  AccordionContentArea as ContentArea,
-  type AccordionContentAreaProps as ContentAreaProps,
-} from '@/components/accordion/primitives/accordion-content-area';
+  AccordionBody as Body,
+  type AccordionBodyProps as BodyProps,
+} from '@/components/accordion/primitives/accordion-body';
 export {
   AccordionHeader as Header,
   type AccordionHeaderProps as HeaderProps,

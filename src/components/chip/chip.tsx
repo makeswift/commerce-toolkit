@@ -16,11 +16,9 @@ export interface ChipProps extends ComponentProps<'button'> {
  *
  * ```css
  * :root {
- *   --chip-focus: var(--foreground);
- *   --chip-font-family: var(--font-family-body);
- *   --chip-background: var(--contrast-100);
- *   --chip-background-hover: var(--contrast-200);
- *   --chip-text: var(--foreground);
+ *   --chip-fill: var(--contrast-100);
+ *   --chip-text: var(--text-primary);
+ *   --chip-font: var(--font-body);
  * }
  * ```
  */

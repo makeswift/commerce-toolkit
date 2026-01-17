@@ -16,9 +16,9 @@ export function CounterIncreaseIcon({
   children,
 }: CounterIncreaseIconProps) {
   const iconStyles = cn(
-    'size-[18px] text-[var(--counter-icon,var(--contrast-300))] transition-colors duration-300',
+    'size-[18px] text-[--counter-fill-icon,var(--form-fill-icon)] transition-colors duration-300',
     // Hover state (via parent group)
-    'group-enabled/counter:group-hover/counter:text-[var(--counter-icon-hover,var(--foreground))]',
+    'group-enabled/counter:group-hover/counter:text-[--counter-fill-icon-hover,var(--form-fill-icon-hover)]',
     className,
   );
 

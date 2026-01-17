@@ -13,7 +13,7 @@ export function FileInputName({ className, children, ...props }: FileInputNamePr
   return (
     <p
       className={cn(
-        'truncate text-sm font-semibold text-[var(--file-input-item-name,var(--foreground))]',
+        'truncate text-sm font-semibold text-[--file-input-text-primary,var(--form-text-primary)]',
         className,
       )}
       data-slot="file-input-name"

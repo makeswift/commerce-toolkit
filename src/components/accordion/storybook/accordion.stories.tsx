@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ComponentType } from 'react';
 
 import { Accordion, type AccordionProps } from '@/components/accordion';
 import * as AccordionPrimitive from '@/components/accordion/primitives';
@@ -8,29 +7,21 @@ const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
   component: Accordion,
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
     docs: {
       description: {
         component: `
-A collapsible content component that allows users to toggle sections of content open and closed.
+A collapsible content component for organizing and revealing information in expandable sections.
 
 ## CSS Variables
 
 \`\`\`css
 :root {
-  --accordion-focus: var(--brand);
-  --accordion-light-title-text: var(--contrast-400);
-  --accordion-light-title-text-hover: var(--foreground);
-  --accordion-light-title-icon: var(--contrast-500);
-  --accordion-light-title-icon-hover: var(--foreground);
-  --accordion-light-content-text: var(--foreground);
-  --accordion-dark-title-text: var(--contrast-200);
-  --accordion-dark-title-text-hover: var(--background);
-  --accordion-dark-title-icon: var(--contrast-200);
-  --accordion-dark-title-icon-hover: var(--background);
-  --accordion-dark-content-text: var(--background);
-  --accordion-title-font-family: var(--font-family-body);
-  --accordion-content-font-family: var(--font-family-body);
+  --accordion-text-primary: var(--text-primary);
+  --accordion-text-secondary: var(--text-secondary);
+  --accordion-fill-icon: var(--contrast-400);
+  --accordion-font-title: var(--font-heading);
+  --accordion-font-body: var(--font-body);
 }
 \`\`\`
         `,
@@ -42,7 +33,7 @@ A collapsible content component that allows users to toggle sections of content 
     type: {
       control: 'select',
       options: ['single', 'multiple'],
-      description: 'Whether one or multiple items can be open at a time',
+      description: 'Whether one or multiple items can be expanded at once',
     },
     collapsible: {
       control: 'boolean',
@@ -58,8 +49,8 @@ A collapsible content component that allows users to toggle sections of content 
     },
   },
   decorators: [
-    (Story: ComponentType) => (
-      <div className="mx-auto max-w-2xl bg-background px-6 py-8">
+    (Story) => (
+      <div className="w-[400px]">
         <Story />
       </div>
     ),
@@ -70,79 +61,82 @@ export default meta;
 
 type Story = StoryObj<AccordionProps>;
 
-const faqItems: AccordionProps['items'] = [
+const sampleItems = [
   {
-    value: 'shipping',
-    title: 'Shipping Information',
-    content: (
-      <p>
-        We offer free standard shipping on orders over $50. Standard shipping takes 5-7 business
-        days, while expedited shipping arrives in 2-3 business days for an additional fee. All
-        orders include tracking information sent via email.
-      </p>
-    ),
-  },
-  {
-    value: 'returns',
-    title: 'Returns & Exchanges',
-    content: (
-      <p>
-        Items can be returned within 30 days of purchase for a full refund. Products must be unused
-        and in original packaging. Exchanges are processed within 5-7 business days of receiving
-        your return.
-      </p>
-    ),
-  },
-  {
+    title: 'What materials are used?',
+    content:
+      'Our products are crafted from sustainable materials including bamboo, natural fibers, and recycled glass. Each item is designed with environmental impact in mind.',
     value: 'materials',
-    title: 'Materials & Care',
-    content: (
-      <p>
-        Our products are crafted from sustainable, eco-friendly materials including bamboo, recycled
-        glass, and organic cotton. Hand wash with mild soap and water. Avoid harsh chemicals to
-        extend product life.
-      </p>
-    ),
+  },
+  {
+    title: 'How do I care for these products?',
+    content:
+      'Most items can be cleaned with mild soap and water. Wooden items should be dried thoroughly after cleaning. Glass containers are dishwasher safe.',
+    value: 'care',
+  },
+  {
+    title: 'What is your return policy?',
+    content:
+      'We offer a 30-day return policy on all unused items in original packaging. Contact our support team to initiate a return.',
+    value: 'returns',
   },
 ];
 
-export const Default: Story = {
+export const Single: Story = {
   args: {
     type: 'single',
-    collapsible: true,
-    defaultValue: 'shipping',
-    items: faqItems,
-  },
-};
-
-export const MultipleOpen: Story = {
-  args: {
-    type: 'multiple',
-    defaultValue: ['shipping', 'materials'],
-    items: faqItems,
+    items: sampleItems,
   },
   parameters: {
     docs: {
       description: {
         story:
-          'When `type` is set to `"multiple"`, users can expand multiple accordion items at once.',
+          'Only one item can be expanded at a time. Expanding a new item closes the previous one.',
       },
     },
   },
 };
 
-export const NonCollapsible: Story = {
+export const SingleCollapsible: Story = {
   args: {
     type: 'single',
-    collapsible: false,
-    defaultValue: 'shipping',
-    items: faqItems,
+    collapsible: true,
+    items: sampleItems,
   },
   parameters: {
     docs: {
       description: {
-        story:
-          'When `collapsible` is `false` and `type` is `"single"`, one item must always remain open.',
+        story: 'With `collapsible` enabled, clicking an expanded item will close it.',
+      },
+    },
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    type: 'multiple',
+    items: sampleItems,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Multiple items can be expanded simultaneously.',
+      },
+    },
+  },
+};
+
+export const WithDefaultValue: Story = {
+  args: {
+    type: 'single',
+    collapsible: true,
+    defaultValue: 'care',
+    items: sampleItems,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use `defaultValue` to specify which item(s) should be expanded on initial render.',
       },
     },
   },
@@ -154,56 +148,31 @@ export const NonCollapsible: Story = {
  */
 export const ComposableAnatomy: Story = {
   render: () => (
-    <AccordionPrimitive.Root collapsible defaultValue="item-1" type="single">
-      <AccordionPrimitive.Item value="item-1">
+    <AccordionPrimitive.Root collapsible type="single">
+      <AccordionPrimitive.Item value="shipping">
         <AccordionPrimitive.Header>
           <AccordionPrimitive.Trigger>
-            <AccordionPrimitive.Title>Natural Fiber Scrub Brush</AccordionPrimitive.Title>
+            <AccordionPrimitive.Title>Shipping Information</AccordionPrimitive.Title>
             <AccordionPrimitive.Chevron />
           </AccordionPrimitive.Trigger>
         </AccordionPrimitive.Header>
         <AccordionPrimitive.Content>
-          <AccordionPrimitive.ContentArea>
-            <p>
-              Hand-crafted from sustainable plant fibers, this scrub brush is perfect for dishes,
-              vegetables, and general cleaning. The ergonomic wooden handle provides a comfortable
-              grip while the natural bristles are tough on grime but gentle on surfaces.
-            </p>
-          </AccordionPrimitive.ContentArea>
+          <AccordionPrimitive.Body>
+            Free shipping on orders over $50. Standard delivery takes 3-5 business days.
+          </AccordionPrimitive.Body>
         </AccordionPrimitive.Content>
       </AccordionPrimitive.Item>
-      <AccordionPrimitive.Item value="item-2">
+      <AccordionPrimitive.Item value="warranty">
         <AccordionPrimitive.Header>
           <AccordionPrimitive.Trigger>
-            <AccordionPrimitive.Title>Minimal Ceramic Soap Dispenser</AccordionPrimitive.Title>
+            <AccordionPrimitive.Title>Warranty Details</AccordionPrimitive.Title>
             <AccordionPrimitive.Chevron />
           </AccordionPrimitive.Trigger>
         </AccordionPrimitive.Header>
         <AccordionPrimitive.Content>
-          <AccordionPrimitive.ContentArea>
-            <p>
-              Elevate your bathroom or kitchen with this sleek ceramic soap dispenser. Features a
-              smooth pump mechanism and a weighted base for stability. Refillable design helps
-              reduce plastic waste.
-            </p>
-          </AccordionPrimitive.ContentArea>
-        </AccordionPrimitive.Content>
-      </AccordionPrimitive.Item>
-      <AccordionPrimitive.Item value="item-3">
-        <AccordionPrimitive.Header>
-          <AccordionPrimitive.Trigger>
-            <AccordionPrimitive.Title>Linen Hand Towel</AccordionPrimitive.Title>
-            <AccordionPrimitive.Chevron />
-          </AccordionPrimitive.Trigger>
-        </AccordionPrimitive.Header>
-        <AccordionPrimitive.Content>
-          <AccordionPrimitive.ContentArea>
-            <p>
-              Made from 100% European linen, these hand towels are highly absorbent and quick
-              drying. They become softer with each wash while maintaining their durability. A
-              timeless addition to any home.
-            </p>
-          </AccordionPrimitive.ContentArea>
+          <AccordionPrimitive.Body>
+            All products come with a 1-year warranty against manufacturing defects.
+          </AccordionPrimitive.Body>
         </AccordionPrimitive.Content>
       </AccordionPrimitive.Item>
     </AccordionPrimitive.Root>
@@ -226,9 +195,7 @@ import * as AccordionPrimitive from '@/components/accordion/primitives';
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
     <AccordionPrimitive.Content>
-      <AccordionPrimitive.ContentArea>
-        Content goes here
-      </AccordionPrimitive.ContentArea>
+      <AccordionPrimitive.Body>Content goes here</AccordionPrimitive.Body>
     </AccordionPrimitive.Content>
   </AccordionPrimitive.Item>
 </AccordionPrimitive.Root>

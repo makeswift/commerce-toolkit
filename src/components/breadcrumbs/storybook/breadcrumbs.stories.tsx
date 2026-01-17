@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Dot } from 'lucide-react';
-import type { ComponentType } from 'react';
 
 import { AnimatedUnderline } from '@/components/animated-underline';
 import { Breadcrumbs, type BreadcrumbsProps } from '@/components/breadcrumbs';
@@ -20,59 +18,11 @@ A navigation component that displays the current page's location within a hierar
 
 \`\`\`css
 :root {
-  --breadcrumbs-font-family: var(--font-family-body);
-  --breadcrumbs-primary-text: var(--foreground);
-  --breadcrumbs-secondary-text: var(--contrast-500);
-  --breadcrumbs-icon: var(--contrast-500);
+  --breadcrumbs-font: var(--font-body);
+  --breadcrumbs-text-primary: var(--foreground);
+  --breadcrumbs-text-secondary: var(--contrast-500);
+  --breadcrumbs-fill-icon: var(--contrast-500);
 }
-\`\`\`
-
-## Usage
-
-### High-Level Component
-
-The \`Breadcrumbs\` component provides a simple API for breadcrumb navigation:
-
-\`\`\`tsx
-import { Breadcrumbs } from '@/components/breadcrumbs';
-
-<Breadcrumbs
-  breadcrumbs={[
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'Cleaning Supplies', href: '/products/cleaning' },
-  ]}
-  ariaLabel="Breadcrumb"
-/>
-\`\`\`
-
-### Composable Anatomy
-
-For more control, use the primitive components directly:
-
-\`\`\`tsx
-import * as Breadcrumbs from '@/components/breadcrumbs';
-import { AnimatedUnderline } from '@/components/animated-underline';
-
-<Breadcrumbs.Root aria-label="Breadcrumb">
-  <Breadcrumbs.List>
-    <Breadcrumbs.Item>
-      <Breadcrumbs.Link href="/">
-        <AnimatedUnderline>Home</AnimatedUnderline>
-      </Breadcrumbs.Link>
-      <Breadcrumbs.Icon />
-    </Breadcrumbs.Item>
-    <Breadcrumbs.Item>
-      <Breadcrumbs.Link href="/products">
-        <AnimatedUnderline>Products</AnimatedUnderline>
-      </Breadcrumbs.Link>
-      <Breadcrumbs.Icon />
-    </Breadcrumbs.Item>
-    <Breadcrumbs.Item>
-      <Breadcrumbs.Current>Cleaning Supplies</Breadcrumbs.Current>
-    </Breadcrumbs.Item>
-  </Breadcrumbs.List>
-</Breadcrumbs.Root>
 \`\`\`
         `,
       },
@@ -88,24 +38,15 @@ import { AnimatedUnderline } from '@/components/animated-underline';
       control: 'text',
       description: 'Accessible label for the navigation landmark',
     },
-    className: {
-      control: 'text',
-      description: 'Additional CSS classes to apply',
+    icon: {
+      description: 'Configuration for a custom separator icon with `asChild` and `children` props',
     },
   },
-  decorators: [
-    (Story: ComponentType) => (
-      <div className="bg-background p-4">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 type Story = StoryObj<BreadcrumbsProps>;
 
-// Default breadcrumbs
 export const Default: Story = {
   args: {
     breadcrumbs: [
@@ -117,7 +58,6 @@ export const Default: Story = {
   },
 };
 
-// Longer breadcrumb trail
 export const LongPath: Story = {
   args: {
     breadcrumbs: [
@@ -129,9 +69,18 @@ export const LongPath: Story = {
     ],
     ariaLabel: 'Breadcrumb',
   },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Breadcrumbs automatically wrap when the path is long.',
+      },
+    },
+  },
 };
 
-// Composable anatomy example
+/**
+ * Use the composable primitives to build custom breadcrumb layouts.
+ */
 export const ComposableAnatomy: Story = {
   render: () => (
     <BreadcrumbsPrimitive.Root aria-label="Breadcrumb">
@@ -154,33 +103,38 @@ export const ComposableAnatomy: Story = {
       </BreadcrumbsPrimitive.List>
     </BreadcrumbsPrimitive.Root>
   ),
-};
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Use the composable primitives to build custom breadcrumb layouts:
 
-// Custom separator icon
-export const CustomSeparator: Story = {
-  render: () => (
-    <BreadcrumbsPrimitive.Root aria-label="Breadcrumb">
-      <BreadcrumbsPrimitive.List>
-        <BreadcrumbsPrimitive.Item>
-          <BreadcrumbsPrimitive.Link href="/">
-            <AnimatedUnderline>Home</AnimatedUnderline>
-          </BreadcrumbsPrimitive.Link>
-          <BreadcrumbsPrimitive.Icon asChild>
-            <Dot absoluteStrokeWidth strokeWidth={1.5} />
-          </BreadcrumbsPrimitive.Icon>
-        </BreadcrumbsPrimitive.Item>
-        <BreadcrumbsPrimitive.Item>
-          <BreadcrumbsPrimitive.Link href="/categories">
-            <AnimatedUnderline>Categories</AnimatedUnderline>
-          </BreadcrumbsPrimitive.Link>
-          <BreadcrumbsPrimitive.Icon asChild>
-            <Dot absoluteStrokeWidth strokeWidth={1.5} />
-          </BreadcrumbsPrimitive.Icon>
-        </BreadcrumbsPrimitive.Item>
-        <BreadcrumbsPrimitive.Item>
-          <BreadcrumbsPrimitive.Current>Bathroom</BreadcrumbsPrimitive.Current>
-        </BreadcrumbsPrimitive.Item>
-      </BreadcrumbsPrimitive.List>
-    </BreadcrumbsPrimitive.Root>
-  ),
+\`\`\`tsx
+import * as BreadcrumbsPrimitive from '@/components/breadcrumbs/primitives';
+import { AnimatedUnderline } from '@/components/animated-underline';
+
+<BreadcrumbsPrimitive.Root aria-label="Breadcrumb">
+  <BreadcrumbsPrimitive.List>
+    <BreadcrumbsPrimitive.Item>
+      <BreadcrumbsPrimitive.Link href="/">
+        <AnimatedUnderline>Home</AnimatedUnderline>
+      </BreadcrumbsPrimitive.Link>
+      <BreadcrumbsPrimitive.Icon />
+    </BreadcrumbsPrimitive.Item>
+    <BreadcrumbsPrimitive.Item>
+      <BreadcrumbsPrimitive.Link href="/products">
+        <AnimatedUnderline>Products</AnimatedUnderline>
+      </BreadcrumbsPrimitive.Link>
+      <BreadcrumbsPrimitive.Icon />
+    </BreadcrumbsPrimitive.Item>
+    <BreadcrumbsPrimitive.Item>
+      <BreadcrumbsPrimitive.Current>Current Page</BreadcrumbsPrimitive.Current>
+    </BreadcrumbsPrimitive.Item>
+  </BreadcrumbsPrimitive.List>
+</BreadcrumbsPrimitive.Root>
+\`\`\`
+        `,
+      },
+    },
+  },
 };
